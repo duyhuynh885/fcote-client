@@ -1,23 +1,22 @@
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme: any) => ({
-  navLinks: {
-    marginLeft: theme.spacing(10),
-    display: "flex",
+  navBar: {
+    backgroundColor: `${theme.color.navColor} !important`,
   },
-  logo: {
-    flexGrow: "1",
-    cursor: "pointer",
+  navLinks: {
+    display: "flex",
   },
   link: {
     textDecoration: "none",
-    color: "white",
-    fontSize: "20px",
+    textTransform: "uppercase",
+    color: theme.color.darkGray,
+    fontSize: theme.textFont.small,
+    fontWeight: "bold",
     marginLeft: theme.spacing(5),
-
     "&:hover": {
-      color: "yellow",
-      borderBottom: "1px solid white",
+      color: theme.color.textColor,
+      fontSize: theme.textFont.medium,
     },
   },
 }));

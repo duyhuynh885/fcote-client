@@ -1,20 +1,17 @@
 import useStyles from "./style";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import React from "react";
+import LogoBand from "../Icons/LogoBand";
 
 function Navbar() {
   const classes = useStyles();
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className={classes.navBar}>
       <Toolbar>
-        <Typography variant="h4" className={classes.logo}>
-          Navbar
-        </Typography>
+        <LogoBand />
         <div className={classes.navLinks}>
-          <Link to="/" className={classes.link}>
-            Home
-          </Link>
           <Link to="/aboutUs" className={classes.link}>
             About Us
           </Link>
