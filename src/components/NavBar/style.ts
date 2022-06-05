@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme: any) => ({
     marginLeft: theme.spacing(10),
     display: "flex",
   },
- logo: {
+  logo: {
     flexGrow: "1",
     cursor: "pointer",
   },
@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme: any) => ({
     textDecoration: "none",
     color: "white",
     fontSize: "20px",
-    marginLeft: theme.spacing(20),
+    marginLeft: theme.spacing(5),
+
     "&:hover": {
       color: "yellow",
       borderBottom: "1px solid white",

@@ -3,7 +3,6 @@ import { AppBar, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-
   const classes = useStyles();
 
   return (

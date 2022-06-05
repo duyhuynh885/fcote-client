@@ -14,9 +14,10 @@ export class PATHS {
   public static ASSIGNMENT_PATH(): string {
     return "/assignment";
   }
-
+  public static My_ASSIGNMENT_PATH(): string {
+    return "/my-list-assignment";
+  }
   public static ASSIGNMENT_DETAIL_PATH(id: string): string {
     return `${PATHS.ASSIGNMENT_PATH}/${id}`;
   }
-  
 }
