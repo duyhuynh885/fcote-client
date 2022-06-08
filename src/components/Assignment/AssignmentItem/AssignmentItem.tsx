@@ -1,6 +1,7 @@
-import { Avatar, Button, Paper, Typography } from "@mui/material";
+import { Avatar, Paper, Typography } from "@mui/material";
 import React from "react";
 import AssignmentItemStyle from "./style";
+import ButtonItem from "../ButtonItem.tsx/ButtonItem";
 function AssignmentItem() {
   const classes = AssignmentItemStyle();
   const ImageURL =
@@ -18,9 +19,7 @@ function AssignmentItem() {
           <Typography className={classes.state}>FINISHED</Typography>
           <Typography className={classes.level}>HARD</Typography>
         </div>
-        <Button variant="outlined" className={classes.btn}>
-          <Typography className={classes.textBtn}>View Assignment</Typography>
-        </Button>
+        <ButtonItem />
       </Paper>
     </div>
   );
