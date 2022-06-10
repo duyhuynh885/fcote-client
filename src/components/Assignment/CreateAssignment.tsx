@@ -3,9 +3,9 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -55,7 +55,6 @@ function a11yProps(index: number) {
 }
 
 export default function CreateAssignment() {
-
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -94,6 +93,7 @@ export default function CreateAssignment() {
           </Box>
         </Item>
       </Grid>
+
       <Grid item xs={8}>
         <Item>xs=8</Item>
       </Grid>

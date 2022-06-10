@@ -3,12 +3,11 @@ import { Grid } from "@mui/material";
 import AssignmentItem from "../../components/Assignment/AssignmentItem/AssignmentItem";
 // import ButtonBack from "../../components/Button/ButtonBack/ButtonBack";
 import MyListAssignmentStyle from "./style";
-import NavBar2 from "../../components/NavBar/Navbar2/NavBar2";
+
 export default function MyListAssignment() {
   const classes = MyListAssignmentStyle();
   return (
     <div className={classes.wrapAll}>
-      <NavBar2 />
       <Grid
         className={classes.containerGrid}
         container
