@@ -8,29 +8,35 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import { textAlign } from "@mui/system";
-import { Button } from "@mui/material";
+import { Button, createTheme, ThemeProvider } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Testcase from "../../components/Assignment/Testcase";
+import IDE from "../../components/Assignment/IDE/IDE";
 
-const styles = (theme: any) => ({
-  "@global": {
-    "*::-webkit-scrollbar": {
-      width: "0.4em",
-    },
-    "*::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-    },
-    "*::-webkit-scrollbar-thumb": {
-      backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
-});
+// const theme = createTheme({
+//   overrides: {
+//     MuiCssBaseline: {
+//       "@global": {
+//         "*::-webkit-scrollbar": {
+//           width: "10px"
+//         },
+//         "*::-webkit-scrollbar-track": {
+//           background: "#E4EFEF"
+//         },
+//         "*::-webkit-scrollbar-thumb": {
+//           background: "#1D388F61",
+//           borderRadius: "2px"
+//         }
+//       }
+//     }
+//   }
+// });
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
+  sx?: any;
 }
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -192,7 +198,7 @@ export default function DetailAssignment() {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              test.java
+              <IDE />
             </TabPanel>
             <TabPanel value={value} index={1}>
               Author solution
@@ -201,7 +207,22 @@ export default function DetailAssignment() {
         </Item>
 
         <Item sx={{ mt: "5px" }} elevation={3}>
-          <Box sx={{ width: "100%", height: "350px" }}>
+          <Box
+            sx={{
+              "&::-webkit-scrollbar": {
+                width: 20,
+              },
+              "&::-webkit-scrollbar-track": {
+                backgroundColor: "orange !important",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "red !important",
+                borderRadius: 2,
+              },
+              width: "100% !important",
+              height: "375px !important",
+            }}
+          >
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
               <Tabs
                 value={value}
@@ -221,10 +242,20 @@ export default function DetailAssignment() {
                 />
               </Tabs>
             </Box>
-            <TabPanel value={value} index={0}>
-              <Testcase />
+            <TabPanel value={value} index={0} sx={{ height: "270px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  overflowY: "scroll",
+                  flex: 1,
+                }}
+              >
+                <Testcase />
+              </div>
             </TabPanel>
-            <TabPanel value={value} index={1}>
+            <TabPanel sx={{}} value={value} index={1}>
               CUSTOME TEST
             </TabPanel>
           </Box>

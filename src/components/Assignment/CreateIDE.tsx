@@ -1,13 +1,18 @@
 import React from "react";
-
+// import Ide from "../../library/ui/js/ide";
+// import Ace from "../../library/ui/js/lib/ace";
+// import ThemeMonokai from "../../library/ui/js/lib/theme-monokai";
 export default function CreateIDE() {
   return (
     <div>
-      <div className="editor" id="editor" style={{ width: "600px" }}></div>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="./../../library/ui/js/lib/ace.js"></script>
-      <script src="./../../library/ui/js/lib/theme-monokai.js"></script>
-      <script src="./../../library/ui/js/ide.js"></script>
+      <h1>Hello</h1>
+      <div
+        className="editor"
+        id="editor"
+        style={{ width: "600px", backgroundColor: "black" }}
+      ></div>
+     
+
     </div>
   );
 }
