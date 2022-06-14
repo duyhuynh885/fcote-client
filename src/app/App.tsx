@@ -1,12 +1,14 @@
-import NavBar from "../components/NavBar/NavBar";
-import { BrowserRouter as Router } from "react-router-dom";
-import React from 'react'
+import React, { lazy, Suspense } from "react";
+import "../i18n/index";
+import Loader from "../components/Loader/Loader";
+
+const ReduxContainer = lazy(() => import("./ReduxContainer"));
 
 function App() {
   return (
-    <Router>
-      <NavBar />
-    </Router>
+    <Suspense fallback={<Loader/>}>
+      <ReduxContainer />
+    </Suspense>
   );
 }
 
