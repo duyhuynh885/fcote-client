@@ -8,6 +8,7 @@ import Home from "../pages/Home/Home";
 import { PATHS } from "./path";
 import MyListAssignment from "../pages/MyListAssignment/MyListAssignment";
 import ListAssignment from "../pages/ListAssignment/ListAssignment";
+import DetailAssignment from "../pages/DetailAssignment";
 
 const routes = [
   {
@@ -71,6 +72,13 @@ const routes = [
     title: "ListAssignment",
     path: "/list-assignment",
     Component: ListAssignment,
+    exact: true,
+  },
+  {
+    auth: true,
+    title: "DetailAssignment",
+    path: "/detail-assignment",
+    Component: DetailAssignment,
     exact: true,
   },
 ];

@@ -3,7 +3,7 @@ import React from "react";
 import AssignmentItemStyle from "./style";
 import ButtonItem from "../ButtonItem.tsx/ButtonItem";
 import { RegularButtonType } from "../../../types/RegularButtonType";
-import RegularButton from "../../Button/RegularButton";
+
 function AssignmentItem() {
   const regularButton: RegularButtonType = {
     color: "primary",
@@ -36,7 +36,6 @@ function AssignmentItem() {
           <Typography className={classes.level}>HARD</Typography>
         </div>
         <ButtonItem />
-        <RegularButton props={regularButton} />
       </Paper>
     </div>
   );

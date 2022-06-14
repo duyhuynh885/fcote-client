@@ -66,17 +66,14 @@ function IDE() {
         <div className="left-container">
           <Editor
             options={options}
-            height="calc(100vh - 50px)"
-            width="50%"
+            height="calc(50vh - 50px)"
+            width="100%"
             theme={userTheme}
             language={userLang}
             defaultLanguage="python"
             defaultValue="# Enter your code here"
             onChange={handleSetUser}
           />
-          <button className="run-btn" onClick={() => compile()}>
-            Run
-          </button>
         </div>
       </div>
     </div>
@@ -84,3 +81,9 @@ function IDE() {
 }
 
 export default IDE;
+
+{
+  /* <button className="run-btn" onClick={() => compile()}>
+Run
+</button> */
+}

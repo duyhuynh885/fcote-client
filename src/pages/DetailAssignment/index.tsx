@@ -242,7 +242,7 @@ export default function DetailAssignment() {
                 />
               </Tabs>
             </Box>
-            <TabPanel value={value} index={0} sx={{ height: "270px" }}>
+            <TabPanel value={value} index={0}>
               <div
                 style={{
                   display: "flex",

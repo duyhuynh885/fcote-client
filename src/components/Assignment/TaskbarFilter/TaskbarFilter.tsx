@@ -30,7 +30,7 @@ export default function TaskbarFilter() {
       <Paper
         square
         elevation={3}
-        sx={{ width: "1318px", p: "3px 10px 3px 15px" }}
+        sx={{ width: "1318px", p: "5px 10px 0px 15px" }}
       >
         <Box
           sx={{ float: "left", minWidth: 120, width: "150px", height: "45px" }}
@@ -40,15 +40,16 @@ export default function TaskbarFilter() {
               Status
             </InputLabel>
             <NativeSelect
-              defaultValue={"All"}
+              defaultValue={"DOING"}
               inputProps={{
                 name: "status",
                 id: "uncontrolled-native",
               }}
             >
-              <option value={"All"}>All</option>
-              <option value={"Finished"}>Finished</option>
-              <option value={"Doing"}>Doing</option>
+              <option value={"DO"}>DO</option>
+              <option value={"DOING"}>DOING </option>
+              <option value={"FINISHED"}>FINISHED </option>
+              <option value={"NOT"}>NOT </option>
             </NativeSelect>
           </FormControl>
         </Box>
@@ -66,15 +67,15 @@ export default function TaskbarFilter() {
               Difficulties
             </InputLabel>
             <NativeSelect
-              defaultValue={"All"}
+              defaultValue={"MEDIUM"}
               inputProps={{
                 name: "difficulties",
                 id: "uncontrolled-native",
               }}
             >
-              <option value={"All"}>All</option>
-              <option value={"Finished"}>Finished</option>
-              <option value={"Doing"}>Doing</option>
+              <option value={"HARD"}>HARD </option>
+              <option value={"MEDIUM"}>MEDIUM </option>
+              <option value={"EASY"}>EASY</option>
             </NativeSelect>
           </FormControl>
         </Box>
