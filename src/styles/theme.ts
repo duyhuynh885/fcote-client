@@ -4,15 +4,14 @@ import { ThemeOptions as ThemeOptionsOld } from "@mui/material/styles/createThem
 // Custom theme:
 const themeCustom = {
   color: {
-    navColor: `#ffffff`,
-    lightGray: `#1652f0`,
+    white: "#FFFFFF",
+    lightGray: "#1652f0",
     darkGray: "#726767",
-    green: "#9D9D9E",
+    green: "#23C686",
     red: "#FF5A73",
     yellow: "#FFD600",
-    textColor: "#000000",
-    backgroundColor: "F3F7F7",
-    btnGreenColor: "#23C686",
+    black: "#000000",
+    blueLight: "#F3F7F7",
   },
   textFont: {
     extraLarge: "24px",
@@ -43,7 +42,7 @@ const themeOptions: ThemeOptionsOld = {
       fontFamily: "Open Sans",
       fontWeight: "bold",
       fontSize: "1.5rem",
-      color: themeCustom.color.textColor,
+      color: themeCustom.color.black,
     },
     h2: {
       fontFamily: "Open Sans",

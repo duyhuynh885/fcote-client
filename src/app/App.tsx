@@ -1,5 +1,8 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import React from "react";
+import React, { lazy, Suspense } from "react";
+import "../i18n/index";
+import Loader from "../components/Loader/Loader";
+
+const ReduxContainer = lazy(() => import("./ReduxContainer"));
 
 // import MyListAssignment from "../pages/MyListAssignment/MyListAssignment";
 
@@ -13,9 +16,9 @@ import IDE from "../components/Assignment/IDE/IDE";
 import TaskbarFilter from "../components/Assignment/TaskbarFilter/TaskbarFilter";
 function App() {
   return (
-    <Router>
-      <DetailAssignment />
-    </Router>
+    <Suspense fallback={<Loader/>}>
+      <ReduxContainer />
+    </Suspense>
   );
 }
 
