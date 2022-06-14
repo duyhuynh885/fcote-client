@@ -2,13 +2,13 @@ import cookie from "js-cookie";
 
 /**
  * Auth Helper
- * <p>
+ *
  * Version 1.0
- * <p>
+ *
  * Date: 30-05-2021
- * <p>
+ *
  * Copyright By DuyHV9
- * <p>
+ *
  * Modification Logs:
  * DATE             AUTHOR              DESCRIPTION
  * -------------------------------------------------
@@ -23,6 +23,7 @@ export const setCookie = (key: string, value: string) => {
     });
   }
 };
+
 // remove from cookie
 export const removeCookie = (key: string) => {
   if (window !== undefined) {

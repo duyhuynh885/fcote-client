@@ -1,9 +1,5 @@
+import { Box, Card, Container, TextField, Typography } from "@mui/material";
 import React from "react";
-import {
-  Container,
-  TextField,
-  Typography,
-} from "@mui/material";
 import RegularButton from "../../components/Button/RegularButton";
 import { RegularButtonType } from "../../types/RegularButtonType";
 
@@ -11,7 +7,7 @@ const regularButton: RegularButtonType = {
   color: "primary",
   size: "lg",
   round: false,
-  children: "Send To Email",
+  children: "Register",
   fullWidth: true,
   disabled: false,
   simple: true,
@@ -21,7 +17,7 @@ const regularButton: RegularButtonType = {
   className: "form__custom-button",
 };
 
-export default function ForgetPassword() {
+export default function Register() {
   return (
     <React.Fragment>
       <Container
@@ -36,13 +32,32 @@ export default function ForgetPassword() {
         }}
       >
         <Typography variant="h1" marginBottom="1.5rem">
-          Forget Password
+          Create Account{" "}
         </Typography>
         <form className="form">
           <TextField
             sx={{ width: "100%", marginBottom: "1.5rem" }}
-            id="outlined-email-input"
+            id="outlined-password-input"
+            label="Username"
+          />
+          <TextField
+            sx={{ width: "100%", marginBottom: "1.5rem" }}
+            id="outlined-password-input"
             label="Email"
+          />
+          <TextField
+            id="outlined-password-input"
+            sx={{ width: "100%", marginBottom: "1.5rem" }}
+            label="Confirm password"
+            type="password"
+            autoComplete="current-password"
+          />
+          <TextField
+            id="outlined-password-input"
+            sx={{ width: "100%", marginBottom: "1.5rem" }}
+            label="Password"
+            type="password"
+            autoComplete="current-password"
           />
           <RegularButton props={regularButton} />
         </form>

@@ -1,31 +1,62 @@
-import App from '../app/App';
-import AboutUs from '../pages/AboutUs/AboutUs';
-import ContactUs from '../pages/ContactUs/ContactUs';
-import { PATHS} from './path';
-
+import AboutUs from "../pages/AboutUs/AboutUs";
+import ChangePassword from "../pages/Authentication/ChangePassword";
+import ForgetPassword from "../pages/Authentication/ForgetPassword";
+import Login from "../pages/Authentication/Login";
+import Register from "../pages/Authentication/Register";
+import ContactUs from "../pages/ContactUs/ContactUs";
+import Home from "../pages/Home/Home";
+import { PATHS } from "./path";
 
 const routes = [
-    {
-      title: 'HOME',
-      path: PATHS.HOME_PATH,
-      Component: App,
-      exact: true,
-      roles: [],
-    },
-    {
-      title: 'ABOUT US',
-      path: PATHS.ABOUT_US_PATH,
-      Component: AboutUs,
-      exact: true,
-      roles: [],
-    },
-    {
-      title: 'CONTACT US',
-      path: PATHS.CONTACT_US_PATH,
-      Component: ContactUs,
-      exact: true,
-      roles: [],
-    }
-  ];
-  
-  export default routes;
+  {
+    auth: false,
+    title: "LOGIN",
+    path: "/login",
+    Component: Login,
+    exact: true,
+  },
+  {
+    auth: false,
+    title: "REGISTER",
+    path: "/register",
+    Component: Register,
+    exact: true,
+  },
+  {
+    auth: false,
+    title: "CHANGE PASSWORD",
+    path: "/change-password",
+    Component: ChangePassword,
+    exact: true,
+  },
+  {
+    auth: false,
+    title: "FORGET PASSWORD",
+    path: "/forget-password",
+    Component: ForgetPassword,
+    exact: true,
+  },
+  {
+    auth: false,
+    title: "ABOUT US",
+    path: "/about-us",
+    Component: AboutUs,
+    exact: true,
+  },
+  {
+    auth: false,
+    title: "CONTACT US",
+    path: "/contact-us",
+    Component: ContactUs,
+    exact: true,
+  },
+  {
+    auth: true,
+    title: "HOME",
+    path: "/home",
+    Component: Home,
+    exact: true,
+  },
+];
+
+export default routes;
