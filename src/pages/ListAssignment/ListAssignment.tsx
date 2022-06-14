@@ -1,4 +1,5 @@
 import {
+  Box,
   Grid,
   Pagination,
   PaginationItem,
@@ -14,6 +15,7 @@ import MyAssignmentItem from "../../components/Assignment/MyAssignmentItem/MyAss
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { createTheme, ThemeProvider } from "@mui/system";
+import TaskbarFilter from "../../components/Assignment/TaskbarFilter/TaskbarFilter";
 
 // import TableContainer from "@mui/material/TableContainer";
 
@@ -40,101 +42,110 @@ export default function ListAssignment() {
   const classes = ListAssignmentStyle();
   return (
     <div className={classes.wrapAll}>
-      <Grid
-        className={classes.left}
-        container
-        // rowSpacing={{ xs: 6, sm: 1, md: 1, lg: 2 }}
-        columnSpacing={{ xs: 6, sm: 1, md: 1, lg: 2 }}
-      >
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
+      <Box sx={{ mt: "20px" }}>
+        <TaskbarFilter />
+      </Box>
 
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
-
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
-
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
-        <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
-          <AssignmentItem />
-        </Grid>
-        <Stack
-          style={{
-            marginLeft: "200px",
-            marginTop: "20px",
-            marginBottom: "20px",
-          }}
-          spacing={2}
+      <Box>
+        <Grid
+          className={classes.left}
+          container
+          // rowSpacing={{ xs: 6, sm: 1, md: 1, lg: 2 }}
+          columnSpacing={{ xs: 6, sm: 1, md: 1, lg: 2 }}
         >
-          <Pagination
-            count={10}
-            renderItem={(item) => (
-              <PaginationItem
-                components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-                {...item}
-              />
-            )}
-          />
-        </Stack>
-      </Grid>
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
 
-      <Paper elevation={3} square className={classes.right}>
-        <Typography className={classes.textTitle}>My Assignment</Typography>
-        <Grid className={classes.rightItem}>
-          <MyAssignmentItem />
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
+
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
+
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
+          <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
+            <AssignmentItem />
+          </Grid>
+          <Stack
+            style={{
+              marginLeft: "200px",
+              marginTop: "20px",
+              marginBottom: "20px",
+            }}
+            spacing={2}
+          >
+            <Pagination
+              count={10}
+              renderItem={(item) => (
+                <PaginationItem
+                  components={{
+                    previous: ArrowBackIcon,
+                    next: ArrowForwardIcon,
+                  }}
+                  {...item}
+                />
+              )}
+            />
+          </Stack>
         </Grid>
-        <Grid className={classes.rightItem}>
-          <MyAssignmentItem />
-        </Grid>
-        <Grid className={classes.rightItem}>
-          <MyAssignmentItem />
-        </Grid>
-        <Grid className={classes.rightItem}>
-          <MyAssignmentItem />
-        </Grid>
-        <Grid className={classes.rightItem}>
-          <MyAssignmentItem />
-        </Grid>
-        <Grid className={classes.rightItem}>
-          <MyAssignmentItem />
-        </Grid>
-        <Grid className={classes.rightItem}>
-          <MyAssignmentItem />
-        </Grid>
-        <Grid className={classes.rightItem}>
-          <MyAssignmentItem />
-        </Grid>
-        <Grid className={classes.rightItem}>
-          <MyAssignmentItem />
-        </Grid>
-      </Paper>
+
+        <Paper elevation={3} square className={classes.right}>
+          <Typography className={classes.textTitle}>My Assignment</Typography>
+          <Grid className={classes.rightItem}>
+            <MyAssignmentItem />
+          </Grid>
+          <Grid className={classes.rightItem}>
+            <MyAssignmentItem />
+          </Grid>
+          <Grid className={classes.rightItem}>
+            <MyAssignmentItem />
+          </Grid>
+          <Grid className={classes.rightItem}>
+            <MyAssignmentItem />
+          </Grid>
+          <Grid className={classes.rightItem}>
+            <MyAssignmentItem />
+          </Grid>
+          <Grid className={classes.rightItem}>
+            <MyAssignmentItem />
+          </Grid>
+          <Grid className={classes.rightItem}>
+            <MyAssignmentItem />
+          </Grid>
+          <Grid className={classes.rightItem}>
+            <MyAssignmentItem />
+          </Grid>
+          <Grid className={classes.rightItem}>
+            <MyAssignmentItem />
+          </Grid>
+        </Paper>
+      </Box>
     </div>
   );
 }

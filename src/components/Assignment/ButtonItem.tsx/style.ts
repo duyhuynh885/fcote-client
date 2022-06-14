@@ -6,7 +6,7 @@ const ButtonItemStyle = makeStyles((theme: any) => ({
     gap: "10px !important",
     width: "204px",
     height: "36px ",
-    backgroundColor: ` ${theme.color.btnGreenColor} !important`,
+    backgroundColor: ` ${theme.color.green} !important`,
     marginLeft: `4% !important`,
     marginTop: "5px !important",
   },

@@ -6,6 +6,8 @@ import Register from "../pages/Authentication/Register";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Home from "../pages/Home/Home";
 import { PATHS } from "./path";
+import MyListAssignment from "../pages/MyListAssignment/MyListAssignment";
+import ListAssignment from "../pages/ListAssignment/ListAssignment";
 
 const routes = [
   {
@@ -55,6 +57,20 @@ const routes = [
     title: "HOME",
     path: "/home",
     Component: Home,
+    exact: true,
+  },
+  {
+    auth: true,
+    title: "MyListAssignment",
+    path: "/my-list-assignment",
+    Component: MyListAssignment,
+    exact: true,
+  },
+  {
+    auth: true,
+    title: "ListAssignment",
+    path: "/list-assignment",
+    Component: ListAssignment,
     exact: true,
   },
 ];

@@ -4,7 +4,7 @@ const TaskbarFilterStyle = makeStyles((theme: any) => ({
   btn: {
     width: "100px",
     height: "32px",
-    backgroundColor: ` ${theme.color.btnGreenColor} !important`,
+    backgroundColor: ` ${theme.color.green} !important`,
   },
   textBtn: {
     width: "100px",

@@ -35,7 +35,7 @@ const MyAssignmentItemStyle = makeStyles((theme: any) => ({
   btn: {
     width: "174px",
     height: "36px",
-    backgroundColor: ` ${theme.color.btnGreenColor} !important`,
+    backgroundColor: ` ${theme.color.green} !important`,
   },
   textBtn: {
     width: "140px",

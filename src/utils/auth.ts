@@ -62,16 +62,17 @@ export const authenticate = (response: any) => {
 
 // Access user info from localstorage
 export const isAuth = () => {
-  if (window !== undefined) {
-    const cookieChecked = getCookie("token");
-    if (cookieChecked) {
-      if (localStorage.getItem("user")) {
-        return JSON.parse(localStorage.getItem("user") || "{}");
-      } else {
-        return false;
-      }
-    }
-  }
+  // if (window !== undefined) {
+  //   const cookieChecked = getCookie("token");
+  //   if (cookieChecked) {
+  //     if (localStorage.getItem("user")) {
+  //       return JSON.parse(localStorage.getItem("user") || "{}");
+  //     } else {
+  //       return false;
+  //     }
+  //   }
+  // }
+  return true;
 };
 
 export const signout = (next: any) => {

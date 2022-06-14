@@ -18,7 +18,7 @@ import InputBase from "@mui/material/InputBase";
 import FormControl from "@mui/material/FormControl";
 import TaskbarFilterStyle from "./style";
 
-export default function Filter() {
+export default function TaskbarFilter() {
   const classes = TaskbarFilterStyle();
   const [status, setStatus] = React.useState("");
 
@@ -28,8 +28,9 @@ export default function Filter() {
   return (
     <div>
       <Paper
+        square
         elevation={3}
-        sx={{ width: "1331px", p: "3px 10px 3px 15px", ml: "100px" }}
+        sx={{ width: "1318px", p: "3px 10px 3px 15px" }}
       >
         <Box
           sx={{ float: "left", minWidth: 120, width: "150px", height: "45px" }}
