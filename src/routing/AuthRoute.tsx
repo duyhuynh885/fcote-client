@@ -1,6 +1,6 @@
-import React from "react";
-import { Redirect, Route } from "react-router";
-import { isAuth } from "../utils/auth";
+import React from 'react'
+import { Redirect, Route } from 'react-router'
+import { isAuth } from '../utils/auth'
 
 /**
  * AuthRoute
@@ -26,13 +26,13 @@ const AuthRoute = ({ component, ...rest }: any) => (
       ) : (
         <Redirect
           to={{
-            pathname: "/login",
+            pathname: '/login',
             state: { from: props.location },
           }}
         />
       )
     }
   ></Route>
-);
+)
 
-export default AuthRoute;
+export default AuthRoute

@@ -1,13 +1,13 @@
-import React, { lazy, Suspense } from 'react';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import configureStore from '../redux/configureStore';
-import Loader from "../components/Loader/Loader";
+import React, { lazy, Suspense } from 'react'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import configureStore from '../redux/configureStore'
+import Loader from '../components/Loader/Loader'
 
-const { store, persistor } = configureStore();
-const RouterContainer = lazy(() => import('./RouterContainer'));
+const { store, persistor } = configureStore()
+const RouterContainer = lazy(() => import('./RouterContainer'))
 
-export default () => (
+const ReduxContainer = () => (
   <Provider store={store}>
     <PersistGate loading={<Loader />} persistor={persistor}>
       <Suspense fallback={<Loader />}>
@@ -15,4 +15,6 @@ export default () => (
       </Suspense>
     </PersistGate>
   </Provider>
-);
+)
+
+export default ReduxContainer
