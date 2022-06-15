@@ -1,32 +1,30 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { routerMiddleware } from "connected-react-router";
-import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import createSagaMiddleware from "redux-saga";
-import rootReducer from "./reducers";
-import sagas from "./sagas";
-import history from "../routing/history";
+import { configureStore } from '@reduxjs/toolkit'
+import { routerMiddleware } from 'connected-react-router'
+import { persistReducer, persistStore } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import createSagaMiddleware from 'redux-saga'
+import rootReducer from './reducers'
+import sagas from './sagas'
+import history from '../routing/history'
 
 const persistConfig = {
   key: `${process.env.REACT_APP_NAME}_persist_store`,
   storage,
-  whitelist: ["layout"],
-};
-const pReducer = persistReducer(persistConfig, rootReducer(history));
+  whitelist: ['layout'],
+}
+const pReducer = persistReducer(persistConfig, rootReducer(history))
 
 export default () => {
-  const sagaMiddleware = createSagaMiddleware();
+  const sagaMiddleware = createSagaMiddleware()
 
   const store = configureStore({
     reducer: pReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware()
-        .concat(sagaMiddleware)
-        .concat(routerMiddleware(history)),
-  });
+      getDefaultMiddleware().concat(sagaMiddleware).concat(routerMiddleware(history)),
+  })
 
-  const persistor = persistStore(store);
+  const persistor = persistStore(store)
 
-  sagaMiddleware.run(sagas);
-  return { persistor, store };
-};
+  sagaMiddleware.run(sagas)
+  return { persistor, store }
+}

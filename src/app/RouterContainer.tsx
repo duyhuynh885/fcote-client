@@ -1,11 +1,11 @@
-import { ConnectedRouter } from "connected-react-router";
-import React, { lazy, Suspense } from "react";
-import { Router } from "react-router-dom";
-import Loader from "../components/Loader/Loader";
-import history from "../routing/history";
-import AppContainer from "./AppContainer";
+import { ConnectedRouter } from 'connected-react-router'
+import React, { Suspense } from 'react'
+import { Router } from 'react-router-dom'
+import Loader from '../components/Loader/Loader'
+import history from '../routing/history'
+import AppContainer from './AppContainer'
 
-export default () => (
+const RouterContainer = () => (
   <ConnectedRouter history={history}>
     <Router history={history}>
       <Suspense fallback={<Loader />}>
@@ -13,4 +13,6 @@ export default () => (
       </Suspense>
     </Router>
   </ConnectedRouter>
-);
+)
+
+export default RouterContainer

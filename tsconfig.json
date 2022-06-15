@@ -1,12 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "es6",
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["es6", "dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -24,8 +19,5 @@
     "noImplicitThis": true,
     "strictNullChecks": true
   },
-  "include": [
-    "src",
-    "src/custom.d.ts"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "src", "src/custom.d.ts"]
 }

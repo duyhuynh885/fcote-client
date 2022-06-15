@@ -1,49 +1,49 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles((theme: any) => ({
   navBar: {
     overflow: 'hidden !important',
     backgroundColor: `${theme.color.white} !important`,
-    display: "flex",
+    display: 'flex',
     zIndex: 1,
-    justifyContent: "space-around !important",
+    justifyContent: 'space-around !important',
   },
   navLinks: {
-    display: "flex",
+    display: 'flex',
   },
   link: {
-    textDecoration: "none",
-    textTransform: "uppercase",
+    textDecoration: 'none',
+    textTransform: 'uppercase',
     color: theme.color.darkGray,
     fontSize: theme.textFont.small,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginLeft: theme.spacing(5),
-    "&:hover": {
+    '&:hover': {
       color: theme.color.black,
     },
   },
   containerNavlink: {
-    display: "flex",
-    justifyContent: "space-around !important",
+    display: 'flex',
+    justifyContent: 'space-around !important',
   },
   button: {
-    minWidth: "auto",
-    border: "none",
-    textTransform: "uppercase",
-    textDecoration: "none",
-    position: "relative",
-    padding: "12px 30px",
-    margin: ".3125rem 1px",
+    minWidth: 'auto',
+    border: 'none',
+    textTransform: 'uppercase',
+    textDecoration: 'none',
+    position: 'relative',
+    padding: '12px 30px',
+    margin: '.3125rem 1px',
     fontSize: theme.textFont.small,
-    fontWeight: "bold !important",
-    letterSpacing: "0",
-    willChange: "box-shadow, transform",
-    lineHeight: "1.42857143",
-    textAlign: "center",
-    whiteSpace: "nowrap",
-    verticalAlign: "middle",
-    touchAction: "manipulation",
-    cursor: "pointer",
+    fontWeight: 'bold !important',
+    letterSpacing: '0',
+    willChange: 'box-shadow, transform',
+    lineHeight: '1.42857143',
+    textAlign: 'center',
+    whiteSpace: 'nowrap',
+    verticalAlign: 'middle',
+    touchAction: 'manipulation',
+    cursor: 'pointer',
   },
   loginBtn: {
     backgroundColor: `${theme.color.green} !important`,
@@ -53,6 +53,6 @@ const useStyles = makeStyles((theme: any) => ({
     backgroundColor: `${theme.color.white} !important`,
     color: `${theme.color.black} !important`,
   },
-}));
+}))
 
-export default useStyles;
+export default useStyles
