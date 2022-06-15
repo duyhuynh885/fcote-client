@@ -1,6 +1,6 @@
-import React from "react";
-import { Button, Typography } from "@mui/material";
-import ButtonItemStyle from "./style";
+import React from 'react'
+import { Button, Typography } from '@mui/material'
+import ButtonItemStyle from './style'
 
 export default function ButtonItem() {
   // const style = {
@@ -8,10 +8,10 @@ export default function ButtonItem() {
   //   height: "30px",
   // };
 
-  const classes = ButtonItemStyle();
+  const classes = ButtonItemStyle()
   return (
-    <Button style={{ width: "" }} variant="outlined" className={classes.btn}>
+    <Button style={{ width: '' }} variant='outlined' className={classes.btn}>
       <Typography className={classes.textBtn}>View Assignment</Typography>
     </Button>
-  );
+  )
 }

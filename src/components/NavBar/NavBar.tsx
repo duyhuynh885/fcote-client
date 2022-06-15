@@ -81,7 +81,7 @@ function Navbar() {
         ) : (
           <React.Fragment>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
+              {pages.map(page => (
                 <Link key={page.path} to={page.path} className={classes.link}>
                   {t(page.title)}
                 </Link>
@@ -110,7 +110,7 @@ function Navbar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
+                {settings.map(setting => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign='center'>{setting}</Typography>
                   </MenuItem>

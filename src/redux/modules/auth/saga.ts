@@ -21,9 +21,9 @@ function loginApi(email: string, password: string) {
     body: JSON.stringify({ email, password }),
   })
     .then(handleApiErrors)
-    .then((response) => response.json())
-    .then((json) => json)
-    .catch((error) => {
+    .then(response => response.json())
+    .then(json => json)
+    .catch(error => {
       throw error
     })
 }

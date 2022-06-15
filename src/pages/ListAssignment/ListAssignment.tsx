@@ -1,21 +1,13 @@
-import {
-  Box,
-  Grid,
-  Pagination,
-  PaginationItem,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, Pagination, PaginationItem, Paper, Stack, Typography } from '@mui/material'
 
-import React from "react";
-import AssignmentItem from "../../components/Assignment/AssignmentItem/AssignmentItem";
-import ListAssignmentStyle from "./style";
-import MyAssignmentItem from "../../components/Assignment/MyAssignmentItem/MyAssignmentItem";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { createTheme, ThemeProvider } from "@mui/system";
-import TaskbarFilter from "../../components/Assignment/TaskbarFilter/TaskbarFilter";
+import React from 'react'
+import AssignmentItem from '../../components/Assignment/AssignmentItem/AssignmentItem'
+import ListAssignmentStyle from './style'
+import MyAssignmentItem from '../../components/Assignment/MyAssignmentItem/MyAssignmentItem'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { createTheme, ThemeProvider } from '@mui/system'
+import TaskbarFilter from '../../components/Assignment/TaskbarFilter/TaskbarFilter'
 
 // import TableContainer from "@mui/material/TableContainer";
 
@@ -39,10 +31,10 @@ export default function ListAssignment() {
   //   },
   // });
 
-  const classes = ListAssignmentStyle();
+  const classes = ListAssignmentStyle()
   return (
     <div className={classes.wrapAll}>
-      <Box sx={{ mt: "20px" }}>
+      <Box sx={{ mt: '20px' }}>
         <TaskbarFilter />
       </Box>
 
@@ -94,15 +86,15 @@ export default function ListAssignment() {
           </Grid>
           <Stack
             style={{
-              marginLeft: "200px",
-              marginTop: "20px",
-              marginBottom: "20px",
+              marginLeft: '200px',
+              marginTop: '20px',
+              marginBottom: '20px',
             }}
             spacing={2}
           >
             <Pagination
               count={10}
-              renderItem={(item) => (
+              renderItem={item => (
                 <PaginationItem
                   components={{
                     previous: ArrowBackIcon,
@@ -147,5 +139,5 @@ export default function ListAssignment() {
         </Paper>
       </Box>
     </div>
-  );
+  )
 }

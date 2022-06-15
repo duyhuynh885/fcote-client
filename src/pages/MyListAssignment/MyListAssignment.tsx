@@ -1,11 +1,11 @@
-import React from "react";
-import { Grid } from "@mui/material";
-import AssignmentItem from "../../components/Assignment/AssignmentItem/AssignmentItem";
+import React from 'react'
+import { Grid } from '@mui/material'
+import AssignmentItem from '../../components/Assignment/AssignmentItem/AssignmentItem'
 // import ButtonBack from "../../components/Button/ButtonBack/ButtonBack";
-import MyListAssignmentStyle from "./style";
+import MyListAssignmentStyle from './style'
 
 export default function MyListAssignment() {
-  const classes = MyListAssignmentStyle();
+  const classes = MyListAssignmentStyle()
   return (
     <div className={classes.wrapAll}>
       <Grid
@@ -64,5 +64,5 @@ export default function MyListAssignment() {
         </Grid>
       </Grid>
     </div>
-  );
+  )
 }

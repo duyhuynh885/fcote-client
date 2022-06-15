@@ -19,8 +19,10 @@ export default () => {
 
   const store = configureStore({
     reducer: pReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(sagaMiddleware).concat(routerMiddleware(history)),
+    middleware: getDefaultMiddleware =>
+      getDefaultMiddleware()
+        .concat(sagaMiddleware)
+        .concat(routerMiddleware(history)),
   })
 
   const persistor = persistStore(store)

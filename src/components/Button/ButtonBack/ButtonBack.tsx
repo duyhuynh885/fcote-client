@@ -1,8 +1,8 @@
-import React from "react";
-import useStyles from "./style";
-import { Button } from "@mui/material";
+import React from 'react'
+import useStyles from './style'
+import { Button } from '@mui/material'
 // import { createTheme, ThemeProvider } from "@mui/material/styles";
-import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
+import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
 
 // const theme = createTheme(
 //     Palette:{
@@ -18,26 +18,18 @@ import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 // );
 
 export default function ButtonBack() {
-  const className = useStyles();
+  const className = useStyles()
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        color="primary"
-        className={className.buttonBack}
-      >
+      <Button variant='outlined' color='primary' className={className.buttonBack}>
         <ArrowBackIosOutlinedIcon />
         Primary
       </Button>
-      <Button
-        variant="outlined"
-        color="secondary"
-        className={className.buttonBack}
-      >
+      <Button variant='outlined' color='secondary' className={className.buttonBack}>
         <ArrowBackIosOutlinedIcon />
         secondary
       </Button>
     </div>
-  );
+  )
 }
