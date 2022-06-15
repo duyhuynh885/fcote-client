@@ -1,11 +1,11 @@
-import { LoginAction, LoginActionType, LoginState } from "./type";
+import { LoginAction, LoginActionType, LoginState } from './type'
 
 const initialState: LoginState = {
   requesting: false,
   successful: false,
   messages: [],
   errors: [],
-};
+}
 
 const reducer = (state = initialState, action: LoginAction) => {
   switch (action.type) {
@@ -14,9 +14,9 @@ const reducer = (state = initialState, action: LoginAction) => {
       return {
         requesting: true,
         successful: false,
-        messages: [{ body: "Logging in...", time: new Date() }],
+        messages: [{ body: 'Logging in...', time: new Date() }],
         errors: [],
-      };
+      }
 
     // Successful?  Reset the login state.
     case LoginActionType.LOGIN_SUCCESS:
@@ -25,7 +25,7 @@ const reducer = (state = initialState, action: LoginAction) => {
         messages: [],
         requesting: false,
         successful: true,
-      };
+      }
 
     // Append the error returned from our api
     // set the success and requesting flags to false
@@ -40,11 +40,11 @@ const reducer = (state = initialState, action: LoginAction) => {
         messages: [],
         requesting: false,
         successful: false,
-      };
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default reducer;
+export default reducer

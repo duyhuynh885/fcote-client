@@ -2,17 +2,17 @@
 
 // Redux types
 declare interface Action<T extends string> {
-  type: T;
+  type: T
 }
 
-declare type ActionWithPayload<T extends string, P> = Action<T> & P;
+declare type ActionWithPayload<T extends string, P> = Action<T> & P
 
 // Auth types
 declare interface Token {
-  userId: string;
+  userId: string
 }
 
 declare interface Message {
-  time: Date;
-  body: string;
+  time: Date
+  body: string
 }
