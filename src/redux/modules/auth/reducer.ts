@@ -3,8 +3,14 @@ import { LoginAction, LoginActionType, LoginState } from './type'
 const initialState: LoginState = {
   requesting: false,
   successful: false,
-  messages: [],
-  errors: [],
+  messages: {
+    messageEn: '',
+    messageVi: '',
+  },
+  errors: {
+    messageEn: '',
+    messageVi: '',
+  },
 }
 
 const reducer = (state = initialState, action: LoginAction) => {
@@ -14,15 +20,27 @@ const reducer = (state = initialState, action: LoginAction) => {
       return {
         requesting: true,
         successful: false,
-        messages: [{ body: 'Logging in...', time: new Date() }],
-        errors: [],
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
       }
 
     // Successful?  Reset the login state.
     case LoginActionType.LOGIN_SUCCESS:
       return {
-        errors: [],
-        messages: [],
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
         requesting: false,
         successful: true,
       }
@@ -31,17 +49,14 @@ const reducer = (state = initialState, action: LoginAction) => {
     // set the success and requesting flags to false
     case LoginActionType.LOGIN_ERROR:
       return {
-        errors: state.errors.concat([
-          {
-            body: action.error.toString(),
-            time: new Date(),
-          },
-        ]),
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
         messages: [],
         requesting: false,
         successful: false,
       }
-
     default:
       return state
   }

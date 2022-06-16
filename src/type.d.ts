@@ -13,6 +13,6 @@ declare interface Token {
 }
 
 declare interface Message {
-  time: Date
-  body: string
+  messageVi: string
+  messageEn: string
 }

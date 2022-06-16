@@ -1,21 +1,14 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/display-name */
 import React from 'react'
 import { Button } from '@mui/material'
 import useStyles from './style'
 import classNames from 'classnames'
-import { RegularButtonType } from '../../types/RegularButtonType'
-interface IContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-  props?: RegularButtonType
-}
+import { RegularButtonType } from '../../models'
 
-const RegularButton = React.forwardRef(({ props }: { props: RegularButtonType }) => {
+const RegularButton = React.forwardRef<HTMLButtonElement, RegularButtonType>((props, ref) => {
   const classes = useStyles()
-  console.log({ props })
   const {
     color,
     round,
-    children,
     fullWidth,
     disabled,
     simple,
@@ -24,7 +17,7 @@ const RegularButton = React.forwardRef(({ props }: { props: RegularButtonType })
     link,
     justIcon,
     className,
-    type,
+    ...rest
   } = props
 
   const btnClasses = classNames({
@@ -42,10 +35,13 @@ const RegularButton = React.forwardRef(({ props }: { props: RegularButtonType })
   })
 
   return (
-    <Button type={type} className={btnClasses}>
-      {children}
+    <Button {...rest} ref={ref} className={btnClasses}>
+      {props.children}
     </Button>
   )
 })
+
+RegularButton.displayName = 'RegularButton';
+
 
 export default RegularButton
