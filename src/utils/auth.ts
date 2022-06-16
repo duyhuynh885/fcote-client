@@ -56,8 +56,10 @@ export const removeLocalStorage = (key: string) => {
 // Auth enticate user by passing data to cookie and localstorage during signin
 export const authenticate = (response: any) => {
   console.log('AUTHENTICATE HELPER ON SIGNIN RESPONSE', response)
-  setCookie('token', response.data.accessToken)
-  setLocalStorage('user', response.data)
+  console.log('token', response.accessToken, ',user', response)
+
+  setCookie('token', response.accessToken)
+  setLocalStorage('user', response)
 }
 
 // Access user info from localstorage

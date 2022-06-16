@@ -1,23 +1,25 @@
-import { Box, Card, Container, TextField, Typography } from '@mui/material'
+import { Container, TextField, Typography } from '@mui/material'
+import { log } from 'console'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import RegularButton from '../../components/Button/RegularButton'
-import { RegularButtonType } from '../../types/RegularButtonType'
-
-const regularButton: RegularButtonType = {
-  color: 'primary',
-  size: 'lg',
-  round: false,
-  children: 'Register',
-  fullWidth: true,
-  disabled: false,
-  simple: true,
-  block: true,
-  link: false,
-  justIcon: false,
-  className: 'form__custom-button',
-}
+import { RegularButtonType } from '../../models'
 
 export default function Register() {
+  const { t } = useTranslation()
+  const regularButton: RegularButtonType = {
+    color: 'primary',
+    size: 'lg',
+    round: false,
+    children: 'Register',
+    fullWidth: true,
+    disabled: false,
+    simple: true,
+    block: true,
+    link: false,
+    justIcon: false,
+    className: 'form__custom-button',
+  }
   return (
     <React.Fragment>
       <Container
@@ -59,7 +61,7 @@ export default function Register() {
             type='password'
             autoComplete='current-password'
           />
-          <RegularButton props={regularButton} />
+          <RegularButton {...regularButton}>{t('Register')}</RegularButton>
         </form>
       </Container>
     </React.Fragment>

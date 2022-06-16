@@ -2,11 +2,13 @@ export enum LoginActionType {
   LOGIN_REQUESTING = 'LOGIN_REQUESTING',
   LOGIN_SUCCESS = 'LOGIN_SUCCESS',
   LOGIN_ERROR = 'LOGIN_ERROR',
+  LOGOUT = 'LOGOUT',
 }
 
 export interface LoginResponse {
-  email: string
-  id: number
+  accessToken: string
+  messageVi: string
+  messageEn: string
 }
 
 export interface LoginRequestPayload {
@@ -24,12 +26,12 @@ export type LoginRequestAction = ActionWithPayload<
 >
 export type LoginSuccessAction = ActionWithPayload<LoginActionType.LOGIN_SUCCESS, LoginResponse>
 export type LoginErrorAction = ActionWithPayload<LoginActionType.LOGIN_ERROR, LoginErrorPayload>
-
 export type LoginAction = LoginRequestAction | LoginSuccessAction | LoginErrorAction
+export type LogoutAction = LoginRequestAction | LoginSuccessAction | LoginErrorAction
 
 export interface LoginState {
   requesting: boolean
   successful: boolean
-  messages: Message[]
-  errors: Message[]
+  messages: Message
+  errors: Message
 }
