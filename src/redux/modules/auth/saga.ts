@@ -8,7 +8,7 @@ import { LoginActionType, LoginRequestPayload } from './type'
 import { hideLoaderAction, showLoaderAction } from '../layout/actions/loaderActions'
 
 const loginUrl = `${process.env.REACT_APP_API_URL}/api/auth/login`
-
+ 
 function loginApi(email: string, password: string) {
   return fetch(loginUrl, {
     method: 'POST',
