@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
 import RegularButton from '../../components/Button/RegularButton'
 import { RegularButtonType } from '../../models'
-import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { Link, Redirect } from 'react-router-dom'
 import useStyles from './style'
 import { useTranslation } from 'react-i18next'
 import { useAppDispatch } from '../../hooks/hooks'
-import loginRequest from '../../redux/modules/auth/action/loginAction'
-import { LoginErrorPayload, LoginRequestPayload } from '../../redux/modules/auth/type'
+import { isAuth } from '../../utils/auth'
+import { loginRequest } from '../../redux/modules/auth/action/authAction'
 
 const regularButton: RegularButtonType = {
   color: 'primary',
@@ -23,28 +23,29 @@ const regularButton: RegularButtonType = {
   className: 'form__custom-button',
 }
 
+type FormValues = {
+  email: string
+  password: string
+}
+
 export default function Login() {
   const classes = useStyles()
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm<FormValues>()
   const { t } = useTranslation()
   const rest = {
     type: 'submit',
   }
   const dispatch = useAppDispatch()
 
-  const onSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault()
-    const target = e.target as typeof e.target & {
-      email: { value: string }
-      password: { value: string }
-    }
-    const email = target.email.value // typechecks!
-    const password = target.password.value
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const { email, password } = data
     dispatch(loginRequest({ email, password }))
   }
 
   return (
     <React.Fragment>
+      {isAuth() ? <Redirect to='/' /> : null}
+
       <Container
         sx={{
           width: 375,
@@ -59,7 +60,7 @@ export default function Login() {
         <Typography variant='h1' marginBottom='1.5rem'>
           {t('WelcomeBack')}
         </Typography>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
             sx={{ width: '100%', marginBottom: '1.5rem' }}
             id='outlined-email-input'

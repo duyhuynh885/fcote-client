@@ -8,6 +8,7 @@ import { Box } from '@mui/material'
 import Vector1 from '../asset/Vector1.png'
 import Vector from './../asset/Vector.png'
 import DataAnalyse from '../asset/DataAnalyse.png'
+import { useAppSelector } from '../hooks/hooks'
 
 const useStyles = makeStyles((theme: any) => ({
   appLayout: {
@@ -19,12 +20,13 @@ const useStyles = makeStyles((theme: any) => ({
   },
 }))
 
-function AppContainer({ loading }: InferProps<typeof AppContainer.propTypes>) {
+function AppContainer() {
   const classes = useStyles()
-
+  const loading = useAppSelector((state) => state.loader.loading)
+  console.log(loading)
   return (
     <React.Fragment>
-      {loading && <Loader transparent />}
+      {loading && <Loader />}
       <Navbar />
       <Box
         className={classes.appLayout}
@@ -38,10 +40,6 @@ function AppContainer({ loading }: InferProps<typeof AppContainer.propTypes>) {
       </Box>
     </React.Fragment>
   )
-}
-
-AppContainer.propTypes = {
-  loading: bool,
 }
 
 export default AppContainer
