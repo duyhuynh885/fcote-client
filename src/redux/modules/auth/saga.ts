@@ -7,31 +7,6 @@ import { authenticate } from '../../../utils/auth'
 import { LoginActionType, LoginRequestPayload } from './type'
 import { hideLoaderAction, showLoaderAction } from '../layout/actions/loaderActions'
 
-const loginUrl = `${process.env.REACT_APP_API_URL}/api/auth/login`
- 
-function loginApi(email: string, password: string) {
-  return fetch(loginUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email, password }),
-  })
-    .then(handleApiErrors)
-    .then(response => response.json())
-    .then(json => json)
-    .catch(error => {
-      throw error
-    })
-}
-
-// function* logout() {
-//   localStorage.removeItem('token')
-
-//   history.push('/login')
-// }
-
-function* loginFlow(email: string, password: string) {
 function* loginFlow(payload: LoginRequestPayload) {
   try {
     yield put(showLoaderAction())
@@ -56,7 +31,6 @@ function* logoutFlow() {
   yield put(hideLoaderAction())
 }
 
-export default loginWatcher
 function* loginWatcher() {
   while (true) {
     const isLoggedIn = getCookie('accessToken')
