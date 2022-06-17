@@ -57,6 +57,21 @@ const reducer = (state = initialState, action: LoginAction) => {
         requesting: false,
         successful: false,
       }
+
+    case LoginActionType.LOGOUT_REQUEST:
+      return {
+        requesting: false,
+        successful: false,
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
+      }
+
     default:
       return state
   }

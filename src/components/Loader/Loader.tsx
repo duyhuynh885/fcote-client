@@ -1,23 +1,14 @@
 import React from 'react'
 import './loader.css'
-import { bool, InferProps } from 'prop-types'
+import { CircularProgress } from '@mui/material'
 
-function Loader({ transparent }: InferProps<typeof Loader.propTypes>) {
+function Loader() {
+  console.log('Loader')
   return (
-    <div className={`loader-container ${transparent ? 'transparent' : ''}`}>
-      <h2 className='logo'>
-        <div className='loader' />
-      </h2>
+    <div className={'spinner-container transparent'}>
+      <CircularProgress color='success' />
     </div>
   )
-}
-
-Loader.propTypes = {
-  transparent: bool,
-}
-
-Loader.defaultProps = {
-  transparent: false,
 }
 
 export default Loader
