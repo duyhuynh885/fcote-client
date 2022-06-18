@@ -61,17 +61,17 @@ export const authenticate = (response: any) => {
 
 // Access user info from localstorage
 export const isAuth = () => {
-  // if (window !== undefined) {
-  //   const cookieChecked = getCookie('token')
-  //   if (cookieChecked) {
-  //     if (localStorage.getItem('user')) {
-  //       return JSON.parse(localStorage.getItem('user') || '{}')
-  //     } else {
-  //       return false
-  //     }
-  //   }
-  // }
-  return true
+  if (window !== undefined) {
+    const cookieChecked = getCookie('accessToken')
+    if (cookieChecked) {
+      if (localStorage.getItem('user')) {
+        return JSON.parse(localStorage.getItem('user') || '{}')
+      } else {
+        return false
+      }
+    }
+  }
+  return false
 }
 
 export const signOut = (next: any) => {
