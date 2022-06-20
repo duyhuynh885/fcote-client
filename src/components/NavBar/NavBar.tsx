@@ -42,7 +42,7 @@ function Navbar() {
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
   const dispatch = useAppDispatch()
-  const auth = useAppSelector((state) => state.auth)
+  const auth = useAppSelector(state => state.auth)
   const { successful } = auth
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {

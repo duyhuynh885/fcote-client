@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: any) => ({
 
 function AppContainer() {
   const classes = useStyles()
-  const loading = useAppSelector((state) => state.loader.loading)
+  const loading = useAppSelector(state => state.loader.loading)
 
   return (
     <React.Fragment>
