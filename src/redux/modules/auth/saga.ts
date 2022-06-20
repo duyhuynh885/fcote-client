@@ -1,5 +1,4 @@
 import { getCookie, signOut } from './../../../utils/auth'
-import { PayloadAction } from '@reduxjs/toolkit'
 import { call, put, take, fork, delay } from 'redux-saga/effects'
 import authApi from '../../../api/authApi'
 import history from '../../../routing/history'
@@ -63,8 +62,10 @@ function* loginWatcher() {
 }
 
 function* registerWatcher() {
-  const { fullName, email, password } = yield take(RegisterActionType.REGISTER_REQUESTING)
-  yield fork(registerFlow, { fullName, email, password })
+  const { firstName, lastName, userName, email, password } = yield take(
+    RegisterActionType.REGISTER_REQUESTING,
+  )
+  yield fork(registerFlow, { firstName, lastName, userName, email, password })
 }
 
 export default function* authSaga() {

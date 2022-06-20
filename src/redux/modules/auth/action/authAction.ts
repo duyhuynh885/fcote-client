@@ -17,14 +17,17 @@ export const loginRequest = ({ email, password }: LoginRequestPayload): LoginReq
 }
 
 export const registerRequest = ({
-  fullName,
+  firstName,
+  lastName,
+  userName,
   email,
   password,
 }: RegisterRequestPayload): RegisterRequestAction => {
-  console.log('registerRequesting from registerRequest', fullName, email, password)
   return {
     type: RegisterActionType.REGISTER_REQUESTING,
-    fullName,
+    firstName,
+    lastName,
+    userName,
     email,
     password,
   }

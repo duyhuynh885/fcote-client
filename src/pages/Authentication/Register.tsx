@@ -4,6 +4,7 @@ import {
   FormControlLabel,
   FormGroup,
   FormHelperText,
+  Grid,
   TextField,
   Typography,
 } from '@mui/material'
@@ -31,16 +32,11 @@ const regularButton: RegularButtonType = {
   className: 'form__custom-button',
 }
 
-type FormValues = {
-  fullName: string
-  email: string
-  password: string
-  confirmPassword: string
-}
-
 export default function Register() {
   const registerSchema = object({
-    fullName: string().max(32, 'Name must be less than 100 characters'),
+    firstName: string().max(32, 'First name must be less than 100 characters'),
+    lastName: string().max(32, 'Last name must be less than 100 characters'),
+    userName: string().max(32, 'User name must be less than 100 characters'),
     email: string().email('Email is invalid'),
     password: string()
       .min(8, 'Password must be more than 8 characters')
@@ -68,8 +64,8 @@ export default function Register() {
   }
 
   const onSubmit: SubmitHandler<RegisterInput> = (data) => {
-    const { fullName, email, password } = data
-    dispatch(registerRequest({ fullName, email, password }))
+    const { firstName, lastName, userName, email, password } = data
+    dispatch(registerRequest({ firstName, lastName, userName, email, password }))
   }
 
   return (
@@ -89,14 +85,38 @@ export default function Register() {
           Create Account{' '}
         </Typography>
         <form className='form' onSubmit={handleSubmit(onSubmit)}>
+          <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+            <Grid item xs={6}>
+              <TextField
+                {...register('firstName')}
+                required
+                sx={{ width: '100%', marginBottom: '1.5rem' }}
+                id='outlined-fullName-input'
+                label='Fist Name'
+                error={!!errors['firstName']}
+                helperText={errors['firstName'] ? errors['firstName'].message : ''}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                {...register('lastName')}
+                required
+                sx={{ width: '100%', marginBottom: '1.5rem' }}
+                id='outlined-fullName-input'
+                label='Last Name'
+                error={!!errors['lastName']}
+                helperText={errors['lastName'] ? errors['lastName'].message : ''}
+              />
+            </Grid>
+          </Grid>
           <TextField
-            {...register('fullName')}
+            {...register('userName')}
             required
             sx={{ width: '100%', marginBottom: '1.5rem' }}
             id='outlined-fullName-input'
-            label='Full Name'
-            error={!!errors['fullName']}
-            helperText={errors['fullName'] ? errors['fullName'].message : ''}
+            label='User Name'
+            error={!!errors['userName']}
+            helperText={errors['userName'] ? errors['userName'].message : ''}
           />
           <TextField
             {...register('email')}
