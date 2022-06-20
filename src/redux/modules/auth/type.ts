@@ -5,22 +5,44 @@ export enum LoginActionType {
   LOGOUT_REQUEST = 'LOGOUT_REQUEST',
 }
 
+export enum RegisterActionType {
+  REGISTER_REQUESTING = 'REGISTER_REQUESTING',
+  REGISTER_SUCCESS = 'REGISTER_SUCCESS',
+  REGISTER_ERROR = 'REGISTER_ERROR',
+}
+
 export interface LoginResponse {
   accessToken: string
   messageVi: string
   messageEn: string
 }
 
-export interface LogoutResponse {
-  messageVi: string
-  messageEn: string
-}
 export interface LoginRequestPayload {
   email: string
   password: string
 }
 
 export interface LoginErrorPayload {
+  error: Error
+}
+
+export interface LogoutResponse {
+  messageVi: string
+  messageEn: string
+}
+
+export interface RegisterRequestPayload {
+  fullName: string
+  email: string
+  password: string
+}
+
+export interface RegisterResponse {
+  messageVi: string
+  messageEn: string
+}
+
+export interface RegisterErrorPayload {
   error: Error
 }
 
@@ -32,9 +54,28 @@ export type LoginRequestAction = ActionWithPayload<
 export type LoginSuccessAction = ActionWithPayload<LoginActionType.LOGIN_SUCCESS, LoginResponse>
 export type LoginErrorAction = ActionWithPayload<LoginActionType.LOGIN_ERROR, LoginErrorPayload>
 export type LogoutAction = Action<LoginActionType.LOGOUT_REQUEST>
-export type LoginAction = LoginRequestAction | LoginSuccessAction | LoginErrorAction | LogoutAction
+export type RegisterRequestAction = ActionWithPayload<
+  RegisterActionType.REGISTER_REQUESTING,
+  RegisterRequestPayload
+>
+export type RegisterSuccessAction = ActionWithPayload<
+  RegisterActionType.REGISTER_SUCCESS,
+  RegisterResponse
+>
+export type RegisterErrorAction = ActionWithPayload<
+  RegisterActionType.REGISTER_ERROR,
+  RegisterErrorPayload
+>
+export type AuthAction =
+  | LoginRequestAction
+  | LoginSuccessAction
+  | LoginErrorAction
+  | LogoutAction
+  | RegisterRequestAction
+  | RegisterSuccessAction
+  | RegisterErrorAction
 
-export interface LoginState {
+export interface AuthState {
   requesting: boolean
   successful: boolean
   messages: Message

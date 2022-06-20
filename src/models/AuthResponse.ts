@@ -10,3 +10,8 @@ export interface AuthResponse {
   messageEn: string
   user: User
 }
+
+export interface RegisterResponse {
+  messageVi: string
+  messageEn: string
+}

@@ -5,4 +5,4 @@ export enum LoaderActionType {
 
 export type HideLoaderAction = Action<LoaderActionType.HIDE_LOADER_ACTION>
 export type ShowLoaderAction = Action<LoaderActionType.SHOW_LOADER_ACTION>
-export type LoaderAction = ShowLoaderAction | HideLoaderAction 
+export type LoaderAction = ShowLoaderAction | HideLoaderAction
