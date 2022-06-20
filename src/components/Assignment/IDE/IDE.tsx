@@ -6,7 +6,7 @@ import Axios from 'axios'
 
 function IDE() {
   // State variable to set users source code
-  const [userCode, setUserCode] = useState(``)
+  const [userCode, setUserCode] = useState('')
 
   // State variable to set editors default language
   const [userLang, setUserLang] = useState('python')
@@ -37,17 +37,17 @@ function IDE() {
   // Function to call the compile endpoint
   function compile() {
     setLoading(true)
-    if (userCode === ``) {
+    if (userCode === '') {
       return
     }
 
     // Post request to compile endpoint
-    Axios.post(`http://localhost:8000/compile`, {
+    Axios.post('http://localhost:8000/compile', {
       code: userCode,
       language: userLang,
       input: userInput,
     })
-      .then(res => {
+      .then((res) => {
         setUserOutput(res.data.output)
       })
       .then(() => {

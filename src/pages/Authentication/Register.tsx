@@ -47,7 +47,7 @@ export default function Register() {
       .max(32, 'Password must be less than 32 characters'),
     confirmPassword: string(),
     terms: literal(true),
-  }).refine(data => data.password === data.confirmPassword, {
+  }).refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
     message: 'Passwords do not match',
   })
@@ -67,7 +67,7 @@ export default function Register() {
     type: 'submit',
   }
 
-  const onSubmit: SubmitHandler<RegisterInput> = data => {
+  const onSubmit: SubmitHandler<RegisterInput> = (data) => {
     const { fullName, email, password } = data
     dispatch(registerRequest({ fullName, email, password }))
   }
