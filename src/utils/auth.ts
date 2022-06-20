@@ -33,8 +33,8 @@ export const removeCookie = (key: string) => {
   }
 }
 
-// Get from cookie such as stored token
-// Will be useful when we need to make request to server with token
+// Get from cookie such as stored accessToken
+// Will be useful when we need to make request to server with accessToken
 export const getCookie = (key: string) => {
   return cookie.get(key)
 }
@@ -55,15 +55,14 @@ export const removeLocalStorage = (key: string) => {
 
 // Auth enticate user by passing data to cookie and localstorage during signin
 export const authenticate = (response: any) => {
-  console.log('AUTHENTICATE HELPER ON SIGNIN RESPONSE', response)
-  setCookie('token', response.data.accessToken)
-  setLocalStorage('user', response.data)
+  setCookie('accessToken', response.accessToken)
+  setLocalStorage('user', response.user)
 }
 
 // Access user info from localstorage
 export const isAuth = () => {
   if (window !== undefined) {
-    const cookieChecked = getCookie('token')
+    const cookieChecked = getCookie('accessToken')
     if (cookieChecked) {
       if (localStorage.getItem('user')) {
         return JSON.parse(localStorage.getItem('user') || '{}')
@@ -72,16 +71,16 @@ export const isAuth = () => {
       }
     }
   }
+  return false
 }
 
-export const signout = (next: any) => {
-  removeCookie('token')
+export const signOut = (next: any) => {
+  removeCookie('accessToken')
   removeLocalStorage('user')
   next()
 }
 
 export const updateUser = (response: any, next: any) => {
-  console.log('UPDATE USER IN LOCALSTORAGE HELPERS', response)
   if (typeof window !== 'undefined') {
     let auth = JSON.parse(localStorage.getItem('user') || '{}')
     auth = response.data

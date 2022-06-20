@@ -1,7 +1,8 @@
 import React from 'react'
 import { Checkbox, Container, FormControlLabel, TextField, Typography } from '@mui/material'
 import RegularButton from '../../components/Button/RegularButton'
-import { RegularButtonType } from '../../types/RegularButtonType'
+import { RegularButtonType } from '../../models'
+import { useTranslation } from 'react-i18next'
 
 const regularButton: RegularButtonType = {
   color: 'primary',
@@ -18,6 +19,8 @@ const regularButton: RegularButtonType = {
 }
 
 export default function ChangePassword() {
+  const { t } = useTranslation()
+
   return (
     <React.Fragment>
       <Container
@@ -48,7 +51,7 @@ export default function ChangePassword() {
             autoComplete='current-password'
           />
           <FormControlLabel control={<Checkbox defaultChecked />} label='Remember me' />
-          <RegularButton props={regularButton} />
+          <RegularButton {...regularButton}>{t('Login')}</RegularButton>
         </form>
       </Container>
     </React.Fragment>

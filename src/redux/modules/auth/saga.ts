@@ -1,65 +1,73 @@
-import { ServerResponse } from 'http'
-import { call, cancel, cancelled, fork, put, take } from 'redux-saga/effects'
-
-// We'll use the history object to redirect to different routes based on cases
+import { getCookie, signOut } from './../../../utils/auth'
+import { PayloadAction } from '@reduxjs/toolkit'
+import { call, put, take, fork, delay } from 'redux-saga/effects'
+import authApi from '../../../api/authApi'
 import history from '../../../routing/history'
+import { authenticate } from '../../../utils/auth'
+import {
+  LoginActionType,
+  LoginRequestPayload,
+  RegisterActionType,
+  RegisterRequestPayload,
+} from './type'
+import { hideLoaderAction, showLoaderAction } from '../layout/actions/loaderActions'
 
-// Helper for api errors
-import { handleApiErrors } from '../../../utils/api-erros'
-
-// Our login constants
-import { LoginActionType } from './type'
-
-const loginUrl = `${process.env.REACT_APP_API_URL}/api/auth/login`
-
-function loginApi(email: string, password: string) {
-  return fetch(loginUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email, password }),
-  })
-    .then(handleApiErrors)
-    .then((response) => response.json())
-    .then((json) => json)
-    .catch((error) => {
-      throw error
-    })
-}
-
-// function* logout() {
-//   localStorage.removeItem('token')
-
-//   history.push('/login')
-// }
-
-function* loginFlow(email: string, password: string) {
+function* loginFlow(payload: LoginRequestPayload) {
   try {
-    const token: ServerResponse = yield call(loginApi, email, password)
-
+    yield put(showLoaderAction())
+    const data: ReturnType<typeof authApi.login> = yield call(authApi.login, payload)
+    authenticate(data)
     yield put({ type: LoginActionType.LOGIN_SUCCESS })
-
-    localStorage.setItem('token', JSON.stringify(token)) // sketch?
-
     history.push('/')
-    return token
+    yield put(hideLoaderAction())
   } catch (error) {
+    yield put(hideLoaderAction())
     yield put({ type: LoginActionType.LOGIN_ERROR, error })
   }
 }
 
-// Our watcher (saga).  It will watch for many things.
-function* loginWatcher() {
-  while (true) {
-    const { email, password } = yield take(LoginActionType.LOGIN_REQUESTING)
-    const task: ServerResponse = yield fork(loginFlow, email, password)
-    // const action: any = yield take([LoginActionType.LOGIN_ERROR]);
+function* logoutFlow() {
+  yield put(showLoaderAction())
+  yield delay(1000)
+  signOut(() => {
+    history.push('/login')
+  })
+  yield put(hideLoaderAction())
+}
 
-    // if (action.type === ClientActionType.CLIENT_UNSET) {
-    //   yield cancel(task);
-    // }
+function* registerFlow(payload: RegisterRequestPayload) {
+  try {
+    yield put(showLoaderAction())
+    const data: ReturnType<typeof authApi.register> = yield call(authApi.register, payload)
+    console.log(data)
+    yield put({ type: RegisterActionType.REGISTER_SUCCESS })
+    history.push('/login')
+    yield put(hideLoaderAction())
+  } catch (error) {
+    yield put(hideLoaderAction())
+    yield put({ type: RegisterActionType.REGISTER_ERROR, error })
   }
 }
 
-export default loginWatcher
+function* loginWatcher() {
+  while (true) {
+    const isLoggedIn = getCookie('accessToken')
+    if (!isLoggedIn) {
+      const { email, password } = yield take(LoginActionType.LOGIN_REQUESTING)
+      yield fork(loginFlow, { email, password })
+    }
+
+    yield take(LoginActionType.LOGOUT_REQUEST)
+    yield call(logoutFlow)
+  }
+}
+
+function* registerWatcher() {
+  const { fullName, email, password } = yield take(RegisterActionType.REGISTER_REQUESTING)
+  yield fork(registerFlow, { fullName, email, password })
+}
+
+export default function* authSaga() {
+  yield fork(loginWatcher)
+  yield fork(registerWatcher)
+}

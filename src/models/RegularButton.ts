@@ -1,8 +1,8 @@
-export type RegularButtonType = {
+export interface RegularButtonType {
   color: 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'white' | 'transparent'
   size: 'sm' | 'lg'
   round: boolean
-  children: any
+  children?: React.ReactNode
   fullWidth: boolean
   disabled: boolean
   simple: boolean
@@ -10,5 +10,4 @@ export type RegularButtonType = {
   link: boolean
   justIcon: boolean
   className: string
-  [x: string]: any
 }

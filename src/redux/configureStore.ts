@@ -10,7 +10,7 @@ import history from '../routing/history'
 const persistConfig = {
   key: `${process.env.REACT_APP_NAME}_persist_store`,
   storage,
-  whitelist: ['layout'],
+  whitelist: ['auth'],
 }
 const pReducer = persistReducer(persistConfig, rootReducer(history))
 
@@ -20,7 +20,11 @@ export default () => {
   const store = configureStore({
     reducer: pReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(sagaMiddleware).concat(routerMiddleware(history)),
+      getDefaultMiddleware({
+        serializableCheck: false,
+      })
+        .concat(sagaMiddleware)
+        .concat(routerMiddleware(history)),
   })
 
   const persistor = persistStore(store)

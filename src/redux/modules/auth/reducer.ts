@@ -1,47 +1,114 @@
-import { LoginAction, LoginActionType, LoginState } from './type'
+import { AuthAction, LoginActionType, AuthState, RegisterActionType } from './type'
 
-const initialState: LoginState = {
+const initialState: AuthState = {
   requesting: false,
   successful: false,
-  messages: [],
-  errors: [],
+  messages: {
+    messageEn: '',
+    messageVi: '',
+  },
+  errors: {
+    messageEn: '',
+    messageVi: '',
+  },
 }
 
-const reducer = (state = initialState, action: LoginAction) => {
+const reducer = (state = initialState, action: AuthAction) => {
   switch (action.type) {
-    // Set the requesting flag and append a message to be shown
     case LoginActionType.LOGIN_REQUESTING:
       return {
         requesting: true,
         successful: false,
-        messages: [{ body: 'Logging in...', time: new Date() }],
-        errors: [],
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
       }
 
-    // Successful?  Reset the login state.
     case LoginActionType.LOGIN_SUCCESS:
       return {
-        errors: [],
-        messages: [],
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
         requesting: false,
         successful: true,
       }
 
-    // Append the error returned from our api
-    // set the success and requesting flags to false
     case LoginActionType.LOGIN_ERROR:
       return {
-        errors: state.errors.concat([
-          {
-            body: action.error.toString(),
-            time: new Date(),
-          },
-        ]),
-        messages: [],
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
         requesting: false,
         successful: false,
       }
 
+    case LoginActionType.LOGOUT_REQUEST:
+      return {
+        requesting: false,
+        successful: false,
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
+      }
+
+    case RegisterActionType.REGISTER_REQUESTING:
+      return {
+        requesting: true,
+        successful: false,
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
+      }
+
+    case RegisterActionType.REGISTER_SUCCESS:
+      return {
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
+        requesting: false,
+        successful: true,
+      }
+
+    case RegisterActionType.REGISTER_ERROR:
+      return {
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
+        messages: [],
+        requesting: false,
+        successful: false,
+      }
     default:
       return state
   }

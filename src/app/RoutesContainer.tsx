@@ -17,7 +17,7 @@ const RoutesContainer = () => {
           if (auth) {
             return <AuthRoute key={path} path={path} exact={exact} component={Component} />
           } else {
-            return <Route path={path} exact={exact} component={Component} />
+            return <Route key={path} path={path} exact={exact} component={Component} />
           }
         })}
       </Switch>

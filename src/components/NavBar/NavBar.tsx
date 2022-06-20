@@ -16,6 +16,8 @@ import LogoBand from '../Icons/LogoBand'
 import { useTranslation } from 'react-i18next'
 import ChangLanguage from '../Button/ChangeLanguage'
 import { isAuth } from '../../utils/auth'
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
+import { logoutRequest } from '../../redux/modules/auth/action/authAction'
 
 const pages = [
   {
@@ -35,30 +37,31 @@ const pages = [
 function Navbar() {
   const classes = useStyles()
   const { t } = useTranslation()
-  const settings = ['My Profile', 'Account', 'Logout']
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget)
-  }
+  const settings = ['My Profile', 'Account', 'Logout']
+
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
+  const dispatch = useAppDispatch()
+  const auth = useAppSelector((state) => state.auth)
+  const { successful } = auth
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget)
-  }
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
   }
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
 
+  const handleLogout = () => {
+    dispatch(logoutRequest())
+  }
+
   return (
     <AppBar position='sticky' className={classes.navBar}>
       <Toolbar>
         <LogoBand />
-        {!isAuth() ? (
+        {!isAuth() && !successful ? (
           <React.Fragment>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Link to='/about-us' className={classes.link}>
@@ -115,6 +118,7 @@ function Navbar() {
                     <Typography textAlign='center'>{setting}</Typography>
                   </MenuItem>
                 ))}
+                <MenuItem onClick={handleLogout}>Logoutssss</MenuItem>
               </Menu>
             </Box>
           </React.Fragment>
