@@ -41,7 +41,6 @@ const RegularButton = React.forwardRef<HTMLButtonElement, RegularButtonType>((pr
   )
 })
 
-RegularButton.displayName = 'RegularButton';
-
+RegularButton.displayName = 'RegularButton'
 
 export default RegularButton

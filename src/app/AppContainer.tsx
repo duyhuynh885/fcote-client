@@ -1,7 +1,6 @@
 import React from 'react'
 import Loader from '../components/Loader/Loader'
 import RoutesContainer from './RoutesContainer'
-import { bool, InferProps } from 'prop-types'
 import Navbar from '../components/NavBar/NavBar'
 import { makeStyles } from '@mui/styles'
 import { Box } from '@mui/material'
@@ -23,7 +22,7 @@ const useStyles = makeStyles((theme: any) => ({
 function AppContainer() {
   const classes = useStyles()
   const loading = useAppSelector((state) => state.loader.loading)
-  console.log(loading)
+
   return (
     <React.Fragment>
       {loading && <Loader />}

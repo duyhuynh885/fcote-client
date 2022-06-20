@@ -39,6 +39,7 @@ export default function ForgetPassword() {
         </Typography>
         <form className='form'>
           <TextField
+            required
             sx={{ width: '100%', marginBottom: '1.5rem' }}
             id='outlined-email-input'
             label='Email'

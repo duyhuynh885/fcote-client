@@ -37,7 +37,9 @@ const pages = [
 function Navbar() {
   const classes = useStyles()
   const { t } = useTranslation()
+
   const settings = ['My Profile', 'Account', 'Logout']
+
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
   const dispatch = useAppDispatch()
   const auth = useAppSelector((state) => state.auth)

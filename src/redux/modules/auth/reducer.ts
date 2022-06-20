@@ -1,6 +1,6 @@
-import { LoginAction, LoginActionType, LoginState } from './type'
+import { AuthAction, LoginActionType, AuthState, RegisterActionType } from './type'
 
-const initialState: LoginState = {
+const initialState: AuthState = {
   requesting: false,
   successful: false,
   messages: {
@@ -13,9 +13,8 @@ const initialState: LoginState = {
   },
 }
 
-const reducer = (state = initialState, action: LoginAction) => {
+const reducer = (state = initialState, action: AuthAction) => {
   switch (action.type) {
-    // Set the requesting flag and append a message to be shown
     case LoginActionType.LOGIN_REQUESTING:
       return {
         requesting: true,
@@ -30,7 +29,6 @@ const reducer = (state = initialState, action: LoginAction) => {
         },
       }
 
-    // Successful?  Reset the login state.
     case LoginActionType.LOGIN_SUCCESS:
       return {
         errors: {
@@ -45,15 +43,16 @@ const reducer = (state = initialState, action: LoginAction) => {
         successful: true,
       }
 
-    // Append the error returned from our api
-    // set the success and requesting flags to false
     case LoginActionType.LOGIN_ERROR:
       return {
         errors: {
           messageEn: '',
           messageVi: '',
         },
-        messages: [],
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
         requesting: false,
         successful: false,
       }
@@ -72,6 +71,44 @@ const reducer = (state = initialState, action: LoginAction) => {
         },
       }
 
+    case RegisterActionType.REGISTER_REQUESTING:
+      return {
+        requesting: true,
+        successful: false,
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
+      }
+
+    case RegisterActionType.REGISTER_SUCCESS:
+      return {
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
+        messages: {
+          messageEn: '',
+          messageVi: '',
+        },
+        requesting: false,
+        successful: true,
+      }
+
+    case RegisterActionType.REGISTER_ERROR:
+      return {
+        errors: {
+          messageEn: '',
+          messageVi: '',
+        },
+        messages: [],
+        requesting: false,
+        successful: false,
+      }
     default:
       return state
   }
