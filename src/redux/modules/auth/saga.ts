@@ -64,7 +64,6 @@ function* registerFlow(payload: RegisterRequestPayload) {
   try {
     yield put(showLoaderAction())
     const data: ReturnType<typeof authApi.register> = yield call(authApi.register, payload)
-    console.log(data)
     yield put({ type: RegisterActionType.REGISTER_SUCCESS })
     history.push('/login')
     yield put(hideLoaderAction())

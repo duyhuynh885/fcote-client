@@ -23,7 +23,6 @@ const authApi = {
    * @returns
    */
   login(payload: LoginRequestPayload): Promise<AuthResponse> {
-    console.log('login', payload)
     const url = '/auth/post-sign-in'
     return axiosClient.post(url, payload)
   },
@@ -34,8 +33,6 @@ const authApi = {
    * @returns
    */
   register(payload: RegisterRequestPayload): Promise<RegisterResponse> {
-    console.log('register', payload)
-
     const url = '/auth/post-sign-up'
     return axiosClient.post(url, payload)
   },
@@ -46,8 +43,6 @@ const authApi = {
    * @returns
    */
   forgetPassword(payload: RegisterRequestPayload): Promise<RegisterResponse> {
-    console.log('register', payload)
-
     const url = '/auth/post-reset'
     return axiosClient.post(url, payload)
   },
@@ -58,8 +53,6 @@ const authApi = {
    * @returns
    */
   changePassword(payload: RegisterRequestPayload): Promise<RegisterResponse> {
-    console.log('register', payload)
-
     const url = '/auth/change-password'
     return axiosClient.post(url, payload)
   },
