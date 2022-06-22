@@ -8,7 +8,6 @@ import DetailAssignment from '../pages/DetailAssignment'
 import Home from '../pages/Home/Home'
 import ListAssignment from '../pages/ListAssignment/ListAssignment'
 import MyListAssignment from '../pages/MyListAssignment/MyListAssignment'
-import { PATHS } from './path'
 import MyProfile from '../pages/MyProfile/MyProfile'
 
 /**
