@@ -26,7 +26,9 @@ const themeCustom = {
     red: '#FF5A73',
     yellow: '#FFD600',
     black: '#000000',
+    lightBlack: '#1a2027',
     blueLight: '#F3F7F7',
+    brown: '#9D9D9E',
   },
   textFont: {
     extraLarge: '24px',
