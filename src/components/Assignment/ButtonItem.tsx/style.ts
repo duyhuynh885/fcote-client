@@ -1,5 +1,19 @@
 import { makeStyles } from '@mui/styles'
 
+/**
+ * Button Item component
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 02-06-2022
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 02-06-2022      HuyNT2711           Create
+ */
 const ButtonItemStyle = makeStyles((theme: any) => ({
   btn: {
     padding: '14px 32px !important',
@@ -7,7 +21,7 @@ const ButtonItemStyle = makeStyles((theme: any) => ({
     width: '204px',
     height: '36px ',
     backgroundColor: ` ${theme.color.green} !important`,
-    marginLeft: `4% !important`,
+    marginLeft: '4% !important',
     marginTop: '5px !important',
   },
   textBtn: {
@@ -18,7 +32,7 @@ const ButtonItemStyle = makeStyles((theme: any) => ({
     fontSize: `${theme.textFont.small} !important`,
     lineHeight: '22px !important',
     textTransform: 'capitalize',
-    color: '#000000 !important',
+    color: `${theme.color.brown} !important`,
   },
 }))
 

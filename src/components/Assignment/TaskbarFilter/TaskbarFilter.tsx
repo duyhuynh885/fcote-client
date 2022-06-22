@@ -35,11 +35,7 @@ import TaskbarFilterStyle from './style'
 
 export default function TaskbarFilter() {
   const classes = TaskbarFilterStyle()
-  const [status, setStatus] = React.useState('')
 
-  const handleChangeStatus = (event: SelectChangeEvent) => {
-    setStatus(event.target.value as string)
-  }
   return (
     <div>
       <Paper square elevation={3} sx={{ width: '1318px', p: '5px 10px 0px 15px' }}>

@@ -1,5 +1,19 @@
 import { makeStyles } from '@mui/styles'
 
+/**
+ * Assignment Item
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 03-06-2022
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 03-06-2022      HuyNT2711           Create
+ */
 const AssignmentItemStyle = makeStyles((theme: any) => ({
   container: {
     position: 'absolute',
@@ -14,7 +28,7 @@ const AssignmentItemStyle = makeStyles((theme: any) => ({
     fontSize: `${theme.textFont.extraSmall} !important`,
     lineHeight: '19px',
     textTransform: 'capitalize',
-    color: '#9D9D9E',
+    color: `${theme.color.brown} !important`,
     textAlign: 'left',
   },
   name: {
@@ -24,7 +38,7 @@ const AssignmentItemStyle = makeStyles((theme: any) => ({
     fontSize: `${theme.textFont.small} !important`,
     lineHeight: '19px !important',
     textTransform: 'capitalize',
-    color: '#010101',
+    color: `${theme.color.name} !important`,
     textAlign: 'center',
     marginTop: '10px  !important',
   },
@@ -32,12 +46,11 @@ const AssignmentItemStyle = makeStyles((theme: any) => ({
     float: 'right',
     width: '101px',
     height: '19px',
-
     fontWeight: '700 !important',
     fontSize: `${theme.textFont.extraSmall} !important`,
     lineHeight: '19px !important',
     textTransform: 'capitalize',
-    color: '#AC5B4D',
+    color: `${theme.color.brown} !important`,
     textAlign: 'right',
   },
 
@@ -53,7 +66,7 @@ const AssignmentItemStyle = makeStyles((theme: any) => ({
     fontSize: `${theme.textFont.small} !important`,
     lineHeight: '19px',
     textTransform: 'capitalize',
-    color: '##000000',
+    color: `${theme.color.black} !important`,
     textAlign: 'center',
     // marginTop: "5px !important",
   },
@@ -73,8 +86,7 @@ const AssignmentItemStyle = makeStyles((theme: any) => ({
     fontWeight: '600 !important',
     fontSize: `${theme.textFont.small} !important`,
     lineHeight: '22px !important',
-    textTransform: 'capitalize',
-    color: '#000000 !important',
+    color: `${theme.color.brown} !important`,
   },
 }))
 export default AssignmentItemStyle

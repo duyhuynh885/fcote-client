@@ -13,14 +13,14 @@ import TaskbarFilter from '../../components/Assignment/TaskbarFilter/TaskbarFilt
  * <p>
  * Version 1.0
  * <p>
- * Date: 22-6-2022
+ * Date: 07-06-20212
  * <p>
  * Copyright By HuyNT2711
  * <p>
  * Modification Logs:
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
- * 07-06-2021       HuyNT2711           Create
+ * 07-06-20212      HuyNT2711           Create
  *
  */
 
@@ -31,14 +31,8 @@ export default function ListAssignment() {
       <Box sx={{ mt: '20px' }}>
         <TaskbarFilter />
       </Box>
-
       <Box>
-        <Grid
-          className={classes.left}
-          container
-          // rowSpacing={{ xs: 6, sm: 1, md: 1, lg: 2 }}
-          columnSpacing={{ xs: 6, sm: 1, md: 1, lg: 2 }}
-        >
+        <Grid className={classes.left} container columnSpacing={{ xs: 6, sm: 1, md: 1, lg: 2 }}>
           <Grid className={classes.leftItem} item xs={12} sm={6} md={4} lg={4}>
             <AssignmentItem />
           </Grid>

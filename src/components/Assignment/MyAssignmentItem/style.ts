@@ -1,5 +1,18 @@
 import { makeStyles } from '@mui/styles'
-
+/**
+ * My Assignment Item
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 04-06-2022
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 04-06-2022      HuyNT2711           Create
+ */
 const MyAssignmentItemStyle = makeStyles((theme: any) => ({
   paperWrap: {
     width: '493px',
@@ -15,7 +28,7 @@ const MyAssignmentItemStyle = makeStyles((theme: any) => ({
     fontSize: `${theme.textFont.small} !important`,
     lineHeight: '24px !important',
     textTransform: 'capitalize',
-    color: '#010101',
+    color: `${theme.color.brown} !important`,
     textAlign: 'left',
     marginTop: '6px  !important',
   },
@@ -28,7 +41,7 @@ const MyAssignmentItemStyle = makeStyles((theme: any) => ({
     fontSize: `${theme.textFont.small} !important`,
     lineHeight: '24px !important',
     textTransform: 'capitalize',
-    color: '#AC5B4D',
+    color: `${theme.color.brown} !important`,
     textAlign: 'center',
     paddingTop: '6px !important',
   },
@@ -44,7 +57,7 @@ const MyAssignmentItemStyle = makeStyles((theme: any) => ({
     fontSize: `${theme.textFont.small} !important`,
     lineHeight: '22px !important',
     textTransform: 'capitalize',
-    color: '#000000 !important',
+    color: `${theme.color.black} !important`,
   },
 }))
 

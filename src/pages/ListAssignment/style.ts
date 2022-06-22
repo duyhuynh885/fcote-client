@@ -1,14 +1,28 @@
 import { makeStyles } from '@mui/styles'
+/**
+ * Client
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 07-06-20212
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 07-06-20212      HuyNT2711           Create
+ *
+ */
+
 const ListAssignmentStyle = makeStyles((theme: any) => ({
   wrapAll: {
     backgroundColor: '#F3F7F7',
     width: '100% !important',
-    // paddingRight: " 3.63rem !important",
     paddingLeft: ' 6rem !important',
   },
   left: {
     float: 'left',
-    // backgroundColor: "lightblue",
     width: '733px !important',
     height: 'auto',
     marginTop: `${theme.spacing(2)} !important`,
@@ -28,7 +42,6 @@ const ListAssignmentStyle = makeStyles((theme: any) => ({
     marginTop: `${theme.spacing(4)} !important`,
     marginLeft: '3.66rem !important',
     paddingBottom: '20px',
-    // marginRight: "auto !important",
   },
   rightItem: {
     marginLeft: theme.spacing(3),
@@ -41,7 +54,7 @@ const ListAssignmentStyle = makeStyles((theme: any) => ({
     fontSize: `${theme.textFont.large} !important`,
     lineHeight: '27px !important',
     textTransform: 'capitalize',
-    color: '#010101',
+    color: `${theme.color.name} !important`,
     textAlign: 'center',
     paddingTop: '30px !important',
     paddingBottom: '30px !important',

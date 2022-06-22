@@ -26,6 +26,8 @@ import IDE from '../../components/Assignment/IDE/IDE'
  * ------------------------------------------------
  * 09-06-2022      HuyNT2711           Create
  */
+
+const classes = DetailAssignmentStyle()
 interface TabPanelProps {
   children?: React.ReactNode
   index: number
@@ -34,7 +36,8 @@ interface TabPanelProps {
 }
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor:
+    theme.palette.mode === 'dark' ? `${classes.colorLightBlack}` : `${classes.colorWhite}`,
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
@@ -49,7 +52,6 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
-
   return (
     <div
       role='tabpanel'
@@ -75,9 +77,7 @@ function a11yProps(index: number) {
 }
 
 export default function DetailAssignment() {
-  const classes = DetailAssignmentStyle()
   const [value, setValue] = React.useState(0)
-
   const handleChange1 = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
@@ -101,8 +101,7 @@ export default function DetailAssignment() {
             <ArrowBackIosNewIcon />
             Back
           </Button>
-
-          <Typography variant='h4' sx={{ fontWeight: '900', color: 'black' }}>
+          <Typography variant='h4' sx={{ fontWeight: '900', color: `${classes.colorBlack}` }}>
             Code Space
           </Typography>
         </Item>

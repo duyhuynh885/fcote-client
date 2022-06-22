@@ -1,5 +1,18 @@
 import { makeStyles } from '@mui/styles'
-
+/**
+ * TaskbarFilter
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 08-06-2022
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 08-06-2022      HuyNT2711           Create
+ */
 const TaskbarFilterStyle = makeStyles((theme: any) => ({
   btn: {
     width: '100px',
@@ -13,7 +26,7 @@ const TaskbarFilterStyle = makeStyles((theme: any) => ({
     fontSize: `${theme.textFont.small} !important`,
     lineHeight: '22px !important',
     textTransform: 'capitalize',
-    color: '#000000 !important',
+    color: ` ${theme.color.black} !important`,
   },
 }))
 
