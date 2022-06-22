@@ -27,22 +27,12 @@ import IDE from '../../components/Assignment/IDE/IDE'
  * 09-06-2022      HuyNT2711           Create
  */
 
-const classes = DetailAssignmentStyle()
 interface TabPanelProps {
   children?: React.ReactNode
   index: number
   value: number
   sx?: any
 }
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === 'dark' ? `${classes.colorLightBlack}` : `${classes.colorWhite}`,
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}))
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -77,13 +67,20 @@ function a11yProps(index: number) {
 }
 
 export default function DetailAssignment() {
+  const classes = DetailAssignmentStyle()
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor:
+      theme.palette.mode === 'dark' ? `${classes.colorLightBlack}` : `${classes.colorWhite}`,
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }))
   const [value, setValue] = React.useState(0)
   const handleChange1 = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
-  const handleChange2 = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-  }
+
   return (
     <Grid container spacing={0.5} columns={16}>
       <Grid item xs={16}>
@@ -147,7 +144,6 @@ export default function DetailAssignment() {
             <Typography className={classes.textItem} sx={{ pl: '20px' }}>
               Guaranteed constraints: -1000 ≤ param2 ≤ 1000.
             </Typography>
-
             <Typography className={classes.textItem} sx={{ pl: '20px' }}>
               [output] integer
             </Typography>

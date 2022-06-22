@@ -35,22 +35,32 @@ function IDE() {
   const options = {
     fontSize: fontSize,
   }
-  // function handleSetUser(value: string):void{
-  //   console.log('Value', value)
-  //  setUserCode(value)
-  // }
-const handleSetUser = (value:string):void=>{
-     console.log('Value', value)
-     return setUserCode(value)
-}
+  function handleSetUser(value: any) {
+    setUserCode(value)
+    console.log('Value', value)
+  }
+
   function compile() {
     setLoading(true)
     if (userCode === '') {
       return
     }
 
+    // Post request to compile endpoint
+    Axios.post('http://localhost:8000/compile', {
+      code: userCode,
+      language: userLang,
+      input: userInput,
+    })
+      .then((res) => {
+        setUserOutput(res.data.output)
+      })
+      .then(() => {
+        setLoading(false)
+      })
+  }
 
-
+  // Function to clear the output screen
   function clearOutput() {
     setUserOutput('')
   }
