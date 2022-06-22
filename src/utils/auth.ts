@@ -5,14 +5,14 @@ import cookie from 'js-cookie'
  *
  * Version 1.0
  *
- * Date: 30-05-2021
+ * Date: 07-06-2021
  *
  * Copyright By DuyHV9
  *
  * Modification Logs:
  * DATE             AUTHOR              DESCRIPTION
  * -------------------------------------------------
- * 07-06-2021       DuyHV9           Create
+ * 07-06-2021       DuyHV           Create
  */
 // Set in Cookie
 export const setCookie = (key: string, value: string) => {

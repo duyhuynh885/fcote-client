@@ -1,4 +1,5 @@
 import {
+  Box,
   Checkbox,
   Container,
   FormControlLabel,
@@ -17,6 +18,9 @@ import RegularButton from '../../components/Button/RegularButton'
 import { useAppDispatch } from '../../hooks/hooks'
 import { RegularButtonType } from '../../models'
 import { registerRequest } from '../../redux/modules/auth/action/authAction'
+import useStyles from './style'
+import { isAuth } from '../../utils/auth'
+import history from '../../routing/history'
 
 const regularButton: RegularButtonType = {
   color: 'primary',
@@ -47,9 +51,8 @@ export default function Register() {
     path: ['confirmPassword'],
     message: 'Passwords do not match',
   })
-
   type RegisterInput = TypeOf<typeof registerSchema>
-
+  const classes = useStyles()
   const { t } = useTranslation()
   const {
     register,
@@ -63,6 +66,10 @@ export default function Register() {
     type: 'submit',
   }
 
+  /**
+   * Handle register
+   * @param data RegisterInput
+   */
   const onSubmit: SubmitHandler<RegisterInput> = (data) => {
     const { firstName, lastName, userName, email, password } = data
     dispatch(registerRequest({ firstName, lastName, userName, email, password }))
@@ -70,106 +77,114 @@ export default function Register() {
 
   return (
     <React.Fragment>
-      <Container
-        sx={{
-          width: 375,
-          height: 'auto',
-          display: 'flex',
-          justifyContent: 'flex-start',
-          marginRight: '10%',
-          paddingTop: '5%',
-          flexDirection: 'column',
-        }}
-      >
-        <Typography variant='h1' marginBottom='1.5rem'>
-          Create Account{' '}
-        </Typography>
-        <form className='form' onSubmit={handleSubmit(onSubmit)}>
-          <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-            <Grid item xs={6}>
+      {isAuth() ? history.push('/') : null}
+
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid item xs={6}>
+          <Box sx={{ height: '100vh', zIndex: '-1' }} className={classes.authLayout} />
+        </Grid>
+        <Grid item xs={6}>
+          <Container
+            sx={{
+              width: 375,
+              height: 'auto',
+              display: 'flex',
+              justifyContent: 'flex-start',
+              paddingTop: '5%',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography variant='h1' marginBottom='1.5rem'>
+              Create Account{' '}
+            </Typography>
+            <form className='form' onSubmit={handleSubmit(onSubmit)}>
+              <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid item xs={6}>
+                  <TextField
+                    {...register('firstName')}
+                    required
+                    sx={{ width: '100%', marginBottom: '1.5rem' }}
+                    id='outlined-fullName-input'
+                    label='Fist Name'
+                    error={!!errors['firstName']}
+                    helperText={errors['firstName'] ? errors['firstName'].message : ''}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    {...register('lastName')}
+                    required
+                    sx={{ width: '100%', marginBottom: '1.5rem' }}
+                    id='outlined-fullName-input'
+                    label='Last Name'
+                    error={!!errors['lastName']}
+                    helperText={errors['lastName'] ? errors['lastName'].message : ''}
+                  />
+                </Grid>
+              </Grid>
               <TextField
-                {...register('firstName')}
+                {...register('userName')}
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-fullName-input'
-                label='Fist Name'
-                error={!!errors['firstName']}
-                helperText={errors['firstName'] ? errors['firstName'].message : ''}
+                label='User Name'
+                error={!!errors['userName']}
+                helperText={errors['userName'] ? errors['userName'].message : ''}
               />
-            </Grid>
-            <Grid item xs={6}>
               <TextField
-                {...register('lastName')}
+                {...register('email')}
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
-                id='outlined-fullName-input'
-                label='Last Name'
-                error={!!errors['lastName']}
-                helperText={errors['lastName'] ? errors['lastName'].message : ''}
+                id='outlined-email-input'
+                label='Email'
+                error={!!errors['email']}
+                helperText={errors['email'] ? errors['email'].message : ''}
+                {...register('email')}
               />
-            </Grid>
-          </Grid>
-          <TextField
-            {...register('userName')}
-            required
-            sx={{ width: '100%', marginBottom: '1.5rem' }}
-            id='outlined-fullName-input'
-            label='User Name'
-            error={!!errors['userName']}
-            helperText={errors['userName'] ? errors['userName'].message : ''}
-          />
-          <TextField
-            {...register('email')}
-            required
-            sx={{ width: '100%', marginBottom: '1.5rem' }}
-            id='outlined-email-input'
-            label='Email'
-            error={!!errors['email']}
-            helperText={errors['email'] ? errors['email'].message : ''}
-            {...register('email')}
-          />
-          <TextField
-            {...register('password')}
-            required
-            id='outlined-password-input'
-            sx={{ width: '100%', marginBottom: '1.5rem' }}
-            label='Password'
-            type='password'
-            error={!!errors['password']}
-            helperText={errors['password'] ? errors['password'].message : ''}
-            {...register('password')}
-          />
-          <TextField
-            {...register('confirmPassword')}
-            required
-            id='outlined-password-input'
-            sx={{ width: '100%', marginBottom: '1.5rem' }}
-            label='Confirm password'
-            type='password'
-            error={!!errors['confirmPassword']}
-            helperText={errors['confirmPassword'] ? errors['confirmPassword'].message : ''}
-          />
+              <TextField
+                {...register('password')}
+                required
+                id='outlined-password-input'
+                sx={{ width: '100%', marginBottom: '1.5rem' }}
+                label='Password'
+                type='password'
+                error={!!errors['password']}
+                helperText={errors['password'] ? errors['password'].message : ''}
+                {...register('password')}
+              />
+              <TextField
+                {...register('confirmPassword')}
+                required
+                id='outlined-password-input'
+                sx={{ width: '100%', marginBottom: '1.5rem' }}
+                label='Confirm password'
+                type='password'
+                error={!!errors['confirmPassword']}
+                helperText={errors['confirmPassword'] ? errors['confirmPassword'].message : ''}
+              />
 
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox required />}
-              {...register('terms')}
-              label={
-                <Typography color={errors['terms'] ? 'error' : 'inherit'}>
-                  Accept Terms and Conditions
-                </Typography>
-              }
-            />
-            <FormHelperText error={!!errors['terms']}>
-              {errors['terms'] ? errors['terms'].message : ''}
-            </FormHelperText>
-          </FormGroup>
+              <FormGroup>
+                <FormControlLabel
+                  control={<Checkbox required />}
+                  {...register('terms')}
+                  label={
+                    <Typography color={errors['terms'] ? 'error' : 'inherit'}>
+                      Accept Terms and Conditions
+                    </Typography>
+                  }
+                />
+                <FormHelperText error={!!errors['terms']}>
+                  {errors['terms'] ? errors['terms'].message : ''}
+                </FormHelperText>
+              </FormGroup>
 
-          <RegularButton {...rest} {...regularButton}>
-            {t('Register')}
-          </RegularButton>
-        </form>
-      </Container>
+              <RegularButton {...rest} {...regularButton}>
+                {t('Register')}
+              </RegularButton>
+            </form>
+          </Container>
+        </Grid>
+      </Grid>
     </React.Fragment>
   )
 }

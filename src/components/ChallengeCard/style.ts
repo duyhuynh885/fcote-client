@@ -1,8 +1,7 @@
 import { makeStyles } from '@mui/styles'
-import DataAnalyses from '../../asset/DataAnalyse.png'
 
 /**
- * Style for Authentication Pages
+ * Style for challenge card components
  *
  * Version 1.0
  *
@@ -15,18 +14,21 @@ import DataAnalyses from '../../asset/DataAnalyse.png'
  * -----------------------------------------------------------------------
  * 22-06-2022         DuyHV           Create
  */
-
 const useStyles = makeStyles((theme: any) => ({
-  link: {
-    textDecoration: 'none',
-    fontSize: theme.textFont.small,
-    fontWeight: 'bold',
+  challengeCardBanner: {
+    width: 125,
+    height: 125,
   },
-  authLayout: {
-    backgroundImage: `url(${DataAnalyses})`,
-    backgroundPosition: 'left 140px top 100px',
-    backgroundSize: '80%',
-    backgroundRepeat: 'no-repeat',
+  challengeCardContainer: {
+    padding: 10,
+  },
+  challengeCardTittle: {
+    fontSize: theme.textFont.small,
+    fontWeight: '500',
+  },
+  challengeCardStatus: {
+    fontWeight: '600',
+    textTransform: 'uppercase',
   },
 }))
 

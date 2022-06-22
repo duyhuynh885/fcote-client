@@ -5,9 +5,18 @@ import AuthRoute from '../routing/AuthRoute'
 import routes from '../routing/routes'
 
 /**
- * This is the main routes container. We add it inside the app's layout so that
- * it won't update each time we change routes.
+ * Routes Container
  *
+ * Version 1.0
+ *
+ * Date: 01-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 01-06-2022         DuyHV           Create
  */
 const RoutesContainer = () => {
   return (

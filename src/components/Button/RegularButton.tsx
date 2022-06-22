@@ -4,6 +4,20 @@ import useStyles from './style'
 import classNames from 'classnames'
 import { RegularButtonType } from '../../models'
 
+/**
+ * Regular Button Component
+ *
+ * Version 1.0
+ *
+ * Date: 01-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 01-06-2022         DuyHV           Create
+ */
 const RegularButton = React.forwardRef<HTMLButtonElement, RegularButtonType>((props, ref) => {
   const classes = useStyles()
   const {

@@ -1,3 +1,17 @@
+/**
+ * Regular Button Type Model
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 22-06-2022         DuyHV           Create
+ */
 export interface RegularButtonType {
   color: 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'white' | 'transparent'
   size: 'sm' | 'lg'
