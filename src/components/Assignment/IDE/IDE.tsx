@@ -2,7 +2,20 @@ import React, { useState } from 'react'
 import Editor from '@monaco-editor/react'
 import Axios from 'axios'
 
-// import spinner from "./spinner.svg";
+/**
+ * Assignment Item
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 08-06-2022
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 08-06-2022      HuyNT2711           Create
+ */
 
 function IDE() {
   // State variable to set users source code

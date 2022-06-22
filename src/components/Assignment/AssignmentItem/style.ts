@@ -1,12 +1,6 @@
 import { makeStyles } from '@mui/styles'
 
 const AssignmentItemStyle = makeStyles((theme: any) => ({
-  // containerAll: {
-  //   position: "relative",
-  //   marginLeft: "60rem",
-  //   width: "223px",
-  //   height: "178px",
-  // },
   container: {
     position: 'absolute',
     width: '223px',
@@ -69,7 +63,7 @@ const AssignmentItemStyle = makeStyles((theme: any) => ({
     width: '204px',
     height: '36px ',
     backgroundColor: ` ${theme.color.btnGreenColor} !important`,
-    marginLeft: `4% !important`,
+    marginLeft: '4% !important',
     marginTop: '5px !important',
   },
   textBtn: {

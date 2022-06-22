@@ -1,21 +1,22 @@
 import React from 'react'
 import useStyles from './style'
 import { Button } from '@mui/material'
-// import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
 
-// const theme = createTheme(
-//     Palette:{
-//         primary: {
-//             // Purple and green play nicely together.
-//             main: purple[500],
-//           },
-//           secondary: {
-//             // This is green.A700 as hex.
-//             main: '#11cb5f',
-//           },
-//     }
-// );
+/**
+ * ButtonBack
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 03-06-2022
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 03-06-2022      HuyNT2711           Create
+ */
 
 export default function ButtonBack() {
   const className = useStyles()

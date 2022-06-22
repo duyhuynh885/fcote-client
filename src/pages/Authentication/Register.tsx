@@ -16,6 +16,7 @@ import RegularButton from '../../components/Button/RegularButton'
 import { useAppDispatch } from '../../hooks/hooks'
 import { RegularButtonType } from '../../models'
 import { registerRequest } from '../../redux/modules/auth/action/authAction'
+import { StringDecoder } from 'string_decoder'
 
 const regularButton: RegularButtonType = {
   color: 'primary',

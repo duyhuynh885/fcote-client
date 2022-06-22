@@ -9,11 +9,11 @@ export const axiosClient = axios.create({
 
 // Add a request interceptor
 axiosClient.interceptors.request.use(
-  function(config: AxiosRequestConfig) {
+  function (config: AxiosRequestConfig) {
     // Do something before request is sent
     return config
   },
-  function(error) {
+  function (error) {
     // Do something with request error
     return Promise.reject(error)
   },
@@ -21,10 +21,10 @@ axiosClient.interceptors.request.use(
 
 // Add a response interceptor
 axiosClient.interceptors.response.use(
-  function(response: AxiosResponse) {
+  function (response: AxiosResponse) {
     return response.data
   },
-  function(error) {
+  function (error) {
     return Promise.reject(error)
   },
 )

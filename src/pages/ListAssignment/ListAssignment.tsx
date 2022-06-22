@@ -6,31 +6,25 @@ import ListAssignmentStyle from './style'
 import MyAssignmentItem from '../../components/Assignment/MyAssignmentItem/MyAssignmentItem'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { createTheme, ThemeProvider } from '@mui/system'
 import TaskbarFilter from '../../components/Assignment/TaskbarFilter/TaskbarFilter'
 
-// import TableContainer from "@mui/material/TableContainer";
+/**
+ * Client
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 22-6-2022
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 07-06-2021       HuyNT2711           Create
+ *
+ */
 
 export default function ListAssignment() {
-  // const theme = createTheme({
-  //   overrides: {
-  //     MuiCssBaseline: {
-  //       "@global": {
-  //         "*::-webkit-scrollbar": {
-  //           width: "10px",
-  //         },
-  //         "*::-webkit-scrollbar-track": {
-  //           background: "#E4EFEF",
-  //         },
-  //         "*::-webkit-scrollbar-thumb": {
-  //           background: "#1D388F61",
-  //           borderRadius: "2px",
-  //         },
-  //       },
-  //     },
-  //   },
-  // });
-
   const classes = ListAssignmentStyle()
   return (
     <div className={classes.wrapAll}>
@@ -94,7 +88,7 @@ export default function ListAssignment() {
           >
             <Pagination
               count={10}
-              renderItem={item => (
+              renderItem={(item) => (
                 <PaginationItem
                   components={{
                     previous: ArrowBackIcon,

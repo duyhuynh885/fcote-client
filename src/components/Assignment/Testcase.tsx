@@ -5,7 +5,22 @@ import MuiAccordion, { AccordionProps } from '@mui/material/Accordion'
 import MuiAccordionSummary, { AccordionSummaryProps } from '@mui/material/AccordionSummary'
 import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
-import { Box, Grid, TableContainer } from '@mui/material'
+import { Grid, TableContainer } from '@mui/material'
+
+/**
+ * Testcase
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 06-06-2022
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 06-06-2022      HuyNT2711           Create
+ */
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />

@@ -7,31 +7,25 @@ import { styled } from '@mui/material/styles'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
-import { textAlign } from '@mui/system'
-import { Button, createTheme, ThemeProvider } from '@mui/material'
+import { Button } from '@mui/material'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import Testcase from '../../components/Assignment/Testcase'
 import IDE from '../../components/Assignment/IDE/IDE'
 
-// const theme = createTheme({
-//   overrides: {
-//     MuiCssBaseline: {
-//       "@global": {
-//         "*::-webkit-scrollbar": {
-//           width: "10px"
-//         },
-//         "*::-webkit-scrollbar-track": {
-//           background: "#E4EFEF"
-//         },
-//         "*::-webkit-scrollbar-thumb": {
-//           background: "#1D388F61",
-//           borderRadius: "2px"
-//         }
-//       }
-//     }
-//   }
-// });
-
+/**
+ * Detail Assignment
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 09-06-2022
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 09-06-2022      HuyNT2711           Create
+ */
 interface TabPanelProps {
   children?: React.ReactNode
   index: number

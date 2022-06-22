@@ -5,6 +5,20 @@ import AssignmentItem from '../../components/Assignment/AssignmentItem/Assignmen
 import MyListAssignmentStyle from './style'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+/**
+ * My list assignment
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 05-06-2022
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 05-06-2022      HuyNT2711           Create
+ */
 export default function MyListAssignment() {
   const classes = MyListAssignmentStyle()
   return (
@@ -73,7 +87,7 @@ export default function MyListAssignment() {
         >
           <Pagination
             count={10}
-            renderItem={item => (
+            renderItem={(item) => (
               <PaginationItem
                 components={{
                   previous: ArrowBackIcon,

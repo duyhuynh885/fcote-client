@@ -8,7 +8,7 @@ const DetailAssignmentStyle = makeStyles((theme: any) => ({
   textItem: {
     textAlign: 'left',
     pl: '20px',
-    fontWeight: `600 !important`,
+    fontWeight: '600 !important',
     fontSize: '14px !important',
     lineheight: '19px !important',
   },

@@ -19,7 +19,7 @@ export default () => {
 
   const store = configureStore({
     reducer: pReducer,
-    middleware: getDefaultMiddleware =>
+    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,
       })

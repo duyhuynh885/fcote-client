@@ -18,6 +18,21 @@ import InputBase from '@mui/material/InputBase'
 import FormControl from '@mui/material/FormControl'
 import TaskbarFilterStyle from './style'
 
+/**
+ * TaskbarFilter
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 08-06-2022
+ * <p>
+ * Copyright By HuyNT2711
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 08-06-2022      HuyNT2711           Create
+ */
+
 export default function TaskbarFilter() {
   const classes = TaskbarFilterStyle()
   const [status, setStatus] = React.useState('')

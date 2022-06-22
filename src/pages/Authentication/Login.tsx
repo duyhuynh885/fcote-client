@@ -49,7 +49,7 @@ export default function Login() {
 
   const dispatch = useAppDispatch()
 
-  const onSubmit: SubmitHandler<RegisterInput> = data => {
+  const onSubmit: SubmitHandler<RegisterInput> = (data) => {
     const { email, password } = data
     dispatch(loginRequest({ email, password }))
   }
