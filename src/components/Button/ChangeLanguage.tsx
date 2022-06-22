@@ -7,21 +7,46 @@ import { ReactComponent as VietnameseRectangleIcon } from '../../asset/VN-Rectan
 import { ReactComponent as EnglishRectangleIcon } from '../../asset/English-Rectangle.svg'
 import useStyles from './style'
 
-export default function ChangLanguage() {
+/**
+ * Change Language Button Component
+ *
+ * Version 1.0
+ *
+ * Date: 01-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 01-06-2022         DuyHV           Create
+ */
+export default function ChangeLanguage() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const { t, i18n } = useTranslation()
   const [language, setLanguage] = React.useState(i18n.language)
   const classes = useStyles()
 
+  /**
+   * Handle click to open menu language
+   * @param event RegisterRequestPayload
+   */
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
 
+  /**
+   * Handle click to close menu language
+   */
   const handleClose = () => {
     setAnchorEl(null)
   }
 
+  /**
+   * Handle click to change language
+   * @param language string
+   */
   const changeLanguage = (language: string) => {
     setLanguage(language)
     i18n.changeLanguage(language)

@@ -9,7 +9,22 @@ import Home from '../pages/Home/Home'
 import ListAssignment from '../pages/ListAssignment/ListAssignment'
 import MyListAssignment from '../pages/MyListAssignment/MyListAssignment'
 import { PATHS } from './path'
+import MyProfile from '../pages/MyProfile/MyProfile'
 
+/**
+ * Setup routing for project
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 22-06-2022         DuyHV           Create
+ */
 const routes = [
   {
     auth: false,
@@ -80,6 +95,13 @@ const routes = [
     path: '/detail-assignment',
     Component: DetailAssignment,
     exact: true,
+  },
+  {
+    auth: true,
+    title: 'MY PROFILE',
+    path: '/my-profile',
+    Component: MyProfile,
+    exact: false,
   },
 ]
 

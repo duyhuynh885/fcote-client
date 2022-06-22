@@ -19,7 +19,26 @@ import { isAuth } from '../../utils/auth'
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
 import { logoutRequest } from '../../redux/modules/auth/action/authAction'
 
+/**
+ * Navbar components
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 22-06-2022         DuyHV           Create
+ */
+
 const pages = [
+  {
+    path: '/my-profile',
+    title: 'MyProfile',
+  },
   {
     path: '/assignment',
     title: 'Assignment',
@@ -30,7 +49,7 @@ const pages = [
   },
   {
     path: '/ranking',
-    title: 'Raking',
+    title: 'Ranking',
   },
 ]
 
@@ -38,21 +57,29 @@ function Navbar() {
   const classes = useStyles()
   const { t } = useTranslation()
 
-  const settings = ['My Profile', 'Account', 'Logout']
-
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
   const dispatch = useAppDispatch()
   const auth = useAppSelector((state) => state.auth)
   const { successful } = auth
 
+  /**
+   * Handle open user menu
+   * @param event React.MouseEvent<HTMLElement>
+   */
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget)
   }
 
+  /**
+   * Handle close user menu
+   */
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
 
+  /**
+   * Handle logout user
+   */
   const handleLogout = () => {
     dispatch(logoutRequest())
   }
@@ -113,12 +140,20 @@ function Navbar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign='center'>{setting}</Typography>
-                  </MenuItem>
-                ))}
-                <MenuItem onClick={handleLogout}>Logoutssss</MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign='center'>My Profile</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign='center'>Account</Typography>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleCloseUserMenu()
+                    handleLogout()
+                  }}
+                >
+                  <Typography textAlign='center'>Logout</Typography>
+                </MenuItem>
               </Menu>
             </Box>
           </React.Fragment>

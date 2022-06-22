@@ -14,7 +14,7 @@ import { isAuth } from '../utils/auth'
  * Modification Logs:
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
- * 09-06-2022         DuyHV9           Create
+ * 09-06-2022         DuyHV           Create
  */
 
 const AuthRoute = ({ component, ...rest }: any) => (

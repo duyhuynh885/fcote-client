@@ -1,6 +1,21 @@
 import { createTheme } from '@mui/material/styles'
 import { ThemeOptions as ThemeOptionsOld } from '@mui/material/styles/createTheme'
 
+/**
+ * Override the default theme of material ui
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 22-06-2022         DuyHV           Create
+ */
+
 // Custom theme:
 const themeCustom = {
   color: {

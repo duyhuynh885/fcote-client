@@ -1,5 +1,20 @@
 import { AuthAction, LoginActionType, AuthState, RegisterActionType } from './type'
 
+/**
+ * Reducer for authenticate
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 22-06-2022         DuyHV           Create
+ */
+
 const initialState: AuthState = {
   requesting: false,
   successful: false,
@@ -13,6 +28,12 @@ const initialState: AuthState = {
   },
 }
 
+/**
+ * Reducer Authentication
+ * @param state AuthState
+ * @param action AuthAction
+ * @returns
+ */
 const reducer = (state = initialState, action: AuthAction) => {
   switch (action.type) {
     case LoginActionType.LOGIN_REQUESTING:

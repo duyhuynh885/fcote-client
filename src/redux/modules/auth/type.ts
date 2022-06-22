@@ -1,3 +1,18 @@
+/**
+ * Type for authenticate
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 22-06-2022         DuyHV           Create
+ */
+
 export enum LoginActionType {
   LOGIN_REQUESTING = 'LOGIN_REQUESTING',
   LOGIN_SUCCESS = 'LOGIN_SUCCESS',
@@ -32,7 +47,9 @@ export interface LogoutResponse {
 }
 
 export interface RegisterRequestPayload {
-  fullName: string
+  firstName: string
+  lastName: string
+  userName: string
   email: string
   password: string
 }
