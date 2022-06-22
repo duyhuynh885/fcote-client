@@ -4,13 +4,28 @@ import { PersistGate } from 'redux-persist/integration/react'
 import configureStore from '../redux/configureStore'
 import Loader from '../components/Loader/Loader'
 
+/**
+ * Redux Container
+ *
+ * Version 1.0
+ *
+ * Date: 01-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 01-06-2022         DuyHV           Create
+ */
+
 const { store, persistor } = configureStore()
 const RouterContainer = lazy(() => import('./RouterContainer'))
 
 const ReduxContainer = () => (
   <Provider store={store}>
-    <PersistGate loading={<Loader />} persistor={persistor}>
-      <Suspense fallback={<Loader />}>
+    <PersistGate loading={<Loader loading={false} />} persistor={persistor}>
+      <Suspense fallback={<Loader loading={false} />}>
         <RouterContainer />
       </Suspense>
     </PersistGate>

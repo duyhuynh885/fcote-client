@@ -11,6 +11,25 @@ import {
 } from './type'
 import { hideLoaderAction, showLoaderAction } from '../layout/actions/loaderActions'
 
+/**
+ * Saga for authenticate
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 22-06-2022         DuyHV           Create
+ */
+
+/**
+ * Login flow generator function
+ * @param payload LoginRequestPayload
+ */
 function* loginFlow(payload: LoginRequestPayload) {
   try {
     yield put(showLoaderAction())
@@ -25,6 +44,9 @@ function* loginFlow(payload: LoginRequestPayload) {
   }
 }
 
+/**
+ * Logout flow generator function
+ */
 function* logoutFlow() {
   yield put(showLoaderAction())
   yield delay(1000)
@@ -34,6 +56,10 @@ function* logoutFlow() {
   yield put(hideLoaderAction())
 }
 
+/**
+ * Register flow generator function
+ * @param payload RegisterRequestPayload
+ */
 function* registerFlow(payload: RegisterRequestPayload) {
   try {
     yield put(showLoaderAction())
@@ -48,6 +74,9 @@ function* registerFlow(payload: RegisterRequestPayload) {
   }
 }
 
+/**
+ * Login watcher
+ */
 function* loginWatcher() {
   while (true) {
     const isLoggedIn = getCookie('accessToken')
@@ -61,6 +90,9 @@ function* loginWatcher() {
   }
 }
 
+/**
+ * Register watcher
+ */
 function* registerWatcher() {
   const { firstName, lastName, userName, email, password } = yield take(
     RegisterActionType.REGISTER_REQUESTING,
@@ -68,6 +100,9 @@ function* registerWatcher() {
   yield fork(registerFlow, { firstName, lastName, userName, email, password })
 }
 
+/**
+ * Auth saga
+ */
 export default function* authSaga() {
   yield fork(loginWatcher)
   yield fork(registerWatcher)

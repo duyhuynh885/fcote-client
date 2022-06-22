@@ -7,6 +7,24 @@ import rootReducer from './reducers'
 import sagas from './sagas'
 import history from '../routing/history'
 
+/**
+ * Configures the store
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 22-06-2022         DuyHV           Create
+ */
+
+/**
+ * Configures the redux persist
+ */
 const persistConfig = {
   key: `${process.env.REACT_APP_NAME}_persist_store`,
   storage,
@@ -14,6 +32,9 @@ const persistConfig = {
 }
 const pReducer = persistReducer(persistConfig, rootReducer(history))
 
+/**
+ * Export redux store and redux persistStore
+ */
 export default () => {
   const sagaMiddleware = createSagaMiddleware()
 

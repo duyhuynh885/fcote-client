@@ -10,9 +10,8 @@
  * Modification Logs:
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
- * 01-06-2022         DuyHV9           Create
+ * 01-06-2022         DuyHV           Create
  */
-
 export default function authHeader() {
   const user = JSON.parse(localStorage.getItem('user') || '{}')
 
