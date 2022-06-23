@@ -5,9 +5,10 @@ import Link from '@mui/material/Link'
 import useStyles from './style'
 import { useTranslation } from 'react-i18next'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
-import { styled } from '@mui/material/styles'
+import { styled } from '@mui/material/styles' 
+
 /**
- * UnAuthorized 401 Pages
+ * UnAuthorized 500 Pages
  *
  * Version 1.0
  *
@@ -45,7 +46,7 @@ const ButtonBack = styled(Button)({
   },
 })
 
-export default function UnAuthorized() {
+export default function ServerError() {
   const classes = useStyles()
   const { t } = useTranslation()
   return (
@@ -66,7 +67,7 @@ export default function UnAuthorized() {
             align='center'
             className={classes.typographyError}
           >
-            401
+            500
           </Typography>
           <Typography
             variant='h1'
@@ -81,7 +82,7 @@ export default function UnAuthorized() {
         <Grid item xs={12}>
           <Box
             sx={{ height: '50vh', width: '70vh', zIndex: '-1' }}
-            className={classes.unAuthorizedLayout}
+            className={classes.errorServerInternalLayout}
           />
         </Grid>
         <Link
