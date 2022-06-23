@@ -52,6 +52,10 @@ const themeCustom = {
       contrastText: '#fff',
     },
   },
+  border:{
+    blueGray: '#4c6177',
+    blue: '#005cbf'
+  },
 } as const
 
 // Override style Mui

@@ -30,7 +30,6 @@ const m = {
   WelcomeBack: 'Welcome Back',
   RememberMe: 'Remember Me',
   CreateAccount: 'CreateAccount',
-  // ERROR
   ErrorUnAuthorized: 'We’re working on it!',
   GoHome: 'Go Home',
 }

@@ -6,6 +6,7 @@ import useStyles from './style'
 import { useTranslation } from 'react-i18next'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import { styled } from '@mui/material/styles'
+import { theme } from '../../styles/theme'
 
 /**
  * UnAuthorized 403 Pages
@@ -22,24 +23,24 @@ import { styled } from '@mui/material/styles'
  * 22-06-2022         TuanLA           Create
  */
 
-const ButtonBack = styled(Button)({
+ const ButtonBack = styled(Button)({
   boxShadow: 'none',
   textTransform: 'none',
-  fontSize: 16,
+  fontSize:  `${theme.textFont.small}`,
   padding: '6px 12px',
   border: '1px solid',
   lineHeight: 1.5,
-  backgroundColor: '#1D3853',
-  borderColor: '#1D3853',
+  backgroundColor: `${theme.color.darkBlue}`,
+  borderColor: `${theme.color.darkBlue}`,
   '&:hover': {
-    backgroundColor: '#4c6177',
-    borderColor: '#4c6177',
+    backgroundColor: `${theme.color.darkBlue}`,
+    borderColor: `${theme.border.blueGray}`,
     boxShadow: 'none',
   },
   '&:active': {
     boxShadow: 'none',
-    backgroundColor: '#1D3853',
-    borderColor: '#005cbf',
+    backgroundColor: `${theme.color.darkBlue}`,
+    borderColor: `${theme.border.blue}`,
   },
   '&:focus': {
     boxShadow: '0 0 0 0.2rem rgba(0,123,255, 0.8)',
