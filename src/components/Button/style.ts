@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: any) => ({
     position: 'relative',
     padding: '12px 30px',
     margin: '.3125rem 1px',
-    textTransform: 'capitalize', 
+    textTransform: 'capitalize',
     fontSize: theme.textFont.small,
     fontWeight: 'bold !important',
     letterSpacing: '0',

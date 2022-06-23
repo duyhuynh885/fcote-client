@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom'
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
  * 08-06-2022      HuyNT2711           Create
+ * 24-06-2022      DuyHV               Update UI
  */
 
 export default function TaskbarFilter() {

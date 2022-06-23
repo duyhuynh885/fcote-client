@@ -12,6 +12,7 @@ import { makeStyles } from '@mui/styles'
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
  * 04-06-2022      HuyNT2711           Create
+ * 24-06-2022      DuyHV               Update UI
  */
 const useStyles = makeStyles((theme: any) => ({
   paperWrap: {

@@ -4,6 +4,20 @@ import { Link } from 'react-router-dom'
 import MyAssignmentItem from './MyAssignmentItem'
 import useStyles from './style'
 
+/**
+ * My Assignment Tab Component
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 24-06-2022
+ * <p>
+ * Copyright By DuyHV
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 24-06-2022      DuyHV           Create
+ */
 export default function MyAssignmentTab() {
   const classes = useStyles()
   return (

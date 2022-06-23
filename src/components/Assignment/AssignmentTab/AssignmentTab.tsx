@@ -4,6 +4,20 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import React from 'react'
 import AssignmentItem from './AssignmentItem'
 
+/**
+ * Assignment Tab
+ * <p>
+ * Version 1.0
+ * <p>
+ * Date: 03-06-2022
+ * <p>
+ * Copyright By DuyHV
+ * <p>
+ * Modification Logs:
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 24-06-2022      DuyHV           Create
+ */
 export default function AssignmentTab() {
   return (
     <Stack
@@ -14,7 +28,7 @@ export default function AssignmentTab() {
     >
       <Box sx={{ minHeight: 900, maxHeight: 1000 }}>
         <Grid container spacing={4}>
-          <Grid item xs={4} lg={3} >
+          <Grid item xs={4} lg={3}>
             <AssignmentItem />
           </Grid>
           <Grid item xs={4} lg={3}>

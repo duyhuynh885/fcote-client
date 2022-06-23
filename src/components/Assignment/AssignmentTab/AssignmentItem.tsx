@@ -8,7 +8,7 @@ import RegularButton from '../../Button/RegularButton'
  * <p>
  * Version 1.0
  * <p>
- * Date: 03-06-2022
+ * Date: 24-06-2022
  * <p>
  * Copyright By HuyNT2711
  * <p>
@@ -16,6 +16,7 @@ import RegularButton from '../../Button/RegularButton'
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
  * 03-06-2022      HuyNT2711           Create
+ * 24-06-2022      DuyHV               Update UI
  */
 function AssignmentItem() {
   const classes = AssignmentItemStyle()
