@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Pagination, PaginationItem, Stack } from '@mui/material'
-import AssignmentItem from '../../components/Assignment/AssignmentItem/AssignmentItem'
+import AssignmentItem from '../../components/Assignment/AssignmentTab/AssignmentItem'
 // import ButtonBack from "../../components/Button/ButtonBack/ButtonBack";
 import MyListAssignmentStyle from './style'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'

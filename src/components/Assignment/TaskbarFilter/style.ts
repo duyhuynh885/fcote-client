@@ -12,21 +12,11 @@ import { makeStyles } from '@mui/styles'
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
  * 08-06-2022      HuyNT2711           Create
+ * 24-06-2022      DuyHV               Update UI
  */
 const TaskbarFilterStyle = makeStyles((theme: any) => ({
-  btn: {
-    width: '100px',
-    height: '32px',
-    backgroundColor: ` ${theme.color.green} !important`,
-  },
-  textBtn: {
-    width: '100px',
-    height: '22px',
-    fontWeight: '600 !important',
-    fontSize: `${theme.textFont.small} !important`,
-    lineHeight: '22px !important',
-    textTransform: 'capitalize',
-    color: ` ${theme.color.black} !important`,
+  taskFilterOptions: {
+    fontWeight: 'bold',
   },
 }))
 
