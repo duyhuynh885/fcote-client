@@ -1,22 +1,11 @@
-import {
-  Box,
-  IconButton,
-  InputLabel,
-  NativeSelect,
-  Paper,
-  SelectChangeEvent,
-  Typography,
-} from '@mui/material'
+import { IconButton, InputAdornment, NativeSelect, Paper, Stack, TextField } from '@mui/material'
 import React from 'react'
-import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
-import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
-import DirectionsIcon from '@mui/icons-material/Directions'
-import InputBase from '@mui/material/InputBase'
-
 import FormControl from '@mui/material/FormControl'
 import TaskbarFilterStyle from './style'
+import RegularButton from '../../Button/RegularButton'
+import { Link } from 'react-router-dom'
 
 /**
  * TaskbarFilter
@@ -35,83 +24,94 @@ import TaskbarFilterStyle from './style'
 
 export default function TaskbarFilter() {
   const classes = TaskbarFilterStyle()
-
+  const statusOptions = [{ name: '', value: 'true' }]
   return (
-    <div>
-      <Paper square elevation={3} sx={{ width: '1318px', p: '5px 10px 0px 15px' }}>
-        <Box sx={{ float: 'left', minWidth: 120, width: '150px', height: '45px' }}>
-          <FormControl fullWidth>
-            <InputLabel variant='standard' htmlFor='uncontrolled-native'>
-              Status
-            </InputLabel>
-            <NativeSelect
-              defaultValue={'DOING'}
-              inputProps={{
-                name: 'status',
-                id: 'uncontrolled-native',
-              }}
-            >
-              <option value={'DO'}>DO</option>
-              <option value={'DOING'}>DOING </option>
-              <option value={'FINISHED'}>FINISHED </option>
-              <option value={'NOT'}>NOT </option>
-            </NativeSelect>
-          </FormControl>
-        </Box>
-        <Box
-          sx={{
-            float: 'left',
-            minWidth: 120,
-            width: '150px',
-            height: '45px',
-            ml: '10px',
+    <Paper
+      square
+      elevation={3}
+      sx={{ width: '100%', padding: '10px', display: 'flex', justifyContent: 'space-between' }}
+    >
+      <Stack direction='row' justifyContent='flex-start' alignItems='center' spacing={2}>
+        <FormControl>
+          <NativeSelect
+            defaultValue={'All Status'}
+            className={classes.taskFilterOptions}
+            inputProps={{
+              name: 'status',
+              id: 'uncontrolled-native',
+            }}
+          >
+            <option className={classes.taskFilterOptions} value={'ALL'}>
+              All Status
+            </option>
+            <option className={classes.taskFilterOptions} value={'DOING'}>
+              Doing
+            </option>
+            <option className={classes.taskFilterOptions} value={'FINISHED'}>
+              Finished
+            </option>
+            <option className={classes.taskFilterOptions} value={'NOT YET'}>
+              Not yet
+            </option>
+          </NativeSelect>
+        </FormControl>
+        <FormControl>
+          <NativeSelect
+            className={classes.taskFilterOptions}
+            defaultValue={'All Difficulties'}
+            inputProps={{
+              name: 'difficulties',
+              id: 'uncontrolled-native',
+            }}
+          >
+            <option className={classes.taskFilterOptions} value={'ALL'}>
+              All Difficulties
+            </option>
+            <option className={classes.taskFilterOptions} value={'HARD'}>
+              Hard
+            </option>
+            <option className={classes.taskFilterOptions} value={'MEDIUM'}>
+              Medium
+            </option>
+            <option className={classes.taskFilterOptions} value={'EASY'}>
+              Easy
+            </option>
+          </NativeSelect>
+        </FormControl>
+      </Stack>
+      <Stack direction='row' spacing={2}>
+        <TextField
+          size='small'
+          color='success'
+          placeholder='Search here'
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position='end'>
+                <IconButton>
+                  <SearchIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
           }}
-        >
-          <FormControl fullWidth>
-            <InputLabel variant='standard' htmlFor='uncontrolled-native'>
-              Difficulties
-            </InputLabel>
-            <NativeSelect
-              defaultValue={'MEDIUM'}
-              inputProps={{
-                name: 'difficulties',
-                id: 'uncontrolled-native',
-              }}
-            >
-              <option value={'HARD'}>HARD </option>
-              <option value={'MEDIUM'}>MEDIUM </option>
-              <option value={'EASY'}>EASY</option>
-            </NativeSelect>
-          </FormControl>
-        </Box>
-
-        <Paper
-          elevation={0}
-          component='form'
-          sx={{
-            p: '2px 4px',
-            display: 'flex',
-            alignItems: 'center',
-            width: 400,
-            ml: '70%',
-          }}
-        >
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            placeholder='Search here'
-            inputProps={{ 'aria-label': 'Search here' }}
-          />
-          <IconButton type='submit' sx={{ p: '10px' }} aria-label='search'>
-            <SearchIcon />
-          </IconButton>
-          <Divider sx={{ height: 28, m: 0.5 }} orientation='vertical' />
-          <IconButton color='primary' sx={{ p: '10px' }} aria-label='directions'>
-            <Button variant='outlined' className={classes.btn}>
-              <Typography className={classes.textBtn}>+ Create</Typography>
-            </Button>
-          </IconButton>
-        </Paper>
-      </Paper>
-    </div>
+        />
+        <Divider orientation='vertical' flexItem />
+        <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to='/assignment/create'>
+          <RegularButton
+            color={'primary'}
+            size={'sm'}
+            round={false}
+            fullWidth={false}
+            disabled={false}
+            simple={false}
+            block={false}
+            link={false}
+            justIcon={false}
+            className=''
+          >
+            + Create
+          </RegularButton>
+        </Link>
+      </Stack>
+    </Paper>
   )
 }

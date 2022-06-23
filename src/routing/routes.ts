@@ -1,3 +1,4 @@
+import CreateAssignment from '../components/Assignment/CreateAssignment/CreateAssignment'
 import AboutUs from '../pages/AboutUs/AboutUs'
 import ChangePassword from '../pages/Authentication/ChangePassword'
 import ForgetPassword from '../pages/Authentication/ForgetPassword'
@@ -76,15 +77,15 @@ const routes = [
   },
   {
     auth: true,
-    title: 'My List Assignment',
-    path: '/my-list-assignment',
+    title: 'My Assignment',
+    path: '/my-assignment',
     Component: MyListAssignment,
     exact: true,
   },
   {
     auth: true,
-    title: 'List Assignment',
-    path: '/list-assignment',
+    title: 'Assignment',
+    path: '/assignment',
     Component: ListAssignment,
     exact: true,
   },
@@ -93,6 +94,13 @@ const routes = [
     title: 'Detail Assignment',
     path: '/detail-assignment',
     Component: DetailAssignment,
+    exact: true,
+  },
+  {
+    auth: true,
+    title: 'Create Assignment',
+    path: '/assignment/create',
+    Component: CreateAssignment,
     exact: true,
   },
   {
