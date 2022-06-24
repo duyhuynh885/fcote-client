@@ -30,6 +30,8 @@ export const m = {
   WelcomeBack: 'Chào mừng trở lại',
   RememberMe: 'Lưu Tài Khoản',
   CreateAccount: 'Tạo Tài Khoản',
+  ErrorUnAuthorized: 'Chúng tôi đang xử lý sự cố!',
+  GoHome: 'Trở về',
 }
 
 export default m

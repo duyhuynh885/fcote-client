@@ -29,6 +29,7 @@ const themeCustom = {
     lightBlack: '#1a2027',
     blueLight: '#F3F7F7',
     brown: '#9D9D9E',
+    darkBlue: '#1D3853',
   },
   textFont: {
     extraLarge: '24px',
@@ -46,6 +47,14 @@ const themeCustom = {
       main: '#64748B',
       contrastText: '#fff',
     },
+    darkBlue: {
+      main: '#1D3853',
+      contrastText: '#fff',
+    },
+  },
+  border:{
+    blueGray: '#4c6177',
+    blue: '#005cbf'
   },
 } as const
 

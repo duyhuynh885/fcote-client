@@ -8,7 +8,7 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import { styled } from '@mui/material/styles'
 import { theme } from '../../styles/theme'
 /**
- * UnAuthorized 401 Pages
+ * UnAuthorized 404 Pages
  *
  * Version 1.0
  *
@@ -22,7 +22,7 @@ import { theme } from '../../styles/theme'
  * 22-06-2022         TuanLA           Create
  */
 
- const ButtonBack = styled(Button)({
+const ButtonBack = styled(Button)({
   boxShadow: 'none',
   textTransform: 'none',
   fontSize:  `${theme.textFont.small}`,
@@ -46,7 +46,7 @@ import { theme } from '../../styles/theme'
   },
 })
 
-export default function UnAuthorized() {
+export default function NotFound() {
   const classes = useStyles()
   const { t } = useTranslation()
   return (
@@ -67,7 +67,7 @@ export default function UnAuthorized() {
             align='center'
             className={classes.typographyError}
           >
-            401
+            404
           </Typography>
           <Typography
             variant='h1'
@@ -82,7 +82,7 @@ export default function UnAuthorized() {
         <Grid item xs={12}>
           <Box
             sx={{ height: '50vh', width: '70vh', zIndex: '-1' }}
-            className={classes.unAuthorizedLayout}
+            className={classes.notFoundLayout}
           />
         </Grid>
         <Link

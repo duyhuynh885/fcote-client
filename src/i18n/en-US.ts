@@ -30,6 +30,8 @@ const m = {
   WelcomeBack: 'Welcome Back',
   RememberMe: 'Remember Me',
   CreateAccount: 'CreateAccount',
+  ErrorUnAuthorized: 'We’re working on it!',
+  GoHome: 'Go Home',
 }
 
 export default m
