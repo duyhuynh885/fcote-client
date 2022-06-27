@@ -1,4 +1,4 @@
-import { Box, Paper, Typography} from '@mui/material'
+import { Box, Paper } from '@mui/material'
 import React from 'react'
 import useStyles from './style'
 import Tabs from '@mui/material/Tabs'
@@ -27,7 +27,6 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
-
   return (
     <div
       role='tabpanel'
@@ -38,7 +37,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Box>{children}</Box>
         </Box>
       )}
     </div>
@@ -73,19 +72,19 @@ export default function Leaderboard() {
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label='Leaderboard'>
-            <Tab label='Item One' {...ChangeValueProps(0)} />
-            <Tab label='Item Two' {...ChangeValueProps(1)} />
-            <Tab label='Item Three' {...ChangeValueProps(2)} />
+            <Tab label='Individual' {...ChangeValueProps(0)} />
+            <Tab label='Universities' {...ChangeValueProps(1)} />
+            <Tab label='Class' {...ChangeValueProps(2)} />
           </Tabs>
         </Box>
-        <TabPanel value={value} index={0}>
-          <LeaderboardsTable/>
+        <TabPanel value={value} index={0} >
+          <LeaderboardsTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+          <LeaderboardsTable />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+          <LeaderboardsTable />
         </TabPanel>
       </Box>
     </Paper>

@@ -1,19 +1,22 @@
-import { Box, Paper } from '@mui/material'
+import {
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableFooter,
+  TablePagination,
+  TableHead,
+  TableRow,
+  IconButton,
+} from '@mui/material'
 import React from 'react'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableFooter from '@mui/material/TableFooter'
-import TablePagination from '@mui/material/TablePagination'
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow'
-import IconButton from '@mui/material/IconButton'
 import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import { useTheme } from '@mui/material/styles'
+
 /**
  * Leaderboard component
  *
@@ -100,7 +103,7 @@ function createData(rank: number, fullname: string, university: string, score: n
 
 const columns: readonly Column[] = [
   { id: 'rank', label: '#', minWidth: 10 },
-  { id: 'fullname', label: 'FullName', minWidth: 100 },
+  { id: 'fullname', label: 'FullName', minWidth: 100, align: 'center' },
   {
     id: 'university',
     label: 'University',
@@ -113,15 +116,15 @@ const columns: readonly Column[] = [
     minWidth: 170,
     align: 'center',
   },
-];
+]
 
 const rows = [
   createData(1, 'Le Anh Tuan', 'FPT University', 9999),
-  createData(2, 'Le Anh Tuan', 'FPT University', 9999),
-  createData(3, 'Le Anh Tuan', 'FPT University', 9999),
-  createData(4, 'Le Anh Tuan', 'FPT University', 9999),
-  createData(5, 'Le Anh Tuan', 'FPT University', 9999),
-  createData(6, 'Le Anh Tuan', 'FPT University', 9999),
+  createData(2, 'Le Anh Tuan', 'FPT University', 8888),
+  createData(3, 'Le Anh Tuan', 'FPT University', 7777),
+  createData(4, 'Le Anh Tuan', 'FPT University', 6666),
+  createData(5, 'Le Anh Tuan', 'FPT University', 5555),
+  createData(6, 'Le Anh Tuan', 'FPT University', 4444),
 ].sort((a, b) => (a.rank < b.rank ? -1 : 1))
 
 export default function LeaderboardsTable() {
@@ -142,8 +145,8 @@ export default function LeaderboardsTable() {
     setPage(0)
   }
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label='custom pagination table'>
+    <TableContainer>
+      <Table sx={{ minWidth: 500 }} aria-label='all leaderboard'>
         <TableHead>
           <TableRow>
             {columns.map((column) => (
@@ -159,7 +162,7 @@ export default function LeaderboardsTable() {
             : rows
           ).map((row) => (
             <TableRow key={row.rank}>
-              <TableCell component='th' scope='row' style={{ width: 10 }} >
+              <TableCell component='th' scope='row' style={{ width: 10 }}>
                 {row.rank}
               </TableCell>
               <TableCell style={{ width: 160 }} align='center'>
