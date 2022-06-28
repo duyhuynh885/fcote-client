@@ -1,27 +1,37 @@
-import { Avatar, IconButton, Modal, Paper, Stack, TextField } from '@mui/material'
 import React from 'react'
-import RegularButton from '../Button/RegularButton'
+import {
+  Avatar,
+  Divider,
+  IconButton,
+  Modal,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
+import RegularButton from '../../Button/RegularButton'
 import useStyles from './style'
 
 /**
- * Edit profile model component
+ * Create test case model component
  *
  * Version 1.0
  *
- * Date: 21-06-2022
+ * Date: 28-06-2022
  *
  * Copyright
  *
  * Modification Logs:
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
- * 21-06-2022         DuyHV           Create
+ * 28-06-2022         DuyHV           Create
  */
 
 interface ButtonProps {
   open: boolean
   onClose: (shown: boolean) => void
 }
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -32,7 +42,8 @@ const style = {
   borderRadius: 3,
   p: 4,
 }
-export default function EditProfileModel({ open, onClose }: ButtonProps) {
+
+export default function CreateTestCaseModal({ open, onClose }: ButtonProps) {
   const classes = useStyles()
   return (
     <React.Fragment>
@@ -43,52 +54,46 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
         aria-describedby='modal-modal-description'
       >
         <Paper sx={style}>
-          <div className={classes.root}>
-            <input accept='image/*' className={classes.input} id='icon-button-file' type='file' />
-            <label htmlFor='icon-button-file'>
-              <IconButton color='primary' aria-label='upload picture' component='span'>
-                <Avatar
-                  src='https://hanoimoi.com.vn/Uploads/images/tuandiep/2022/02/12/ro.jpg'
-                  className={classes.large}
-                />
-              </IconButton>
-            </label>
-          </div>
-          <Stack className={classes.scrollBar}>
+          <Typography className={classes.createTestCaseModelTitle}>Add new test case</Typography>
+          <Stack>
+            <Typography className={classes.titleNameInput}>Input</Typography>
+            <Typography className={classes.titleTextField}>Arg1 (Integer)</Typography>
             <TextField
-              sx={{ width: '100%', marginBottom: '1.5rem' }}
-              id='outlined-fullName-input'
-              label='Full Name'
+              fullWidth
+              id='outlined-basic'
+              variant='outlined'
+              required
+              // {...nameFiled}
+              // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              //   nameFiled.onChange(e)
+              //   handleOnChange(e)
+              // }}
             />
+            <Typography className={classes.titleTextField}>Arg2 (Integer)</Typography>
             <TextField
-              id='outlined-organization-input'
-              sx={{ width: '100%', marginBottom: '1.5rem' }}
-              label='Organization'
+              fullWidth
+              id='outlined-basic'
+              variant='outlined'
+              required
+              // {...nameFiled}
+              // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              //   nameFiled.onChange(e)
+              //   handleOnChange(e)
+              // }}
             />
+            <Divider sx={{ margin: '10px 0px' }} />
+            <Typography className={classes.titleNameInput}>Excepted Output</Typography>
+            <Typography className={classes.titleTextField}>Integer</Typography>
             <TextField
-              sx={{ width: '100%', marginBottom: '1.5rem' }}
-              id='outlined-email-input'
-              label='Email'
-            />
-            <TextField
-              id='outlined-city-input'
-              sx={{ width: '100%', marginBottom: '1.5rem' }}
-              label='City'
-            />
-            <TextField
-              sx={{ width: '100%', marginBottom: '1.5rem' }}
-              id='outlined-phone-input'
-              label='Phone'
-            />
-            <TextField
-              id='outlined-gender-input'
-              sx={{ width: '100%', marginBottom: '1.5rem' }}
-              label='Gender'
-            />
-            <TextField
-              id='outlined-description-input'
-              sx={{ width: '100%', marginBottom: '1.5rem' }}
-              label='Description'
+              fullWidth
+              id='outlined-basic'
+              variant='outlined'
+              required
+              // {...nameFiled}
+              // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              //   nameFiled.onChange(e)
+              //   handleOnChange(e)
+              // }}
             />
           </Stack>
           <Stack

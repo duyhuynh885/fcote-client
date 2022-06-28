@@ -1,4 +1,4 @@
-import CreateAssignment from '../components/Assignment/CreateAssignment/CreateAssignment'
+import CreateAssignment from '../pages/CreateAssignment/CreateAssignment'
 import AboutUs from '../pages/AboutUs/AboutUs'
 import ChangePassword from '../pages/Authentication/ChangePassword'
 import ForgetPassword from '../pages/Authentication/ForgetPassword'
@@ -6,6 +6,9 @@ import Login from '../pages/Authentication/Login'
 import Register from '../pages/Authentication/Register'
 import ContactUs from '../pages/ContactUs/ContactUs'
 import DetailAssignment from '../pages/DetailAssignment'
+import Forbidden from '../pages/Errors/Forbidden'
+import NotFound from '../pages/Errors/NotFound'
+import ServerError from '../pages/Errors/ServerError'
 import Home from '../pages/Home/Home'
 import ListAssignment from '../pages/ListAssignment/ListAssignment'
 import MyListAssignment from '../pages/MyListAssignment/MyListAssignment'
@@ -109,6 +112,27 @@ const routes = [
     path: '/my-profile',
     Component: MyProfile,
     exact: false,
+  },
+  {
+    auth: false,
+    title: 'FORBIDDEN',
+    path: '/forbidden',
+    Component: Forbidden,
+    exact: true,
+  },
+  {
+    auth: false,
+    title: 'NOT FOUND',
+    path: '/not-found',
+    Component: NotFound,
+    exact: true,
+  },
+  {
+    auth: false,
+    title: 'SERVER ERROR',
+    path: '/server-error',
+    Component: ServerError,
+    exact: true,
   },
 ]
 

@@ -49,15 +49,16 @@ const regularButton: RegularButtonType = {
   className: 'form__custom-button',
 }
 
+const registerSchema = object({
+  email: string().email('Email is invalid'),
+  password: string()
+    .min(8, 'Password must be more than 8 characters')
+    .max(32, 'Password must be less than 32 characters'),
+})
+
 export default function Login() {
   type LoginInput = TypeOf<typeof registerSchema>
   const { t } = useTranslation()
-  const registerSchema = object({
-    email: string().email('Email is invalid'),
-    password: string()
-      .min(8, 'Password must be more than 8 characters')
-      .max(32, 'Password must be less than 32 characters'),
-  })
   const classes = useStyles()
   const {
     register,

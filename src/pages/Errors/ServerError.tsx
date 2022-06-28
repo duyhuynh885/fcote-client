@@ -5,7 +5,7 @@ import Link from '@mui/material/Link'
 import useStyles from './style'
 import { useTranslation } from 'react-i18next'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
-import { styled } from '@mui/material/styles' 
+import { styled } from '@mui/material/styles'
 import { theme } from '../../styles/theme'
 
 /**
@@ -26,7 +26,7 @@ import { theme } from '../../styles/theme'
 const ButtonBack = styled(Button)({
   boxShadow: 'none',
   textTransform: 'none',
-  fontSize:  `${theme.textFont.small}`,
+  fontSize: `${theme.textFont.small}`,
   padding: '6px 12px',
   border: '1px solid',
   lineHeight: 1.5,

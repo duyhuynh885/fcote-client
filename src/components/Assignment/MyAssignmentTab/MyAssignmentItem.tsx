@@ -1,4 +1,4 @@
-import { Button, Paper, Stack, Typography } from '@mui/material'
+import { Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import RegularButton from '../../Button/RegularButton'
 

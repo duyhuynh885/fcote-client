@@ -25,7 +25,6 @@ import { Link } from 'react-router-dom'
 
 export default function TaskbarFilter() {
   const classes = TaskbarFilterStyle()
-  const statusOptions = [{ name: '', value: 'true' }]
   return (
     <Paper
       square

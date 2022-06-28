@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import {
   Avatar,
   IconButton,
@@ -9,7 +10,6 @@ import {
   Typography,
 } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useState } from 'react'
 import useStyles from './style'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import EditProfileModel from './EditProfileModel'

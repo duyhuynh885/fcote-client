@@ -9,7 +9,7 @@ import {
   RegisterActionType,
   RegisterRequestPayload,
 } from './type'
-import { hideLoaderAction, showLoaderAction } from '../layout/actions/loaderActions'
+import { hideLoaderAction, showLoaderAction } from '../layout/actions/loaderAction'
 
 /**
  * Saga for authenticate

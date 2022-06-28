@@ -52,9 +52,9 @@ const themeCustom = {
       contrastText: '#fff',
     },
   },
-  border:{
+  border: {
     blueGray: '#4c6177',
-    blue: '#005cbf'
+    blue: '#005cbf',
   },
 } as const
 

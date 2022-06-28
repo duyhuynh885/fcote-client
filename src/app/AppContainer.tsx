@@ -7,6 +7,7 @@ import { Stack } from '@mui/material'
 import Vector1 from '../asset/Vector1.png'
 import Vector from './../asset/Vector.png'
 import { useAppSelector } from '../hooks/hooks'
+import { useLocation } from 'react-router-dom'
 
 /**
  * App Container
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme: any) => ({
 function AppContainer() {
   const classes = useStyles()
   const loading = useAppSelector((state) => state.loader.loading)
+  const location = useLocation()
 
   return (
     <React.Fragment>
@@ -48,7 +50,7 @@ function AppContainer() {
           minWidth: '1200px',
         }}
       >
-        <Navbar />
+        {location.pathname == '/assignment/create' ? null : <Navbar />}
         <RoutesContainer />
       </Stack>
     </React.Fragment>

@@ -13,7 +13,7 @@
  * 22-06-2022         DuyHV           Create
  */
 export interface RegularButtonType {
-  color: 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'white' | 'transparent'
+  color: 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'white' | 'transparent' | 'dotted'
   size: 'sm' | 'lg'
   round: boolean
   children?: React.ReactNode
@@ -24,4 +24,5 @@ export interface RegularButtonType {
   link: boolean
   justIcon: boolean
   className: string
+  onClick?: React.MouseEventHandler
 }

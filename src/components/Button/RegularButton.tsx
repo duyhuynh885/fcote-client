@@ -17,6 +17,7 @@ import { RegularButtonType } from '../../models'
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
  * 01-06-2022         DuyHV           Create
+ * 28-06-2022         DuyHV           Add Props onClick event for button
  */
 const RegularButton = React.forwardRef<HTMLButtonElement, RegularButtonType>((props, ref) => {
   const classes = useStyles()
@@ -31,6 +32,7 @@ const RegularButton = React.forwardRef<HTMLButtonElement, RegularButtonType>((pr
     link,
     justIcon,
     className,
+    onClick,
     ...rest
   } = props
 
@@ -49,7 +51,7 @@ const RegularButton = React.forwardRef<HTMLButtonElement, RegularButtonType>((pr
   })
 
   return (
-    <Button {...rest} ref={ref} className={btnClasses}>
+    <Button {...rest} ref={ref} onClick={onClick} className={btnClasses}>
       {props.children}
     </Button>
   )

@@ -2,10 +2,8 @@ import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles((theme: any) => ({
   navBar: {
-    overflow: 'hidden !important',
     backgroundColor: `${theme.color.white} !important`,
     display: 'flex',
-    zIndex: 1,
     justifyContent: 'space-around !important',
   },
   navLinks: {
@@ -52,6 +50,16 @@ const useStyles = makeStyles((theme: any) => ({
   registerBtn: {
     backgroundColor: `${theme.color.white} !important`,
     color: `${theme.color.black} !important`,
+  },
+  toolbar: {
+    color: theme.color.darkGray,
+    fontSize: theme.textFont.extraLarge,
+    fontWeight: 'bold',
+  },
+  navBarCreate: {
+    backgroundColor: `${theme.color.white} !important`,
+    boxShadow: 'none',
+    borderBottom: `0.5px solid ${theme.color.darkGray}`,
   },
 }))
 
