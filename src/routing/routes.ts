@@ -1,10 +1,10 @@
-import CreateAssignment from '../pages/CreateAssignment/CreateAssignment'
 import AboutUs from '../pages/AboutUs/AboutUs'
 import ChangePassword from '../pages/Authentication/ChangePassword'
 import ForgetPassword from '../pages/Authentication/ForgetPassword'
 import Login from '../pages/Authentication/Login'
 import Register from '../pages/Authentication/Register'
 import ContactUs from '../pages/ContactUs/ContactUs'
+import CreateAssignment from '../pages/CreateAssignment/CreateAssignment'
 import DetailAssignment from '../pages/DetailAssignment'
 import Forbidden from '../pages/Errors/Forbidden'
 import NotFound from '../pages/Errors/NotFound'
@@ -13,7 +13,7 @@ import Home from '../pages/Home/Home'
 import ListAssignment from '../pages/ListAssignment/ListAssignment'
 import MyListAssignment from '../pages/MyListAssignment/MyListAssignment'
 import MyProfile from '../pages/MyProfile/MyProfile'
-
+import Ranking from '../pages/Ranking/Ranking'
 /**
  * Setup routing for project
  *
@@ -132,6 +132,12 @@ const routes = [
     title: 'SERVER ERROR',
     path: '/server-error',
     Component: ServerError,
+    exact: true,
+  },
+  {
+    title: 'Ranking',
+    path: '/ranking',
+    Component: Ranking,
     exact: true,
   },
 ]
