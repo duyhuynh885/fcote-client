@@ -10,7 +10,7 @@ import Home from '../pages/Home/Home'
 import ListAssignment from '../pages/ListAssignment/ListAssignment'
 import MyListAssignment from '../pages/MyListAssignment/MyListAssignment'
 import MyProfile from '../pages/MyProfile/MyProfile'
-
+import Ranking from '../pages/Ranking/Ranking'
 /**
  * Setup routing for project
  *
@@ -109,6 +109,13 @@ const routes = [
     path: '/my-profile',
     Component: MyProfile,
     exact: false,
+  },
+  {
+    auth: false,
+    title: 'Ranking',
+    path: '/ranking',
+    Component: Ranking,
+    exact: true,
   },
 ]
 
