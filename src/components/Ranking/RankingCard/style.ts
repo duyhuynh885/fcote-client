@@ -14,7 +14,7 @@ import { makeStyles } from '@mui/styles'
  * -----------------------------------------------------------------------
  * 24-06-2022         TuanLA           Create
  */
- const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: any) => ({
   rankSecondProfileAvatar: {
     width: '5rem',
     height: '5rem',
@@ -26,12 +26,11 @@ import { makeStyles } from '@mui/styles'
   },
   rankProfileScore: {
     borderTop: '1px solid',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   rankMedal: {
     display: 'flex',
-    alignItems: 'center'
-  }
- }))
- export default useStyles
- 
+    alignItems: 'center',
+  },
+}))
+export default useStyles
