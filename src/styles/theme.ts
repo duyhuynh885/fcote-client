@@ -54,8 +54,15 @@ const themeCustom = {
   },
   border:{
     blueGray: '#4c6177',
-    blue: '#005cbf'
+    blue: '#005cbf',
   },
+  rankingCard:{
+    green: '#22BB80',
+    darkGreen: '#0A8656',
+    darkGray: '#2B3B52',
+    navyBlue: '#45547A',
+    darkNavyBlue: '#2B3B52'
+  }
 } as const
 
 // Override style Mui

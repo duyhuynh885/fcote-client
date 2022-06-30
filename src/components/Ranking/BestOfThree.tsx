@@ -34,7 +34,7 @@ export default function BestOfThree() {
     >
       <Stack direction='column' spacing={2}>
         <Box>
-          <Grid container spacing={15} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Grid container spacing={10} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Grid item>
               <Stack direction='column' alignItems='center'>
                 <SecondRankCard/>

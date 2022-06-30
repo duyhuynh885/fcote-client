@@ -15,6 +15,13 @@ import { makeStyles } from '@mui/styles'
  * 24-06-2022         TuanLA           Create
  */
  const useStyles = makeStyles((theme: any) => ({
+  cardRoot: {
+    color: `${theme.color.white}`,
+  },
+  cardHeader: {
+    fontSize: '2.5rem'
+  }
+  ,
   rankSecondProfileAvatar: {
     width: '5rem',
     height: '5rem',
@@ -25,8 +32,8 @@ import { makeStyles } from '@mui/styles'
     paddingTop: '.5em',
   },
   rankProfileScore: {
-    borderTop: '1px solid',
-    justifyContent: 'center'
+    borderTop: `1px solid ${theme.color.white}`,
+    justifyContent: 'center',
   },
   rankMedal: {
     display: 'flex',

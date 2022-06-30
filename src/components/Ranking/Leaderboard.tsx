@@ -67,24 +67,23 @@ export default function Leaderboard() {
         flexDirection: 'column',
         padding: 2,
       }}
-      className={classes.paperRoot}
     >
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label='Leaderboard'>
             <Tab label='Individual' {...ChangeValueProps(0)} />
             <Tab label='Universities' {...ChangeValueProps(1)} />
-            <Tab label='Class' {...ChangeValueProps(2)} />
+            <Tab label='Group' {...ChangeValueProps(2)} />
           </Tabs>
         </Box>
-        <TabPanel value={value} index={0} >
-          <LeaderboardsTable />
+        <TabPanel value={value} index={0}>
+          <LeaderboardsTable type='individual' />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <LeaderboardsTable />
+          <LeaderboardsTable type='university' />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <LeaderboardsTable />
+          <LeaderboardsTable type='group' />
         </TabPanel>
       </Box>
     </Paper>

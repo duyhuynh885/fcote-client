@@ -33,7 +33,7 @@ import { useTheme } from '@mui/material/styles'
  */
 
 interface Column {
-  id: 'rank' | 'fullname' | 'university' | 'score'
+  id: 'rank' | 'fullname' | 'university' | 'group' | 'individual' | 'score'
   label: string
   minWidth?: number
   align?: 'right' | 'center' | 'left'
@@ -101,22 +101,18 @@ function createData(rank: number, fullname: string, university: string, score: n
   return { rank, fullname, university, score }
 }
 
-const columns: readonly Column[] = [
-  { id: 'rank', label: '#', minWidth: 10 },
-  { id: 'fullname', label: 'FullName', minWidth: 100, align: 'center' },
-  {
-    id: 'university',
-    label: 'University',
-    minWidth: 170,
-    align: 'center',
-  },
-  {
-    id: 'score',
-    label: 'Score',
-    minWidth: 170,
-    align: 'center',
-  },
-]
+function createType(
+  id: 'rank' | 'fullname' | 'university' | 'group' | 'individual' | 'score',
+  label: string,
+  minWidth: number,
+  align: 'right' | 'center' | 'left',
+) {
+  return { id, label, minWidth, align }
+}
+
+function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
 
 const rows = [
   createData(1, 'Le Anh Tuan', 'FPT University', 9999),
@@ -127,10 +123,24 @@ const rows = [
   createData(6, 'Le Anh Tuan', 'FPT University', 4444),
 ].sort((a, b) => (a.rank < b.rank ? -1 : 1))
 
-export default function LeaderboardsTable() {
+interface TypeLeaderBoard {
+  type: 'rank' | 'fullname' | 'university' | 'group' | 'individual' | 'score'
+}
+
+export default function LeaderboardsTable(props: TypeLeaderBoard) {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
-
+  const columns: readonly Column[] = [
+    { id: 'rank', label: '#', minWidth: 10 },
+    { id: 'fullname', label: 'Full Name', minWidth: 100, align: 'left' },
+    createType(props.type, capitalizeFirstLetter(props.type), 170, 'center'),
+    {
+      id: 'score',
+      label: 'Score',
+      minWidth: 170,
+      align: 'right',
+    },
+  ]
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
 
@@ -165,13 +175,13 @@ export default function LeaderboardsTable() {
               <TableCell component='th' scope='row' style={{ width: 10 }}>
                 {row.rank}
               </TableCell>
-              <TableCell style={{ width: 160 }} align='center'>
+              <TableCell style={{ width: 160 }} align='left'>
                 {row.fullname}
               </TableCell>
               <TableCell style={{ width: 160 }} align='center'>
                 {row.university}
               </TableCell>
-              <TableCell style={{ width: 160 }} align='center'>
+              <TableCell style={{ width: 160 }} align='right'>
                 {row.score}
               </TableCell>
             </TableRow>
@@ -186,7 +196,7 @@ export default function LeaderboardsTable() {
           <TableRow>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
+              colSpan={5}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
