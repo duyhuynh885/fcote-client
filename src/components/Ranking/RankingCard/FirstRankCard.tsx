@@ -8,6 +8,7 @@ import Avatar from '@mui/material/Avatar'
 import useStyles from './style'
 import { theme } from '../../../styles/theme'
 import { ReactComponent as FirstRank } from '../../../asset/FirstRank.svg'
+import './RankCard.css'
 /**
  * First Rank Card component
  *
@@ -25,9 +26,14 @@ import { ReactComponent as FirstRank } from '../../../asset/FirstRank.svg'
 export default function FirstRankCard() {
   const classes = useStyles()
   return (
-    <Card sx={{ minWidth: 450 }}>
-      <CardHeader title='1st PLACE' sx={{ backgroundColor: `${theme.color.green}` }} />
-      <CardContent sx={{ display: 'flex' }}>
+    <Card sx={{ minWidth: 500, minHeight: 275 }} className={classes.cardRoot}>
+      <CardHeader
+        title='1st PLACE'
+        sx={{ backgroundColor: `${theme.rankingCard.darkGreen}` }}
+      />
+      <CardContent
+        sx={{ display: 'flex', padding: '25px', backgroundColor: `${theme.rankingCard.green}` }}
+      >
         <Box>
           <Avatar
             alt='Profile Image'
@@ -39,14 +45,17 @@ export default function FirstRankCard() {
           <Typography variant='h5' component='span'>
             Le Anh Tuan
           </Typography>
-          <Typography color='text.secondary'>FPT University</Typography>
+          <Typography>FPT University</Typography>
         </Box>
         <Box className={classes.rankMedal}>
           <FirstRank />
         </Box>
       </CardContent>
-      <CardActions className={classes.rankProfileScore}>
-        <Typography variant='h6' component='span'>
+      <CardActions
+        className={classes.rankProfileScore}
+        sx={{ padding: 3, backgroundColor: `${theme.rankingCard.green}` }}
+      >
+        <Typography variant='h5' component='span' sx={{ fontWeight: 1000 }}>
           Score: 2000
         </Typography>
       </CardActions>
