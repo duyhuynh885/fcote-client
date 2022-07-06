@@ -1,6 +1,6 @@
+import { LoginRequestPayload, LoginResponse } from '../redux/modules/auth/login/type'
+import { RegisterRequestPayload, RegisterResponse } from '../redux/modules/auth/register/type'
 import { axiosClient } from './clientApi'
-import { AuthResponse, RegisterResponse } from '../models'
-import { LoginRequestPayload, RegisterRequestPayload } from '../redux/modules/auth/type'
 
 /**
  * Authentication Service Api
@@ -15,26 +15,27 @@ import { LoginRequestPayload, RegisterRequestPayload } from '../redux/modules/au
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
  * 01-06-2022         DuyHV           Create
+ * 05-07-2022         DuyHV           Update Response
  */
 const authApi = {
   /**
    * Api for login requests
    * @param payload LoginRequestPayload
-   * @returns
+   * @returns LoginResponse
    */
-  login(payload: LoginRequestPayload): Promise<AuthResponse> {
+  login(payload: LoginRequestPayload) {
     const url = '/auth/post-sign-in'
-    return axiosClient.post(url, payload)
+    return axiosClient.post<LoginResponse>(url, payload)
   },
 
   /**
    * Api for register requests
    * @param payload RegisterRequestPayload
-   * @returns
+   * @returns RegisterResponse
    */
-  register(payload: RegisterRequestPayload): Promise<RegisterResponse> {
+  register(payload: RegisterRequestPayload) {
     const url = '/auth/post-sign-up'
-    return axiosClient.post(url, payload)
+    return axiosClient.post<RegisterResponse>(url, payload)
   },
 
   /**
@@ -42,18 +43,8 @@ const authApi = {
    * @param payload RegisterRequestPayload
    * @returns
    */
-  forgetPassword(payload: RegisterRequestPayload): Promise<RegisterResponse> {
+  forgetPassword(payload: RegisterRequestPayload) {
     const url = '/auth/post-reset'
-    return axiosClient.post(url, payload)
-  },
-
-  /**
-   * Api for forgot password request
-   * @param payload RegisterRequestPayload
-   * @returns
-   */
-  changePassword(payload: RegisterRequestPayload): Promise<RegisterResponse> {
-    const url = '/auth/change-password'
     return axiosClient.post(url, payload)
   },
 }

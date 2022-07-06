@@ -1,3 +1,4 @@
+import { getCookie, isAuth } from './../utils/auth'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 /**
@@ -14,6 +15,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
  * -----------------------------------------------------------------------
  * 16-06-2022         DuyHV           Create
  */
+
 export const axiosClient = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
@@ -24,7 +26,6 @@ export const axiosClient = axios.create({
 // Add a request interceptor
 axiosClient.interceptors.request.use(
   function (config: AxiosRequestConfig) {
-    // Do something before request is sent
     return config
   },
   function (error) {

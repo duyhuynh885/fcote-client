@@ -9,32 +9,20 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { literal, object, string, TypeOf } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
 import RegularButton from '../../components/Button/RegularButton'
 import { useAppDispatch } from '../../hooks/hooks'
-import { RegularButtonType } from '../../models'
-import { registerRequest } from '../../redux/modules/auth/action/authAction'
 import useStyles from './style'
 import { isAuth } from '../../utils/auth'
 import history from '../../routing/history'
-
-const regularButton: RegularButtonType = {
-  color: 'primary',
-  size: 'lg',
-  round: false,
-  children: 'Register',
-  fullWidth: true,
-  disabled: false,
-  simple: true,
-  block: true,
-  link: false,
-  justIcon: false,
-  className: 'form__custom-button',
-}
+import { registerRequest } from '../../redux/modules/auth/register/action'
+import { clearState } from '../../redux/modules/auth/login/action'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../app/ReduxContainer'
 
 export default function Register() {
   const registerSchema = object({
@@ -55,6 +43,7 @@ export default function Register() {
   const classes = useStyles()
   const { t } = useTranslation()
   const {
+    reset,
     register,
     formState: { errors },
     handleSubmit,
@@ -62,12 +51,24 @@ export default function Register() {
     resolver: zodResolver(registerSchema),
   })
   const dispatch = useAppDispatch()
+  const registerState = useSelector((state: RootState) => state.register)
+
   const rest = {
     type: 'submit',
   }
 
+  useEffect(() => {
+    return () => {
+      dispatch(clearState())
+    }
+  }, [])
+
   /**
-   * Handle register
+   * Load error or success message if exist
+   */
+
+  /**
+   * Handle registers
    * @param data RegisterInput
    */
   const onSubmit: SubmitHandler<RegisterInput> = (data) => {
@@ -97,6 +98,7 @@ export default function Register() {
             <Typography variant='h1' marginBottom='1.5rem'>
               Create Account{' '}
             </Typography>
+            {/* {registerState.errors ? <ErrorMessage error={registerState.errors} /> : null} */}
             <form className='form' onSubmit={handleSubmit(onSubmit)}>
               <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid item xs={6}>
@@ -104,7 +106,7 @@ export default function Register() {
                     {...register('firstName')}
                     required
                     sx={{ width: '100%', marginBottom: '1.5rem' }}
-                    id='outlined-fullName-input'
+                    id='outlined-firstName-input'
                     label='Fist Name'
                     error={!!errors['firstName']}
                     helperText={errors['firstName'] ? errors['firstName'].message : ''}
@@ -115,7 +117,7 @@ export default function Register() {
                     {...register('lastName')}
                     required
                     sx={{ width: '100%', marginBottom: '1.5rem' }}
-                    id='outlined-fullName-input'
+                    id='outlined-lastName-input'
                     label='Last Name'
                     error={!!errors['lastName']}
                     helperText={errors['lastName'] ? errors['lastName'].message : ''}
@@ -126,7 +128,7 @@ export default function Register() {
                 {...register('userName')}
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
-                id='outlined-fullName-input'
+                id='outlined-userName-input'
                 label='User Name'
                 error={!!errors['userName']}
                 helperText={errors['userName'] ? errors['userName'].message : ''}
@@ -155,7 +157,7 @@ export default function Register() {
               <TextField
                 {...register('confirmPassword')}
                 required
-                id='outlined-password-input'
+                id='outlined-confirm-password-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 label='Confirm password'
                 type='password'
@@ -178,7 +180,19 @@ export default function Register() {
                 </FormHelperText>
               </FormGroup>
 
-              <RegularButton {...rest} {...regularButton}>
+              <RegularButton
+                {...rest}
+                color={'primary'}
+                size={'lg'}
+                round={false}
+                fullWidth={false}
+                disabled={false}
+                simple={false}
+                block={false}
+                link={false}
+                justIcon={false}
+                className={''}
+              >
                 {t('Register')}
               </RegularButton>
             </form>

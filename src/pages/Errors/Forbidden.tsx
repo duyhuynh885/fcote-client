@@ -68,7 +68,7 @@ export default function Forbidden() {
             align='center'
             className={classes.typographyError}
           >
-            403
+            401
           </Typography>
           <Typography
             variant='h1'

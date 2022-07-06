@@ -29,7 +29,6 @@ export default function SettingTab() {
   const [editorState, setEditorState] = useState('')
   const handleOnChange = (event: any, editor: ClassicEditor) => {
     const data = editor.getData()
-    console.log(data)
     setEditorState(data)
   }
   return (

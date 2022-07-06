@@ -33,7 +33,6 @@ function IDE() {
   }
   function handleSetUser(value: any) {
     setUserCode(value)
-    console.log('Value', value)
   }
 
   function compile() {

@@ -36,6 +36,8 @@ import _ from 'lodash'
 
 export default function InputOutputTab() {
   const [inputList, setInputList] = useState<Input[]>([{} as Input])
+  const [output, setOutput] = useState<Output>({} as Output)
+
   const classes = useStyles()
   const handleInputAdd = () => {
     setInputList([...inputList, {} as Input])
@@ -99,6 +101,12 @@ interface Input {
   description?: string
 }
 
+interface Output {
+  id: number
+  type?: string
+  description?: string
+}
+
 interface FormInputProps {
   index: number
   listSize: number
@@ -130,10 +138,6 @@ function FormInput(props: FormInputProps) {
 
   const handleOnChange = (event: any) => {
     const updates = { [event.target.name]: event.target.value }
-
-    console.log('updates', updates)
-    console.log('_.merge(input, updates)', _.merge(input, updates))
-
     handleChange(_.merge(input, updates), index)
   }
 
@@ -163,10 +167,10 @@ function FormInput(props: FormInputProps) {
               id='outlined-basic'
               variant='outlined'
               {...nameFiled}
-              // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              //   nameFiled.onChange(e)
-              //   handleOnChange(e)
-              // }}
+              onChange={(e) => {
+                nameFiled.onChange(e)
+                handleOnChange(e)
+              }}
             />
           </Grid>
           <Grid item xs={6}>
@@ -177,10 +181,10 @@ function FormInput(props: FormInputProps) {
                 id='demo-simple-select'
                 value={type}
                 {...typeFiled}
-                // onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
-                //   typeFiled.onChange(e)
-                //   handleOnChange(e)
-                // }}
+                onChange={(e) => {
+                  typeFiled.onChange(e)
+                  handleOnChange(e)
+                }}
               >
                 {['Integer', 'Double', 'String', 'Float', 'Character'].map((value) => {
                   return (
@@ -201,10 +205,10 @@ function FormInput(props: FormInputProps) {
             value={input.description}
             rows={2}
             {...descriptionFiled}
-            // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            //   descriptionFiled.onChange(e)
-            //   handleOnChange(e)
-            // }}
+            onChange={(e) => {
+              descriptionFiled.onChange(e)
+              handleOnChange(e)
+            }}
           />
         </Grid>
       </form>

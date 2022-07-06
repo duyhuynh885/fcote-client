@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme: any) => ({
   },
   scrollBar: {
     height: '80vh',
-    padding: '10px 20px',
+    paddingRight: '20px',
     overflowX: 'hidden',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {

@@ -1,23 +1,14 @@
 import React from 'react'
 import CreateAssignmentNavBar from '../../components/NavBar/CreateAssignmentNavBar'
-import { Box, Grid, Stack, Tab, Tabs, Typography } from '@mui/material'
+import { Box, Grid, Stack, Tab, Tabs } from '@mui/material'
 import RegularButton from '../../components/Button/RegularButton'
 import useStyles from './style'
-import {
-  ResizeContent,
-  ResizeHandleLeft,
-  ResizeHandleRight,
-  ResizePanel,
-} from 'react-hook-resize-panel'
 import EditorTab from '../../components/Assignment/CreateAssignment/EditorTab'
 import TestCaseTab from '../../components/Assignment/CreateAssignment/TestCaseTab'
 import SettingTab from '../../components/Assignment/CreateAssignment/SettingTab'
 import LanguageTab from '../../components/Assignment/CreateAssignment/LanguageTab'
 import InputOutputTab from '../../components/Assignment/CreateAssignment/InputOutputTab'
 import PreviewTab from '../../components/Assignment/CreateAssignment/PreviewTab'
-import ResizingPane from 'react-resizing-pane'
-import { Type } from 'typescript'
-import ButtonBack from '../../components/Button/ButtonBack'
 
 /**
  * Create Assignment Pages
@@ -66,11 +57,13 @@ function TabPanel(props: TabPanelProps) {
 export default function CreateAssignment() {
   const [value, setValue] = React.useState(0)
   const [checked, setChecked] = React.useState([''])
+  const [inputOutputList, setInputOutputList] = React.useState(0)
   const classes = useStyles()
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
+
   return (
     <Stack>
       <CreateAssignmentNavBar />

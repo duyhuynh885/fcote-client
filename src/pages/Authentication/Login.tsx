@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Box,
   Checkbox,
@@ -9,17 +9,19 @@ import {
   Typography,
 } from '@mui/material'
 import RegularButton from '../../components/Button/RegularButton'
-import { RegularButtonType } from '../../models'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import useStyles from './style'
 import { useTranslation } from 'react-i18next'
 import { useAppDispatch } from '../../hooks/hooks'
 import { isAuth } from '../../utils/auth'
-import { loginRequest } from '../../redux/modules/auth/action/authAction'
 import { object, string, TypeOf } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import history from '../../routing/history'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../app/ReduxContainer'
+import { clearState, loginRequest } from '../../redux/modules/auth/login/action'
+import ErrorMessage from '../../components/Text/ErrorMessage'
 
 /**
  * Login Pages
@@ -36,19 +38,6 @@ import history from '../../routing/history'
  * 22-06-2022         DuyHV           Create
  */
 
-const regularButton: RegularButtonType = {
-  color: 'primary',
-  size: 'lg',
-  round: false,
-  fullWidth: true,
-  disabled: false,
-  simple: true,
-  block: true,
-  link: false,
-  justIcon: false,
-  className: 'form__custom-button',
-}
-
 const registerSchema = object({
   email: string().email('Email is invalid'),
   password: string()
@@ -61,6 +50,7 @@ export default function Login() {
   const { t } = useTranslation()
   const classes = useStyles()
   const {
+    reset,
     register,
     formState: { errors },
     handleSubmit,
@@ -70,8 +60,27 @@ export default function Login() {
   const rest = {
     type: 'submit',
   }
-
+  const loginState = useSelector((state: RootState) => state.login)
   const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearState())
+    }
+  }, [])
+
+  /**
+   * Load error or success message if exist
+   */
+  useEffect(() => {
+    if (loginState.errors) {
+      reset()
+    }
+    if (loginState.successful) {
+      dispatch(clearState())
+      reset()
+    }
+  }, [loginState.successful, loginState.errors])
 
   /**
    * Handle login
@@ -103,6 +112,7 @@ export default function Login() {
             <Typography variant='h1' marginBottom='1.5rem'>
               {t('WelcomeBack')}
             </Typography>
+            {loginState.errors ? <ErrorMessage error={loginState.errors} /> : null}
             <form onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 required
@@ -147,7 +157,19 @@ export default function Login() {
                   </Link>
                 </Grid>
               </Grid>
-              <RegularButton {...rest} {...regularButton}>
+              <RegularButton
+                color={'primary'}
+                size={'lg'}
+                round={false}
+                fullWidth={true}
+                disabled={false}
+                simple={false}
+                block={false}
+                link={false}
+                justIcon={false}
+                className={''}
+                {...rest}
+              >
                 {t('Login')}
               </RegularButton>
             </form>

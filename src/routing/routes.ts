@@ -1,5 +1,4 @@
 import AboutUs from '../pages/AboutUs/AboutUs'
-import ChangePassword from '../pages/Authentication/ChangePassword'
 import ForgetPassword from '../pages/Authentication/ForgetPassword'
 import Login from '../pages/Authentication/Login'
 import Register from '../pages/Authentication/Register'
@@ -45,13 +44,6 @@ const routes = [
   },
   {
     auth: false,
-    title: 'CHANGE PASSWORD',
-    path: '/change-password',
-    Component: ChangePassword,
-    exact: true,
-  },
-  {
-    auth: false,
     title: 'FORGET PASSWORD',
     path: '/forget-password',
     Component: ForgetPassword,
@@ -74,7 +66,7 @@ const routes = [
   {
     auth: true,
     title: 'HOME',
-    path: '/home',
+    path: '/',
     Component: Home,
     exact: true,
   },

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Box, Container, Grid, TextField, Typography } from '@mui/material'
 import RegularButton from '../../components/Button/RegularButton'
-import { RegularButtonType } from '../../models'
 import { useTranslation } from 'react-i18next'
 import useStyles from './style'
 
@@ -19,20 +18,6 @@ import useStyles from './style'
  * -----------------------------------------------------------------------
  * 22-06-2022         DuyHV           Create
  */
-
-const regularButton: RegularButtonType = {
-  color: 'primary',
-  size: 'lg',
-  round: false,
-  children: 'Send To Email',
-  fullWidth: true,
-  disabled: false,
-  simple: true,
-  block: true,
-  link: false,
-  justIcon: false,
-  className: 'form__custom-button',
-}
 
 export default function ForgetPassword() {
   const { t } = useTranslation()
@@ -65,7 +50,20 @@ export default function ForgetPassword() {
                 id='outlined-email-input'
                 label='Email'
               />
-              <RegularButton {...regularButton}>{t('Login')}</RegularButton>
+              <RegularButton
+                color={'primary'}
+                size={'lg'}
+                round={false}
+                fullWidth={false}
+                disabled={false}
+                simple={false}
+                block={false}
+                link={false}
+                justIcon={false}
+                className={''}
+              >
+                {t('Login')}
+              </RegularButton>
             </form>
           </Container>
         </Grid>

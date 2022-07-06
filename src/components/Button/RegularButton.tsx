@@ -2,7 +2,6 @@ import React from 'react'
 import { Button } from '@mui/material'
 import useStyles from './style'
 import classNames from 'classnames'
-import { RegularButtonType } from '../../models'
 
 /**
  * Regular Button Component
@@ -19,6 +18,22 @@ import { RegularButtonType } from '../../models'
  * 01-06-2022         DuyHV           Create
  * 28-06-2022         DuyHV           Add Props onClick event for button
  */
+
+export interface RegularButtonType {
+  color: 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'white' | 'transparent' | 'dotted'
+  size: 'sm' | 'lg'
+  round: boolean
+  children?: React.ReactNode
+  fullWidth: boolean
+  disabled: boolean
+  simple: boolean
+  block: boolean
+  link: boolean
+  justIcon: boolean
+  className: string
+  onClick?: React.MouseEventHandler
+}
+
 const RegularButton = React.forwardRef<HTMLButtonElement, RegularButtonType>((props, ref) => {
   const classes = useStyles()
   const {
