@@ -32,6 +32,9 @@ const AssignmentItemStyle = makeStyles((theme: any) => ({
     textTransform: 'capitalize',
     color: `${theme.color.name}`,
     textAlign: 'center',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   level: {
     fontWeight: '700',

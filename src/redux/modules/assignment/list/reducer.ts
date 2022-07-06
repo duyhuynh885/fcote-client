@@ -1,6 +1,9 @@
 import {
+  DifficultEnum,
+  StatusEnum,
   ViewListAssignmentAction,
   ViewListAssignmentActionType,
+  ViewListAssignmentRequestPayload,
   ViewListAssignmentState,
 } from './type'
 
@@ -24,6 +27,14 @@ const initialState: ViewListAssignmentState = {
   successful: false,
   messages: {} as Message,
   errors: {} as ErrorMessage,
+  filterRequest: {
+    filterByStatus: StatusEnum.DOING,
+    filterByDifficult: DifficultEnum.EASY,
+    searchBy: undefined,
+    filterByCreatedByUserId: undefined,
+    pageSize: 16,
+    pageNumber: 1,
+  },
   assignments: [],
 }
 
@@ -69,6 +80,19 @@ const reducer = (state = initialState, action: ViewListAssignmentAction) => {
     case ViewListAssignmentActionType.CLEAR_STATE:
       return {
         ...initialState,
+      }
+
+    case ViewListAssignmentActionType.UPDATE_FILTER_LIST_ASSIGNMENT_REQUEST:
+      return {
+        ...state,
+        filterRequest: {
+          filterByStatus: action.filterByStatus,
+          filterByDifficult: action.filterByDifficult,
+          searchBy: action.searchBy,
+          filterByCreatedByUserId: action.filterByCreatedByUserId,
+          pageSize: action.pageSize,
+          pageNumber: action.pageNumber,
+        },
       }
 
     default:

@@ -18,6 +18,7 @@ export enum ViewListAssignmentActionType {
   VIEW_LIST_ASSIGNMENT_SUCCESS = 'VIEW_LIST_ASSIGNMENT_SUCCESS',
   VIEW_LIST_ASSIGNMENT_ERROR = 'VIEW_LIST_ASSIGNMENT_ERROR',
   CLEAR_STATE = 'CLEAR_STATE',
+  UPDATE_FILTER_LIST_ASSIGNMENT_REQUEST = 'UPDATE_FILTER_LIST_ASSIGNMENT_REQUEST',
 }
 
 export enum DifficultEnum {
@@ -75,17 +76,23 @@ export type ViewListAssignmentErrorAction = ActionWithPayload<
   ViewListAssignmentErrorResponse
 >
 export type ViewListAssignmentClearStateAction = Action<ViewListAssignmentActionType.CLEAR_STATE>
+export type UpdateFilterListAssignmentAction = ActionWithPayload<
+  ViewListAssignmentActionType.UPDATE_FILTER_LIST_ASSIGNMENT_REQUEST,
+  ViewListAssignmentRequestPayload
+>
 
 export type ViewListAssignmentAction =
   | ViewListAssignmentRequestAction
   | ViewListAssignmentSuccessAction
   | ViewListAssignmentErrorAction
   | ViewListAssignmentClearStateAction
+  | UpdateFilterListAssignmentAction
 
 export interface ViewListAssignmentState {
   requesting: boolean
   successful: boolean
   messages: Message
   errors: ErrorMessage
+  filterRequest: ViewListAssignmentRequestPayload
   assignments: Assignment[]
 }

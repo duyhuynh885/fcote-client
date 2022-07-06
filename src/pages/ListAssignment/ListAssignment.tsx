@@ -5,8 +5,7 @@ import AssignmentTab from '../../components/Assignment/AssignmentTab/AssignmentT
 import MyAssignmentTab from '../../components/Assignment/MyAssignmentTab/MyAssignmentTab'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchListAssignmentRequest } from '../../redux/modules/assignment/list/action'
-import { DifficultEnum, StatusEnum } from '../../redux/modules/assignment/list/type'
-import { RootState } from '../../app/ReduxContainer'
+import { AppDispatch, RootState } from '../../app/ReduxContainer'
 
 /**
  * Client
@@ -25,22 +24,12 @@ import { RootState } from '../../app/ReduxContainer'
  */
 
 export default function ListAssignment() {
-  const dispatch = useDispatch()
-  const assignments = useSelector((state: RootState) => state.listAssignment.assignments)
+  const dispatch = useDispatch<AppDispatch>()
+  const listAssignmentState = useSelector((state: RootState) => state.listAssignment)
 
-  console.log('assignments', assignments)
   useEffect(() => {
-    dispatch(
-      fetchListAssignmentRequest({
-        filterByStatus: StatusEnum.ALL,
-        filterByDifficult: DifficultEnum.ALL,
-        searchBy: 'Name',
-        filterByCreatedByUserId: '923948923',
-        pageSize: 1,
-        pageNumber: 2,
-      }),
-    )
-  }, [])
+    dispatch(fetchListAssignmentRequest(listAssignmentState.filterRequest))
+  }, [listAssignmentState.filterRequest])
 
   return (
     <Stack sx={{ margin: 5 }} direction='column'>

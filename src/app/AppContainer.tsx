@@ -6,9 +6,10 @@ import { makeStyles } from '@mui/styles'
 import { Stack } from '@mui/material'
 import Vector1 from '../asset/Vector1.png'
 import Vector from './../asset/Vector.png'
-import { useAppSelector } from '../hooks/hooks'
 import { useLocation } from 'react-router-dom'
 import _ from 'lodash'
+import { useSelector } from 'react-redux'
+import { RootState } from './ReduxContainer'
 
 /**
  * App Container
@@ -40,7 +41,7 @@ const hideNavbarPath = ['/assignment/create', '/forbidden', '/not-found', '/serv
 
 function AppContainer() {
   const classes = useStyles()
-  const loading = useAppSelector((state) => state.loader.loading)
+  const loading = useSelector((state: RootState) => state.loader.loading)
   const location = useLocation()
   return (
     <React.Fragment>

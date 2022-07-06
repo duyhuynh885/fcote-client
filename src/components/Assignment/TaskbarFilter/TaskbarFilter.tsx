@@ -1,11 +1,15 @@
 import { IconButton, InputAdornment, NativeSelect, Paper, Stack, TextField } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Divider from '@mui/material/Divider'
 import SearchIcon from '@mui/icons-material/Search'
 import FormControl from '@mui/material/FormControl'
 import TaskbarFilterStyle from './style'
 import RegularButton from '../../Button/RegularButton'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../app/ReduxContainer'
+import { updateFilterListAssignmentRequest } from '../../../redux/modules/assignment/list/action'
+import { DifficultEnum, StatusEnum } from '../../../redux/modules/assignment/list/type'
 
 /**
  * TaskbarFilter
@@ -25,6 +29,38 @@ import { Link } from 'react-router-dom'
 
 export default function TaskbarFilter() {
   const classes = TaskbarFilterStyle()
+  const dispatch = useDispatch<AppDispatch>()
+  const filterAssignmentState = useSelector(
+    (state: RootState) => state.listAssignment.filterRequest,
+  )
+  const [status, setStatus] = useState<StatusEnum>(filterAssignmentState.filterByStatus)
+  const [difficult, setDifficult] = useState<DifficultEnum>(filterAssignmentState.filterByDifficult)
+  const [search, setSearch] = useState<string>()
+
+  const handleSearchChange = () => {
+    console.log('handleSearchChange()')
+  }
+
+  // function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  //   event.persist()
+  //   console.log('handleChange type', event.type)
+  //   console.log('handleChange() , event: ' + event.target.value)
+  // }
+  const handleChange = (event: { target: { value: string } }) => {
+    console.log('handleChange() , event: ' + event.target.value)
+  }
+  useEffect(() => {
+    console.log('updateFilterListAssignmentRequest : ')
+    // dispatch(
+    //   updateFilterListAssignmentRequest({
+    //     ...filterAssignmentState,
+    //     filterByStatus: status,
+    //     filterByDifficult: difficult,
+    //     searchBy: search,
+    //   }),
+    // )
+  }, [status, difficult])
+
   return (
     <Paper
       square
@@ -34,47 +70,48 @@ export default function TaskbarFilter() {
       <Stack direction='row' justifyContent='flex-start' alignItems='center' spacing={2}>
         <FormControl>
           <NativeSelect
-            defaultValue={'All Status'}
+            defaultValue={status}
+            onChange={handleChange}
             className={classes.taskFilterOptions}
             inputProps={{
               name: 'status',
               id: 'uncontrolled-native',
             }}
           >
-            <option className={classes.taskFilterOptions} value={'ALL'}>
+            <option className={classes.taskFilterOptions} value={StatusEnum.ALL}>
               All Status
             </option>
-            <option className={classes.taskFilterOptions} value={'DOING'}>
+            <option className={classes.taskFilterOptions} value={StatusEnum.NOT_YET}>
+              Not yet
+            </option>
+            <option className={classes.taskFilterOptions} value={StatusEnum.DOING}>
               Doing
             </option>
-            <option className={classes.taskFilterOptions} value={'FINISHED'}>
+            <option className={classes.taskFilterOptions} value={StatusEnum.FINISHED}>
               Finished
-            </option>
-            <option className={classes.taskFilterOptions} value={'NOT YET'}>
-              Not yet
             </option>
           </NativeSelect>
         </FormControl>
         <FormControl>
           <NativeSelect
             className={classes.taskFilterOptions}
-            defaultValue={'All Difficulties'}
+            defaultValue={difficult}
             inputProps={{
               name: 'difficulties',
               id: 'uncontrolled-native',
             }}
           >
-            <option className={classes.taskFilterOptions} value={'ALL'}>
+            <option className={classes.taskFilterOptions} value={DifficultEnum.ALL}>
               All Difficulties
             </option>
-            <option className={classes.taskFilterOptions} value={'HARD'}>
-              Hard
+            <option className={classes.taskFilterOptions} value={DifficultEnum.EASY}>
+              Easy
             </option>
-            <option className={classes.taskFilterOptions} value={'MEDIUM'}>
+            <option className={classes.taskFilterOptions} value={DifficultEnum.MEDIUM}>
               Medium
             </option>
-            <option className={classes.taskFilterOptions} value={'EASY'}>
-              Easy
+            <option className={classes.taskFilterOptions} value={DifficultEnum.HARD}>
+              Hard
             </option>
           </NativeSelect>
         </FormControl>
@@ -83,6 +120,8 @@ export default function TaskbarFilter() {
         <TextField
           size='small'
           color='success'
+          onChange={handleSearchChange}
+          value={search}
           placeholder='Search here'
           InputProps={{
             endAdornment: (
