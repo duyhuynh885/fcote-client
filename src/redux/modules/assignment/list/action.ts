@@ -1,4 +1,5 @@
 import {
+  UpdateFilterListAssignmentAction,
   ViewListAssignmentActionType,
   ViewListAssignmentClearStateAction,
   ViewListAssignmentRequestAction,
@@ -35,6 +36,30 @@ export const fetchListAssignmentRequest = ({
 }: ViewListAssignmentRequestPayload): ViewListAssignmentRequestAction => {
   return {
     type: ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_REQUESTING,
+    filterByStatus,
+    filterByDifficult,
+    searchBy,
+    filterByCreatedByUserId,
+    pageSize,
+    pageNumber,
+  }
+}
+
+/**
+ * updateFilterListAssignmentRequest request action
+ * @param param ViewListAssignmentRequestPayload
+ * @returns ViewListAssignmentRequestAction
+ */
+export const updateFilterListAssignmentRequest = ({
+  filterByStatus,
+  filterByDifficult,
+  searchBy,
+  filterByCreatedByUserId,
+  pageSize,
+  pageNumber,
+}: ViewListAssignmentRequestPayload): UpdateFilterListAssignmentAction => {
+  return {
+    type: ViewListAssignmentActionType.UPDATE_FILTER_LIST_ASSIGNMENT_REQUEST,
     filterByStatus,
     filterByDifficult,
     searchBy,

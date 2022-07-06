@@ -27,7 +27,7 @@ export default function MyListAssignment() {
         container
         columnSpacing={{ xs: 6, sm: 1, md: 1, lg: 2 }}
       >
-        <Grid className={classes.itemGrid} item xs={12} sm={6} md={4} lg={3}>
+        {/* <Grid className={classes.itemGrid} item xs={12} sm={6} md={4} lg={3}>
           <AssignmentItem />
         </Grid>
         <Grid className={classes.itemGrid} item xs={12} sm={6} md={4} lg={3}>
@@ -74,7 +74,7 @@ export default function MyListAssignment() {
         </Grid>
         <Grid className={classes.itemGrid} item xs={12} sm={6} md={4} lg={3}>
           <AssignmentItem />
-        </Grid>
+        </Grid> */}
         <Stack
           style={{
             marginLeft: '34%',

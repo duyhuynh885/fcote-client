@@ -27,7 +27,7 @@ interface AssignmentTabProps {
 const AssignmentTab: React.FC<AssignmentTabProps> = (props) => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
-
+  const { assignments } = props
   return (
     <Stack
       direction='column'
@@ -37,9 +37,11 @@ const AssignmentTab: React.FC<AssignmentTabProps> = (props) => {
     >
       <Box sx={{ minHeight: 900, maxHeight: 1000 }}>
         <Grid container spacing={4}>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
+          {assignments.map((assignment) => (
+            <Grid key={assignment.assignmentId} item xs={4} lg={3}>
+              <AssignmentItem assignment={assignment} />
+            </Grid>
+          ))}
         </Grid>
       </Box>
       <Stack spacing={2} direction='row' justifyContent='center' alignItems='center'>

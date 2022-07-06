@@ -1,4 +1,9 @@
 import {
+  CreateAssignmentRequestPayload,
+  CreateAssignmentResponse,
+  CreateAssignmentErrorResponse,
+} from './../redux/modules/assignment/create/type'
+import {
   ViewListAssignmentRequestPayload,
   ViewListAssignmentErrorResponse,
   ViewListAssignmentResponse,
@@ -19,6 +24,7 @@ import { axiosClient } from './clientApi'
  * -----------------------------------------------------------------------
  * 05-07-2022         DuyHV           Create
  */
+
 const assignmentApi = {
   /**
    * Api for fetch list of assignments
@@ -32,6 +38,16 @@ const assignmentApi = {
       url,
       payload,
     )
+  },
+
+  /**
+   *  Api for create a assignment
+   * @param payload
+   * @returns
+   */
+  createAssignment(payload: CreateAssignmentRequestPayload) {
+    const url = '/assignments/create'
+    return axiosClient.post<CreateAssignmentResponse, CreateAssignmentErrorResponse>(url, payload)
   },
 }
 

@@ -15,14 +15,14 @@ import { literal, object, string, TypeOf } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
 import RegularButton from '../../components/Button/RegularButton'
-import { useAppDispatch } from '../../hooks/hooks'
 import useStyles from './style'
 import { isAuth } from '../../utils/auth'
 import history from '../../routing/history'
 import { registerRequest } from '../../redux/modules/auth/register/action'
 import { clearState } from '../../redux/modules/auth/login/action'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../app/ReduxContainer'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../app/ReduxContainer'
+import ErrorMessage from '../../components/Text/ErrorMessage'
 
 export default function Register() {
   const registerSchema = object({
@@ -50,7 +50,7 @@ export default function Register() {
   } = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
   })
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const registerState = useSelector((state: RootState) => state.register)
 
   const rest = {
@@ -66,6 +66,15 @@ export default function Register() {
   /**
    * Load error or success message if exist
    */
+  useEffect(() => {
+    if (registerState.errors) {
+      reset()
+    }
+    if (registerState.successful) {
+      dispatch(clearState())
+      reset()
+    }
+  }, [registerState.successful, registerState.errors])
 
   /**
    * Handle registers
@@ -98,7 +107,7 @@ export default function Register() {
             <Typography variant='h1' marginBottom='1.5rem'>
               Create Account{' '}
             </Typography>
-            {/* {registerState.errors ? <ErrorMessage error={registerState.errors} /> : null} */}
+            {registerState.errors ? <ErrorMessage error={registerState.errors} /> : null}
             <form className='form' onSubmit={handleSubmit(onSubmit)}>
               <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid item xs={6}>

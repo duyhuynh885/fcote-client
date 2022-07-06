@@ -13,13 +13,12 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import useStyles from './style'
 import { useTranslation } from 'react-i18next'
-import { useAppDispatch } from '../../hooks/hooks'
 import { isAuth } from '../../utils/auth'
 import { object, string, TypeOf } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import history from '../../routing/history'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../app/ReduxContainer'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../app/ReduxContainer'
 import { clearState, loginRequest } from '../../redux/modules/auth/login/action'
 import ErrorMessage from '../../components/Text/ErrorMessage'
 
@@ -61,7 +60,7 @@ export default function Login() {
     type: 'submit',
   }
   const loginState = useSelector((state: RootState) => state.login)
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
     return () => {

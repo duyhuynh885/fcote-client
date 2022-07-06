@@ -2,6 +2,7 @@ import { Avatar, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import AssignmentItemStyle from './style'
 import RegularButton from '../../Button/RegularButton'
+import { Assignment, DifficultEnum, StatusEnum } from '../../../redux/modules/assignment/list/type'
 
 /**
  * Assignment Item
@@ -18,22 +19,26 @@ import RegularButton from '../../Button/RegularButton'
  * 03-06-2022      HuyNT2711           Create
  * 24-06-2022      DuyHV               Update UI
  */
-function AssignmentItem() {
+
+interface AssignmentItemProps {
+  assignment: Assignment
+}
+
+const AssignmentItem: React.FC<AssignmentItemProps> = (props) => {
   const classes = AssignmentItemStyle()
-  const ImageURL =
-    'https://picsum.photos/200'
+  const { assignment } = props
 
   return (
     <Paper elevation={8} square className={classes.container}>
       <Stack direction='column' spacing={0.5}>
-        <Typography className={classes.name}>Code.cpp September 2022</Typography>
+        <Typography className={classes.name}>{assignment.name}</Typography>
         <Stack direction='column' justifyContent='center' alignItems='center'>
-          <Avatar alt='Nguyen Tan Huy' src={ImageURL} />
-          <Typography className={classes.userName}>Tan Huy</Typography>
+          <Avatar alt='Nguyen Tan Huy' src={assignment.avatarCreatedBy} />
+          <Typography className={classes.userName}>{assignment.createdBy}</Typography>
         </Stack>
         <Stack direction='row' justifyContent='space-between' alignItems='center'>
-          <Typography className={classes.state}>FINISHED</Typography>
-          <Typography className={classes.level}>HARD</Typography>
+          <Typography className={classes.state}>{StatusEnum[assignment.status]}</Typography>
+          <Typography className={classes.level}>{DifficultEnum[assignment.difficult]}</Typography>
         </Stack>
         <Stack>
           <RegularButton
