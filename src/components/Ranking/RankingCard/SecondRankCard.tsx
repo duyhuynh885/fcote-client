@@ -25,9 +25,13 @@ import { ReactComponent as SecondRank } from '../../../asset/SecondRank.svg'
 export default function SecondRankCard() {
   const classes = useStyles()
   return (
-    <Card sx={{ minWidth: 450, mt: '2em' }}>
-      <CardHeader title='2nd PLACE' sx={{ backgroundColor: `${theme.color.darkGray}` }} />
-      <CardContent sx={{ display: 'flex' }}>
+    <Card sx={{ minWidth: 400, mt: '1.5em' }} className={classes.cardRoot}>
+      <CardHeader
+        title='2nd PLACE'
+        sx={{ backgroundColor: `${theme.rankingCard.darkNavyBlue}` }}
+        className={classes.cardHeader}
+      />
+      <CardContent sx={{ display: 'flex', backgroundColor: `${theme.rankingCard.navyBlue}` }}>
         <Box>
           <Avatar
             alt='Profile Image'
@@ -39,14 +43,17 @@ export default function SecondRankCard() {
           <Typography variant='h5' component='span'>
             Le Anh Tuan
           </Typography>
-          <Typography color='text.secondary'>FPT University</Typography>
+          <Typography>FPT University</Typography>
         </Box>
         <Box className={classes.rankMedal}>
           <SecondRank />
         </Box>
       </CardContent>
-      <CardActions className={classes.rankProfileScore}>
-        <Typography variant='h6' component='span'>
+      <CardActions
+        className={classes.rankProfileScore}
+        sx={{ backgroundColor: `${theme.rankingCard.navyBlue}` }}
+      >
+        <Typography variant='h5' component='span' sx={{ fontWeight: 1000 }}>
           Score: 2000
         </Typography>
       </CardActions>
