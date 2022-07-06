@@ -1,6 +1,5 @@
 import React from 'react'
 import { Grid, Pagination, PaginationItem, Stack } from '@mui/material'
-import AssignmentItem from '../../components/Assignment/AssignmentTab/AssignmentItem'
 import MyListAssignmentStyle from './style'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'

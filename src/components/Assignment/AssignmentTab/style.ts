@@ -1,3 +1,4 @@
+import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
 /**
@@ -15,7 +16,7 @@ import { makeStyles } from '@mui/styles'
  * 03-06-2022      HuyNT2711           Create
  * 24-06-2022      DuyHV               Update UI
  */
-const AssignmentItemStyle = makeStyles((theme: any) => ({
+const AssignmentItemStyle = makeStyles((theme: Theme) => ({
   container: {
     width: '14.375rem',
     height: '11.5rem',
@@ -30,7 +31,7 @@ const AssignmentItemStyle = makeStyles((theme: any) => ({
     fontWeight: '600',
     fontSize: `${theme.textFont.small} `,
     textTransform: 'capitalize',
-    color: `${theme.color.name}`,
+    color: `${theme.color.brown}`,
     textAlign: 'center',
     overflow: 'hidden',
     whiteSpace: 'nowrap',

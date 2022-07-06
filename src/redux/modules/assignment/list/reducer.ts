@@ -3,7 +3,6 @@ import {
   StatusEnum,
   ViewListAssignmentAction,
   ViewListAssignmentActionType,
-  ViewListAssignmentRequestPayload,
   ViewListAssignmentState,
 } from './type'
 

@@ -38,7 +38,7 @@ export default function ListAssignment() {
       </Stack>
       <Grid container spacing={5}>
         <Grid item xs={7} md={7} lg={8}>
-          <AssignmentTab assignments={assignments} />
+          <AssignmentTab assignments={listAssignmentState.assignments} />
         </Grid>
         <Grid item xs={5} md={5} lg={4}>
           <MyAssignmentTab />

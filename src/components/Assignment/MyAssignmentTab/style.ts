@@ -1,3 +1,4 @@
+import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 /**
  * My Assignment Item
@@ -14,7 +15,7 @@ import { makeStyles } from '@mui/styles'
  * 04-06-2022      HuyNT2711           Create
  * 24-06-2022      DuyHV               Update UI
  */
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   paperWrap: {
     width: '100%',
     height: 'auto',

@@ -45,9 +45,8 @@ function* loginFlow(payload: LoginRequestPayload) {
 function* logoutFlow() {
   yield put(showLoaderAction())
   yield delay(1000)
-  signOut(() => {
-    history.push('/login')
-  })
+  signOut()
+  history.push('/login')
   yield put(hideLoaderAction())
 }
 
