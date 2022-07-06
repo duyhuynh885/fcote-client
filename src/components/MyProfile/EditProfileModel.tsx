@@ -1,5 +1,4 @@
-import { Avatar, IconButton, Modal, Paper, Stack, TextField, Typography } from '@mui/material'
-import { Box } from '@mui/system'
+import { Avatar, IconButton, Modal, Paper, Stack, TextField } from '@mui/material'
 import React from 'react'
 import RegularButton from '../Button/RegularButton'
 import useStyles from './style'
@@ -43,7 +42,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
-        <Paper elevation={8} sx={style}>
+        <Paper sx={style}>
           <div className={classes.root}>
             <input accept='image/*' className={classes.input} id='icon-button-file' type='file' />
             <label htmlFor='icon-button-file'>

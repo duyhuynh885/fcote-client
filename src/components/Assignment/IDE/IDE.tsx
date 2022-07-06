@@ -19,25 +19,20 @@ import Axios from 'axios'
 
 function IDE() {
   const [userCode, setUserCode] = useState('')
-
   const [userLang, setUserLang] = useState('python')
-
-  const [userTheme, setUserTheme] = useState('vs-dark')
-
-  const [fontSize, setFontSize] = useState(20)
-
+  const [userTheme, setUserTheme] = useState('vs-light')
+  const [fontSize, setFontSize] = useState(14)
   const [userInput, setUserInput] = useState('')
-
   const [userOutput, setUserOutput] = useState('')
-
   const [loading, setLoading] = useState(false)
 
   const options = {
+    width: 'auto',
+    flexGrow: 1,
     fontSize: fontSize,
   }
   function handleSetUser(value: any) {
     setUserCode(value)
-    console.log('Value', value)
   }
 
   function compile() {
@@ -66,22 +61,16 @@ function IDE() {
   }
 
   return (
-    <div className='App'>
-      <div className='main'>
-        <div className='left-container'>
-          <Editor
-            options={options}
-            height='calc(50vh - 50px)'
-            width='100%'
-            theme={userTheme}
-            language={userLang}
-            defaultLanguage='python'
-            defaultValue='# Enter your code here'
-            onChange={handleSetUser}
-          />
-        </div>
-      </div>
-    </div>
+    <Editor
+      options={options}
+      height='calc(50vh - 50px)'
+      width='100%'
+      theme={userTheme}
+      language={userLang}
+      defaultLanguage='python'
+      defaultValue='# Enter your code here'
+      onChange={handleSetUser}
+    />
   )
 }
 

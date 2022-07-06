@@ -71,7 +71,6 @@ export const isAuth = () => {
       }
     }
   }
-  return false
 }
 
 export const signOut = (next: any) => {

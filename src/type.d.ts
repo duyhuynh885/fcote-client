@@ -16,3 +16,8 @@ declare interface Message {
   messageVi: string
   messageEn: string
 }
+
+declare interface ErrorMessage {
+  errorMessageVi: string
+  errorMessageEn: string
+}

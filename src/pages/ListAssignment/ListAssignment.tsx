@@ -1,8 +1,12 @@
-import { Box, Grid, Stack } from '@mui/material'
-import React from 'react'
+import { Grid, Stack } from '@mui/material'
+import React, { useEffect } from 'react'
 import TaskbarFilter from '../../components/Assignment/TaskbarFilter/TaskbarFilter'
 import AssignmentTab from '../../components/Assignment/AssignmentTab/AssignmentTab'
 import MyAssignmentTab from '../../components/Assignment/MyAssignmentTab/MyAssignmentTab'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchListAssignmentRequest } from '../../redux/modules/assignment/list/action'
+import { DifficultEnum, StatusEnum } from '../../redux/modules/assignment/list/type'
+import { RootState } from '../../app/ReduxContainer'
 
 /**
  * Client
@@ -21,6 +25,23 @@ import MyAssignmentTab from '../../components/Assignment/MyAssignmentTab/MyAssig
  */
 
 export default function ListAssignment() {
+  const dispatch = useDispatch()
+  const assignments = useSelector((state: RootState) => state.listAssignment.assignments)
+
+  console.log('assignments', assignments)
+  useEffect(() => {
+    dispatch(
+      fetchListAssignmentRequest({
+        filterByStatus: StatusEnum.ALL,
+        filterByDifficult: DifficultEnum.ALL,
+        searchBy: 'Name',
+        filterByCreatedByUserId: '923948923',
+        pageSize: 1,
+        pageNumber: 2,
+      }),
+    )
+  }, [])
+
   return (
     <Stack sx={{ margin: 5 }} direction='column'>
       <Stack marginBottom={5}>
@@ -28,7 +49,7 @@ export default function ListAssignment() {
       </Stack>
       <Grid container spacing={5}>
         <Grid item xs={7} md={7} lg={8}>
-          <AssignmentTab />
+          <AssignmentTab assignments={assignments} />
         </Grid>
         <Grid item xs={5} md={5} lg={4}>
           <MyAssignmentTab />

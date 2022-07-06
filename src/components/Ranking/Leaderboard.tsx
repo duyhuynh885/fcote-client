@@ -77,7 +77,7 @@ export default function Leaderboard() {
             <Tab label='Class' {...ChangeValueProps(2)} />
           </Tabs>
         </Box>
-        <TabPanel value={value} index={0} >
+        <TabPanel value={value} index={0}>
           <LeaderboardsTable />
         </TabPanel>
         <TabPanel value={value} index={1}>

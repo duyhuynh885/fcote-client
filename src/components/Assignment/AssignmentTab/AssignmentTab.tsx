@@ -1,8 +1,9 @@
 import { Box, Grid, Pagination, PaginationItem, Stack } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import React from 'react'
+import React, { useState } from 'react'
 import AssignmentItem from './AssignmentItem'
+import { Assignment } from '../../../redux/modules/assignment/list/type'
 
 /**
  * Assignment Tab
@@ -18,7 +19,15 @@ import AssignmentItem from './AssignmentItem'
  * ------------------------------------------------
  * 24-06-2022      DuyHV           Create
  */
-export default function AssignmentTab() {
+
+interface AssignmentTabProps {
+  assignments: Assignment[]
+}
+
+const AssignmentTab: React.FC<AssignmentTabProps> = (props) => {
+  const [page, setPage] = useState(0)
+  const [rowsPerPage, setRowsPerPage] = useState(5)
+
   return (
     <Stack
       direction='column'
@@ -28,39 +37,6 @@ export default function AssignmentTab() {
     >
       <Box sx={{ minHeight: 900, maxHeight: 1000 }}>
         <Grid container spacing={4}>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
           <Grid item xs={4} lg={3}>
             <AssignmentItem />
           </Grid>
@@ -83,3 +59,5 @@ export default function AssignmentTab() {
     </Stack>
   )
 }
+
+export default AssignmentTab

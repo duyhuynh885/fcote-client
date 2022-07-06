@@ -51,12 +51,12 @@ const useStyles = makeStyles((theme: any) => ({
     fontSize: '5em',
   },
   typographyErrorContent: {
-    fontFamily:'Avenir Next',
+    fontFamily: 'Open Sans',
   },
   buttonBack: {
     color: theme.color.white,
-    borderRadius: '20px'
-  }
+    borderRadius: '20px',
+  },
 }))
 
 export default useStyles

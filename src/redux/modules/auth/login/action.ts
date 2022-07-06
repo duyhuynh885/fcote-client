@@ -1,12 +1,10 @@
 import {
   LoginActionType,
+  LoginClearStateAction,
   LoginRequestAction,
   LoginRequestPayload,
   LogoutAction,
-  RegisterActionType,
-  RegisterRequestAction,
-  RegisterRequestPayload,
-} from '../type'
+} from './type'
 
 /**
  * Action Type for authenticate
@@ -37,33 +35,21 @@ export const loginRequest = ({ email, password }: LoginRequestPayload): LoginReq
 }
 
 /**
- * Register request action
- * @param param RegisterRequestAction
- * @returns RegisterRequestAction
- */
-export const registerRequest = ({
-  firstName,
-  lastName,
-  userName,
-  email,
-  password,
-}: RegisterRequestPayload): RegisterRequestAction => {
-  return {
-    type: RegisterActionType.REGISTER_REQUESTING,
-    firstName,
-    lastName,
-    userName,
-    email,
-    password,
-  }
-}
-
-/**
  * Logout request action
  * @returns LogoutAction
  */
 export const logoutRequest = (): LogoutAction => {
   return {
     type: LoginActionType.LOGOUT_REQUEST,
+  }
+}
+
+/**
+ * Clear state action
+ * @returns LogoutAction
+ */
+export const clearState = (): LoginClearStateAction => {
+  return {
+    type: LoginActionType.CLEAR_STATE,
   }
 }

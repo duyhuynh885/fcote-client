@@ -17,15 +17,15 @@ import Leaderboard from '../../components/Ranking/Leaderboard'
  * 24-06-2022         TuanLA           Create
  */
 
- export default function Ranking() {
+export default function Ranking() {
   return (
     <Stack sx={{ margin: 5 }}>
       <Grid container spacing={5}>
         <Grid item xs={12}>
-          <BestOfThree/>
+          <BestOfThree />
         </Grid>
         <Grid item xs={12}>
-          <Leaderboard/>
+          <Leaderboard />
         </Grid>
       </Grid>
     </Stack>
