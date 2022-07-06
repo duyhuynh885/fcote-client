@@ -70,6 +70,12 @@ const useStyles = makeStyles((theme: any) => ({
   danger: {
     backgroundColor: `${theme.color.red} !important`,
   },
+  dotted: {
+    border: `1px dashed ${theme.color.black} !important`,
+    background: 'transparent !important',
+    fontSize: `${theme.textFont.extraSmall} !important`,
+    boxShadow: 'none !important',
+  },
   white: {
     '&,&:focus,&:hover,&:visited': {
       backgroundColor: '#FFFFFF',
@@ -78,9 +84,10 @@ const useStyles = makeStyles((theme: any) => ({
   },
   transparent: {
     '&,&:focus,&:hover,&:visited': {
-      color: 'inherit',
-      background: 'transparent',
-      boxShadow: 'none',
+      color: `${theme.color.green} !important`,
+      border: `3px solid  ${theme.color.green} !important`,
+      background: 'transparent !important',
+      boxShadow: 'none !important',
     },
   },
   disabled: {
@@ -181,6 +188,15 @@ const useStyles = makeStyles((theme: any) => ({
       '&,&:focus,&:hover,&:visited': {
         color: theme.color.red,
       },
+    },
+  },
+  buttonBack: {
+    fontSize: theme.textFont.large,
+    fontWeight: '800',
+    cursor: 'pointer',
+    color: theme.color.black,
+    '&:hover': {
+      color: theme.color.green,
     },
   },
 }))

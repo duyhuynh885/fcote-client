@@ -25,7 +25,7 @@ import { theme } from '../../styles/theme'
 const ButtonBack = styled(Button)({
   boxShadow: 'none',
   textTransform: 'none',
-  fontSize:  `${theme.textFont.small}`,
+  fontSize: `${theme.textFont.small}`,
   padding: '6px 12px',
   border: '1px solid',
   lineHeight: 1.5,

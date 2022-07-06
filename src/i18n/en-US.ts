@@ -21,7 +21,7 @@ const m = {
   MyProfile: 'My Profile',
   Assignment: 'Assignment',
   Challenge: 'Challenge',
-  Raking: 'Raking',
+  Ranking: 'Ranking',
   // AUTHENTICATE
   Login: 'Login',
   Register: 'Register',

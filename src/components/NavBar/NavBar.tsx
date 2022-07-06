@@ -16,8 +16,10 @@ import LogoBand from '../Icons/LogoBand'
 import { useTranslation } from 'react-i18next'
 import ChangLanguage from '../Button/ChangeLanguage'
 import { isAuth } from '../../utils/auth'
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
-import { logoutRequest } from '../../redux/modules/auth/action/authAction'
+import { useAppDispatch } from '../../hooks/hooks'
+import { RootState } from '../../app/ReduxContainer'
+import { logoutRequest } from '../../redux/modules/auth/login/action'
+import { useSelector } from 'react-redux'
 
 /**
  * Navbar components
@@ -56,11 +58,9 @@ const pages = [
 function Navbar() {
   const classes = useStyles()
   const { t } = useTranslation()
-
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
   const dispatch = useAppDispatch()
-  const auth = useAppSelector((state) => state.auth)
-  const { successful } = auth
+  const loginIsSuccess = useSelector((state: RootState) => state.login.successful)
 
   /**
    * Handle open user menu
@@ -88,7 +88,7 @@ function Navbar() {
     <AppBar position='sticky' className={classes.navBar}>
       <Toolbar>
         <LogoBand />
-        {!isAuth() && !successful ? (
+        {!isAuth() && !loginIsSuccess ? (
           <React.Fragment>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Link to='/about-us' className={classes.link}>

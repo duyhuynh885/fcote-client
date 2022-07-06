@@ -21,7 +21,7 @@ import RegularButton from '../../Button/RegularButton'
 function AssignmentItem() {
   const classes = AssignmentItemStyle()
   const ImageURL =
-    'https://scontent.fdad1-2.fna.fbcdn.net/v/t1.6435-9/76931544_789032974891261_8407569228344852480_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=77xHA6pcyYoAX_QhAuD&tn=-rbCrMHs25aehuye&_nc_ht=scontent.fdad1-2.fna&oh=00_AT8xvZrDvhp4N2tCHK3nAYtAQRFOMQG2h2iSgnken_-vhg&oe=62C1091F'
+    'https://picsum.photos/200'
 
   return (
     <Paper elevation={8} square className={classes.container}>

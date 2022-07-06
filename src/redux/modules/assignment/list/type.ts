@@ -1,0 +1,91 @@
+/**
+ * Type for authenticate
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 22-06-2022         DuyHV           Create
+ */
+
+export enum ViewListAssignmentActionType {
+  VIEW_LIST_ASSIGNMENT_REQUESTING = 'VIEW_LIST_ASSIGNMENT_REQUESTING',
+  VIEW_LIST_ASSIGNMENT_SUCCESS = 'VIEW_LIST_ASSIGNMENT_SUCCESS',
+  VIEW_LIST_ASSIGNMENT_ERROR = 'VIEW_LIST_ASSIGNMENT_ERROR',
+  CLEAR_STATE = 'CLEAR_STATE',
+}
+
+export enum DifficultEnum {
+  ALL,
+  EASY,
+  MEDIUM,
+  HARD,
+}
+
+export enum StatusEnum {
+  ALL,
+  NOT_YET,
+  DOING,
+  FINISHED,
+}
+
+export interface ViewListAssignmentRequestPayload {
+  filterByStatus: StatusEnum
+  filterByDifficult: DifficultEnum
+  searchBy?: string
+  filterByCreatedByUserId?: string
+  pageSize?: number
+  pageNumber?: number
+}
+
+export interface ViewListAssignmentErrorResponse {
+  error: ErrorMessage
+}
+
+export interface Assignment {
+  assignmentId: string
+  name: string
+  difficult: DifficultEnum
+  status: StatusEnum
+  createdBy: string
+  avatarCreatedBy: string
+}
+
+export interface ViewListAssignmentResponse {
+  messageVi: string
+  messageEn: string
+  assignments: Assignment[]
+}
+
+export type ViewListAssignmentRequestAction = ActionWithPayload<
+  ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_REQUESTING,
+  ViewListAssignmentRequestPayload
+>
+export type ViewListAssignmentSuccessAction = ActionWithPayload<
+  ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_SUCCESS,
+  ViewListAssignmentResponse
+>
+export type ViewListAssignmentErrorAction = ActionWithPayload<
+  ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_ERROR,
+  ViewListAssignmentErrorResponse
+>
+export type ViewListAssignmentClearStateAction = Action<ViewListAssignmentActionType.CLEAR_STATE>
+
+export type ViewListAssignmentAction =
+  | ViewListAssignmentRequestAction
+  | ViewListAssignmentSuccessAction
+  | ViewListAssignmentErrorAction
+  | ViewListAssignmentClearStateAction
+
+export interface ViewListAssignmentState {
+  requesting: boolean
+  successful: boolean
+  messages: Message
+  errors: ErrorMessage
+  assignments: Assignment[]
+}

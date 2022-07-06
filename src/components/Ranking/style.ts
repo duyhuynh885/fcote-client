@@ -14,12 +14,10 @@ import { makeStyles } from '@mui/styles'
  * -----------------------------------------------------------------------
  * 24-06-2022         TuanLA           Create
  */
- const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: any) => ({
   paperRoot: {
     backgroundColor: 'inherit',
     boxShadow: 'none'
   },
-
- }))
- export default useStyles
- 
+}))
+export default useStyles
