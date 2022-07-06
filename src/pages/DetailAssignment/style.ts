@@ -1,3 +1,4 @@
+import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 /**
  * Detail Assignment
@@ -14,7 +15,7 @@ import { makeStyles } from '@mui/styles'
  * 09-06-2022      HuyNT2711           Create
  */
 
-const DetailAssignmentStyle = makeStyles((theme: any) => ({
+const DetailAssignmentStyle = makeStyles((theme: Theme) => ({
   textTitle: {
     textAlign: 'left',
     fontWeight: '700 !important',

@@ -73,10 +73,9 @@ export const isAuth = () => {
   }
 }
 
-export const signOut = (next: any) => {
+export const signOut = () => {
   removeCookie('accessToken')
   removeLocalStorage('user')
-  next()
 }
 
 export const updateUser = (response: any, next: any) => {

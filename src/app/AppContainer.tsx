@@ -3,7 +3,7 @@ import Loader from '../components/Loader/Loader'
 import RoutesContainer from './RoutesContainer'
 import Navbar from '../components/NavBar/NavBar'
 import { makeStyles } from '@mui/styles'
-import { Stack } from '@mui/material'
+import { Stack, Theme } from '@mui/material'
 import Vector1 from '../asset/Vector1.png'
 import Vector from './../asset/Vector.png'
 import { useLocation } from 'react-router-dom'
@@ -27,7 +27,7 @@ import { RootState } from './ReduxContainer'
  * 06-07-2022         DuyHV           hideNavbarPath
  */
 
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   appLayout: {
     backgroundColor: `${theme.color.blueLight} !important`,
     backgroundImage: `url(${Vector}), url(${Vector1}) `,

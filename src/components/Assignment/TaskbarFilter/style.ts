@@ -1,3 +1,4 @@
+import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 /**
  * TaskbarFilter
@@ -14,7 +15,7 @@ import { makeStyles } from '@mui/styles'
  * 08-06-2022      HuyNT2711           Create
  * 24-06-2022      DuyHV               Update UI
  */
-const TaskbarFilterStyle = makeStyles((theme: any) => ({
+const TaskbarFilterStyle = makeStyles((theme: Theme) => ({
   taskFilterOptions: {
     fontWeight: 'bold',
   },
