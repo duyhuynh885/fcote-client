@@ -2,17 +2,23 @@ import AboutUs from '../pages/AboutUs/AboutUs'
 import ForgetPassword from '../pages/Authentication/ForgetPassword'
 import Login from '../pages/Authentication/Login'
 import Register from '../pages/Authentication/Register'
+import Challenge from '../pages/Challenge/Challenge'
+import ChallengeDetail from '../pages/ChallengeDetail/ChallengeDetail'
 import ContactUs from '../pages/ContactUs/ContactUs'
 import CreateAssignment from '../pages/CreateAssignment/CreateAssignment'
-import DetailAssignment from '../pages/DetailAssignment'
+import CreateChallenge from '../pages/CreateChallenge/CreateChallenge'
+import DetailAssignment from '../pages/DetailAssignment/DetailAssignment'
 import Forbidden from '../pages/Errors/Forbidden'
 import NotFound from '../pages/Errors/NotFound'
 import ServerError from '../pages/Errors/ServerError'
 import Home from '../pages/Home/Home'
 import ListAssignment from '../pages/ListAssignment/ListAssignment'
+
 import MyListAssignment from '../pages/MyListAssignment/MyListAssignment'
 import MyProfile from '../pages/MyProfile/MyProfile'
 import Ranking from '../pages/Ranking/Ranking'
+import DetailGroup from '../pages/DetailGroup/DetailGroup'
+import Group from '../pages/Group/Group'
 /**
  * Setup routing for project
  *
@@ -130,6 +136,36 @@ const routes = [
     title: 'Ranking',
     path: '/ranking',
     Component: Ranking,
+    exact: true,
+  },
+  {
+    title: 'Challenge',
+    path: '/challenge',
+    Component: Challenge,
+    exact: true,
+  },
+  {
+    title: 'Challenge Detail',
+    path: '/challenge/detail',
+    Component: ChallengeDetail,
+    exact: true,
+  },
+  {
+    title: 'Create Challenge',
+    path: '/challenge/create',
+    Component: CreateChallenge,
+    exact: true,
+  },
+  {
+    title: 'Group',
+    path: '/group',
+    Component: Group,
+    exact: true,
+  },
+  {
+    title: 'Group',
+    path: '/group/detail',
+    Component: DetailGroup,
     exact: true,
   },
 ]

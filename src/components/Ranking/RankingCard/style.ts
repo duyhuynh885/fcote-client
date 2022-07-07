@@ -15,14 +15,13 @@ import { makeStyles } from '@mui/styles'
  * -----------------------------------------------------------------------
  * 24-06-2022         TuanLA           Create
  */
- const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   cardRoot: {
     color: `${theme.color.white}`,
   },
   cardHeader: {
-    fontSize: '2.5rem'
-  }
-  ,
+    fontSize: '2.5rem',
+  },
   rankSecondProfileAvatar: {
     width: '5rem',
     height: '5rem',
@@ -38,8 +37,7 @@ import { makeStyles } from '@mui/styles'
   },
   rankMedal: {
     display: 'flex',
-    alignItems: 'center'
-  }
- }))
- export default useStyles
- 
+    alignItems: 'center',
+  },
+}))
+export default useStyles

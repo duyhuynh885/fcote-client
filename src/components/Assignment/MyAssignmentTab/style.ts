@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 'bold',
   },
   scrollBar: {
-    height: '800px',
+    height: '730px',
     paddingRight: '10px',
     overflowX: 'hidden',
     overflowY: 'scroll',

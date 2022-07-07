@@ -18,7 +18,7 @@ import { makeStyles } from '@mui/styles'
 const useStyles = makeStyles((theme: Theme) => ({
   paperRoot: {
     backgroundColor: 'inherit',
-    boxShadow: 'none'
+    boxShadow: 'none',
   },
 }))
 export default useStyles

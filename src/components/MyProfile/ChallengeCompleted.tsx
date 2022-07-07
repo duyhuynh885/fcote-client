@@ -1,6 +1,6 @@
 import { Box, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
-import ChallengeCard from '../ChallengeCard/ChallengeCard'
+import ChallengeCard from '../Challenge/ChallengeCard/ChallengeCard'
 import useStyles from './style'
 
 /**
@@ -35,14 +35,13 @@ export default function ChallengeCompleted() {
           <Typography className={classes.title}>Challenge Completed</Typography>
         </Box>
         <Stack spacing={2} className={classes.scrollBar}>
-          <ChallengeCard />
-          <ChallengeCard />
-          <ChallengeCard />
-          <ChallengeCard />
-          <ChallengeCard />
-          <ChallengeCard />
-          <ChallengeCard />
-          <ChallengeCard />
+          <ChallengeCard url='/challenge/detail' />
+          <ChallengeCard url='/challenge/detail' />
+          <ChallengeCard url='/challenge/detail' />
+          <ChallengeCard url='/challenge/detail' />
+          <ChallengeCard url='/challenge/detail' />
+          <ChallengeCard url='/challenge/detail' />
+          <ChallengeCard url='/challenge/detail' />
         </Stack>
       </Stack>
     </Paper>

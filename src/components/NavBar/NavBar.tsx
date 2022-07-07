@@ -52,6 +52,10 @@ const pages = [
     path: '/ranking',
     title: 'Ranking',
   },
+  {
+    path: '/group',
+    title: 'Group',
+  },
 ]
 
 function Navbar() {

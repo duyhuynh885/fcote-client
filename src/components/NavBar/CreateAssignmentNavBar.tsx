@@ -3,7 +3,10 @@ import useStyles from './style'
 import { AppBar, Toolbar, Typography } from '@mui/material'
 import ButtonBack from '../Button/ButtonBack'
 
-export default function CreateAssignmentNavBar() {
+interface Iprops {
+  namePage: string
+}
+export default function CreateAssignmentNavBar(props: Iprops) {
   const classes = useStyles()
 
   return (
@@ -15,7 +18,7 @@ export default function CreateAssignmentNavBar() {
         }}
       >
         <ButtonBack />
-        <Typography className={classes.toolbar}>New Assignment</Typography>
+        <Typography className={classes.toolbar}>{props.namePage}</Typography>
         <span></span>
       </Toolbar>
     </AppBar>

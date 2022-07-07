@@ -53,7 +53,6 @@ const reducer = (state = initialState, action: ViewListAssignmentAction) => {
       }
 
     case ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_SUCCESS:
-      console.log('Reducer Successfully Added View List Assignment :' + action.assignments)
       return {
         ...state,
         assignments: action.assignments,

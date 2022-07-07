@@ -27,10 +27,7 @@ export default function FirstRankCard() {
   const classes = useStyles()
   return (
     <Card sx={{ minWidth: 500, minHeight: 275 }} className={classes.cardRoot}>
-      <CardHeader
-        title='1st PLACE'
-        sx={{ backgroundColor: `${theme.rankingCard.darkGreen}` }}
-      />
+      <CardHeader title='1st PLACE' sx={{ backgroundColor: `${theme.rankingCard.darkGreen}` }} />
       <CardContent
         sx={{ display: 'flex', padding: '25px', backgroundColor: `${theme.rankingCard.green}` }}
       >

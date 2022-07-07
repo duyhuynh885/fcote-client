@@ -3,7 +3,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import React, { useState } from 'react'
 import AssignmentItem from './AssignmentItem'
-import { Assignment } from '../../../redux/modules/assignment/list/type'
+import { Assignment, DifficultEnum, StatusEnum } from '../../../redux/modules/assignment/list/type'
 
 /**
  * Assignment Tab
@@ -23,6 +23,56 @@ import { Assignment } from '../../../redux/modules/assignment/list/type'
 interface AssignmentTabProps {
   assignments: Assignment[]
 }
+const assignments = [
+  {
+    assignmentId: '1',
+    name: 'assignment 1',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+  {
+    assignmentId: '2',
+    name: 'assignment 2',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+  {
+    assignmentId: '1',
+    name: 'assignment 1',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+  {
+    assignmentId: '2',
+    name: 'assignment 2',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+  {
+    assignmentId: '1',
+    name: 'assignment 1',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+  {
+    assignmentId: '2',
+    name: 'assignment 2',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+]
 
 const AssignmentTab: React.FC<AssignmentTabProps> = (props) => {
   const [page, setPage] = useState(0)

@@ -24,7 +24,7 @@ export default function MyAssignmentTab() {
     <Paper
       elevation={8}
       square
-      sx={{ height: 900, display: 'flex', flexDirection: 'column', padding: 2 }}
+      sx={{ height: 830, display: 'flex', flexDirection: 'column', padding: 2 }}
     >
       <Stack direction='column' spacing={2}>
         <Box>
