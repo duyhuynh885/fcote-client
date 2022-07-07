@@ -1,3 +1,4 @@
+import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import DataAnalyses from '../../asset/DataAnalyse.png'
 
@@ -16,7 +17,7 @@ import DataAnalyses from '../../asset/DataAnalyse.png'
  * 22-06-2022         DuyHV           Create
  */
 
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   link: {
     textDecoration: 'none',
     fontSize: theme.textFont.small,

@@ -30,13 +30,16 @@ const themeCustom = {
     blueLight: '#F3F7F7',
     brown: '#9D9D9E',
     darkBlue: '#1D3853',
+    lightBlue: '#EFFDF3',
   },
   textFont: {
+    supperLarge: '28px',
     extraLarge: '24px',
     large: '20px',
     medium: '18px',
     small: '16px',
     extraSmall: '14px',
+    superSmall: '12px',
   },
   palette: {
     primary: {
@@ -55,6 +58,13 @@ const themeCustom = {
   border: {
     blueGray: '#4c6177',
     blue: '#005cbf',
+  },
+  rankingCard: {
+    green: '#22BB80',
+    darkGreen: '#0A8656',
+    darkGray: '#2B3B52',
+    navyBlue: '#45547A',
+    darkNavyBlue: '#2B3B52',
   },
 } as const
 

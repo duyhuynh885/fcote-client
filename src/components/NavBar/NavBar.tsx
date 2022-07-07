@@ -16,10 +16,9 @@ import LogoBand from '../Icons/LogoBand'
 import { useTranslation } from 'react-i18next'
 import ChangLanguage from '../Button/ChangeLanguage'
 import { isAuth } from '../../utils/auth'
-import { useAppDispatch } from '../../hooks/hooks'
-import { RootState } from '../../app/ReduxContainer'
+import { AppDispatch, RootState } from '../../app/ReduxContainer'
 import { logoutRequest } from '../../redux/modules/auth/login/action'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 /**
  * Navbar components
@@ -53,13 +52,17 @@ const pages = [
     path: '/ranking',
     title: 'Ranking',
   },
+  {
+    path: '/group',
+    title: 'Group',
+  },
 ]
 
 function Navbar() {
   const classes = useStyles()
   const { t } = useTranslation()
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const loginIsSuccess = useSelector((state: RootState) => state.login.successful)
 
   /**

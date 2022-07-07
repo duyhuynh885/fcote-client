@@ -1,4 +1,6 @@
 import {
+  DifficultEnum,
+  StatusEnum,
   ViewListAssignmentAction,
   ViewListAssignmentActionType,
   ViewListAssignmentState,
@@ -24,6 +26,14 @@ const initialState: ViewListAssignmentState = {
   successful: false,
   messages: {} as Message,
   errors: {} as ErrorMessage,
+  filterRequest: {
+    filterByStatus: StatusEnum.DOING,
+    filterByDifficult: DifficultEnum.EASY,
+    searchBy: undefined,
+    filterByCreatedByUserId: undefined,
+    pageSize: 16,
+    pageNumber: 1,
+  },
   assignments: [],
 }
 
@@ -43,7 +53,6 @@ const reducer = (state = initialState, action: ViewListAssignmentAction) => {
       }
 
     case ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_SUCCESS:
-      console.log('Reducer Successfully Added View List Assignment :' + action.assignments)
       return {
         ...state,
         assignments: action.assignments,
@@ -69,6 +78,19 @@ const reducer = (state = initialState, action: ViewListAssignmentAction) => {
     case ViewListAssignmentActionType.CLEAR_STATE:
       return {
         ...initialState,
+      }
+
+    case ViewListAssignmentActionType.UPDATE_FILTER_LIST_ASSIGNMENT_REQUEST:
+      return {
+        ...state,
+        filterRequest: {
+          filterByStatus: action.filterByStatus,
+          filterByDifficult: action.filterByDifficult,
+          searchBy: action.searchBy,
+          filterByCreatedByUserId: action.filterByCreatedByUserId,
+          pageSize: action.pageSize,
+          pageNumber: action.pageNumber,
+        },
       }
 
     default:

@@ -3,7 +3,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import React, { useState } from 'react'
 import AssignmentItem from './AssignmentItem'
-import { Assignment } from '../../../redux/modules/assignment/list/type'
+import { Assignment, DifficultEnum, StatusEnum } from '../../../redux/modules/assignment/list/type'
 
 /**
  * Assignment Tab
@@ -23,11 +23,61 @@ import { Assignment } from '../../../redux/modules/assignment/list/type'
 interface AssignmentTabProps {
   assignments: Assignment[]
 }
+const assignments = [
+  {
+    assignmentId: '1',
+    name: 'assignment 1',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+  {
+    assignmentId: '2',
+    name: 'assignment 2',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+  {
+    assignmentId: '1',
+    name: 'assignment 1',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+  {
+    assignmentId: '2',
+    name: 'assignment 2',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+  {
+    assignmentId: '1',
+    name: 'assignment 1',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+  {
+    assignmentId: '2',
+    name: 'assignment 2',
+    difficult: DifficultEnum.HARD,
+    status: StatusEnum.FINISHED,
+    createdBy: 'Tan Huy',
+    avatarCreatedBy: 'https://picsum.photos/200',
+  },
+]
 
 const AssignmentTab: React.FC<AssignmentTabProps> = (props) => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
-
+  const { assignments } = props
   return (
     <Stack
       direction='column'
@@ -37,9 +87,11 @@ const AssignmentTab: React.FC<AssignmentTabProps> = (props) => {
     >
       <Box sx={{ minHeight: 900, maxHeight: 1000 }}>
         <Grid container spacing={4}>
-          <Grid item xs={4} lg={3}>
-            <AssignmentItem />
-          </Grid>
+          {assignments.map((assignment) => (
+            <Grid key={assignment.assignmentId} item xs={4} lg={3}>
+              <AssignmentItem assignment={assignment} />
+            </Grid>
+          ))}
         </Grid>
       </Box>
       <Stack spacing={2} direction='row' justifyContent='center' alignItems='center'>

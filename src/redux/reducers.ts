@@ -4,6 +4,7 @@ import loginReducer from './modules/auth/login/reducer'
 import registerReducer from './modules/auth/register/reducer'
 import loaderReducer from './modules/layout/reducer'
 import listAssignmentReducer from './modules/assignment/list/reducer'
+
 /**
  * Root Reducer
  * @param history any

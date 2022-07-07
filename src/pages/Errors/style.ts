@@ -3,6 +3,7 @@ import ErrorUnAuthorized from '../../asset/ErrorUnAuthorized.png'
 import ErrorNotFound from '../../asset/ErrorNotFound.png'
 import ErrorServerInternal from '../../asset/ErrorServerInternal.png'
 import ErrorForbidden from '../../asset/ErrorForbidden.png'
+import { Theme } from '@mui/material'
 
 /**
  * Style for Error Pages
@@ -20,7 +21,7 @@ import ErrorForbidden from '../../asset/ErrorForbidden.png'
  */
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   link: {
     textDecoration: 'none',
     fontSize: theme.textFont.small,

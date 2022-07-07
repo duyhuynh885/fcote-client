@@ -66,7 +66,7 @@ export default function CreateAssignment() {
 
   return (
     <Stack>
-      <CreateAssignmentNavBar />
+      <CreateAssignmentNavBar namePage='NEW ASSIGNMENT' />
       <Grid container className={classes.container}>
         <Grid className={classes.tabLeft} item xs={6} sx={{ height: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
