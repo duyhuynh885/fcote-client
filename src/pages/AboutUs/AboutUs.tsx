@@ -26,7 +26,7 @@ const itemData = [
     name: 'Le Anh Tuan',
     position: 'Software Developer',
     birthday: '07/09/2000',
-    avatar: '#',
+    avatar: 'https://www.linkpicture.com/q/TuanLA.jpg',
     university: 'FPT University',
     social: {
       facebook: 'https://www.facebook.com/letuan7920/',
@@ -38,7 +38,7 @@ const itemData = [
     name: 'Nguyen Van Thuan',
     position: 'Software Developer',
     birthday: '00/00/2000',
-    avatar: '#',
+    avatar: 'https://www.linkpicture.com/q/182980298_103647368574554_8255196538262780374_n.jpg',
     university: 'FPT University',
     social: {
       facebook: 'https://www.facebook.com/thuan895',
@@ -50,7 +50,7 @@ const itemData = [
     name: 'Nguyen Tan Huy',
     position: 'Software Developer',
     birthday: '27/11/2000',
-    avatar: '#',
+    avatar: 'https://www.linkpicture.com/q/76931544_789032974891261_8407569228344852480_n.jpg',
     university: 'FPT University',
     social: {
       facebook: 'https://www.facebook.com/tanhuy2711',

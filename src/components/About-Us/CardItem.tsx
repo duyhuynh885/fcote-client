@@ -39,19 +39,21 @@ const Item = styled(Paper)(({ theme }) => ({
   minWidth: 288,
 }))
 
-
-export default function CardItem({ name, position, birthday, university, social }: DataAboutUs) {
+export default function CardItem({
+  name,
+  position,
+  birthday,
+  avatar,
+  university,
+  social,
+}: DataAboutUs) {
   const classes = useStyles()
   return (
     <Item>
       <Card>
         <CardHeader className={classes.cardHeader} />
         <Grid container direction='column' alignItems='center' justifyContent='center'>
-          <Avatar
-            alt='Remy Sharp'
-            src='https://www.linkpicture.com/q/TuanLA.jpg'
-            className={classes.avatar}
-          />
+          <Avatar alt={name} src={avatar} className={classes.avatar} />
         </Grid>
         <CardContent className={classes.cardContent}>
           <Typography variant='h5' gutterBottom>
@@ -70,10 +72,10 @@ export default function CardItem({ name, position, birthday, university, social 
         <CardActions>
           <Grid container direction='column' alignItems='center' justifyContent='center'>
             <Stack direction='row' spacing={1}>
-              <IconButton color='primary' aria-label='facebook' href={social.facebook} size="large">
+              <IconButton color='primary' aria-label='facebook' href={social.facebook} size='large'>
                 <FacebookIcon />
               </IconButton>
-              <IconButton aria-label='github' href={social.github} size="large">
+              <IconButton aria-label='github' href={social.github} size='large'>
                 <GitHubIcon />
               </IconButton>
             </Stack>
