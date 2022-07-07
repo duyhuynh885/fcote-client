@@ -17,7 +17,12 @@
     "jsx": "preserve",
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@services/*": ["src/services/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx", "src", "src/custom.d.ts"]
 }
