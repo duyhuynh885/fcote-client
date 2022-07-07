@@ -46,12 +46,10 @@ function* viewListAssignmentFlow({
       pageSize,
       pageNumber,
     })
-
     yield put({
       type: ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_SUCCESS,
       ...data,
     })
-    
     yield put(hideLoaderAction())
   } catch (error) {
     yield call(

@@ -1,8 +1,4 @@
-import {
-  CreateAssignmentAction,
-  CreateAssignmentActionType,
-  CreateAssignmentState,
-} from './type'
+import { CreateAssignmentAction, CreateAssignmentActionType, CreateAssignmentState } from './type'
 
 /**
  * Reducer for create assignment

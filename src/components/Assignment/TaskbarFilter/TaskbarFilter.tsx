@@ -6,10 +6,10 @@ import FormControl from '@mui/material/FormControl'
 import TaskbarFilterStyle from './style'
 import RegularButton from '../../Button/RegularButton'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../app/ReduxContainer'
-import { updateFilterListAssignmentRequest } from '../../../redux/modules/assignment/list/action'
+import { useDispatch, useSelector } from 'react-redux'
 import { DifficultEnum, StatusEnum } from '../../../redux/modules/assignment/list/type'
+import { updateFilterListAssignmentRequest } from '../../../redux/modules/assignment/list/action'
 
 /**
  * TaskbarFilter
@@ -26,8 +26,10 @@ import { DifficultEnum, StatusEnum } from '../../../redux/modules/assignment/lis
  * 08-06-2022      HuyNT2711           Create
  * 24-06-2022      DuyHV               Update UI
  */
-
-export default function TaskbarFilter() {
+interface IProps {
+  url: string
+}
+export default function TaskbarFilter(props: IProps) {
   const classes = TaskbarFilterStyle()
   const dispatch = useDispatch<AppDispatch>()
   const filterAssignmentState = useSelector(
@@ -40,25 +42,20 @@ export default function TaskbarFilter() {
   const handleSearchChange = () => {
     console.log('handleSearchChange()')
   }
-
-  // function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-  //   event.persist()
-  //   console.log('handleChange type', event.type)
-  //   console.log('handleChange() , event: ' + event.target.value)
-  // }
   const handleChange = (event: { target: { value: string } }) => {
     console.log('handleChange() , event: ' + event.target.value)
   }
+
   useEffect(() => {
     console.log('updateFilterListAssignmentRequest : ')
-    // dispatch(
-    //   updateFilterListAssignmentRequest({
-    //     ...filterAssignmentState,
-    //     filterByStatus: status,
-    //     filterByDifficult: difficult,
-    //     searchBy: search,
-    //   }),
-    // )
+    dispatch(
+      updateFilterListAssignmentRequest({
+        ...filterAssignmentState,
+        filterByStatus: status,
+        filterByDifficult: difficult,
+        searchBy: search,
+      }),
+    )
   }, [status, difficult])
 
   return (
@@ -134,7 +131,7 @@ export default function TaskbarFilter() {
           }}
         />
         <Divider orientation='vertical' flexItem />
-        <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to='/assignment/create'>
+        <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
           <RegularButton
             color={'primary'}
             size={'sm'}

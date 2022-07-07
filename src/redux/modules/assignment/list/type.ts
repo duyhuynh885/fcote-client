@@ -62,7 +62,6 @@ export interface ViewListAssignmentResponse {
   messageEn: string
   assignments: Assignment[]
 }
-
 export type ViewListAssignmentRequestAction = ActionWithPayload<
   ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_REQUESTING,
   ViewListAssignmentRequestPayload

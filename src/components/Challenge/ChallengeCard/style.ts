@@ -2,18 +2,18 @@ import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
 /**
- * Style for challenge card components
+ * style
  *
  * Version 1.0
  *
- * Date: 22-06-2022
+ * Date: 29-06-2022
  *
- * Copyright
+ * Copyright By HuyNT2711
  *
  * Modification Logs:
- * DATE               AUTHOR          DESCRIPTION
- * -----------------------------------------------------------------------
- * 22-06-2022         DuyHV           Create
+ * DATE             AUTHOR              DESCRIPTION
+ * ------------------------------------------------
+ * 29-06-2022      HuyNT2711           Create
  */
 const useStyles = makeStyles((theme: Theme) => ({
   challengeCardBanner: {
@@ -24,12 +24,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: 10,
   },
   challengeCardTittle: {
-    fontSize: theme.textFont.small,
-    fontWeight: '500',
+    fontSize: theme.textFont.medium,
+    fontWeight: '600',
+    color: theme.color.black,
+    textDecoration: 'none',
   },
   challengeCardStatus: {
     fontWeight: '600',
     textTransform: 'uppercase',
+    paddingRight: '10px',
   },
 }))
 

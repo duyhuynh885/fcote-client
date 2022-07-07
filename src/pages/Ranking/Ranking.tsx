@@ -19,7 +19,7 @@ import Leaderboard from '../../components/Ranking/Leaderboard'
 
 export default function Ranking() {
   return (
-    <Stack sx={{  }}>
+    <Stack sx={{}}>
       <Grid container spacing={5}>
         <Grid item xs={12}>
           <BestOfThree />

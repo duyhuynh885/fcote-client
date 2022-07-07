@@ -1,5 +1,6 @@
 import { Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import RegularButton from '../../Button/RegularButton'
 
 import useStyles from './style'
@@ -28,20 +29,22 @@ export default function MyAssignmentItem() {
         <Stack direction='row' justifyContent='space-between' alignItems='center' spacing={2}>
           <Typography className={classes.name}>Code.Cpp September 2022</Typography>
           <Typography className={classes.level}>HARD</Typography>
-          <RegularButton
-            color={'primary'}
-            size={'sm'}
-            round={false}
-            fullWidth={false}
-            disabled={false}
-            simple={false}
-            block={false}
-            link={false}
-            justIcon={false}
-            className={''}
-          >
-            View Assignment
-          </RegularButton>
+          <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to='/detail-assignment'>
+            <RegularButton
+              color={'primary'}
+              size={'sm'}
+              round={false}
+              fullWidth={false}
+              disabled={false}
+              simple={false}
+              block={false}
+              link={false}
+              justIcon={false}
+              className={''}
+            >
+              View Assignment
+            </RegularButton>
+          </Link>
         </Stack>
       </Paper>
     </div>

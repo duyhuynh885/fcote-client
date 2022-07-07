@@ -37,7 +37,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const hideNavbarPath = ['/assignment/create', '/forbidden', '/not-found', '/server-error']
+const hideNavbarPath = [
+  '/assignment/create',
+  '/forbidden',
+  '/not-found',
+  '/server-error',
+  '/challenge/detail',
+  '/detail-assignment',
+  '/challenge/create',
+]
 
 function AppContainer() {
   const classes = useStyles()

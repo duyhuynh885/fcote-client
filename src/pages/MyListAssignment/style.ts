@@ -22,16 +22,21 @@ const MyListAssignmentStyle = makeStyles((theme: Theme) => ({
     width: '100% !important',
   },
   containerGrid: {
-    width: '1007px !important',
+    width: '77vw',
     height: 'auto !important',
     marginLeft: 'auto !important',
     marginRight: 'auto !important',
-    marginTop: `${theme.spacing(2)} !important`,
   },
   itemGrid: {
-    width: '223px',
-    height: '178px',
     marginTop: `${theme.spacing(4)} !important`,
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  bottom: {
+    position: 'fixed',
+    top: '70%',
+    left: '40%',
   },
 }))
 

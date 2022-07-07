@@ -1,4 +1,4 @@
-import { put} from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
 import history from '../../routing/history'
 import { hideLoaderAction } from '../modules/layout/actions/loaderAction'
 
