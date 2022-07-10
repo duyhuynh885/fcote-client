@@ -38,12 +38,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const hideNavbarPath = [
-  '/assignment/create',
+  '/assignments/create',
   '/forbidden',
   '/not-found',
   '/server-error',
   '/challenge/detail',
-  '/detail-assignment',
+  '/assignments/:assignmentId',
   '/challenge/create',
 ]
 

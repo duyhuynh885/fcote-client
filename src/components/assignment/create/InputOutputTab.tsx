@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import useStyles from './style'
 import DeleteIcon from '@mui/icons-material/DeleteOutlined'
@@ -141,6 +141,12 @@ function FormInput(props: FormInputProps) {
     handleChange(_.merge(input, updates), index)
   }
 
+  const handleChangeSelect = (event: SelectChangeEvent) => {
+    setType(event.target.value)
+    const updates = { [event.target.name]: event.target.value }
+    handleChange(_.merge(input, updates), index)
+  }
+
   return (
     <React.Fragment>
       <form>
@@ -183,7 +189,7 @@ function FormInput(props: FormInputProps) {
                 {...typeFiled}
                 onChange={(e) => {
                   typeFiled.onChange(e)
-                  handleOnChange(e)
+                  handleChangeSelect(e)
                 }}
               >
                 {['Integer', 'Double', 'String', 'Float', 'Character'].map((value) => {

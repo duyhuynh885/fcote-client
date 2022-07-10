@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es6", "dom", "dom.iterable", "esnext"],
+    "lib": [
+      "es6",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -17,12 +22,12 @@
     "jsx": "preserve",
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true,
-    "baseUrl": "./src",
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@services/*": ["src/services/*"]
-    }
+    "strictNullChecks": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "src", "src/custom.d.ts"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "src",
+    "src/custom.d.ts"
+  ]
 }

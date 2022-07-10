@@ -22,17 +22,17 @@ export enum ViewListAssignmentActionType {
 }
 
 export enum DifficultEnum {
-  ALL,
-  EASY,
-  MEDIUM,
-  HARD,
+  ALL = 'ALL',
+  EASY = 'EASY',
+  MEDIUM = 'MEDIUM',
+  HARD = 'HARD',
 }
 
 export enum StatusEnum {
-  ALL,
-  NOT_YET,
-  DOING,
-  FINISHED,
+  ALL = 'ALL',
+  NOT_YET = 'NOT_YET',
+  DOING = 'DOING',
+  FINISHED = 'FINISHED',
 }
 
 export interface ViewListAssignmentRequestPayload {
@@ -60,6 +60,7 @@ export interface Assignment {
 export interface ViewListAssignmentResponse {
   messageVi: string
   messageEn: string
+  currentSize: number
   assignments: Assignment[]
 }
 export type ViewListAssignmentRequestAction = ActionWithPayload<
@@ -94,4 +95,5 @@ export interface ViewListAssignmentState {
   errors: ErrorMessage
   filterRequest: ViewListAssignmentRequestPayload
   assignments: Assignment[]
+  currentSize: number
 }
