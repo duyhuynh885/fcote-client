@@ -1,8 +1,7 @@
 import { Grid, Stack } from '@mui/material'
 import React from 'react'
-import BestOfThree from '../../components/ranking/BestOfThree'
-import Leaderboard from '../../components/ranking/Leaderboard'
-
+import Leaderboard from '../../components/ranking/detail/Leaderboard'
+import TopRanking from '../../components/ranking/detail/TopRanking'
 /**
  * Ranking Pages
  *
@@ -23,7 +22,7 @@ export default function Ranking() {
     <Stack sx={{}}>
       <Grid container spacing={5}>
         <Grid item xs={12}>
-          <BestOfThree />
+          <TopRanking />
         </Grid>
         <Grid item xs={12}>
           <Leaderboard />
