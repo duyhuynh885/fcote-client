@@ -1,6 +1,7 @@
+import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   scrollBar: {
     height: '13rem',
     overflowX: 'hidden',

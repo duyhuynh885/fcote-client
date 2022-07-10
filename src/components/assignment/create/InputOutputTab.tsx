@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import React, { ChangeEvent, useState } from 'react'
+import React, { useState } from 'react'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import useStyles from './style'
 import DeleteIcon from '@mui/icons-material/DeleteOutlined'

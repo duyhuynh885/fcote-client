@@ -48,7 +48,6 @@ function TabPanel(props: TabPanelProps) {
 
 export default function EditorTab() {
   const [value, setValue] = React.useState(0)
-  const [checked, setChecked] = React.useState([''])
   const classes = useStyles()
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
