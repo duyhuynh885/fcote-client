@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material'
 import React from 'react'
 import TableChallenge from '../../../components/challenge/TableChallenge/TableChallenge'
-import CreateAssignmentNavBar from '../../../components/common/navigation/CreateAssignmentNavBar'
+import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 
 /**
  * Challenge Detail
@@ -21,7 +21,7 @@ import CreateAssignmentNavBar from '../../../components/common/navigation/Create
 export default function ChallengeDetail() {
   return (
     <Stack>
-      <CreateAssignmentNavBar namePage='CHALLENGE DETAIL' />
+      <InsideNavBar namePage='Challenge Detail' />
       <Stack sx={{ marginLeft: '8.5%' }}>
         <TableChallenge />
       </Stack>

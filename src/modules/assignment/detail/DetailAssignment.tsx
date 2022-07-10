@@ -10,7 +10,7 @@ import { Stack, Divider } from '@mui/material'
 import Testcase from '../../../components/assignment/detail/Testcase'
 import IDE from '../../../components/assignment/general/IDE'
 import useStyles from './style'
-import CreateAssignmentNavBar from '../../../components/common/navigation/CreateAssignmentNavBar'
+import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 import RegularButton from '../../../components/common/button/RegularButton'
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot'
 import TurnedInIcon from '@mui/icons-material/TurnedIn'
@@ -86,7 +86,7 @@ export default function DetailAssignment() {
 
   return (
     <Stack>
-      <CreateAssignmentNavBar namePage=' CODE SPACE' />
+      <InsideNavBar namePage='Code Space' />
       <Grid container className={classes.container}>
         <Grid className={classes.tabLeft} item xs={6} sx={{ height: '100%' }}>
           <Box sx={{ mt: '0px', pl: '10px' }}>

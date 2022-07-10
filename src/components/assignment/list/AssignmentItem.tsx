@@ -2,7 +2,8 @@ import { Avatar, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import AssignmentItemStyle from './style'
 import RegularButton from '../../../components/common/button/RegularButton'
-import { Assignment, DifficultEnum, StatusEnum } from '../../../modules/assignment/list/type'
+import { Assignment } from '../../../modules/assignment/list/type'
+import history from '../../../configs/routing/history'
 
 /**
  * Assignment Item
@@ -28,6 +29,10 @@ const AssignmentItem: React.FC<AssignmentItemProps> = (props) => {
   const classes = AssignmentItemStyle()
   const { assignment } = props
 
+  const handleViewDetailAssignment = () => {
+    history.push('/assignments/' + assignment.assignmentId)
+  }
+
   return (
     <Paper elevation={8} square className={classes.container}>
       <Stack direction='column' spacing={0.5}>
@@ -37,8 +42,8 @@ const AssignmentItem: React.FC<AssignmentItemProps> = (props) => {
           <Typography className={classes.userName}>{assignment.createdBy}</Typography>
         </Stack>
         <Stack direction='row' justifyContent='space-between' alignItems='center'>
-          <Typography className={classes.state}>{StatusEnum[assignment.status]}</Typography>
-          <Typography className={classes.level}>{DifficultEnum[assignment.difficult]}</Typography>
+          <Typography className={classes.state}>{assignment.status}</Typography>
+          <Typography className={classes.level}>{assignment.difficult}</Typography>
         </Stack>
         <Stack>
           <RegularButton
@@ -52,6 +57,7 @@ const AssignmentItem: React.FC<AssignmentItemProps> = (props) => {
             link={false}
             justIcon={false}
             className={''}
+            onClick={handleViewDetailAssignment}
           >
             View Assignment
           </RegularButton>

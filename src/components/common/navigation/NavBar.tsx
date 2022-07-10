@@ -41,7 +41,7 @@ const pages = [
     title: 'MyProfile',
   },
   {
-    path: '/assignment',
+    path: '/assignments',
     title: 'Assignment',
   },
   {

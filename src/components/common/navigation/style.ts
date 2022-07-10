@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.color.darkGray,
     fontSize: theme.textFont.extraLarge,
     fontWeight: 'bold',
+    textTransform: 'capitalize',
   },
   navBarCreate: {
     backgroundColor: `${theme.color.white} !important`,

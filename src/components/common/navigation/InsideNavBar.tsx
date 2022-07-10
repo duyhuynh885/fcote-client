@@ -3,10 +3,11 @@ import useStyles from './style'
 import { AppBar, Toolbar, Typography } from '@mui/material'
 import ButtonBack from '../button/ButtonBack'
 
-interface Iprops {
+interface InsideNavBarProps {
   namePage: string
 }
-export default function CreateAssignmentNavBar(props: Iprops) {
+
+export default function InsideNavBar(props: InsideNavBarProps) {
   const classes = useStyles()
 
   return (

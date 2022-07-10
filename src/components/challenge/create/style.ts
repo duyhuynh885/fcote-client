@@ -1,6 +1,7 @@
+import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
-const useStyle = makeStyles((theme: any) => ({
+const useStyle = makeStyles((theme: Theme) => ({
   titleTextField: {
     fontSize: theme.textFont.extraSmall,
     fontWeight: 'bold',

@@ -20,9 +20,11 @@ import history from '../../../configs/routing/history'
 
 export default function ButtonBack() {
   const classes = useStyles()
+
   function handleBackButton() {
     history.goBack()
   }
+
   return (
     <Typography onClick={handleBackButton} className={classes.buttonBack}>
       {'< BACK'}
