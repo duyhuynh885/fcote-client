@@ -1,5 +1,4 @@
 import React from 'react'
-import CreateAssignmentNavBar from '../../../components/common/navigation/CreateAssignmentNavBar'
 import { Box, Grid, Stack, Tab, Tabs } from '@mui/material'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyles from './style'
@@ -9,6 +8,7 @@ import SettingTab from '../../../components/assignment/create/SettingTab'
 import LanguageTab from '../../../components/assignment/create/LanguageTab'
 import InputOutputTab from '../../../components/assignment/create/InputOutputTab'
 import PreviewTab from '../../../components/assignment/create/PreviewTab'
+import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 
 /**
  * Create Assignment Pages
@@ -66,7 +66,7 @@ export default function CreateAssignment() {
 
   return (
     <Stack>
-      <CreateAssignmentNavBar namePage='NEW ASSIGNMENT' />
+      <InsideNavBar namePage='New Assignment' />
       <Grid container className={classes.container}>
         <Grid className={classes.tabLeft} item xs={6} sx={{ height: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

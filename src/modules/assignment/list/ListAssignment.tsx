@@ -1,8 +1,8 @@
-import { Box, Grid, Pagination, PaginationItem, Stack } from '@mui/material'
-import React, { useEffect } from 'react'
+import { Grid, Pagination, PaginationItem, Stack } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import TaskbarFilter from '../../../components/common/toolbar/TaskbarFilter'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchListAssignmentRequest } from './action'
+import { fetchListAssignmentRequest, updateFilterListAssignmentRequest, clearState } from './action'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import AssignmentItem from '../../../components/assignment/list/AssignmentItem'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -25,49 +25,75 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 export default function ListAssignment() {
   const dispatch = useDispatch<AppDispatch>()
-  const listAssignmentState = useSelector((state: RootState) => state.listAssignment)
+  const assignmentsState = useSelector((state: RootState) => state.listAssignment.assignments)
+  const currentSizeState = useSelector((state: RootState) => state.listAssignment.currentSize)
+  const filterAssignmentState = useSelector(
+    (state: RootState) => state.listAssignment.filterRequest,
+  )
+  const [page, setPage] = useState(1)
+  const PER_PAGE = 16
+  const count = Math.ceil(currentSizeState / PER_PAGE)
+
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value)
+    dispatch(updateFilterListAssignmentRequest({ ...filterAssignmentState, pageNumber: value }))
+  }
 
   useEffect(() => {
-    dispatch(fetchListAssignmentRequest(listAssignmentState.filterRequest))
-  }, [listAssignmentState.filterRequest])
+    dispatch(fetchListAssignmentRequest(filterAssignmentState))
+  }, [filterAssignmentState])
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearState())
+    }
+  }, [])
 
   return (
     <Stack sx={{ margin: 5 }} direction='column'>
       <Stack marginBottom={5}>
-        <TaskbarFilter url='/assignment/create' />
+        <TaskbarFilter url='/assignments/create' />
       </Stack>
-      <Grid container spacing={5}>
-        <Stack
-          direction='column'
+      <Stack direction='column' alignItems='center' spacing={3}>
+        <Grid
           sx={{
             width: '100%',
+            margin: '0 auto',
           }}
+          container
         >
-          <Box sx={{ minHeight: 900, maxHeight: 1000 }}>
-            <Grid container spacing={4}>
-              {listAssignmentState.assignments.map((assignment) => (
-                <Grid key={assignment.assignmentId} item xs={4} lg={3}>
-                  <AssignmentItem assignment={assignment} />
-                </Grid>
-              ))}
+          {assignmentsState.map((assignment) => (
+            <Grid
+              key={assignment.assignmentId}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignContent: 'center',
+                marginBottom: 2,
+              }}
+              item
+              xs={4}
+              lg={2.3}
+            >
+              <AssignmentItem assignment={assignment} />
             </Grid>
-          </Box>
-          <Stack spacing={2} direction='row' justifyContent='center' alignItems='center'>
-            <Pagination
-              count={10}
-              renderItem={(item) => (
-                <PaginationItem
-                  components={{
-                    previous: ArrowBackIcon,
-                    next: ArrowForwardIcon,
-                  }}
-                  {...item}
-                />
-              )}
+          ))}
+        </Grid>
+        <Pagination
+          page={page}
+          onChange={handleChange}
+          count={count}
+          renderItem={(item) => (
+            <PaginationItem
+              components={{
+                previous: ArrowBackIcon,
+                next: ArrowForwardIcon,
+              }}
+              {...item}
             />
-          </Stack>
-        </Stack>
-      </Grid>
+          )}
+        />
+      </Stack>
     </Stack>
   )
 }

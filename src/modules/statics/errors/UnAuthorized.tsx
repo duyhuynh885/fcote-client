@@ -86,7 +86,7 @@ export default function UnAuthorized() {
           />
         </Grid>
         <Link
-          href='/src/pages'
+          href='/'
           underline='none'
           color='inherit'
           component={ButtonBack}
