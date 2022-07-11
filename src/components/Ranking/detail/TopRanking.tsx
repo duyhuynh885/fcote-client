@@ -1,12 +1,9 @@
-import { Box, Grid, Paper, Stack } from '@mui/material'
 import React from 'react'
+import { Box, Grid, Paper, Stack } from '@mui/material'
 import useStyles from './style'
-import SecondRankCard from './RankingCard/SecondRankCard'
-import FirstRankCard from './RankingCard/FirstRankCard'
-import ThirdRankCard from './RankingCard/ThirdRankCard'
-
+import TopMember from './Top/TopMenber'
 /**
- * Best Of Three component
+ * First Rank Card component
  *
  * Version 1.0
  *
@@ -20,7 +17,7 @@ import ThirdRankCard from './RankingCard/ThirdRankCard'
  * 24-06-2022         TuanLA           Create
  */
 
-export default function BestOfThree() {
+export default function TopRanking() {
   const classes = useStyles()
   return (
     <Paper
@@ -38,17 +35,17 @@ export default function BestOfThree() {
           <Grid container spacing={10} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Grid item>
               <Stack direction='column' alignItems='center'>
-                <SecondRankCard />
+                <TopMember rank={2} avatar='' name='Le Anh Tuan' score={5000} university='FPT' />
               </Stack>
             </Grid>
             <Grid item>
               <Stack direction='column' alignItems='center'>
-                <FirstRankCard />
+              <TopMember rank={1} avatar='' name='Le Anh Tuan' score={9000} university='FPT' />
               </Stack>
             </Grid>
             <Grid item>
               <Stack direction='column' alignItems='center'>
-                <ThirdRankCard />
+              <TopMember rank={3} avatar='' name='Le Anh Tuan' score={7000} university='FPT' />
               </Stack>
             </Grid>
           </Grid>
