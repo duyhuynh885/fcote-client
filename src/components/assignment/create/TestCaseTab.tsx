@@ -1,7 +1,8 @@
-import { Stack, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Stack, Typography } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import React, { useState } from 'react'
-import CreateTestCaseModal from './CreateTestCaseModal'
 import useStyles from './style'
+import CreateTestCaseModal from './CreateTestCaseModal'
 import RegularButton from '../../../components/common/button/RegularButton'
 
 /**
@@ -80,7 +81,35 @@ export default function TestCaseTab() {
           + RANDOM TEST
         </RegularButton>
       </Stack>
+      <Stack direction='column' padding={2}>
+        <GenerateTestCase />
+      </Stack>{' '}
       <CreateTestCaseModal open={open} onClose={handleClose} />
     </Stack>
+  )
+}
+interface GenerateTestCaseProps {
+  inputGenerate: any
+  outputGenerate: any
+}
+
+// Form Input Create Assignment
+function GenerateTestCase() {
+  return (
+    <React.Fragment>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls='panel1a-content'
+          id='panel1a-header'
+        >
+          <Typography>Test 1</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>Input:</Typography>
+          <Typography>Output:</Typography>
+        </AccordionDetails>
+      </Accordion>
+    </React.Fragment>
   )
 }

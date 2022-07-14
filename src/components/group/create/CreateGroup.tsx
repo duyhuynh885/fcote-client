@@ -44,7 +44,7 @@ export default function CreateGroup({ open, onClose, urlNamePopup }: ButtonProps
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
-        <Paper sx={style} className={classes.wrapper}>
+        <Paper sx={style}>
           <div className={classes.root}>
             <Typography className={classes.newGroup}>{urlNamePopup}</Typography>
           </div>
@@ -54,17 +54,7 @@ export default function CreateGroup({ open, onClose, urlNamePopup }: ButtonProps
             <Typography className={classes.titleTextField}>Description</Typography>
             <TextField fullWidth multiline rows={3} />
           </Stack>
-          <Stack
-            direction='row'
-            justifyContent='space-around'
-            alignItems='center'
-            spacing={8}
-            sx={{
-              paddingTop: 2,
-              paddingRight: 2,
-              paddingLeft: 2,
-            }}
-          >
+          <Stack direction='row' justifyContent='space-around' alignItems='center' spacing={8}>
             <RegularButton
               color={'danger'}
               size={'sm'}

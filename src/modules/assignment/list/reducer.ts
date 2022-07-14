@@ -31,7 +31,7 @@ const initialState: ViewListAssignmentState = {
     filterByDifficult: DifficultEnum.ALL,
     searchBy: undefined,
     filterByCreatedByUserId: undefined,
-    pageSize: 16,
+    pageSize: 15,
     pageNumber: 1,
   },
   assignments: [],

@@ -30,7 +30,7 @@ const AssignmentItem: React.FC<AssignmentItemProps> = (props) => {
   const { assignment } = props
 
   const handleViewDetailAssignment = () => {
-    history.push('/assignments/' + assignment.assignmentId)
+    history.push('/assignment/' + assignment.assignmentId)
   }
 
   return (

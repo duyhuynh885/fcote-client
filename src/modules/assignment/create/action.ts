@@ -3,6 +3,7 @@ import {
   CreateAssignmentClearStateAction,
   CreateAssignmentRequestAction,
   CreateAssignmentRequestPayload,
+  UpdateRequestCreateAssignmentAction,
 } from './type'
 
 /**
@@ -26,16 +27,38 @@ import {
  * @returns CreateAssignmentRequestAction
  */
 export const createAssignmentRequest = ({
-  settings,
-  languages,
+  setting,
+  language,
   inputOutput,
   authorSolution,
   testCase,
 }: CreateAssignmentRequestPayload): CreateAssignmentRequestAction => {
   return {
     type: CreateAssignmentActionType.CREATE_ASSIGNMENT_REQUESTING,
-    settings,
-    languages,
+    setting,
+    language,
+    inputOutput,
+    authorSolution,
+    testCase,
+  }
+}
+
+/**
+ * CreateAssignment request action
+ * @param param CreateAssignmentRequestPayload
+ * @returns CreateAssignmentRequestAction
+ */
+export const updateRequestCreateAssignment = ({
+  setting,
+  language,
+  inputOutput,
+  authorSolution,
+  testCase,
+}: CreateAssignmentRequestPayload): UpdateRequestCreateAssignmentAction => {
+  return {
+    type: CreateAssignmentActionType.UPDATE_REQUEST_CREATE_ASSIGNMENT,
+    setting,
+    language,
     inputOutput,
     authorSolution,
     testCase,

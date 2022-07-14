@@ -28,7 +28,7 @@ export default function Register() {
   const registerSchema = object({
     firstName: string().max(32, 'First name must be less than 100 characters'),
     lastName: string().max(32, 'Last name must be less than 100 characters'),
-    userName: string().max(32, 'User name must be less than 100 characters'),
+    username: string().max(32, 'User name must be less than 100 characters'),
     email: string().email('Email is invalid'),
     password: string()
       .min(8, 'Password must be more than 8 characters')
@@ -81,8 +81,8 @@ export default function Register() {
    * @param data RegisterInput
    */
   const onSubmit: SubmitHandler<RegisterInput> = (data) => {
-    const { firstName, lastName, userName, email, password } = data
-    dispatch(registerRequest({ firstName, lastName, userName, email, password }))
+    const { firstName, lastName, username, email, password } = data
+    dispatch(registerRequest({ firstName, lastName, username, email, password }))
   }
 
   return (
@@ -134,13 +134,13 @@ export default function Register() {
                 </Grid>
               </Grid>
               <TextField
-                {...register('userName')}
+                {...register('username')}
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-userName-input'
                 label='User Name'
-                error={!!errors['userName']}
-                helperText={errors['userName'] ? errors['userName'].message : ''}
+                error={!!errors['username']}
+                helperText={errors['username'] ? errors['username'].message : ''}
               />
               <TextField
                 {...register('email')}
@@ -194,7 +194,7 @@ export default function Register() {
                 color={'primary'}
                 size={'lg'}
                 round={false}
-                fullWidth={false}
+                fullWidth={true}
                 disabled={false}
                 simple={false}
                 block={false}

@@ -52,7 +52,7 @@ export default function ListAssignment() {
   return (
     <Stack sx={{ margin: 5 }} direction='column'>
       <Stack marginBottom={5}>
-        <TaskbarFilter url='/assignments/create' />
+        <TaskbarFilter url='/assignment/create' />
       </Stack>
       <Stack direction='column' alignItems='center' spacing={3}>
         <Grid

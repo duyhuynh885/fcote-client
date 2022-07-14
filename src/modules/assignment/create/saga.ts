@@ -28,9 +28,9 @@ import assignmentApi from '../../../services/assignmentApi'
  * CreateAssignment flow generator function
  * @param payload CreateAssignmentRequestPayload
  */
-function* viewListAssignmentFlow({
-  settings,
-  languages,
+function* createAssignmentFlow({
+  setting,
+  language,
   inputOutput,
   authorSolution,
   testCase,
@@ -38,8 +38,8 @@ function* viewListAssignmentFlow({
   try {
     yield put(showLoaderAction())
     const data: CreateAssignmentResponse = yield call(assignmentApi.createAssignment, {
-      settings,
-      languages,
+      setting,
+      language,
       inputOutput,
       authorSolution,
       testCase,
@@ -61,10 +61,10 @@ function* viewListAssignmentFlow({
 /**
  * CreateAssignment watcher
  */
-function* viewListAssignmentWatcher() {
-  yield takeEvery(CreateAssignmentActionType.CREATE_ASSIGNMENT_REQUESTING, viewListAssignmentFlow)
+function* createAssignmentWatcher() {
+  yield takeEvery(CreateAssignmentActionType.CREATE_ASSIGNMENT_REQUESTING, createAssignmentFlow)
 }
 
-export default function* viewListAssignmentSaga() {
-  yield all([fork(viewListAssignmentWatcher)])
+export default function* createAssignmentSaga() {
+  yield all([fork(createAssignmentWatcher)])
 }

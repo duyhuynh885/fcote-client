@@ -25,13 +25,13 @@ import history from '../../../configs/routing/history'
  * Register flow generator function
  * @param payload RegisterRequestPayload
  */
-function* registerFlow({ firstName, lastName, userName, email, password }: RegisterRequestAction) {
+function* registerFlow({ firstName, lastName, username, email, password }: RegisterRequestAction) {
   try {
     yield put(showLoaderAction())
     const data: RegisterResponse = yield call(authApi.register, {
       firstName,
       lastName,
-      userName,
+      username,
       email,
       password,
     })

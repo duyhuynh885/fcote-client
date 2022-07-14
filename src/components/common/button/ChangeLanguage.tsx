@@ -45,11 +45,11 @@ export default function ChangeLanguage() {
 
   /**
    * Handle click to change language
-   * @param language string
+   * @param data string
    */
-  const changeLanguage = (language: string) => {
-    setLanguage(language)
-    i18n.changeLanguage(language)
+  const changeLanguage = (data: string) => {
+    setLanguage(data)
+    i18n.changeLanguage(data)
     setAnchorEl(null)
   }
 

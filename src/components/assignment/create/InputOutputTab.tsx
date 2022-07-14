@@ -18,6 +18,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import _ from 'lodash'
 import RegularButton from '../../../components/common/button/RegularButton'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import { DataType } from '../../../modules/assignment/data-type/type'
 
 /**
  * InputOutputTab component
@@ -35,12 +38,25 @@ import RegularButton from '../../../components/common/button/RegularButton'
  */
 
 export default function InputOutputTab() {
-  const [inputList, setInputList] = useState<Input[]>([{} as Input])
-  const [output, setOutput] = useState<Output>({} as Output)
+  // const dispatch = useDispatch<AppDispatch>()
+  // const requestCreateAssignmentState = useSelector(
+  //   (state: RootState) => state.createAssignment.requestBody,
+  // )
+  // const inputOutputState = useSelector(
+  //   (state: RootState) => state.createAssignment.requestBody.inputOutput,
+  // )
+  const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
+  const [inputList, setInputList] = useState<Input[]>([
+    {
+      name: 'arg1',
+      type: 1,
+    } as Input,
+  ])
+  const [output, setOutput] = useState<Output>({ type: 1 } as Output)
 
   const classes = useStyles()
   const handleInputAdd = () => {
-    setInputList([...inputList, {} as Input])
+    setInputList([...inputList, { name: `arg${inputList.length + 1}`, type: 1 } as Input])
   }
 
   const handleInputRemove = (index: number) => {
@@ -56,10 +72,12 @@ export default function InputOutputTab() {
     setInputList(list)
   }
 
+  const handleOutputChange = (data: Output) => {
+    setOutput(data)
+  }
+
   return (
     <Box className={classes.scrollBar}>
-      {/* <FormInput /> */}
-
       {inputList.map((input, index) => {
         input['id'] = index
         return (
@@ -70,6 +88,7 @@ export default function InputOutputTab() {
             key={index}
             listSize={inputList.length}
             input={input}
+            listDataType={dataTypeState}
           />
         )
       })}
@@ -89,7 +108,7 @@ export default function InputOutputTab() {
         + ADD INPUT
       </RegularButton>
       <Divider />
-      <FormOutput />
+      <FormOutput listDataType={dataTypeState} output={output} handleChange={handleOutputChange} />
     </Box>
   )
 }
@@ -97,17 +116,12 @@ export default function InputOutputTab() {
 interface Input {
   id: number
   name?: string
-  type?: string
-  description?: string
-}
-
-interface Output {
-  id: number
-  type?: string
+  type?: number
   description?: string
 }
 
 interface FormInputProps {
+  listDataType: DataType[]
   index: number
   listSize: number
   input: Input
@@ -123,8 +137,8 @@ const inputSchema = object({
 
 // Form Input Create Assignment
 function FormInput(props: FormInputProps) {
-  const { listSize, input, index, handleRemove, handleChange } = props
-  const [type, setType] = React.useState('')
+  const { listSize, input, index, handleRemove, handleChange, listDataType } = props
+  const [type, setType] = React.useState('' + input.type)
   const classes = useStyles()
   const {
     register,
@@ -149,85 +163,120 @@ function FormInput(props: FormInputProps) {
 
   return (
     <React.Fragment>
-      <form>
-        {listSize !== 1 && index !== 0 && <Divider sx={{ margin: '10px 0px' }} />}
-        <Stack direction='row' justifyContent='space-between' alignItems='center'>
-          <Typography className={classes.titleNameInput}>Input {index + 1}</Typography>
-          {listSize !== 1 && index !== 0 && (
-            <IconButton
-              onClick={() => {
-                handleRemove(index)
-              }}
-              aria-label='delete'
-            >
-              <DeleteIcon fontSize='small' color='error' />
-            </IconButton>
-          )}
-        </Stack>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Typography className={classes.titleTextField}>Name</Typography>
-            <TextField
-              value={input.name}
-              fullWidth
-              id='outlined-basic'
-              variant='outlined'
-              {...nameFiled}
-              onChange={(e) => {
-                nameFiled.onChange(e)
-                handleOnChange(e)
-              }}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <FormControl fullWidth>
-              <Typography className={classes.titleTextField}>Type</Typography>
-              <Select
-                labelId='demo-simple-select-label'
-                id='demo-simple-select'
-                value={type}
-                {...typeFiled}
-                onChange={(e) => {
-                  typeFiled.onChange(e)
-                  handleChangeSelect(e)
-                }}
-              >
-                {['Integer', 'Double', 'String', 'Float', 'Character'].map((value) => {
-                  return (
-                    <MenuItem key={value} value={value}>
-                      {value}
-                    </MenuItem>
-                  )
-                })}
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography className={classes.titleTextField}>Description</Typography>
+      {listSize !== 1 && index !== 0 && <Divider sx={{ margin: '10px 0px' }} />}
+      <Stack direction='row' justifyContent='space-between' alignItems='center'>
+        <Typography className={classes.titleNameInput}>Input {index + 1}</Typography>
+        {listSize !== 1 && index !== 0 && (
+          <IconButton
+            onClick={() => {
+              handleRemove(index)
+            }}
+            aria-label='delete'
+          >
+            <DeleteIcon fontSize='small' color='error' />
+          </IconButton>
+        )}
+      </Stack>
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Typography className={classes.titleTextField}>Name</Typography>
           <TextField
+            size='small'
+            value={input.name}
             fullWidth
-            multiline
-            value={input.description}
-            rows={2}
-            {...descriptionFiled}
+            id='outlined-basic'
+            variant='outlined'
+            {...nameFiled}
             onChange={(e) => {
-              descriptionFiled.onChange(e)
+              nameFiled.onChange(e)
               handleOnChange(e)
             }}
           />
         </Grid>
-      </form>
+        <Grid item xs={6}>
+          <FormControl fullWidth sx={{ height: 50 }}>
+            <Typography className={classes.titleTextField}>Type</Typography>
+            <Select
+              size='small'
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
+              value={type}
+              MenuProps={{ classes: { paper: classes.menuPaper } }}
+              {...typeFiled}
+              onChange={(e) => {
+                typeFiled.onChange(e)
+                handleChangeSelect(e)
+              }}
+            >
+              {listDataType.map((dataType) => {
+                return (
+                  <MenuItem key={dataType.value} value={dataType.value}>
+                    {dataType.name}
+                  </MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <Typography className={classes.titleTextField}>Description</Typography>
+        <TextField
+          size='small'
+          fullWidth
+          multiline
+          value={input.description}
+          rows={2}
+          {...descriptionFiled}
+          onChange={(e) => {
+            descriptionFiled.onChange(e)
+            handleOnChange(e)
+          }}
+        />
+      </Grid>
     </React.Fragment>
   )
 }
 
+interface Output {
+  id: number
+  type?: number
+  description?: string
+}
+
+interface FormOutputProps {
+  listDataType: DataType[]
+  output: Output
+  handleChange: (output: Output) => void
+}
+const outputSchema = object({
+  name: string().email('Email is invalid'),
+  type: string(),
+  description: string(),
+})
+
 // Form Input Create Assignment
-function FormOutput() {
-  const [type, setType] = React.useState('')
+function FormOutput(props: FormOutputProps) {
+  const { listDataType, output, handleChange } = props
+  const [type, setType] = React.useState('' + output.type)
   const classes = useStyles()
+  const {
+    register,
+    formState: { errors },
+  } = useForm<Output>({
+    resolver: zodResolver(outputSchema),
+  })
+  const descriptionFiled = register('description', { required: true })
+
+  const handleOnChange = (event: any) => {
+    const updates = { [event.target.name]: event.target.value }
+    handleChange(_.merge(output, updates))
+  }
+
   const handleChangeSelect = (event: SelectChangeEvent) => {
-    setType(event.target.value as string)
+    setType(event.target.value)
+    const updates = { [event.target.name]: event.target.value }
+    handleChange(_.merge(output, updates))
   }
 
   return (
@@ -238,15 +287,17 @@ function FormOutput() {
       <FormControl fullWidth>
         <Typography className={classes.titleTextField}>Type</Typography>
         <Select
+          size='small'
           labelId='demo-simple-select-label'
           id='demo-simple-select'
           value={type}
           onChange={handleChangeSelect}
+          MenuProps={{ classes: { paper: classes.menuPaper } }}
         >
-          {['Integer', 'Double', 'String', 'Float', 'Character'].map((value) => {
+          {listDataType.map((dataType) => {
             return (
-              <MenuItem key={value} value={value}>
-                {value}
+              <MenuItem key={dataType.value} value={dataType.value}>
+                {dataType.name}
               </MenuItem>
             )
           })}
@@ -254,7 +305,18 @@ function FormOutput() {
       </FormControl>
       <Grid item xs={12}>
         <Typography className={classes.titleTextField}>Description</Typography>
-        <TextField fullWidth multiline rows={2} />
+        <TextField
+          {...descriptionFiled}
+          onChange={(e) => {
+            descriptionFiled.onChange(e)
+            handleOnChange(e)
+          }}
+          value={output.description}
+          size='small'
+          fullWidth
+          multiline
+          rows={2}
+        />
       </Grid>
     </React.Fragment>
   )

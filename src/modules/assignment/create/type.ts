@@ -1,3 +1,5 @@
+import { DifficultEnum } from '../list/type'
+
 /**
  * Type for create assignment
  *
@@ -18,27 +20,31 @@ export enum CreateAssignmentActionType {
   CREATE_ASSIGNMENT_SUCCESS = 'CREATE_ASSIGNMENT_SUCCESS',
   CREATE_ASSIGNMENT_ERROR = 'CREATE_ASSIGNMENT_ERROR',
   CLEAR_STATE = 'CLEAR_STATE',
+  UPDATE_REQUEST_CREATE_ASSIGNMENT = 'UPDATE_REQUEST_CREATE_ASSIGNMENT',
 }
 
 export interface SettingCreateAssignment {
   name: string
   description: string
+  difficulty: DifficultEnum
 }
 
 export interface LanguageCreateAssignment {
-  name: string
-  timeout: number
+  language: string
+  time_limit: number
 }
 
 export interface InputCreateAssignment {
+  order: number
   name: string
-  type: string
-  description: string
+  type: number
+  description?: string
 }
 
 export interface OutputCreateAssignment {
-  name: string
+  order: number
   type: string
+  description?: string
 }
 
 export interface InputOutputCreateAssignment {
@@ -47,27 +53,30 @@ export interface InputOutputCreateAssignment {
 }
 
 export interface TestCaseInputCreateAssignment {
+  order: number
   name: boolean
   type: string
   value: string
 }
 
 export interface TestCaseOutputCreateAssignment {
+  order: number
   type: string
   value: string
 }
 
 export interface TestCaseCreateAssignment {
   isPrivate: boolean
+  order: number
   input: TestCaseInputCreateAssignment[]
   output: TestCaseOutputCreateAssignment
 }
 
 export interface CreateAssignmentRequestPayload {
-  settings: SettingCreateAssignment
-  languages: LanguageCreateAssignment[]
+  setting: SettingCreateAssignment
+  language: LanguageCreateAssignment[]
   inputOutput: InputOutputCreateAssignment
-  authorSolution: string
+  authorSolution?: string
   testCase: TestCaseCreateAssignment[]
 }
 
@@ -93,16 +102,21 @@ export type CreateAssignmentErrorAction = ActionWithPayload<
   CreateAssignmentErrorResponse
 >
 export type CreateAssignmentClearStateAction = Action<CreateAssignmentActionType.CLEAR_STATE>
+export type UpdateRequestCreateAssignmentAction = ActionWithPayload<
+  CreateAssignmentActionType.UPDATE_REQUEST_CREATE_ASSIGNMENT,
+  CreateAssignmentRequestPayload
+>
 
 export type CreateAssignmentAction =
   | CreateAssignmentRequestAction
   | CreateAssignmentSuccessAction
   | CreateAssignmentErrorAction
   | CreateAssignmentClearStateAction
-
+  | UpdateRequestCreateAssignmentAction
 export interface CreateAssignmentState {
   requesting: boolean
   successful: boolean
   messages: Message
   errors: ErrorMessage
+  requestBody: CreateAssignmentRequestPayload
 }

@@ -23,8 +23,8 @@ export const m = {
   Challenge: 'Thử Thách',
   Ranking: 'Bảng Xếp Hạng',
   // AUTHENTICATE
-  Login: 'Đăng Kí',
-  Register: 'Đăng Nhập',
+  Login: 'Đăng Nhập',
+  Register: 'Đăng Kí',
   ForgetPassword: 'Quên Mật Khẩu',
   ChangeNewPassword: 'Thay Đổi Mật Khẩu',
   WelcomeBack: 'Chào mừng trở lại',
@@ -32,6 +32,7 @@ export const m = {
   CreateAccount: 'Tạo Tài Khoản',
   ErrorUnAuthorized: 'Chúng tôi đang xử lý sự cố!',
   GoHome: 'Trở về',
+  Group: 'Nhóm',
 }
 
 export default m

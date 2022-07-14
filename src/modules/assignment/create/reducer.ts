@@ -1,4 +1,10 @@
-import { CreateAssignmentAction, CreateAssignmentActionType, CreateAssignmentState } from './type'
+import { DifficultEnum } from '../list/type'
+import {
+  CreateAssignmentAction,
+  CreateAssignmentActionType,
+  CreateAssignmentState,
+  InputOutputCreateAssignment,
+} from './type'
 
 /**
  * Reducer for create assignment
@@ -20,6 +26,17 @@ const initialState: CreateAssignmentState = {
   successful: false,
   messages: {} as Message,
   errors: {} as ErrorMessage,
+  requestBody: {
+    setting: {
+      name: '',
+      description: '',
+      difficulty: DifficultEnum.EASY,
+    },
+    language: [],
+    inputOutput: {} as InputOutputCreateAssignment,
+    authorSolution: undefined,
+    testCase: [],
+  },
 }
 
 /**
@@ -57,6 +74,18 @@ const reducer = (state = initialState, action: CreateAssignmentAction) => {
         },
         requesting: false,
         successful: false,
+      }
+
+    case CreateAssignmentActionType.UPDATE_REQUEST_CREATE_ASSIGNMENT:
+      return {
+        ...state,
+        requestBody: {
+          setting: action.setting,
+          language: action.language,
+          inputOutput: action.inputOutput,
+          authorSolution: action.authorSolution,
+          testCase: action.testCase,
+        },
       }
 
     case CreateAssignmentActionType.CLEAR_STATE:

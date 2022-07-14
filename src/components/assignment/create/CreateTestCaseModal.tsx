@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, Modal, Paper, Stack, TextField, Typography } from '@mui/material'
+import { Modal, Paper, Stack, TextField, Typography } from '@mui/material'
 import useStyles from './style'
 import RegularButton from '../../../components/common/button/RegularButton'
 
@@ -20,7 +20,7 @@ import RegularButton from '../../../components/common/button/RegularButton'
 
 interface ButtonProps {
   open: boolean
-  onClose: (shown: boolean) => void
+  onClose: () => void
 }
 
 const style = {
@@ -29,13 +29,14 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 450,
-  bgcolor: 'background.paper',
+  backgroundColor: 'background.paper',
   borderRadius: 3,
   p: 4,
 }
 
 export default function CreateTestCaseModal({ open, onClose }: ButtonProps) {
   const classes = useStyles()
+
   return (
     <React.Fragment>
       <Modal
@@ -54,6 +55,8 @@ export default function CreateTestCaseModal({ open, onClose }: ButtonProps) {
               id='outlined-basic'
               variant='outlined'
               required
+              size='small'
+
               // {...nameFiled}
               // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               //   nameFiled.onChange(e)
@@ -66,16 +69,18 @@ export default function CreateTestCaseModal({ open, onClose }: ButtonProps) {
               id='outlined-basic'
               variant='outlined'
               required
+              size='small'
+
               // {...nameFiled}
               // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               //   nameFiled.onChange(e)
               //   handleOnChange(e)
               // }}
             />
-            <Divider sx={{ margin: '10px 0px' }} />
             <Typography className={classes.titleNameInput}>Excepted Output</Typography>
             <Typography className={classes.titleTextField}>Integer</Typography>
             <TextField
+              size='small'
               fullWidth
               id='outlined-basic'
               variant='outlined'
@@ -109,6 +114,7 @@ export default function CreateTestCaseModal({ open, onClose }: ButtonProps) {
               link={false}
               justIcon={false}
               className={''}
+              onClick={onClose}
             >
               Cancel
             </RegularButton>

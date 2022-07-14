@@ -24,7 +24,7 @@ const authApi = {
    * @returns LoginResponse
    */
   login(payload: LoginRequestPayload) {
-    const url = '/auth/post-sign-in'
+    const url = '/account/post-sign-in'
     return axiosClient.post<LoginResponse>(url, payload)
   },
 
@@ -34,7 +34,7 @@ const authApi = {
    * @returns RegisterResponse
    */
   register(payload: RegisterRequestPayload) {
-    const url = '/auth/post-sign-up'
+    const url = '/account/post-sign-up'
     return axiosClient.post<RegisterResponse>(url, payload)
   },
 

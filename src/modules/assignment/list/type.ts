@@ -22,17 +22,18 @@ export enum ViewListAssignmentActionType {
 }
 
 export enum DifficultEnum {
-  ALL = 'ALL',
-  EASY = 'EASY',
-  MEDIUM = 'MEDIUM',
-  HARD = 'HARD',
+  ALL,
+  EASY,
+  MEDIUM,
+  HARD,
 }
 
 export enum StatusEnum {
-  ALL = 'ALL',
-  NOT_YET = 'NOT_YET',
-  DOING = 'DOING',
-  FINISHED = 'FINISHED',
+  ALL,
+  SOLVED,
+  NOT_SOLVED,
+  IN_PROGRESS,
+  FINISHED,
 }
 
 export interface ViewListAssignmentRequestPayload {
