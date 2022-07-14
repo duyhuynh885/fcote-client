@@ -4,6 +4,7 @@ import loginReducer from '../../modules/authentication/login/reducer'
 import registerReducer from '../../modules/authentication/register/reducer'
 import loaderReducer from '../../modules/layout/reducer'
 import listAssignmentReducer from '../../modules/assignment/list/reducer'
+import rankingReducer from '../../modules/ranking/reducer'
 
 /**
  * Root Reducer
@@ -18,6 +19,7 @@ const rootReducer = (history: any) =>
     register: registerReducer,
     loader: loaderReducer,
     listAssignment: listAssignmentReducer,
+    ranking: rankingReducer,
   })
 
 export default rootReducer

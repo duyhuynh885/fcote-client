@@ -1,7 +1,10 @@
 import { Grid, Stack } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Leaderboard from '../../components/ranking/detail/Leaderboard'
 import TopRanking from '../../components/ranking/detail/TopRanking'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../apps/ReduxContainer'
+import { fetchRankingRequest } from './action'
 /**
  * Ranking Pages
  *
@@ -18,6 +21,13 @@ import TopRanking from '../../components/ranking/detail/TopRanking'
  */
 
 export default function Ranking() {
+  const dispatch = useDispatch<AppDispatch>()
+  const rankingState = useSelector((state:RootState) => state.ranking)
+  console.log('RankingState', rankingState)
+  useEffect(()=>{
+    console.log('fetch Ranking')
+    dispatch(fetchRankingRequest(rankingState.rankingTypeRequest))
+  })
   return (
     <Stack sx={{}}>
       <Grid container spacing={5}>
