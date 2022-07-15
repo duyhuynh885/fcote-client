@@ -4,7 +4,7 @@ import Leaderboard from '../../components/ranking/detail/Leaderboard'
 import TopRanking from '../../components/ranking/detail/TopRanking'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../apps/ReduxContainer'
-import { fetchRankingRequest } from './action'
+import { clearState, fetchRankingRequest } from './action'
 /**
  * Ranking Pages
  *
@@ -22,20 +22,23 @@ import { fetchRankingRequest } from './action'
 
 export default function Ranking() {
   const dispatch = useDispatch<AppDispatch>()
-  const rankingState = useSelector((state:RootState) => state.ranking)
-  console.log('RankingState', rankingState)
-  useEffect(()=>{
+  const rankingState = useSelector((state: RootState) => state.ranking)
+  const topThreeState = useSelector((state: RootState) => state.ranking.top3)
+  const rankingListState = useSelector((state: RootState) => state.ranking.rankingList)
+
+  useEffect(() => {
     console.log('fetch Ranking')
     dispatch(fetchRankingRequest(rankingState.rankingTypeRequest))
-  })
+  }, [rankingState.rankingTypeRequest])
+
   return (
     <Stack sx={{}}>
       <Grid container spacing={5}>
         <Grid item xs={12}>
-          <TopRanking />
+          <TopRanking data={topThreeState} />
         </Grid>
         <Grid item xs={12}>
-          <Leaderboard />
+          <Leaderboard data={rankingListState} />
         </Grid>
       </Grid>
     </Stack>

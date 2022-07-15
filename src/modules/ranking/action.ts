@@ -13,7 +13,12 @@
  * 13-07-2022         TuanLA           Create
  */
 
-import { RankingActionType, RankingRequestAction, RankingRequestPayload } from './type'
+import {
+  RankingActionType,
+  RankingClearStateAction,
+  RankingRequestAction,
+  RankingRequestPayload,
+} from './type'
 
 /**
  * @param  {} {typeRanking
@@ -22,9 +27,19 @@ import { RankingActionType, RankingRequestAction, RankingRequestPayload } from '
  */
 export const fetchRankingRequest = ({
   typeRanking,
+  pageSize,
+  pageNumber,
 }: RankingRequestPayload): RankingRequestAction => {
   return {
     type: RankingActionType.RANKING_REQUESTING,
     typeRanking,
+    pageSize,
+    pageNumber,
+  }
+}
+
+export const clearState = (): RankingClearStateAction => {
+  return {
+    type: RankingActionType.CLEAR_STATE,
   }
 }

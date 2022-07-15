@@ -21,24 +21,29 @@ export enum RankingActionType {
 }
 
 export interface RankingRequestPayload {
-  typeRanking: string
+  typeRanking: number
+  pageSize: number
+  pageNumber: number
 }
 
 export interface RankingErrorResponse {
   error: ErrorMessage
 }
 export interface RankingResponse {
-  data: UserInfor[]
+  top3: UserInfor[]
+  ranking_list: UserInfor[]
   messageVi: string
   messageEn: string
 }
 
-interface UserInfor {
-  userId: number
-  image?: string
+export interface UserInfor {
+  id: number
+  avatar: string
+  username: string
   fullname: string
-  university: string
-  score: number
+  organization: string
+  total_score: number
+  order: number
 }
 
 export type RankingRequestAction = ActionWithPayload<
@@ -53,6 +58,7 @@ export type RankingErrorAction = ActionWithPayload<
   RankingActionType.RANKING_ERROR,
   RankingErrorResponse
 >
+export type RankingClearStateAction = Action<RankingActionType.CLEAR_STATE>
 
 export type RankingAction = RankingRequestAction | RankingSuccessAction | RankingErrorAction
 
@@ -61,6 +67,7 @@ export interface RankingState {
   successful: boolean
   messages: Message
   errors: ErrorMessage
-  data: UserInfor[]
+  top3: UserInfor[]
+  rankingList: UserInfor[]
   rankingTypeRequest: RankingRequestPayload
 }

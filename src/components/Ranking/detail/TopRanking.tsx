@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Grid, Paper, Stack } from '@mui/material'
 import useStyles from './style'
 import TopMember from './Top/TopMenber'
+import { UserInfor } from '../../../modules/ranking/type'
 /**
  * First Rank Card component
  *
@@ -17,8 +18,24 @@ import TopMember from './Top/TopMenber'
  * 24-06-2022         TuanLA           Create
  */
 
-export default function TopRanking() {
+interface UserInforProps {
+  data: UserInfor[]
+}
+
+const immutablySwapItems = (items: UserInfor[], firstIndex: number, secondIndex: number) =>
+  items.map(
+    (element, index) =>
+      index === firstIndex
+        ? items[secondIndex]
+        : index === secondIndex
+        ? items[firstIndex]
+        : element
+  )
+
+const TopRanking: React.FC<UserInforProps> = (props) => {
   const classes = useStyles()
+  const topRanking = immutablySwapItems(props.data, 0, 1)
+  console.log('TopRanking ', topRanking)
   return (
     <Paper
       elevation={8}
@@ -33,24 +50,26 @@ export default function TopRanking() {
       <Stack direction='column' spacing={2}>
         <Box>
           <Grid container spacing={10} sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Grid item>
-              <Stack direction='column' alignItems='center'>
-                <TopMember rank={2} avatar='' name='Le Anh Tuan' score={5000} university='FPT' />
-              </Stack>
-            </Grid>
-            <Grid item>
-              <Stack direction='column' alignItems='center'>
-              <TopMember rank={1} avatar='' name='Le Anh Tuan' score={9000} university='FPT' />
-              </Stack>
-            </Grid>
-            <Grid item>
-              <Stack direction='column' alignItems='center'>
-              <TopMember rank={3} avatar='' name='Le Anh Tuan' score={7000} university='FPT' />
-              </Stack>
-            </Grid>
+            {topRanking.map((top) => (
+              <Grid item key={top.order}>
+                <Stack direction='column' alignItems='center'>
+                  <TopMember
+                    order={top.order}
+                    rank={top.order}
+                    avatar={top.avatar}
+                    username={top.username}
+                    fullname={top.fullname}
+                    score={top.total_score}
+                    organization={top.organization}
+                  />
+                </Stack>
+              </Grid>
+            ))}
           </Grid>
         </Box>
       </Stack>
     </Paper>
   )
 }
+
+export default TopRanking

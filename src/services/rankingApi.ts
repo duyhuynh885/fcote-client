@@ -24,7 +24,7 @@ const rankingApi = {
    * @param  {RankingRequestPayload} payload
    */
   fetchRanking(payload: RankingRequestPayload) {
-    const url = '/ranking'
+    const url = '/account/get-ranking'
     return axiosClient.post<RankingResponse, RankingErrorResponse>(url, payload)
   },
 }

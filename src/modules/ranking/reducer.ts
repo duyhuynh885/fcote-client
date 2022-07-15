@@ -20,9 +20,12 @@ const initialState: RankingState = {
   successful: false,
   messages: {} as Message,
   errors: {} as ErrorMessage,
-  data: [],
+  top3: [],
+  rankingList: [],
   rankingTypeRequest: {
-    typeRanking: 'university'
+    typeRanking: 1,
+    pageSize: 50,
+    pageNumber: 0
   }
 }
 /**
@@ -42,6 +45,8 @@ const reducer = (state = initialState, action: RankingAction) => {
     case RankingActionType.RANKING_SUCCESS:
       return {
         ...state,
+        top3: action.top3,
+        rankingList: action.ranking_list,
         messages: {
           messageEn: action.messageEn,
           messageVi: action.messageVi,

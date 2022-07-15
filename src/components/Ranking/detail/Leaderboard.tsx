@@ -51,7 +51,7 @@ function ChangeValueProps(index: number) {
   }
 }
 
-export default function Leaderboard() {
+export default function Leaderboard(props: any) {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
 
@@ -71,19 +71,19 @@ export default function Leaderboard() {
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label='Leaderboard'>
-            <Tab label='Individual' {...ChangeValueProps(0)} />
-            <Tab label='Universities' {...ChangeValueProps(1)} />
+            <Tab label='Universities' {...ChangeValueProps(0)} />
+            <Tab label='Individual' {...ChangeValueProps(1)} />
             <Tab label='Group' {...ChangeValueProps(2)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <LeaderboardsTable type='individual' />
+          <LeaderboardsTable type='university' rankingList={props.data}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <LeaderboardsTable type='university' />
+          <LeaderboardsTable type='individual' rankingList={props.data}/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <LeaderboardsTable type='group' />
+          <LeaderboardsTable type='group' rankingList={props.data}/>
         </TabPanel>
       </Box>
     </Paper>

@@ -15,8 +15,10 @@
 
  export interface DataTopRank {
   rank: number,
-  name: string,
+  order: number,
+  username: string,
+  fullname: string,
   avatar: string,
-  university: string,
+  organization: string,
   score: number,
 }
