@@ -1,8 +1,8 @@
 import { Box, Paper } from '@mui/material'
 import React from 'react'
-import useStyles from './style'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
+import useStyles from './style'
 import LeaderboardsTable from './LeaderboardsTable/LeaderboardsTable'
 /**
  * Leaderboard component

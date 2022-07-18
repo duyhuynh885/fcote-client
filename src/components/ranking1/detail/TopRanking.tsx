@@ -1,8 +1,8 @@
 import React from 'react'
 import { Box, Grid, Paper, Stack } from '@mui/material'
+import { UserInfor } from '../../../modules/ranking/type'
 import useStyles from './style'
 import TopMember from './Top/TopMenber'
-import { UserInfor } from '../../../modules/ranking/type'
 /**
  * First Rank Card component
  *
