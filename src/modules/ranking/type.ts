@@ -20,6 +20,11 @@ export enum RankingActionType {
   CLEAR_STATE = 'CLEAR_STATE',
 }
 
+export enum RankingTypeState {
+  RANKING_UNIVERSITY = 1,
+  RANKING_ORGANIZATION,
+}
+
 export interface RankingRequestPayload {
   typeRanking: number
   pageSize: number

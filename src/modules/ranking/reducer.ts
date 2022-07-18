@@ -13,7 +13,7 @@
  * 13-07-2022         TuanLA           Create
  */
 
-import { RankingAction, RankingActionType, RankingState } from './type'
+import { RankingAction, RankingActionType, RankingState, RankingTypeState } from './type'
 
 const initialState: RankingState = {
   requesting: false,
@@ -23,7 +23,7 @@ const initialState: RankingState = {
   top3: [],
   rankingList: [],
   rankingTypeRequest: {
-    typeRanking: 1,
+    typeRanking: RankingTypeState.RANKING_UNIVERSITY,
     pageSize: 50,
     pageNumber: 0
   }
