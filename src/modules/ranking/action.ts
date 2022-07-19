@@ -11,6 +11,7 @@
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
  * 13-07-2022         TuanLA           Create
+ * 19-07-2022         TuanLA           Update State Filter
  */
 
 import {
@@ -26,6 +27,19 @@ import {
  * @returns RankingActionType
  */
 export const fetchRankingRequest = ({
+  typeRanking,
+  pageSize,
+  pageNumber,
+}: RankingRequestPayload): RankingRequestAction => {
+  return {
+    type: RankingActionType.RANKING_REQUESTING,
+    typeRanking,
+    pageSize,
+    pageNumber,
+  }
+}
+
+export const updateFillterRankingRequest = ({
   typeRanking,
   pageSize,
   pageNumber,

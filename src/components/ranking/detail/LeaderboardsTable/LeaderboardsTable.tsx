@@ -31,10 +31,11 @@ import { UserInfor } from '../../../../modules/ranking/type'
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
  * 24-06-2022         TuanLA           Create
+ * 19-07-2022         TuanLA           Modify Column
  */
 
 interface Column {
-  id: 'rank' | 'fullname' | 'university' | 'group' | 'individual' | 'score' | 'username'
+  id: 'rank' | 'fullname' | 'university' | 'group' | 'organization' | 'score' | 'username'
   label: string
   minWidth?: number
   align?: 'right' | 'center' | 'left'
@@ -103,7 +104,7 @@ function createData(rank: number, fullname: string, university: string, score: n
 }
 
 function createType(
-  id: 'rank' | 'fullname' | 'university' | 'group' | 'individual' | 'score',
+  id: 'rank' | 'fullname' | 'university' | 'group' | 'organization' | 'score',
   label: string,
   minWidth: number,
   align: 'right' | 'center' | 'left',
@@ -116,7 +117,7 @@ function capitalizeFirstLetter(string: string) {
 } 
 
 interface TypeLeaderBoard {
-  type: 'rank' | 'fullname' | 'university' | 'group' | 'individual' | 'score'
+  type: 'rank' | 'fullname' | 'university' | 'group' | 'organization' | 'score'
   rankingList: UserInfor[]
 }
 
