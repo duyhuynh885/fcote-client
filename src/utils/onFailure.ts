@@ -2,7 +2,7 @@ import { put } from 'redux-saga/effects'
 import history from '../configs/routing/history'
 import { hideLoaderAction } from '../modules/layout/actions/loaderAction'
 
-export default function* requestFailure(action: any, error: any) {
+export default function* requestFailure(action: string, error: any) {
   yield put(hideLoaderAction())
   const status = error.status
   const message = error.data

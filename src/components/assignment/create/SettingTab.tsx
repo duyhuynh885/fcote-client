@@ -7,14 +7,10 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import useStyles from './style'
-import { useFormContext } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import { updateRequestCreateAssignment } from '../../../modules/assignment/create/action'
 import { SettingCreateAssignment } from '../../../modules/assignment/create/type'
 import { DifficultEnum } from '../../../modules/assignment/list/type'
 
@@ -34,50 +30,47 @@ import { DifficultEnum } from '../../../modules/assignment/list/type'
  */
 
 const config = {
-  toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+  toolbar: [
+    'heading',
+    '|',
+    'bold',
+    'italic',
+    'link',
+    '|',
+    'bulletedList',
+    'numberedList',
+    'blockQuote',
+  ],
 }
-export default function SettingTab() {
+
+interface SettingTabProps {
+  setting: SettingCreateAssignment
+  handleSetting: (setting: SettingCreateAssignment) => void
+}
+
+export default function SettingTab(props: SettingTabProps) {
+  const { setting, handleSetting } = props
   const classes = useStyles()
-  const dispatch = useDispatch<AppDispatch>()
-  const requestCreateAssignmentState = useSelector(
-    (state: RootState) => state.createAssignment.requestBody,
-  )
-  const settingState = useSelector((state: RootState) => state.createAssignment.requestBody.setting)
 
   const handleOnChangeEditor = (_event: any, editor: ClassicEditor) => {
-    dispatch(
-      updateRequestCreateAssignment({
-        ...requestCreateAssignmentState,
-        setting: {
-          ...settingState,
-          description: editor.getData(),
-        },
-      }),
-    )
+    handleSetting({
+      ...setting,
+      description: editor.getData(),
+    })
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(
-      updateRequestCreateAssignment({
-        ...requestCreateAssignmentState,
-        setting: {
-          ...settingState,
-          name: event.target.value,
-        },
-      }),
-    )
+    handleSetting({
+      ...setting,
+      name: event.target.value,
+    })
   }
+
   const handleChangeRadiobutton = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
-    // dispatch(
-    //   updateRequestCreateAssignment({
-    //     ...requestCreateAssignmentState,
-    //     setting: {
-    //       ...settingState,
-    //       difficulty: ,
-    //     },
-    //   }),
-    // )
+    handleSetting({
+      ...setting,
+      difficulty: +event.target.value,
+    })
   }
 
   return (
@@ -85,7 +78,7 @@ export default function SettingTab() {
       <FormControl fullWidth variant='filled'>
         <Typography className={classes.titleTextField}>Name</Typography>
         <TextField
-          value={settingState.name}
+          value={setting.name}
           onChange={handleChange}
           id='outlined-basic'
           variant='outlined'
@@ -95,7 +88,7 @@ export default function SettingTab() {
         <RadioGroup
           row
           onChange={handleChangeRadiobutton}
-          defaultValue={settingState.difficulty}
+          value={setting.difficulty}
           aria-labelledby='demo-row-radio-buttons-group-label'
           name='row-radio-buttons-group'
         >
@@ -117,10 +110,10 @@ export default function SettingTab() {
         </RadioGroup>
         <Typography className={classes.titleTextField}>Description</Typography>
         <CKEditor
-          data={settingState.description}
+          data={setting.description}
           config={config}
           editor={ClassicEditor}
-          onChange={handleOnChangeEditor}
+          onBlur={handleOnChangeEditor}
         ></CKEditor>
       </FormControl>
     </Stack>

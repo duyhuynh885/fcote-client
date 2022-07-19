@@ -64,7 +64,7 @@ export default function ListAssignment() {
         >
           {assignmentsState.map((assignment) => (
             <Grid
-              key={assignment.assignmentId}
+              key={assignment.id}
               sx={{
                 display: 'flex',
                 justifyContent: 'center',

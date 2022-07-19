@@ -33,14 +33,13 @@ export enum StatusEnum {
   SOLVED,
   NOT_SOLVED,
   IN_PROGRESS,
-  FINISHED,
 }
 
 export interface ViewListAssignmentRequestPayload {
   filterByStatus: StatusEnum
   filterByDifficult: DifficultEnum
   searchBy?: string
-  filterByCreatedByUserId?: string
+  filterByCurrentAccount: boolean
   pageSize?: number
   pageNumber?: number
 }
@@ -50,12 +49,15 @@ export interface ViewListAssignmentErrorResponse {
 }
 
 export interface Assignment {
-  assignmentId: string
-  name: string
-  difficult: DifficultEnum
+  id: number
+  title: string
+  image: string
+  score: number
+  totalParticipant: number
+  difficulty: DifficultEnum
   status: StatusEnum
   createdBy: string
-  avatarCreatedBy: string
+  createdAt: string
 }
 
 export interface ViewListAssignmentResponse {

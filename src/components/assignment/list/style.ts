@@ -19,7 +19,7 @@ import { makeStyles } from '@mui/styles'
 const AssignmentItemStyle = makeStyles((theme: Theme) => ({
   container: {
     width: '14.375rem',
-    height: '11.5rem',
+    height: '13rem',
     padding: '10px',
   },
   state: {

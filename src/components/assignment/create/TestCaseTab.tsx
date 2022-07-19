@@ -4,6 +4,11 @@ import React, { useState } from 'react'
 import useStyles from './style'
 import CreateTestCaseModal from './CreateTestCaseModal'
 import RegularButton from '../../../components/common/button/RegularButton'
+import {
+  InputCreateAssignment,
+  OutputCreateAssignment,
+  TestCaseCreateAssignment,
+} from '../../../modules/assignment/create/type'
 
 /**
  * TestCaseTab component
@@ -19,8 +24,15 @@ import RegularButton from '../../../components/common/button/RegularButton'
  * -----------------------------------------------------------------------
  * 28-06-2022         DuyHV           Create
  */
+interface TestCaseTabProps {
+  inputList: InputCreateAssignment[]
+  output: OutputCreateAssignment
+  testCaseList: TestCaseCreateAssignment[]
+  handleTestCaseList: (testCaseList: TestCaseCreateAssignment[]) => void
+}
 
-export default function TestCaseTab() {
+export default function TestCaseTab(props: TestCaseTabProps) {
+  const { inputList, output, testCaseList, handleTestCaseList } = props
   const classes = useStyles()
   const [open, setOpen] = useState(false)
 
@@ -36,6 +48,32 @@ export default function TestCaseTab() {
    */
   const handleClose = () => {
     setOpen(false)
+  }
+
+  /**
+   * Handle create new testCase form
+   */
+  const handleTestCaseFormCreate = (testCase: TestCaseCreateAssignment) => {
+    handleTestCaseList([...testCaseList, testCase])
+  }
+
+  /**
+   * Handle remove testCase form
+   */
+  const handleTestCaseFormRemove = (index: number) => {
+    // const list = [...inputList]
+    // list.splice(index, 1)
+    // handleInputList(list)
+  }
+
+  /**
+   * Handle change testCase form
+   */
+  const handleTestCaseFormChange = (data: InputCreateAssignment, index: number) => {
+    // const list = [...inputList]
+    // const indexOfInputList = _.findIndex(list, { order: index })
+    // list.splice(indexOfInputList, 1, data)
+    // handleInputList(list)
   }
 
   return (
@@ -82,19 +120,28 @@ export default function TestCaseTab() {
         </RegularButton>
       </Stack>
       <Stack direction='column' padding={2}>
-        <GenerateTestCase />
+        {testCaseList.map((testCase) => (
+          <GenerateTestCase key={testCase.order} testCase={testCase} />
+        ))}
       </Stack>{' '}
-      <CreateTestCaseModal open={open} onClose={handleClose} />
+      <CreateTestCaseModal
+        open={open}
+        onClose={handleClose}
+        inputList={inputList}
+        output={output}
+        onSave={handleTestCaseFormCreate}
+      />
     </Stack>
   )
 }
 interface GenerateTestCaseProps {
-  inputGenerate: any
-  outputGenerate: any
+  testCase: TestCaseCreateAssignment
 }
 
 // Form Input Create Assignment
-function GenerateTestCase() {
+function GenerateTestCase(props: GenerateTestCaseProps) {
+  const { testCase } = props
+  console.log(props)
   return (
     <React.Fragment>
       <Accordion>
@@ -103,7 +150,7 @@ function GenerateTestCase() {
           aria-controls='panel1a-content'
           id='panel1a-header'
         >
-          <Typography>Test 1</Typography>
+          <Typography>Test {testCase.order + 1}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>Input:</Typography>

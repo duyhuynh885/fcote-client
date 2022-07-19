@@ -9,18 +9,22 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import useStyles from './style'
 import DeleteIcon from '@mui/icons-material/DeleteOutlined'
-import { object, string } from 'zod'
+import { number, object, string } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import _ from 'lodash'
 import RegularButton from '../../../components/common/button/RegularButton'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../apps/ReduxContainer'
 import { DataType } from '../../../modules/assignment/data-type/type'
+import {
+  InputCreateAssignment,
+  OutputCreateAssignment,
+} from '../../../modules/assignment/create/type'
 
 /**
  * InputOutputTab component
@@ -36,50 +40,62 @@ import { DataType } from '../../../modules/assignment/data-type/type'
  * -----------------------------------------------------------------------
  * 28-06-2022         DuyHV           Create
  */
+interface InputOutputTabProps {
+  inputList: InputCreateAssignment[]
+  output: OutputCreateAssignment
+  handleInputList: (inputList: InputCreateAssignment[]) => void
+  handleOutput: (output: OutputCreateAssignment) => void
+}
 
-export default function InputOutputTab() {
-  // const dispatch = useDispatch<AppDispatch>()
-  // const requestCreateAssignmentState = useSelector(
-  //   (state: RootState) => state.createAssignment.requestBody,
-  // )
-  // const inputOutputState = useSelector(
-  //   (state: RootState) => state.createAssignment.requestBody.inputOutput,
-  // )
-  const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
-  const [inputList, setInputList] = useState<Input[]>([
-    {
-      name: 'arg1',
-      type: 1,
-    } as Input,
-  ])
-  const [output, setOutput] = useState<Output>({ type: 1 } as Output)
-
+export default function InputOutputTab(props: InputOutputTabProps) {
+  const { inputList, output, handleInputList, handleOutput } = props
   const classes = useStyles()
+  const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
+
+  /**
+   * Handle create new form input
+   */
   const handleInputAdd = () => {
-    setInputList([...inputList, { name: `arg${inputList.length + 1}`, type: 1 } as Input])
+    handleInputList([
+      ...inputList,
+      {
+        order: inputList.length,
+        name: `arg${inputList.length + 1}`,
+        type: 1,
+        description: '',
+      } as InputCreateAssignment,
+    ])
   }
 
+  /**
+   * Handle remove form input
+   */
   const handleInputRemove = (index: number) => {
     const list = [...inputList]
     list.splice(index, 1)
-    setInputList(list)
+    handleInputList(list)
   }
 
-  const handleInputChange = (data: Input, index: number) => {
+  /**
+   * Handle change form input
+   */
+  const handleInputChange = (data: InputCreateAssignment, index: number) => {
     const list = [...inputList]
-    const indexOfInputList = _.findIndex(list, { id: index })
+    const indexOfInputList = _.findIndex(list, { order: index })
     list.splice(indexOfInputList, 1, data)
-    setInputList(list)
+    handleInputList(list)
   }
 
-  const handleOutputChange = (data: Output) => {
-    setOutput(data)
+  /**
+   * Handle change form output
+   */
+  const handleOutputChange = (data: OutputCreateAssignment) => {
+    handleOutput(data)
   }
 
   return (
     <Box className={classes.scrollBar}>
       {inputList.map((input, index) => {
-        input['id'] = index
         return (
           <FormInput
             handleChange={handleInputChange}
@@ -113,29 +129,22 @@ export default function InputOutputTab() {
   )
 }
 
-interface Input {
-  id: number
-  name?: string
-  type?: number
-  description?: string
-}
-
 interface FormInputProps {
   listDataType: DataType[]
   index: number
   listSize: number
-  input: Input
+  input: InputCreateAssignment
   handleRemove: (index: number) => void
-  handleChange: (input: Input, index: number) => void
+  handleChange: (input: InputCreateAssignment, index: number) => void
 }
 
 const inputSchema = object({
-  name: string().email('Email is invalid'),
-  type: string(),
+  name: string(),
+  type: number(),
   description: string(),
 })
 
-// Form Input Create Assignment
+// Form InputCreateAssignment Create Assignment
 function FormInput(props: FormInputProps) {
   const { listSize, input, index, handleRemove, handleChange, listDataType } = props
   const [type, setType] = React.useState('' + input.type)
@@ -143,7 +152,7 @@ function FormInput(props: FormInputProps) {
   const {
     register,
     formState: { errors },
-  } = useForm<Input>({
+  } = useForm<InputCreateAssignment>({
     resolver: zodResolver(inputSchema),
   })
   const nameFiled = register('name', { required: true })
@@ -238,24 +247,18 @@ function FormInput(props: FormInputProps) {
   )
 }
 
-interface Output {
-  id: number
-  type?: number
-  description?: string
-}
-
 interface FormOutputProps {
   listDataType: DataType[]
-  output: Output
-  handleChange: (output: Output) => void
+  output: OutputCreateAssignment
+  handleChange: (output: OutputCreateAssignment) => void
 }
+
 const outputSchema = object({
-  name: string().email('Email is invalid'),
-  type: string(),
+  type: number(),
   description: string(),
 })
 
-// Form Input Create Assignment
+// Form InputCreateAssignment Create Assignment
 function FormOutput(props: FormOutputProps) {
   const { listDataType, output, handleChange } = props
   const [type, setType] = React.useState('' + output.type)
@@ -263,14 +266,13 @@ function FormOutput(props: FormOutputProps) {
   const {
     register,
     formState: { errors },
-  } = useForm<Output>({
+  } = useForm<OutputCreateAssignment>({
     resolver: zodResolver(outputSchema),
   })
   const descriptionFiled = register('description', { required: true })
 
   const handleOnChange = (event: any) => {
-    const updates = { [event.target.name]: event.target.value }
-    handleChange(_.merge(output, updates))
+    handleChange({ ...output, description: event.target.value })
   }
 
   const handleChangeSelect = (event: SelectChangeEvent) => {

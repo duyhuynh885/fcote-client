@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Grid, Stack, Tab, Tabs } from '@mui/material'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyles from './style'
@@ -14,6 +14,13 @@ import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../../apps/ReduxContainer'
 import { fetchListLanguageRequest } from '../language/action'
 import { fetchListDataTypeRequest } from '../data-type/action'
+import {
+  InputCreateAssignment,
+  OutputCreateAssignment,
+  SettingCreateAssignment,
+  TestCaseCreateAssignment,
+} from './type'
+import { DifficultEnum } from '../list/type'
 
 /**
  * Create Assignment Pages
@@ -31,34 +38,6 @@ import { fetchListDataTypeRequest } from '../data-type/action'
  * 24-06-2022         DuyHV            Update UI
  */
 
-interface TabPanelProps {
-  children?: React.ReactNode
-  index: number
-  value: number
-}
-
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  }
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
-  return (
-    <div
-      role='tabpanel'
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
-  )
-}
-
 export default function CreateAssignment() {
   const dispatch = useDispatch<AppDispatch>()
   const [value, setValue] = React.useState(0)
@@ -68,6 +47,26 @@ export default function CreateAssignment() {
   const rest = {
     type: 'submit',
   }
+  const [inputList, setInputList] = useState<InputCreateAssignment[]>([
+    {
+      order: 0,
+      name: 'arg1',
+      type: 1,
+      description: '',
+    },
+  ])
+  const [output, setOutput] = useState<OutputCreateAssignment>({
+    order: 0,
+    type: 1,
+    description: '',
+  })
+  const [setting, setSetting] = useState<SettingCreateAssignment>({
+    name: '',
+    description: '',
+    difficulty: DifficultEnum.EASY,
+  })
+  const [authorSolution, setAuthorSolution] = useState<string>('')
+  const [testCaseList, setTestCaseList] = useState<TestCaseCreateAssignment[]>([])
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -102,16 +101,21 @@ export default function CreateAssignment() {
                 </Tabs>
               </Box>
               <TabPanel value={value} index={0}>
-                <SettingTab />
+                <SettingTab setting={setting} handleSetting={setSetting} />
               </TabPanel>
               <TabPanel value={value} index={1}>
                 <LanguageTab />
               </TabPanel>
               <TabPanel value={value} index={2}>
-                <InputOutputTab />
+                <InputOutputTab
+                  inputList={inputList}
+                  output={output}
+                  handleInputList={setInputList}
+                  handleOutput={setOutput}
+                />
               </TabPanel>
               <TabPanel value={value} index={3}>
-                <PreviewTab />
+                <PreviewTab setting={setting} inputList={inputList} output={output} />
               </TabPanel>
             </Grid>
             <Grid className={classes.tabRight} item xs={6} sx={{ height: '100%' }}>
@@ -120,7 +124,12 @@ export default function CreateAssignment() {
                   <EditorTab />
                 </Grid>
                 <Grid item xs={12} sx={{ height: '50%' }}>
-                  <TestCaseTab />
+                  <TestCaseTab
+                    inputList={inputList}
+                    output={output}
+                    testCaseList={testCaseList}
+                    handleTestCaseList={setTestCaseList}
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -145,5 +154,33 @@ export default function CreateAssignment() {
         </form>
       </FormProvider>
     </Stack>
+  )
+}
+
+interface TabPanelProps {
+  children?: React.ReactNode
+  index: number
+  value: number
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  }
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props
+  return (
+    <div
+      role='tabpanel'
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
   )
 }

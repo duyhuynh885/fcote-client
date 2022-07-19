@@ -2,8 +2,9 @@ import { Avatar, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import AssignmentItemStyle from './style'
 import RegularButton from '../../../components/common/button/RegularButton'
-import { Assignment } from '../../../modules/assignment/list/type'
+import { Assignment, DifficultEnum } from '../../../modules/assignment/list/type'
 import history from '../../../configs/routing/history'
+import { formatDate } from '../../../utils/dateUtil'
 
 /**
  * Assignment Item
@@ -28,22 +29,25 @@ interface AssignmentItemProps {
 const AssignmentItem: React.FC<AssignmentItemProps> = (props) => {
   const classes = AssignmentItemStyle()
   const { assignment } = props
-
+  console.log(assignment)
   const handleViewDetailAssignment = () => {
-    history.push('/assignment/' + assignment.assignmentId)
+    history.push('/assignment/' + assignment.id)
   }
 
   return (
     <Paper elevation={8} square className={classes.container}>
       <Stack direction='column' spacing={0.5}>
-        <Typography className={classes.name}>{assignment.name}</Typography>
+        <Typography className={classes.name}>{assignment.title}</Typography>
         <Stack direction='column' justifyContent='center' alignItems='center'>
-          <Avatar alt='Nguyen Tan Huy' src={assignment.avatarCreatedBy} />
+          <Avatar alt='Nguyen Tan Huy' src={assignment.image} />
           <Typography className={classes.userName}>{assignment.createdBy}</Typography>
         </Stack>
         <Stack direction='row' justifyContent='space-between' alignItems='center'>
+          <Typography className={classes.state}>{formatDate(assignment.createdAt)}</Typography>
+        </Stack>
+        <Stack direction='row' justifyContent='space-between' alignItems='center'>
           <Typography className={classes.state}>{assignment.status}</Typography>
-          <Typography className={classes.level}>{assignment.difficult}</Typography>
+          <Typography className={classes.level}>{DifficultEnum[assignment.difficulty]}</Typography>
         </Stack>
         <Stack>
           <RegularButton
