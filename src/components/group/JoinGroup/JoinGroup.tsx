@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Box, IconButton, Modal, Paper, Stack, TextField, Typography } from '@mui/material'
+import { Modal, Paper, Stack, TextField, Typography } from '@mui/material'
 import RegularButton from '../../common/button/RegularButton'
 import useStyle from './style'
 
@@ -21,16 +21,18 @@ interface ButtonProps {
   open: boolean
   onClose: (shown: boolean) => void
 }
+
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 450,
-  bgcolor: 'background.paper',
+  backgroundColor: 'background.paper',
   borderRadius: 3,
   p: 4,
 }
+
 export default function JoinGroup({ open, onClose }: ButtonProps) {
   const classes = useStyle()
   return (
@@ -41,7 +43,7 @@ export default function JoinGroup({ open, onClose }: ButtonProps) {
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
-        <Paper sx={style} className={classes.wrapper}>
+        <Paper sx={style}>
           <div className={classes.root}>
             <Typography className={classes.newGroup}>Join Group</Typography>
           </div>
@@ -49,17 +51,7 @@ export default function JoinGroup({ open, onClose }: ButtonProps) {
             <Typography className={classes.titleTextField}>Group Code</Typography>
             <TextField id='outlined-basic' variant='outlined' />
           </Stack>
-          <Stack
-            direction='row'
-            justifyContent='space-around'
-            alignItems='center'
-            spacing={8}
-            sx={{
-              paddingTop: 2,
-              paddingRight: 2,
-              paddingLeft: 2,
-            }}
-          >
+          <Stack direction='row' justifyContent='space-around' alignItems='center' spacing={8}>
             <RegularButton
               color={'danger'}
               size={'sm'}

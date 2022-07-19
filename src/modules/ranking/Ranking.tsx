@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../apps/ReduxContainer'
 import { clearState, fetchRankingRequest } from './action'
 /**
- * Ranking Pages
+ * ranking Pages
  *
  * Version 1.0
  *

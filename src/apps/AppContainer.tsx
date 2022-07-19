@@ -6,7 +6,7 @@ import { makeStyles } from '@mui/styles'
 import { Stack, Theme } from '@mui/material'
 import Vector1 from '../assets/Vector1.png'
 import Vector from '../assets/Vector.png'
-import { useLocation } from 'react-router-dom'
+import { matchPath, useLocation } from 'react-router-dom'
 import _ from 'lodash'
 import { useSelector } from 'react-redux'
 import { RootState } from './ReduxContainer'
@@ -38,12 +38,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const hideNavbarPath = [
-  '/assignments/create',
+  '/assignment/create',
   '/forbidden',
   '/not-found',
   '/server-error',
-  '/challenge/detail',
-  '/assignments/:assignmentId',
   '/challenge/create',
 ]
 
@@ -51,6 +49,19 @@ function AppContainer() {
   const classes = useStyles()
   const loading = useSelector((state: RootState) => state.loader.loading)
   const location = useLocation()
+
+  const matchWithAssignmentId = matchPath(location.pathname, {
+    path: '/assignment/:assignmentId',
+    exact: true,
+    strict: false,
+  })
+
+  const matchWithChallengeId = matchPath(location.pathname, {
+    path: '/challenge/:challengeId',
+    exact: true,
+    strict: false,
+  })
+
   return (
     <React.Fragment>
       <Loader loading={loading} />
@@ -62,7 +73,11 @@ function AppContainer() {
           minWidth: '1200px',
         }}
       >
-        {_.includes(hideNavbarPath, location.pathname) ? null : <Navbar />}
+        {_.includes(hideNavbarPath, location.pathname) ||
+        matchWithAssignmentId ||
+        matchWithChallengeId ? null : (
+          <Navbar />
+        )}
         <RoutesContainer />
       </Stack>
     </React.Fragment>

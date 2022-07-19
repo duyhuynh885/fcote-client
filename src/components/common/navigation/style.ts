@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textDecoration: 'none',
     textTransform: 'uppercase',
     color: theme.color.darkGray,
-    fontSize: theme.textFont.small,
+    fontSize: theme.textFont.extraSmall,
     fontWeight: 'bold',
     marginLeft: theme.spacing(5),
     '&:hover': {
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   toolbar: {
     color: theme.color.darkGray,
-    fontSize: theme.textFont.extraLarge,
+    fontSize: theme.textFont.large,
     fontWeight: 'bold',
     textTransform: 'capitalize',
   },
@@ -62,6 +62,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: `${theme.color.white} !important`,
     boxShadow: 'none',
     borderBottom: `0.5px solid ${theme.color.darkGray}`,
+  },
+  isActive: {
+    color: theme.color.black,
+    fontWeight: '800 !important',
+  },
+  textDropdown: {
+    color: theme.color.darkGray,
+    fontSize: theme.textFont.extraSmall,
+    fontWeight: '700',
+    marginLeft: theme.spacing(1),
+    '&:hover': {
+      color: theme.color.black,
+      fontWeight: '800',
+    },
   },
 }))
 

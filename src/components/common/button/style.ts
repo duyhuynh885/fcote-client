@@ -24,11 +24,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   textLanguage: {
     color: theme.color.darkGray,
     fontSize: theme.textFont.extraSmall,
-    fontWeight: 'bold',
+    fontWeight: '700',
     marginLeft: theme.spacing(1),
     '&:hover': {
       color: theme.color.black,
-      fontSize: theme.textFont.small,
+      fontWeight: '800',
     },
   },
   button: {
@@ -192,7 +192,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   buttonBack: {
-    fontSize: theme.textFont.large,
+    fontSize: theme.textFont.small,
     fontWeight: '800',
     cursor: 'pointer',
     color: theme.color.black,

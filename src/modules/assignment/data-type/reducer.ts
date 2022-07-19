@@ -1,60 +1,51 @@
-import { DifficultEnum } from '../list/type'
-import {
-  CreateAssignmentAction,
-  CreateAssignmentActionType,
-  CreateAssignmentState,
-  InputOutputCreateAssignment,
-} from './type'
+import { ViewListDataTypeAction, ViewListDataTypeActionType, ViewListDataTypeState } from './type'
 
 /**
  * Reducer for create assignment
  *
  * Version 1.0
  *
- * Date: 22-06-2022
+ * Date: 13-07-2022
  *
  * Copyright
  *
  * Modification Logs:
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
- * 22-06-2022         DuyHV           Create
+ * 13-07-2022         DuyHV           Create
  */
 
-const initialState: CreateAssignmentState = {
+const initialState: ViewListDataTypeState = {
   requesting: false,
   successful: false,
-  messages: {} as Message,
   errors: {} as ErrorMessage,
+  dataType: [],
 }
 
 /**
  * Reducer Authentication
- * @param state CreateAssignmentState
- * @param action CreateAssignmentAction
+ * @param state ViewListDataTypeState
+ * @param action ViewListDataTypeAction
  * @returns
  */
-const reducer = (state = initialState, action: CreateAssignmentAction) => {
+const reducer = (state = initialState, action: ViewListDataTypeAction) => {
   switch (action.type) {
-    case CreateAssignmentActionType.CREATE_ASSIGNMENT_REQUESTING:
+    case ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_REQUESTING:
       return {
         ...state,
         requesting: true,
         successful: false,
       }
 
-    case CreateAssignmentActionType.CREATE_ASSIGNMENT_SUCCESS:
+    case ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_SUCCESS:
       return {
         ...state,
-        messages: {
-          messageEn: action.messageEn,
-          messageVi: action.messageVi,
-        },
         requesting: false,
         successful: true,
+        dataType: action.dataType,
       }
 
-    case CreateAssignmentActionType.CREATE_ASSIGNMENT_ERROR:
+    case ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_ERROR:
       return {
         ...state,
         errors: {
@@ -65,7 +56,7 @@ const reducer = (state = initialState, action: CreateAssignmentAction) => {
         successful: false,
       }
 
-    case CreateAssignmentActionType.CLEAR_STATE:
+    case ViewListDataTypeActionType.CLEAR_STATE:
       return {
         ...initialState,
       }

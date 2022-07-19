@@ -1,7 +1,6 @@
 import {
   IconButton,
   MenuItem,
-  NativeSelect,
   Paper,
   Select,
   SelectChangeEvent,
@@ -36,18 +35,18 @@ import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
  * 24-06-2022      DuyHV               Update UI
  */
 
-interface IProps {
+interface TaskbarFilterProps {
   url: string
 }
 
-export default function TaskbarFilter(props: IProps) {
+export default function TaskbarFilter(props: TaskbarFilterProps) {
   const classes = TaskbarFilterStyle()
   const dispatch = useDispatch<AppDispatch>()
   const filterAssignmentState = useSelector(
     (state: RootState) => state.listAssignment.filterRequest,
   )
-  const [status, setStatus] = useState('ALL')
-  const [difficult, setDifficult] = useState('ALL')
+  const [status, setStatus] = useState('0')
+  const [difficult, setDifficult] = useState('0')
   const [search, setSearch] = useState('')
 
   const handleSearch = () => {
@@ -59,7 +58,7 @@ export default function TaskbarFilter(props: IProps) {
     dispatch(
       updateFilterListAssignmentRequest({
         ...filterAssignmentState,
-        filterByStatus: event.target.value as StatusEnum,
+        filterByStatus: +event.target.value,
       }),
     )
   }
@@ -69,7 +68,7 @@ export default function TaskbarFilter(props: IProps) {
     dispatch(
       updateFilterListAssignmentRequest({
         ...filterAssignmentState,
-        filterByDifficult: event.target.value as DifficultEnum,
+        filterByDifficult: +event.target.value,
       }),
     )
   }
@@ -82,23 +81,57 @@ export default function TaskbarFilter(props: IProps) {
     >
       <Stack direction='row' justifyContent='flex-start' alignItems='center' spacing={2}>
         <FormControl color='success' variant='standard' sx={{ m: 1, minWidth: 120 }}>
+          <Select size='small' className={classes.taskFilterOptions} value='Public'>
+            <MenuItem
+              classes={{ selected: classes.selected }}
+              className={classes.taskFilterOptions}
+              value='Public'
+            >
+              Public
+            </MenuItem>
+            <MenuItem
+              classes={{ selected: classes.selected }}
+              className={classes.taskFilterOptions}
+              value='Created by me'
+            >
+              Created by me
+            </MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl color='success' variant='standard' sx={{ m: 1, minWidth: 120 }}>
           <Select
             value={status}
             size='small'
             onChange={handleChangeFilterByStatus}
             className={classes.taskFilterOptions}
           >
-            <MenuItem className={classes.taskFilterOptions} value={StatusEnum.ALL}>
-              All Status
+            <MenuItem
+              classes={{ selected: classes.selected }}
+              className={classes.taskFilterOptions}
+              value={StatusEnum.ALL}
+            >
+              All statuses
             </MenuItem>
-            <MenuItem className={classes.taskFilterOptions} value={StatusEnum.NOT_YET}>
-              Not yet
+            <MenuItem
+              classes={{ selected: classes.selected }}
+              className={classes.taskFilterOptions}
+              value={StatusEnum.SOLVED}
+            >
+              Solved
             </MenuItem>
-            <MenuItem className={classes.taskFilterOptions} value={StatusEnum.DOING}>
-              Doing
+            <MenuItem
+              classes={{ selected: classes.selected }}
+              className={classes.taskFilterOptions}
+              value={StatusEnum.NOT_SOLVED}
+            >
+              Not solved
             </MenuItem>
-            <MenuItem className={classes.taskFilterOptions} value={StatusEnum.FINISHED}>
-              Finished
+            <MenuItem
+              classes={{ selected: classes.selected }}
+              className={classes.taskFilterOptions}
+              value={StatusEnum.IN_PROGRESS}
+            >
+              In progress
             </MenuItem>
           </Select>
         </FormControl>
@@ -109,16 +142,32 @@ export default function TaskbarFilter(props: IProps) {
             onChange={handleChangeFilterByDifficult}
             value={difficult}
           >
-            <MenuItem className={classes.taskFilterOptions} value={DifficultEnum.ALL}>
-              All Difficulties
+            <MenuItem
+              classes={{ selected: classes.selected }}
+              className={classes.taskFilterOptions}
+              value={DifficultEnum.ALL}
+            >
+              All difficulties
             </MenuItem>
-            <MenuItem className={classes.taskFilterOptions} value={DifficultEnum.EASY}>
+            <MenuItem
+              classes={{ selected: classes.selected }}
+              className={classes.taskFilterOptions}
+              value={DifficultEnum.EASY}
+            >
               Easy
             </MenuItem>
-            <MenuItem className={classes.taskFilterOptions} value={DifficultEnum.MEDIUM}>
+            <MenuItem
+              classes={{ selected: classes.selected }}
+              className={classes.taskFilterOptions}
+              value={DifficultEnum.MEDIUM}
+            >
               Medium
             </MenuItem>
-            <MenuItem className={classes.taskFilterOptions} value={DifficultEnum.HARD}>
+            <MenuItem
+              classes={{ selected: classes.selected }}
+              className={classes.taskFilterOptions}
+              value={DifficultEnum.HARD}
+            >
               Hard
             </MenuItem>
           </Select>

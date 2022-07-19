@@ -20,7 +20,7 @@ import useStyles from '../style'
 
 interface ButtonProps {
   open: boolean
-  onClose: (shown: boolean) => void
+  onClose: () => void
 }
 const style = {
   position: 'absolute',
@@ -113,6 +113,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
               link={false}
               justIcon={false}
               className={''}
+              onClick={onClose}
             >
               Cancel
             </RegularButton>

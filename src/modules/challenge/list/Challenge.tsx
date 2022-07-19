@@ -3,7 +3,7 @@ import React from 'react'
 import TaskbarFilter from '../../../components/common/toolbar/TaskbarFilter'
 import ChallengeOwner from '../../../components/challenge/list/ChallengeOwnerTab'
 import ChallengePublic from '../../../components/challenge/list/ChallengePublicTab'
-import ChanllengeGroup from '../../../components/challenge/list/ChanllengeGroupTab'
+import ChallengeGroup from '../../../components/challenge/list/ChallengeGroupTab'
 import useStyles from './style'
 
 /**
@@ -78,7 +78,7 @@ export default function Challenge() {
             <ChallengePublic />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <ChanllengeGroup />
+            <ChallengeGroup />
           </TabPanel>
           <TabPanel value={value} index={2}>
             <ChallengeOwner />

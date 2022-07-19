@@ -19,6 +19,9 @@ const TaskbarFilterStyle = makeStyles((theme: Theme) => ({
   taskFilterOptions: {
     fontWeight: 'bold',
   },
+  selected: {
+    backgroundColor: `${theme.color.green}30  !important`,
+  },
 }))
 
 export default TaskbarFilterStyle

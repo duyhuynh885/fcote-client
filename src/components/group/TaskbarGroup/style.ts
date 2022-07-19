@@ -14,7 +14,7 @@ import { makeStyles } from '@mui/styles'
  * 04-07-2022      HuyNT2711           Create
  */
 
-const useStyle = makeStyles((theme: any) => ({
+const useStyle = makeStyles(() => ({
   taskFilterOptions: {
     fontWeight: 'bold',
   },

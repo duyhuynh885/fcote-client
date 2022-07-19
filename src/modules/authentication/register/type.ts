@@ -23,7 +23,7 @@ export enum RegisterActionType {
 export interface RegisterRequestPayload {
   firstName: string
   lastName: string
-  userName: string
+  username: string
   email: string
   password: string
 }

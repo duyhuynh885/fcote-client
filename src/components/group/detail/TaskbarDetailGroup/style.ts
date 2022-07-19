@@ -1,5 +1,5 @@
+import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { fontWeight } from '@mui/system'
 /**
  * Taskbar Group
  * <p>
@@ -14,7 +14,7 @@ import { fontWeight } from '@mui/system'
  * ------------------------------------------------
  * 04-07-2022      HuyNT2711           Create
  */
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   taskFilterOptions: {
     fontWeight: 'bold',
   },
