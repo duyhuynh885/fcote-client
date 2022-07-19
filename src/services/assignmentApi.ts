@@ -4,6 +4,14 @@ import {
   CreateAssignmentErrorResponse,
 } from '../modules/assignment/create/type'
 import {
+  ViewListDataTypeResponse,
+  ViewListDataTypeErrorResponse,
+} from '../modules/assignment/data-type/type'
+import {
+  ViewListLanguageResponse,
+  ViewListLanguageErrorResponse,
+} from '../modules/assignment/language/type'
+import {
   ViewListAssignmentRequestPayload,
   ViewListAssignmentErrorResponse,
   ViewListAssignmentResponse,
@@ -33,21 +41,43 @@ const assignmentApi = {
    * @returns ViewListAssignmentErrorResponse
    */
   fetchListAssignment(payload: ViewListAssignmentRequestPayload) {
-    const url = '/assignments'
+    const url = '/assignment/get-list-assignment'
     return axiosClient.post<ViewListAssignmentResponse, ViewListAssignmentErrorResponse>(
       url,
       payload,
+      
     )
   },
 
   /**
-   *  Api for create a assignment
+   * Api for create a assignment
    * @param payload
-   * @returns
+   * @returns CreateAssignmentResponse
+   * @returns CreateAssignmentErrorResponse
    */
   createAssignment(payload: CreateAssignmentRequestPayload) {
-    const url = '/assignments/create'
+    const url = '/assignment/add-update-assignment'
     return axiosClient.post<CreateAssignmentResponse, CreateAssignmentErrorResponse>(url, payload)
+  },
+
+  /**
+   * Api for fetch list of data type
+   * @returns ViewListAssignmentResponse
+   * @returns ViewListAssignmentErrorResponse
+   */
+  fetchListDataType() {
+    const url = '/assignment/get-data-type'
+    return axiosClient.get<ViewListLanguageResponse, ViewListLanguageErrorResponse>(url)
+  },
+
+  /**
+   * Api for fetch list of language
+   * @returns ViewListDataTypeResponse
+   * @returns ViewListDataTypeErrorResponse
+   */
+  fetchListLanguage() {
+    const url = '/assignment/get-language'
+    return axiosClient.get<ViewListDataTypeResponse, ViewListDataTypeErrorResponse>(url)
   },
 }
 

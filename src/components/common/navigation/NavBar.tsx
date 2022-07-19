@@ -11,7 +11,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import LogoBand from '../icon/LogoBand'
 import { useTranslation } from 'react-i18next'
 import ChangLanguage from '../button/ChangeLanguage'
@@ -41,7 +41,7 @@ const pages = [
     title: 'MyProfile',
   },
   {
-    path: '/assignments',
+    path: '/assignment',
     title: 'Assignment',
   },
   {
@@ -49,12 +49,12 @@ const pages = [
     title: 'Challenge',
   },
   {
-    path: '/ranking',
-    title: 'Ranking',
-  },
-  {
     path: '/group',
     title: 'Group',
+  },
+  {
+    path: '/ranking',
+    title: 'Ranking',
   },
 ]
 
@@ -90,34 +90,41 @@ function Navbar() {
   return (
     <AppBar position='sticky' className={classes.navBar}>
       <Toolbar>
-        <LogoBand />
+        <NavLink style={{ color: 'inherit', textDecoration: 'inherit' }} to='/'>
+          <LogoBand />
+        </NavLink>
         {!isAuth() && !loginIsSuccess ? (
           <React.Fragment>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Link to='/about-us' className={classes.link}>
+              <NavLink to='/about-us' activeClassName={classes.isActive} className={classes.link}>
                 {t('AboutUs')}
-              </Link>
-              <Link to='/contact-us' className={classes.link}>
+              </NavLink>
+              <NavLink to='/contact-us' activeClassName={classes.isActive} className={classes.link}>
                 {t('ContactUs')}
-              </Link>
+              </NavLink>
             </Box>
             <ChangLanguage />
             <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-              <Link className={`${classes.button} ${classes.registerBtn}`} to='/register'>
+              <NavLink className={`${classes.button} ${classes.registerBtn}`} to='/register'>
                 {t('Register')}
-              </Link>
-              <Link className={`${classes.button} ${classes.loginBtn}`} to='/login'>
+              </NavLink>
+              <NavLink className={`${classes.button} ${classes.loginBtn}`} to='/login'>
                 {t('Login')}
-              </Link>
+              </NavLink>
             </Box>
           </React.Fragment>
         ) : (
           <React.Fragment>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
-                <Link key={page.path} to={page.path} className={classes.link}>
+                <NavLink
+                  activeClassName={classes.isActive}
+                  key={page.path}
+                  to={page.path}
+                  className={classes.link}
+                >
                   {t(page.title)}
-                </Link>
+                </NavLink>
               ))}
             </Box>
             <ChangLanguage />
@@ -144,10 +151,9 @@ function Navbar() {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign='center'>My Profile</Typography>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign='center'>Account</Typography>
+                  <Typography textAlign='center' className={classes.textDropdown}>
+                    My Profile
+                  </Typography>
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
@@ -155,7 +161,9 @@ function Navbar() {
                     handleLogout()
                   }}
                 >
-                  <Typography textAlign='center'>Logout</Typography>
+                  <Typography textAlign='center' className={classes.textDropdown}>
+                    Logout
+                  </Typography>
                 </MenuItem>
               </Menu>
             </Box>

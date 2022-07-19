@@ -22,24 +22,24 @@ export enum ViewListAssignmentActionType {
 }
 
 export enum DifficultEnum {
-  ALL = 'ALL',
-  EASY = 'EASY',
-  MEDIUM = 'MEDIUM',
-  HARD = 'HARD',
+  ALL,
+  EASY,
+  MEDIUM,
+  HARD,
 }
 
 export enum StatusEnum {
-  ALL = 'ALL',
-  NOT_YET = 'NOT_YET',
-  DOING = 'DOING',
-  FINISHED = 'FINISHED',
+  ALL,
+  SOLVED,
+  NOT_SOLVED,
+  IN_PROGRESS,
 }
 
 export interface ViewListAssignmentRequestPayload {
   filterByStatus: StatusEnum
   filterByDifficult: DifficultEnum
   searchBy?: string
-  filterByCreatedByUserId?: string
+  filterByCurrentAccount: boolean
   pageSize?: number
   pageNumber?: number
 }
@@ -49,12 +49,15 @@ export interface ViewListAssignmentErrorResponse {
 }
 
 export interface Assignment {
-  assignmentId: string
-  name: string
-  difficult: DifficultEnum
+  id: number
+  title: string
+  image: string
+  score: number
+  totalParticipant: number
+  difficulty: DifficultEnum
   status: StatusEnum
   createdBy: string
-  avatarCreatedBy: string
+  createdAt: string
 }
 
 export interface ViewListAssignmentResponse {

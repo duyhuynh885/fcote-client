@@ -73,6 +73,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  menuPaper: {
+    maxHeight: 150,
+  },
 }))
 
 export default useStyles

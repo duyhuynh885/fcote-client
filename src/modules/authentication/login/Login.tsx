@@ -72,13 +72,7 @@ export default function Login() {
    * Load error or success message if exist
    */
   useEffect(() => {
-    if (loginState.errors) {
-      reset()
-    }
-    if (loginState.successful) {
-      dispatch(clearState())
-      reset()
-    }
+    reset()
   }, [loginState.successful, loginState.errors])
 
   /**

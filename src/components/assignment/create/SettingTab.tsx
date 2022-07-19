@@ -1,9 +1,18 @@
-import { FormControl, Stack, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import {
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
+import React from 'react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import useStyles from './style'
-import parse from 'html-react-parser'
+import { SettingCreateAssignment } from '../../../modules/assignment/create/type'
+import { DifficultEnum } from '../../../modules/assignment/list/type'
 
 /**
  * SettingTab component
@@ -21,24 +30,91 @@ import parse from 'html-react-parser'
  */
 
 const config = {
-  toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+  toolbar: [
+    'heading',
+    '|',
+    'bold',
+    'italic',
+    'link',
+    '|',
+    'bulletedList',
+    'numberedList',
+    'blockQuote',
+  ],
 }
-export default function SettingTab() {
+
+interface SettingTabProps {
+  setting: SettingCreateAssignment
+  handleSetting: (setting: SettingCreateAssignment) => void
+}
+
+export default function SettingTab(props: SettingTabProps) {
+  const { setting, handleSetting } = props
   const classes = useStyles()
 
-  const [editorState, setEditorState] = useState('')
-  const handleOnChange = (event: any, editor: ClassicEditor) => {
-    const data = editor.getData()
-    setEditorState(data)
+  const handleOnChangeEditor = (_event: any, editor: ClassicEditor) => {
+    handleSetting({
+      ...setting,
+      description: editor.getData(),
+    })
   }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleSetting({
+      ...setting,
+      name: event.target.value,
+    })
+  }
+
+  const handleChangeRadiobutton = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleSetting({
+      ...setting,
+      difficulty: +event.target.value,
+    })
+  }
+
   return (
     <Stack sx={{ height: '100%' }}>
       <FormControl fullWidth variant='filled'>
         <Typography className={classes.titleTextField}>Name</Typography>
-        <TextField id='outlined-basic' variant='outlined' />
+        <TextField
+          value={setting.name}
+          onChange={handleChange}
+          id='outlined-basic'
+          variant='outlined'
+          size='small'
+        />
+        <Typography className={classes.titleTextField}>Level of difficult</Typography>
+        <RadioGroup
+          row
+          onChange={handleChangeRadiobutton}
+          value={setting.difficulty}
+          aria-labelledby='demo-row-radio-buttons-group-label'
+          name='row-radio-buttons-group'
+        >
+          <FormControlLabel
+            value={DifficultEnum.EASY}
+            control={<Radio size='small' color='success' />}
+            label='Easy'
+          />
+          <FormControlLabel
+            value={DifficultEnum.MEDIUM}
+            control={<Radio size='small' color='success' />}
+            label='Medium'
+          />
+          <FormControlLabel
+            value={DifficultEnum.HARD}
+            control={<Radio size='small' color='success' />}
+            label='Hard'
+          />
+        </RadioGroup>
         <Typography className={classes.titleTextField}>Description</Typography>
-        <CKEditor config={config} editor={ClassicEditor} onChange={handleOnChange}></CKEditor>
-        <div>{parse(editorState)}</div>
+        <CKEditor
+          data={setting.description}
+          config={config}
+          editor={ClassicEditor}
+          onBlur={handleOnChangeEditor}
+        ></CKEditor>
       </FormControl>
     </Stack>
   )

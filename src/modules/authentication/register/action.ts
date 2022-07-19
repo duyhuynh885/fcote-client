@@ -23,7 +23,7 @@ import { RegisterActionType, RegisterRequestAction, RegisterRequestPayload } fro
 export const registerRequest = ({
   firstName,
   lastName,
-  userName,
+  username,
   email,
   password,
 }: RegisterRequestPayload): RegisterRequestAction => {
@@ -31,7 +31,7 @@ export const registerRequest = ({
     type: RegisterActionType.REGISTER_REQUESTING,
     firstName,
     lastName,
-    userName,
+    username,
     email,
     password,
   }

@@ -1,3 +1,5 @@
+import { DifficultEnum } from '../list/type'
+
 /**
  * Type for create assignment
  *
@@ -23,22 +25,25 @@ export enum CreateAssignmentActionType {
 export interface SettingCreateAssignment {
   name: string
   description: string
+  difficulty: DifficultEnum
 }
 
 export interface LanguageCreateAssignment {
-  name: string
-  timeout: number
+  language: string
+  time_limit: number
 }
 
 export interface InputCreateAssignment {
+  order: number
   name: string
-  type: string
+  type: number
   description: string
 }
 
 export interface OutputCreateAssignment {
-  name: string
-  type: string
+  order: number
+  type: number
+  description: string
 }
 
 export interface InputOutputCreateAssignment {
@@ -47,25 +52,28 @@ export interface InputOutputCreateAssignment {
 }
 
 export interface TestCaseInputCreateAssignment {
+  order: number
   name: boolean
   type: string
   value: string
 }
 
 export interface TestCaseOutputCreateAssignment {
+  order: number
   type: string
   value: string
 }
 
 export interface TestCaseCreateAssignment {
   isPrivate: boolean
+  order: number
   input: TestCaseInputCreateAssignment[]
   output: TestCaseOutputCreateAssignment
 }
 
 export interface CreateAssignmentRequestPayload {
-  settings: SettingCreateAssignment
-  languages: LanguageCreateAssignment[]
+  setting: SettingCreateAssignment
+  language: LanguageCreateAssignment[]
   inputOutput: InputOutputCreateAssignment
   authorSolution: string
   testCase: TestCaseCreateAssignment[]

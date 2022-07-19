@@ -3,7 +3,7 @@ import React from 'react'
 import Leaderboard from '../../components/ranking/detail/Leaderboard'
 import TopRanking from '../../components/ranking/detail/TopRanking'
 /**
- * Ranking Pages
+ * ranking Pages
  *
  * Version 1.0
  *

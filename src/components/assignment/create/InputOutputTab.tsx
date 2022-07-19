@@ -9,15 +9,22 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import useStyles from './style'
 import DeleteIcon from '@mui/icons-material/DeleteOutlined'
-import { object, string } from 'zod'
+import { number, object, string } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import _ from 'lodash'
 import RegularButton from '../../../components/common/button/RegularButton'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../apps/ReduxContainer'
+import { DataType } from '../../../modules/assignment/data-type/type'
+import {
+  InputCreateAssignment,
+  OutputCreateAssignment,
+} from '../../../modules/assignment/create/type'
 
 /**
  * InputOutputTab component
@@ -33,35 +40,62 @@ import RegularButton from '../../../components/common/button/RegularButton'
  * -----------------------------------------------------------------------
  * 28-06-2022         DuyHV           Create
  */
+interface InputOutputTabProps {
+  inputList: InputCreateAssignment[]
+  output: OutputCreateAssignment
+  handleInputList: (inputList: InputCreateAssignment[]) => void
+  handleOutput: (output: OutputCreateAssignment) => void
+}
 
-export default function InputOutputTab() {
-  const [inputList, setInputList] = useState<Input[]>([{} as Input])
-  const [output, setOutput] = useState<Output>({} as Output)
-
+export default function InputOutputTab(props: InputOutputTabProps) {
+  const { inputList, output, handleInputList, handleOutput } = props
   const classes = useStyles()
+  const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
+
+  /**
+   * Handle create new form input
+   */
   const handleInputAdd = () => {
-    setInputList([...inputList, {} as Input])
+    handleInputList([
+      ...inputList,
+      {
+        order: inputList.length,
+        name: `arg${inputList.length + 1}`,
+        type: 1,
+        description: '',
+      } as InputCreateAssignment,
+    ])
   }
 
+  /**
+   * Handle remove form input
+   */
   const handleInputRemove = (index: number) => {
     const list = [...inputList]
     list.splice(index, 1)
-    setInputList(list)
+    handleInputList(list)
   }
 
-  const handleInputChange = (data: Input, index: number) => {
+  /**
+   * Handle change form input
+   */
+  const handleInputChange = (data: InputCreateAssignment, index: number) => {
     const list = [...inputList]
-    const indexOfInputList = _.findIndex(list, { id: index })
+    const indexOfInputList = _.findIndex(list, { order: index })
     list.splice(indexOfInputList, 1, data)
-    setInputList(list)
+    handleInputList(list)
+  }
+
+  /**
+   * Handle change form output
+   */
+  const handleOutputChange = (data: OutputCreateAssignment) => {
+    handleOutput(data)
   }
 
   return (
     <Box className={classes.scrollBar}>
-      {/* <FormInput /> */}
-
       {inputList.map((input, index) => {
-        input['id'] = index
         return (
           <FormInput
             handleChange={handleInputChange}
@@ -70,6 +104,7 @@ export default function InputOutputTab() {
             key={index}
             listSize={inputList.length}
             input={input}
+            listDataType={dataTypeState}
           />
         )
       })}
@@ -89,47 +124,35 @@ export default function InputOutputTab() {
         + ADD INPUT
       </RegularButton>
       <Divider />
-      <FormOutput />
+      <FormOutput listDataType={dataTypeState} output={output} handleChange={handleOutputChange} />
     </Box>
   )
 }
 
-interface Input {
-  id: number
-  name?: string
-  type?: string
-  description?: string
-}
-
-interface Output {
-  id: number
-  type?: string
-  description?: string
-}
-
 interface FormInputProps {
+  listDataType: DataType[]
   index: number
   listSize: number
-  input: Input
+  input: InputCreateAssignment
   handleRemove: (index: number) => void
-  handleChange: (input: Input, index: number) => void
+  handleChange: (input: InputCreateAssignment, index: number) => void
 }
 
 const inputSchema = object({
-  name: string().email('Email is invalid'),
-  type: string(),
+  name: string(),
+  type: number(),
   description: string(),
 })
 
-// Form Input Create Assignment
+// Form InputCreateAssignment Create Assignment
 function FormInput(props: FormInputProps) {
-  const { listSize, input, index, handleRemove, handleChange } = props
-  const [type, setType] = React.useState('')
+  const { listSize, input, index, handleRemove, handleChange, listDataType } = props
+  const [type, setType] = React.useState('' + input.type)
   const classes = useStyles()
   const {
     register,
     formState: { errors },
-  } = useForm<Input>({
+  } = useForm<InputCreateAssignment>({
     resolver: zodResolver(inputSchema),
   })
   const nameFiled = register('name', { required: true })
@@ -149,85 +172,113 @@ function FormInput(props: FormInputProps) {
 
   return (
     <React.Fragment>
-      <form>
-        {listSize !== 1 && index !== 0 && <Divider sx={{ margin: '10px 0px' }} />}
-        <Stack direction='row' justifyContent='space-between' alignItems='center'>
-          <Typography className={classes.titleNameInput}>Input {index + 1}</Typography>
-          {listSize !== 1 && index !== 0 && (
-            <IconButton
-              onClick={() => {
-                handleRemove(index)
-              }}
-              aria-label='delete'
-            >
-              <DeleteIcon fontSize='small' color='error' />
-            </IconButton>
-          )}
-        </Stack>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Typography className={classes.titleTextField}>Name</Typography>
-            <TextField
-              value={input.name}
-              fullWidth
-              id='outlined-basic'
-              variant='outlined'
-              {...nameFiled}
-              onChange={(e) => {
-                nameFiled.onChange(e)
-                handleOnChange(e)
-              }}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <FormControl fullWidth>
-              <Typography className={classes.titleTextField}>Type</Typography>
-              <Select
-                labelId='demo-simple-select-label'
-                id='demo-simple-select'
-                value={type}
-                {...typeFiled}
-                onChange={(e) => {
-                  typeFiled.onChange(e)
-                  handleChangeSelect(e)
-                }}
-              >
-                {['Integer', 'Double', 'String', 'Float', 'Character'].map((value) => {
-                  return (
-                    <MenuItem key={value} value={value}>
-                      {value}
-                    </MenuItem>
-                  )
-                })}
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography className={classes.titleTextField}>Description</Typography>
+      {listSize !== 1 && index !== 0 && <Divider sx={{ margin: '10px 0px' }} />}
+      <Stack direction='row' justifyContent='space-between' alignItems='center'>
+        <Typography className={classes.titleNameInput}>Input {index + 1}</Typography>
+        {listSize !== 1 && index !== 0 && (
+          <IconButton
+            onClick={() => {
+              handleRemove(index)
+            }}
+            aria-label='delete'
+          >
+            <DeleteIcon fontSize='small' color='error' />
+          </IconButton>
+        )}
+      </Stack>
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Typography className={classes.titleTextField}>Name</Typography>
           <TextField
+            size='small'
+            value={input.name}
             fullWidth
-            multiline
-            value={input.description}
-            rows={2}
-            {...descriptionFiled}
+            id='outlined-basic'
+            variant='outlined'
+            {...nameFiled}
             onChange={(e) => {
-              descriptionFiled.onChange(e)
+              nameFiled.onChange(e)
               handleOnChange(e)
             }}
           />
         </Grid>
-      </form>
+        <Grid item xs={6}>
+          <FormControl fullWidth sx={{ height: 50 }}>
+            <Typography className={classes.titleTextField}>Type</Typography>
+            <Select
+              size='small'
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
+              value={type}
+              MenuProps={{ classes: { paper: classes.menuPaper } }}
+              {...typeFiled}
+              onChange={(e) => {
+                typeFiled.onChange(e)
+                handleChangeSelect(e)
+              }}
+            >
+              {listDataType.map((dataType) => {
+                return (
+                  <MenuItem key={dataType.value} value={dataType.value}>
+                    {dataType.name}
+                  </MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <Typography className={classes.titleTextField}>Description</Typography>
+        <TextField
+          size='small'
+          fullWidth
+          multiline
+          value={input.description}
+          rows={2}
+          {...descriptionFiled}
+          onChange={(e) => {
+            descriptionFiled.onChange(e)
+            handleOnChange(e)
+          }}
+        />
+      </Grid>
     </React.Fragment>
   )
 }
 
-// Form Input Create Assignment
-function FormOutput() {
-  const [type, setType] = React.useState('')
+interface FormOutputProps {
+  listDataType: DataType[]
+  output: OutputCreateAssignment
+  handleChange: (output: OutputCreateAssignment) => void
+}
+
+const outputSchema = object({
+  type: number(),
+  description: string(),
+})
+
+// Form InputCreateAssignment Create Assignment
+function FormOutput(props: FormOutputProps) {
+  const { listDataType, output, handleChange } = props
+  const [type, setType] = React.useState('' + output.type)
   const classes = useStyles()
+  const {
+    register,
+    formState: { errors },
+  } = useForm<OutputCreateAssignment>({
+    resolver: zodResolver(outputSchema),
+  })
+  const descriptionFiled = register('description', { required: true })
+
+  const handleOnChange = (event: any) => {
+    handleChange({ ...output, description: event.target.value })
+  }
+
   const handleChangeSelect = (event: SelectChangeEvent) => {
-    setType(event.target.value as string)
+    setType(event.target.value)
+    const updates = { [event.target.name]: event.target.value }
+    handleChange(_.merge(output, updates))
   }
 
   return (
@@ -238,15 +289,17 @@ function FormOutput() {
       <FormControl fullWidth>
         <Typography className={classes.titleTextField}>Type</Typography>
         <Select
+          size='small'
           labelId='demo-simple-select-label'
           id='demo-simple-select'
           value={type}
           onChange={handleChangeSelect}
+          MenuProps={{ classes: { paper: classes.menuPaper } }}
         >
-          {['Integer', 'Double', 'String', 'Float', 'Character'].map((value) => {
+          {listDataType.map((dataType) => {
             return (
-              <MenuItem key={value} value={value}>
-                {value}
+              <MenuItem key={dataType.value} value={dataType.value}>
+                {dataType.name}
               </MenuItem>
             )
           })}
@@ -254,7 +307,18 @@ function FormOutput() {
       </FormControl>
       <Grid item xs={12}>
         <Typography className={classes.titleTextField}>Description</Typography>
-        <TextField fullWidth multiline rows={2} />
+        <TextField
+          {...descriptionFiled}
+          onChange={(e) => {
+            descriptionFiled.onChange(e)
+            handleOnChange(e)
+          }}
+          value={output.description}
+          size='small'
+          fullWidth
+          multiline
+          rows={2}
+        />
       </Grid>
     </React.Fragment>
   )

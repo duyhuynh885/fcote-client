@@ -1,3 +1,6 @@
+import { Theme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+
 /**
  *
  * <p>
@@ -13,13 +16,7 @@
  * 04-07-2022      HuyNT2711           Create
  */
 
-import { makeStyles } from '@mui/styles'
-const useStyle = makeStyles((theme: any) => ({
-  wrapper: {
-    width: '45rem',
-    height: 'auto',
-  },
-
+const useStyle = makeStyles((theme: Theme) => ({
   root: {
     alignSelf: 'center',
     justifyContent: 'center',

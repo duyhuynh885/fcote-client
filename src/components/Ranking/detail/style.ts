@@ -1,4 +1,3 @@
-import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
 /**
@@ -15,7 +14,7 @@ import { makeStyles } from '@mui/styles'
  * -----------------------------------------------------------------------
  * 24-06-2022         TuanLA           Create
  */
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   paperRoot: {
     backgroundColor: 'inherit',
     boxShadow: 'none',

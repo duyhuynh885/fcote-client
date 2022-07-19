@@ -26,16 +26,16 @@ import {
  * @returns CreateAssignmentRequestAction
  */
 export const createAssignmentRequest = ({
-  settings,
-  languages,
+  setting,
+  language,
   inputOutput,
   authorSolution,
   testCase,
 }: CreateAssignmentRequestPayload): CreateAssignmentRequestAction => {
   return {
     type: CreateAssignmentActionType.CREATE_ASSIGNMENT_REQUESTING,
-    settings,
-    languages,
+    setting,
+    language,
     inputOutput,
     authorSolution,
     testCase,

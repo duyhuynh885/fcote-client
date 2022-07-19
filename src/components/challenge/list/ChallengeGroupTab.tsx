@@ -44,7 +44,7 @@ const groupList = [
   'Group @mui/material/ListItemText ',
 ]
 
-export default function ChanllengeGroup() {
+export default function ChallengeGroup() {
   const classes = useStyles()
   return (
     <Stack>

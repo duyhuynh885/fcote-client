@@ -32,7 +32,7 @@ function* viewListAssignmentFlow({
   filterByStatus,
   filterByDifficult,
   searchBy,
-  filterByCreatedByUserId,
+  filterByCurrentAccount,
   pageSize,
   pageNumber,
 }: ViewListAssignmentRequestAction) {
@@ -42,7 +42,7 @@ function* viewListAssignmentFlow({
       filterByStatus,
       filterByDifficult,
       searchBy,
-      filterByCreatedByUserId,
+      filterByCurrentAccount,
       pageSize,
       pageNumber,
     })

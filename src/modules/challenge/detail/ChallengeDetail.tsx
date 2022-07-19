@@ -22,7 +22,7 @@ export default function ChallengeDetail() {
   return (
     <Stack>
       <InsideNavBar namePage='Challenge Detail' />
-      <Stack sx={{ marginLeft: '8.5%' }}>
+      <Stack direction='row' justifyContent='center' alignItems='center' margin={5}>
         <TableChallenge />
       </Stack>
     </Stack>

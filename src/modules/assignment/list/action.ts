@@ -30,7 +30,7 @@ export const fetchListAssignmentRequest = ({
   filterByStatus,
   filterByDifficult,
   searchBy,
-  filterByCreatedByUserId,
+  filterByCurrentAccount,
   pageSize,
   pageNumber,
 }: ViewListAssignmentRequestPayload): ViewListAssignmentRequestAction => {
@@ -39,7 +39,7 @@ export const fetchListAssignmentRequest = ({
     filterByStatus,
     filterByDifficult,
     searchBy,
-    filterByCreatedByUserId,
+    filterByCurrentAccount,
     pageSize,
     pageNumber,
   }
@@ -54,7 +54,7 @@ export const updateFilterListAssignmentRequest = ({
   filterByStatus,
   filterByDifficult,
   searchBy,
-  filterByCreatedByUserId,
+  filterByCurrentAccount,
   pageSize,
   pageNumber,
 }: ViewListAssignmentRequestPayload): UpdateFilterListAssignmentAction => {
@@ -63,7 +63,7 @@ export const updateFilterListAssignmentRequest = ({
     filterByStatus,
     filterByDifficult,
     searchBy,
-    filterByCreatedByUserId,
+    filterByCurrentAccount,
     pageSize,
     pageNumber,
   }

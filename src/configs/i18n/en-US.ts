@@ -32,6 +32,7 @@ const m = {
   CreateAccount: 'CreateAccount',
   ErrorUnAuthorized: 'We’re working on it!',
   GoHome: 'Go Home',
+  Group: 'Group',
 }
 
 export default m

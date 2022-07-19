@@ -40,12 +40,12 @@ export default function TopRanking() {
             </Grid>
             <Grid item>
               <Stack direction='column' alignItems='center'>
-              <TopMember rank={1} avatar='' name='Le Anh Tuan' score={9000} university='FPT' />
+                <TopMember rank={1} avatar='' name='Le Anh Tuan' score={9000} university='FPT' />
               </Stack>
             </Grid>
             <Grid item>
               <Stack direction='column' alignItems='center'>
-              <TopMember rank={3} avatar='' name='Le Anh Tuan' score={7000} university='FPT' />
+                <TopMember rank={3} avatar='' name='Le Anh Tuan' score={7000} university='FPT' />
               </Stack>
             </Grid>
           </Grid>

@@ -1,14 +1,8 @@
 import React from 'react'
-import {
-  Checkbox,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Stack,
-  TextField,
-} from '@mui/material'
+import { Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import useStyles from './style'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../apps/ReduxContainer'
 
 /**
  * Language tab component
@@ -26,51 +20,33 @@ import {
  */
 
 export default function LanguageTab() {
-  const [checked, setChecked] = React.useState([''])
-  let index = 0
-
-  const handleToggle = (value: string) => () => {
-    const currentIndex = checked.indexOf(value)
-    const newChecked = [...checked]
-
-    if (currentIndex === -1) {
-      newChecked.push(value)
-    } else {
-      newChecked.splice(currentIndex, 1)
-    }
-
-    setChecked(newChecked)
-  }
+  const classes = useStyles()
+  const languageState = useSelector((state: RootState) => state.language.languages)
   return (
     <Stack>
-      <List
-        sx={{
-          width: '100%',
-          maxWidth: 'auto',
-          bgcolor: 'background.paper',
-        }}
-      >
-        {['C#', 'Java', 'Python2', 'Python3', 'C', 'C++', 'JavaScript'].map((value) => {
-          const labelId = `checkbox-list-label-${index++}`
-          return (
-            <ListItem key={value} disablePadding>
-              <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
-                <ListItemIcon>
-                  <Checkbox
-                    edge='start'
-                    checked={checked.indexOf(value) !== -1}
-                    tabIndex={-1}
-                    disableRipple
-                    inputProps={{ 'aria-labelledby': labelId }}
-                  />
-                </ListItemIcon>
-                <ListItemText id={labelId} primary={`${value}`} />
-                <TextField id='standard-basic' variant='standard' />
-              </ListItemButton>
-            </ListItem>
-          )
-        })}
-      </List>
+      <Typography textAlign='center' className={classes.tabTitle}>
+        Set timeout for languages (default 10second)
+      </Typography>
+      <Table aria-label='caption table'>
+        <TableHead>
+          <TableRow>
+            <TableCell className={classes.titleTextField} align='left'>
+              Language
+            </TableCell>
+            <TableCell className={classes.titleTextField} align='left'>
+              Timeout
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {languageState.map((language) => (
+            <TableRow key={language.id}>
+              <TableCell align='left'>{language.title}</TableCell>
+              <TableCell align='left'>10 s</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </Stack>
   )
 }
