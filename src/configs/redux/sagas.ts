@@ -5,7 +5,7 @@ import viewListAssignmentSaga from '../../modules/assignment/list/saga'
 import createAssignmentSaga from '../../modules/assignment/create/saga'
 import dataTypeSaga from '../../modules/assignment/data-type/saga'
 import languageSaga from '../../modules/assignment/language/saga'
-
+import rankingSaga from '../../modules/ranking/saga'
 /**
  * Root Saga
  */
@@ -17,5 +17,6 @@ export default function* rootSaga() {
     fork(createAssignmentSaga),
     fork(dataTypeSaga),
     fork(languageSaga),
+    fork(rankingSaga),
   ])
 }

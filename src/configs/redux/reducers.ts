@@ -7,6 +7,7 @@ import listAssignmentReducer from '../../modules/assignment/list/reducer'
 import createAssignmentReducer from '../../modules/assignment/create/reducer'
 import dataTypeReducer from '../../modules/assignment/data-type/reducer'
 import languageReducer from '../../modules/assignment/language/reducer'
+import rankingReducer from '../../modules/ranking/reducer'
 
 /**
  * Root Reducer
@@ -21,6 +22,7 @@ const rootReducer = (history: any) =>
     register: registerReducer,
     loader: loaderReducer,
     listAssignment: listAssignmentReducer,
+    ranking: rankingReducer,
     createAssignment: createAssignmentReducer,
     dataType: dataTypeReducer,
     language: languageReducer,

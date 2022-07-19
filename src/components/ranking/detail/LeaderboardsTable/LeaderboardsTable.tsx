@@ -16,6 +16,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import { useTheme } from '@mui/material/styles'
+import { UserInfor } from '../../../../modules/ranking/type'
 
 /**
  * Leaderboard component
@@ -33,7 +34,7 @@ import { useTheme } from '@mui/material/styles'
  */
 
 interface Column {
-  id: 'rank' | 'fullname' | 'university' | 'group' | 'individual' | 'score'
+  id: 'rank' | 'fullname' | 'university' | 'group' | 'individual' | 'score' | 'username'
   label: string
   minWidth?: number
   align?: 'right' | 'center' | 'left'
@@ -112,19 +113,11 @@ function createType(
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-const rows = [
-  createData(1, 'Le Anh Tuan', 'FPT University', 9999),
-  createData(2, 'Le Anh Tuan', 'FPT University', 8888),
-  createData(3, 'Le Anh Tuan', 'FPT University', 7777),
-  createData(4, 'Le Anh Tuan', 'FPT University', 6666),
-  createData(5, 'Le Anh Tuan', 'FPT University', 5555),
-  createData(6, 'Le Anh Tuan', 'FPT University', 4444),
-].sort((a, b) => (a.rank < b.rank ? -1 : 1))
+} 
 
 interface TypeLeaderBoard {
   type: 'rank' | 'fullname' | 'university' | 'group' | 'individual' | 'score'
+  rankingList: UserInfor[]
 }
 
 export default function LeaderboardsTable(props: TypeLeaderBoard) {
@@ -132,15 +125,17 @@ export default function LeaderboardsTable(props: TypeLeaderBoard) {
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
   const columns: readonly Column[] = [
     { id: 'rank', label: '#', minWidth: 10 },
-    { id: 'fullname', label: 'Full Name', minWidth: 100, align: 'left' },
+    { id: 'username', label: 'Username', minWidth: 100, align: 'left' },
     createType(props.type, capitalizeFirstLetter(props.type), 170, 'center'),
     {
       id: 'score',
-      label: 'Score',
+      label: 'Total Score',
       minWidth: 170,
       align: 'right',
     },
   ]
+
+  const rows = props.rankingList
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
 
@@ -171,18 +166,18 @@ export default function LeaderboardsTable(props: TypeLeaderBoard) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <TableRow key={row.rank}>
+            <TableRow key={row.id}>
               <TableCell component='th' scope='row' style={{ width: 10 }}>
-                {row.rank}
+                {row.order}
               </TableCell>
               <TableCell style={{ width: 160 }} align='left'>
-                {row.fullname}
+                {row.username}
               </TableCell>
               <TableCell style={{ width: 160 }} align='center'>
-                {row.university}
+                {row.organization}
               </TableCell>
               <TableCell style={{ width: 160 }} align='right'>
-                {row.score}
+                {row.total_score}
               </TableCell>
             </TableRow>
           ))}
