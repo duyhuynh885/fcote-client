@@ -66,6 +66,16 @@ const reducer = (state = initialState, action: RankingAction) => {
         successful: false,
       }
 
+    case RankingActionType.UPDATE_FILTER_RANKING:
+      return {
+        ...state,
+        rankingTypeRequest : {
+          typeRanking: action.typeRanking,
+          pageSize: action.pageSize,
+          pageNumber: action.pageNumber
+        }
+      }
+
     default:
       return state
   }

@@ -11,6 +11,7 @@
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
  * 11-07-2022         TuanLA           Create
+ * 19-07-2022         TuanLA           Update Action Type
  */
 
 export enum RankingActionType {
@@ -18,6 +19,7 @@ export enum RankingActionType {
   RANKING_SUCCESS = 'RANKING_SUCCESS',
   RANKING_ERROR = 'RANKING_ERROR',
   CLEAR_STATE = 'CLEAR_STATE',
+  UPDATE_FILTER_RANKING = 'UPDATE_FILTER_RANKING',
 }
 
 export enum RankingTypeState {
@@ -64,8 +66,12 @@ export type RankingErrorAction = ActionWithPayload<
   RankingErrorResponse
 >
 export type RankingClearStateAction = Action<RankingActionType.CLEAR_STATE>
+export type UpdateFilterRankingAction = ActionWithPayload<
+  RankingActionType.UPDATE_FILTER_RANKING,
+  RankingRequestPayload
+>
 
-export type RankingAction = RankingRequestAction | RankingSuccessAction | RankingErrorAction
+export type RankingAction = RankingRequestAction | RankingSuccessAction | RankingErrorAction | UpdateFilterRankingAction
 
 export interface RankingState {
   requesting: boolean

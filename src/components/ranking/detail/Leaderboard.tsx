@@ -4,6 +4,10 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import useStyles from './style'
 import LeaderboardsTable from './LeaderboardsTable/LeaderboardsTable'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import { updateFillterRankingRequest } from '../../../modules/ranking/action'
+import { RankingTypeState } from '../../../modules/ranking/type'
 /**
  * Leaderboard component
  *
@@ -17,6 +21,7 @@ import LeaderboardsTable from './LeaderboardsTable/LeaderboardsTable'
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
  * 24-06-2022         TuanLA           Create
+ * 19-07-2022         TuanLA           Update fetch API
  */
 
 interface TabPanelProps {
@@ -54,9 +59,11 @@ function ChangeValueProps(index: number) {
 export default function Leaderboard(props: any) {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
-
+  const dispatch = useDispatch<AppDispatch>()
+  const filterRankingState = useSelector((state: RootState) => state.ranking.rankingTypeRequest)
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
+    dispatch(updateFillterRankingRequest({ ...filterRankingState, typeRanking: newValue + 1 }))
   }
   return (
     <Paper
@@ -72,18 +79,14 @@ export default function Leaderboard(props: any) {
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label='Leaderboard'>
             <Tab label='Universities' {...ChangeValueProps(0)} />
-            <Tab label='Individual' {...ChangeValueProps(1)} />
-            <Tab label='Group' {...ChangeValueProps(2)} />
+            <Tab label='Organization' {...ChangeValueProps(1)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <LeaderboardsTable type='university' rankingList={props.data}/>
+          <LeaderboardsTable type='university' rankingList={props.data} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <LeaderboardsTable type='individual' rankingList={props.data}/>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <LeaderboardsTable type='group' rankingList={props.data}/>
+          <LeaderboardsTable type='organization' rankingList={props.data} />
         </TabPanel>
       </Box>
     </Paper>
