@@ -113,16 +113,7 @@ function createType(
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-// const rows = [
-//   createData(1, 'Le Anh Tuan', 'FPT University', 9999),
-//   createData(2, 'Le Anh Tuan', 'FPT University', 8888),
-//   createData(3, 'Le Anh Tuan', 'FPT University', 7777),
-//   createData(4, 'Le Anh Tuan', 'FPT University', 6666),
-//   createData(5, 'Le Anh Tuan', 'FPT University', 5555),
-//   createData(6, 'Le Anh Tuan', 'FPT University', 4444),
-// ].sort((a, b) => (a.rank < b.rank ? -1 : 1))
+} 
 
 interface TypeLeaderBoard {
   type: 'rank' | 'fullname' | 'university' | 'group' | 'individual' | 'score'
