@@ -1,4 +1,8 @@
-import { Accordion, AccordionDetails, AccordionSummary, Stack, Typography } from '@mui/material'
+import { Box, IconButton, Stack, Typography } from '@mui/material'
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp'
+import MuiAccordion, { AccordionProps } from '@mui/material/Accordion'
+import MuiAccordionSummary, { AccordionSummaryProps } from '@mui/material/AccordionSummary'
+import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import React, { useState } from 'react'
 import useStyles from './style'
@@ -9,6 +13,10 @@ import {
   OutputCreateAssignment,
   TestCaseCreateAssignment,
 } from '../../../modules/assignment/create/type'
+import DeleteIcon from '@mui/icons-material/DeleteOutlined'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import _ from 'lodash'
+import { styled } from '@mui/material/styles'
 
 /**
  * TestCaseTab component
@@ -60,10 +68,11 @@ export default function TestCaseTab(props: TestCaseTabProps) {
   /**
    * Handle remove testCase form
    */
-  const handleTestCaseFormRemove = (index: number) => {
-    // const list = [...inputList]
-    // list.splice(index, 1)
-    // handleInputList(list)
+  const handleTestCaseFormRemove = (order: number) => {
+    const list = [...testCaseList]
+    const index = _.findIndex(list, { order: order })
+    list.splice(index, 1)
+    handleTestCaseList(list)
   }
 
   /**
@@ -104,24 +113,14 @@ export default function TestCaseTab(props: TestCaseTabProps) {
         >
           + ADD TEST
         </RegularButton>
-        <RegularButton
-          color={'dotted'}
-          size={'sm'}
-          round={false}
-          fullWidth={true}
-          disabled={false}
-          simple={false}
-          block={false}
-          link={false}
-          justIcon={false}
-          className={''}
-        >
-          + RANDOM TEST
-        </RegularButton>
       </Stack>
-      <Stack direction='column' padding={2}>
+      <Stack direction='column' padding={2} className={classes.scrollBarTestCase}>
         {testCaseList.map((testCase) => (
-          <GenerateTestCase key={testCase.order} testCase={testCase} />
+          <GenerateTestCase
+            key={testCase.order}
+            testCase={testCase}
+            handleRemove={handleTestCaseFormRemove}
+          />
         ))}
       </Stack>{' '}
       <CreateTestCaseModal
@@ -130,18 +129,20 @@ export default function TestCaseTab(props: TestCaseTabProps) {
         inputList={inputList}
         output={output}
         onSave={handleTestCaseFormCreate}
+        currentSize={testCaseList.length}
       />
     </Stack>
   )
 }
 interface GenerateTestCaseProps {
   testCase: TestCaseCreateAssignment
+  handleRemove: (index: number) => void
 }
 
 // Form Input Create Assignment
 function GenerateTestCase(props: GenerateTestCaseProps) {
-  const { testCase } = props
-  console.log(props)
+  const { testCase, handleRemove } = props
+  const classes = useStyles()
   return (
     <React.Fragment>
       <Accordion>
@@ -150,13 +151,95 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
           aria-controls='panel1a-content'
           id='panel1a-header'
         >
-          <Typography>Test {testCase.order + 1}</Typography>
+          <Stack
+            sx={{ width: '100%' }}
+            direction='row'
+            justifyContent='space-between'
+            alignItems='center'
+            spacing={2}
+          >
+            <Typography className={classes.titleTextField}>TEST {testCase.order}</Typography>
+            <Box>
+              <IconButton aria-label='delete'>
+                <EditOutlinedIcon fontSize='small' color='primary' />
+              </IconButton>
+              <IconButton
+                onClick={() => {
+                  handleRemove(testCase.order)
+                }}
+                aria-label='delete'
+              >
+                <DeleteIcon fontSize='small' color='error' />
+              </IconButton>
+            </Box>
+          </Stack>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Input:</Typography>
-          <Typography>Output:</Typography>
+          <Stack direction='row'>
+            <Typography
+              sx={{
+                width: '80px',
+              }}
+              className={classes.tabTitle}
+            >
+              Input:
+            </Typography>
+            <Stack direction='column'>
+              {testCase.input.map((_input) => (
+                <Typography
+                  key={_input.order}
+                  className={classes.tabTitle}
+                >{`${_input.name} ${_input.value}`}</Typography>
+              ))}
+            </Stack>
+          </Stack>
+          <Stack direction='row'>
+            <Typography
+              sx={{
+                width: '80px',
+              }}
+              className={classes.tabTitle}
+            >
+              Output:
+            </Typography>
+            <Typography className={classes.tabTitle}>{testCase.output.value}</Typography>
+          </Stack>
         </AccordionDetails>
       </Accordion>
     </React.Fragment>
   )
 }
+
+const Accordion = styled((props: AccordionProps) => (
+  <MuiAccordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+  border: `1px solid ${theme.palette.divider}`,
+  '&:not(:last-child)': {
+    borderBottom: 0,
+  },
+  '&:before': {
+    display: 'none',
+  },
+}))
+
+const AccordionSummary = styled((props: AccordionSummaryProps) => (
+  <MuiAccordionSummary
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+    {...props}
+  />
+))(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, .05)' : 'rgba(0, 0, 0, .03)',
+  flexDirection: 'row-reverse',
+  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+    transform: 'rotate(90deg)',
+  },
+  '& .MuiAccordionSummary-content': {
+    marginLeft: theme.spacing(1),
+  },
+}))
+
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+  padding: theme.spacing(2),
+  borderTop: '1px solid rgba(0, 0, 0, .125)',
+}))

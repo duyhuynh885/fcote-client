@@ -24,26 +24,27 @@ export enum CreateAssignmentActionType {
 
 export interface SettingCreateAssignment {
   name: string
-  description: string
+  description?: string
   difficulty: DifficultEnum
 }
 
 export interface LanguageCreateAssignment {
   language: string
-  time_limit: number
+  timeLimit: number
 }
 
 export interface InputCreateAssignment {
   order: number
   name: string
   type: number
-  description: string
+  description?: string
 }
 
 export interface OutputCreateAssignment {
   order: number
+  name: string
   type: number
-  description: string
+  description?: string
 }
 
 export interface InputOutputCreateAssignment {
@@ -53,14 +54,15 @@ export interface InputOutputCreateAssignment {
 
 export interface TestCaseInputCreateAssignment {
   order: number
-  name: boolean
-  type: string
+  name: string
+  type: number
   value: string
 }
 
 export interface TestCaseOutputCreateAssignment {
   order: number
-  type: string
+  name: string
+  type: number
   value: string
 }
 
@@ -75,7 +77,6 @@ export interface CreateAssignmentRequestPayload {
   setting: SettingCreateAssignment
   language: LanguageCreateAssignment[]
   inputOutput: InputOutputCreateAssignment
-  authorSolution: string
   testCase: TestCaseCreateAssignment[]
 }
 

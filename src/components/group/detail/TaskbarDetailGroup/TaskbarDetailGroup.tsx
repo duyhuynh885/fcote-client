@@ -1,19 +1,9 @@
-import {
-  Box,
-  IconButton,
-  InputAdornment,
-  NativeSelect,
-  Paper,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material'
+import { Box, IconButton, InputAdornment, Paper, Stack, TextField, Typography } from '@mui/material'
 import React from 'react'
 import Divider from '@mui/material/Divider'
 import SearchIcon from '@mui/icons-material/Search'
 import ButtonBack from '../../../common/button/ButtonBack'
 import useStyles from './style'
-import { Directions } from '@mui/icons-material'
 
 /**
  * Taskbar Detail Group

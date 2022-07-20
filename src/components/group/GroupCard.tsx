@@ -1,7 +1,6 @@
 import { Box, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import useStyles from './style'
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import { Link } from 'react-router-dom'
 import GroupIcon from '@mui/icons-material/Group'
 import GroupAddIcon from '@mui/icons-material/GroupAdd'

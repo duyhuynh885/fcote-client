@@ -2,11 +2,7 @@ import { handleError } from './../../utils/handleError'
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import requestFailure from '../../utils/onFailure'
 import { hideLoaderAction, showLoaderAction } from '../layout/actions/loaderAction'
-import {
-  RankingActionType,
-  RankingRequestAction,
-  RankingResponse,
-} from './type'
+import { RankingActionType, RankingRequestAction, RankingResponse } from './type'
 import rankingApi from '../../services/rankingApi'
 
 /**
@@ -30,7 +26,6 @@ function* rankingFlow(payload: RankingRequestAction) {
   try {
     yield put(showLoaderAction())
     const data: RankingResponse = yield call(rankingApi.fetchRanking, payload)
-    console.log('rankingFlow ', data)
     yield put({ type: RankingActionType.RANKING_SUCCESS, ...data })
     yield put(hideLoaderAction())
   } catch (error) {
@@ -38,10 +33,10 @@ function* rankingFlow(payload: RankingRequestAction) {
   }
 }
 
-function* rankingWatcher(){
+function* rankingWatcher() {
   yield takeEvery(RankingActionType.RANKING_REQUESTING, rankingFlow)
 }
 
-export default function* rankingSaga(){
+export default function* rankingSaga() {
   yield all([fork(rankingWatcher)])
 }

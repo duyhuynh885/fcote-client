@@ -1,16 +1,27 @@
 import React from 'react'
-import { Modal, Paper, Stack, TextField, Typography } from '@mui/material'
+import {
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Modal,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
 import useStyles from './style'
 import RegularButton from '../../../components/common/button/RegularButton'
 import {
   InputCreateAssignment,
   OutputCreateAssignment,
   TestCaseCreateAssignment,
+  TestCaseInputCreateAssignment,
 } from '../../../modules/assignment/create/type'
 import { mapNameDataTypeByValue } from '../../../utils/mapper'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
-import { useForm, useFieldArray } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import _ from 'lodash'
 
 /**
  * Create test case model component
@@ -38,6 +49,7 @@ const style = {
   p: 4,
 }
 interface CreateTestCaseModalProps {
+  currentSize: number
   open: boolean
   onClose: () => void
   onSave: (testCase: TestCaseCreateAssignment) => void
@@ -47,13 +59,42 @@ interface CreateTestCaseModalProps {
 
 export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
   const classes = useStyles()
-  const { open, onClose, inputList, output } = props
+  const { open, onClose, inputList, output, onSave, currentSize } = props
   const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
-  const { handleSubmit, register } = useForm()
-
-  function onSubmit(data: any) {
-    console.log(data)
+  const { handleSubmit, register, reset } = useForm()
+  const rest = {
+    type: 'submit',
   }
+
+  const onSubmit = handleSubmit((values) => {
+    const { inputTestCaseValue, outputTestCaseValue } = values
+    const inputTestCase: TestCaseInputCreateAssignment[] = inputTestCaseValue.map(
+      (data: string, index: number) => {
+        const inputData = _.find(inputList, { order: index })
+        if (inputData)
+          return {
+            order: index,
+            name: inputData.name,
+            type: inputData.type,
+            value: data,
+          } as TestCaseInputCreateAssignment
+        else return null
+      },
+    )
+    onSave({
+      isPrivate: false,
+      order: currentSize + 1,
+      input: inputTestCase,
+      output: {
+        order: 1,
+        name: 'OUTPUT',
+        type: output.type,
+        value: outputTestCaseValue,
+      },
+    })
+    onClose()
+    reset()
+  })
 
   return (
     <React.Fragment>
@@ -64,7 +105,7 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
         aria-describedby='modal-modal-description'
       >
         <Paper sx={style}>
-          <form>
+          <form onSubmit={onSubmit}>
             <Typography className={classes.createTestCaseModelTitle}>Add new test case</Typography>
             <Stack>
               <Typography className={classes.titleNameInput}>Input</Typography>
@@ -74,7 +115,7 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
                     {_input.name} ({mapNameDataTypeByValue(dataTypeState, _input.type)})
                   </Typography>
                   <TextField
-                    {...register(`inputTestCaseValue.${_input.order}.value`)}
+                    {...register(`inputTestCaseValue.${_input.order}`)}
                     fullWidth
                     id='outlined-basic'
                     variant='outlined'
@@ -95,6 +136,12 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
                 variant='outlined'
                 required
               />{' '}
+              <FormGroup>
+                <FormControlLabel
+                  control={<Checkbox defaultChecked color='success' />}
+                  label='Hidden test case'
+                />
+              </FormGroup>
             </Stack>
             <Stack
               direction='row'
@@ -103,8 +150,6 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
               spacing={8}
               sx={{
                 paddingTop: 2,
-                paddingRight: 2,
-                paddingLeft: 2,
               }}
             >
               <RegularButton
@@ -123,6 +168,7 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
                 Cancel
               </RegularButton>
               <RegularButton
+                {...rest}
                 color={'success'}
                 size={'sm'}
                 round={false}
@@ -133,7 +179,6 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
                 link={false}
                 justIcon={false}
                 className={''}
-                onClick={handleSubmit(onSubmit)}
               >
                 Save
               </RegularButton>

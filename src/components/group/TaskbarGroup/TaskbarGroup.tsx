@@ -1,13 +1,11 @@
-import { IconButton, InputAdornment, NativeSelect, Paper, Stack, TextField } from '@mui/material'
+import { IconButton, InputAdornment, Paper, Stack, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import Divider from '@mui/material/Divider'
 import SearchIcon from '@mui/icons-material/Search'
 import RegularButton from '../../common/button/RegularButton'
-import { Link } from 'react-router-dom'
 import useStyle from './style'
 import GroupAddIcon from '@mui/icons-material/GroupAdd'
 import CreateGroup from '../create/CreateGroup'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import JoinGroup from '../JoinGroup/JoinGroup'
 /**
  * Taskbar Group

@@ -15,7 +15,7 @@ import { makeStyles } from '@mui/styles'
  * 07-07-2022         TuanLA           Create
  */
 
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles(() => ({
   title: {
     fontSize: '5em',
     marginTop: '5vh',

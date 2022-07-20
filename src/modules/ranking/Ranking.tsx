@@ -27,7 +27,6 @@ export default function Ranking() {
   const rankingListState = useSelector((state: RootState) => state.ranking.rankingList)
 
   useEffect(() => {
-    console.log('fetch Ranking')
     dispatch(fetchRankingRequest(rankingState.rankingTypeRequest))
   }, [rankingState.rankingTypeRequest])
 
