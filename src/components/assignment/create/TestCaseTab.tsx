@@ -17,6 +17,7 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import _ from 'lodash'
 import { styled } from '@mui/material/styles'
+import EditTestCaseModal from './EditTestCaseModal'
 
 /**
  * TestCaseTab component
@@ -42,22 +43,37 @@ interface TestCaseTabProps {
 export default function TestCaseTab(props: TestCaseTabProps) {
   const { inputList, output, testCaseList, handleTestCaseList } = props
   const classes = useStyles()
-  const [open, setOpen] = useState(false)
+  const [openCreateModal, setOpenCreateModal] = useState(false)
+  const [testCaseEdit, setTestCaseEdit] = useState<TestCaseCreateAssignment>()
+  const [openEditModal, setOpenEditModal] = useState(false)
 
   /**
-   * Handle open edit profile model
+   * Handle open create testCase model
    */
-  const handleOpen = () => {
-    setOpen(true)
+  const handleOpenCreateTestCaseModal = () => {
+    setOpenCreateModal(true)
   }
 
   /**
-   * Handle close edit profile model
+   * Handle close testCase model
    */
-  const handleClose = () => {
-    setOpen(false)
+  const handleCloseCreateTestCaseModal = () => {
+    setOpenCreateModal(false)
   }
 
+  /**
+   * Handle open edit testCase model
+   */
+  const handleOpenEditTestCaseModal = () => {
+    setOpenEditModal(true)
+  }
+
+  /**
+   * Handle close testCase model
+   */
+  const handleCloseEditTestCaseModal = () => {
+    setOpenEditModal(false)
+  }
   /**
    * Handle create new testCase form
    */
@@ -76,13 +92,22 @@ export default function TestCaseTab(props: TestCaseTabProps) {
   }
 
   /**
-   * Handle change testCase form
+   * Handle edit testCase form
    */
-  const handleTestCaseFormChange = (data: InputCreateAssignment, index: number) => {
-    // const list = [...inputList]
-    // const indexOfInputList = _.findIndex(list, { order: index })
-    // list.splice(indexOfInputList, 1, data)
-    // handleInputList(list)
+  const handleTestCaseFormEdit = (data: TestCaseCreateAssignment) => {
+    const list = [...testCaseList]
+    const index = _.findIndex(list, { order: data.order })
+    list.splice(index, 1, data)
+    handleTestCaseList(list)
+    setTestCaseEdit(undefined)
+  }
+
+  /**
+   * Handle open modal edit testCase
+   */
+  const handleEditTestCase = (data: TestCaseCreateAssignment) => {
+    setTestCaseEdit(data)
+    handleOpenEditTestCaseModal()
   }
 
   return (
@@ -109,7 +134,7 @@ export default function TestCaseTab(props: TestCaseTabProps) {
           link={false}
           justIcon={false}
           className={''}
-          onClick={handleOpen}
+          onClick={handleOpenCreateTestCaseModal}
         >
           + ADD TEST
         </RegularButton>
@@ -120,15 +145,25 @@ export default function TestCaseTab(props: TestCaseTabProps) {
             key={testCase.order}
             testCase={testCase}
             handleRemove={handleTestCaseFormRemove}
+            handleEdit={handleEditTestCase}
           />
         ))}
-      </Stack>{' '}
+      </Stack>
       <CreateTestCaseModal
-        open={open}
-        onClose={handleClose}
+        open={openCreateModal}
+        onClose={handleCloseCreateTestCaseModal}
         inputList={inputList}
         output={output}
         onSave={handleTestCaseFormCreate}
+        currentSize={testCaseList.length}
+      />
+      <EditTestCaseModal
+        open={openEditModal}
+        testCase={testCaseEdit}
+        onClose={handleCloseEditTestCaseModal}
+        inputList={inputList}
+        output={output}
+        onSave={handleTestCaseFormEdit}
         currentSize={testCaseList.length}
       />
     </Stack>
@@ -137,11 +172,12 @@ export default function TestCaseTab(props: TestCaseTabProps) {
 interface GenerateTestCaseProps {
   testCase: TestCaseCreateAssignment
   handleRemove: (index: number) => void
+  handleEdit: (testCase: TestCaseCreateAssignment) => void
 }
 
 // Form Input Create Assignment
 function GenerateTestCase(props: GenerateTestCaseProps) {
-  const { testCase, handleRemove } = props
+  const { testCase, handleRemove, handleEdit } = props
   const classes = useStyles()
   return (
     <React.Fragment>
@@ -160,7 +196,12 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
           >
             <Typography className={classes.titleTextField}>TEST {testCase.order}</Typography>
             <Box>
-              <IconButton aria-label='delete'>
+              <IconButton
+                onClick={() => {
+                  handleEdit(testCase)
+                }}
+                aria-label='edit'
+              >
                 <EditOutlinedIcon fontSize='small' color='primary' />
               </IconButton>
               <IconButton

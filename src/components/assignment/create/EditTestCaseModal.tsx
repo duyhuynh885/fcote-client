@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material'
 import useStyles from './style'
-import RegularButton from '../../../components/common/button/RegularButton'
+import RegularButton from '../../common/button/RegularButton'
 import {
   InputCreateAssignment,
   OutputCreateAssignment,
@@ -48,18 +48,19 @@ const style = {
   borderRadius: 3,
   p: 4,
 }
-interface CreateTestCaseModalProps {
+interface EditTestCaseModalProps {
   currentSize: number
   open: boolean
   onClose: () => void
   onSave: (testCase: TestCaseCreateAssignment) => void
   inputList: InputCreateAssignment[]
   output: OutputCreateAssignment
+  testCase?: TestCaseCreateAssignment
 }
 
-export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
+export default function EditTestCaseModal(props: EditTestCaseModalProps) {
   const classes = useStyles()
-  const { open, onClose, inputList, output, onSave, currentSize } = props
+  const { open, onClose, inputList, output, onSave, testCase } = props
   const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
   const { handleSubmit, register, reset } = useForm()
   const rest = {
@@ -67,31 +68,33 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
   }
 
   const onSubmit = handleSubmit((values) => {
-    const { inputTestCaseValue, outputTestCaseValue } = values
-    const inputTestCase: TestCaseInputCreateAssignment[] = inputTestCaseValue.map(
-      (data: string, index: number) => {
-        const inputData = _.find(inputList, { order: index })
-        if (inputData)
-          return {
-            order: index,
-            name: inputData.name,
-            type: inputData.type,
-            value: data,
-          } as TestCaseInputCreateAssignment
-        else return null
-      },
-    )
-    onSave({
-      isPrivate: false,
-      order: currentSize + 1,
-      input: inputTestCase,
-      output: {
-        order: 1,
-        name: 'OUTPUT',
-        type: output.type,
-        value: outputTestCaseValue,
-      },
-    })
+    if (testCase) {
+      const { inputTestCaseValue, outputTestCaseValue } = values
+      const inputTestCase: TestCaseInputCreateAssignment[] = inputTestCaseValue.map(
+        (data: string, index: number) => {
+          const inputData = _.find(inputList, { order: index })
+          if (inputData)
+            return {
+              order: index,
+              name: inputData.name,
+              type: inputData.type,
+              value: data,
+            } as TestCaseInputCreateAssignment
+          else return null
+        },
+      )
+      onSave({
+        isPrivate: false,
+        order: testCase.order,
+        input: inputTestCase,
+        output: {
+          order: testCase.output.order,
+          name: testCase.output.name,
+          type: output.type,
+          value: outputTestCaseValue,
+        },
+      })
+    }
     onClose()
     reset()
   })
@@ -106,24 +109,34 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
       >
         <Paper sx={style}>
           <form onSubmit={onSubmit}>
-            <Typography className={classes.createTestCaseModelTitle}>Add new test case</Typography>
+            <Typography className={classes.createTestCaseModelTitle}>Edit test case</Typography>
             <Stack>
               <Typography className={classes.titleNameInput}>Input</Typography>
-              {inputList.map((_input) => (
-                <React.Fragment key={_input.order}>
-                  <Typography className={classes.titleTextField}>
-                    {_input.name} ({mapNameDataTypeByValue(dataTypeState, _input.type)})
-                  </Typography>
-                  <TextField
-                    {...register(`inputTestCaseValue.${_input.order}`)}
-                    fullWidth
-                    id='outlined-basic'
-                    variant='outlined'
-                    required
-                    size='small'
-                  />
-                </React.Fragment>
-              ))}
+              {testCase &&
+                inputList.map((_input) => {
+                  const testCaseInput = _.find(testCase.input, { order: _input.order })
+                  return (
+                    <React.Fragment key={testCaseInput ? testCaseInput.order : _input.order}>
+                      <Typography className={classes.titleTextField}>
+                        {testCaseInput ? testCaseInput.name : _input.name} (
+                        {mapNameDataTypeByValue(
+                          dataTypeState,
+                          testCaseInput ? testCaseInput.type : _input.type,
+                        )}
+                        )
+                      </Typography>
+                      <TextField
+                        {...register(`inputTestCaseValue.${_input.order}`)}
+                        fullWidth
+                        id='outlined-basic'
+                        variant='outlined'
+                        required
+                        size='small'
+                        defaultValue={testCaseInput ? testCaseInput.value : undefined}
+                      />
+                    </React.Fragment>
+                  )
+                })}
               <Typography className={classes.titleNameInput}>Excepted Output</Typography>
               <Typography className={classes.titleTextField}>
                 ({mapNameDataTypeByValue(dataTypeState, output.type)})
@@ -132,10 +145,11 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
                 {...register('outputTestCaseValue')}
                 size='small'
                 fullWidth
+                defaultValue={testCase ? testCase.output.value : undefined}
                 id='outlined-basic'
                 variant='outlined'
                 required
-              />{' '}
+              />
               <FormGroup>
                 <FormControlLabel
                   control={<Checkbox defaultChecked color='success' />}
