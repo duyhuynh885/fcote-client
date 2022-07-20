@@ -156,7 +156,11 @@ export default function TopMember(props: DataTopRank) {
       <CardHeader title={returnRankStr()} sx={{ backgroundColor: returnColorByRank()[0] }} />
       <CardContent sx={sxCardContent}>
         <Box>
-          <Avatar alt={props.username.toUpperCase()} src={props.avatar} className={classes.rankSecondProfileAvatar} />
+          <Avatar
+            alt={props.username.toUpperCase()}
+            src={props.avatar}
+            className={classes.rankSecondProfileAvatar}
+          />
         </Box>
         <Box className={classes.rankProfileCotent} sx={{ flexGrow: 1 }}>
           <Typography variant='h5' component='span'>

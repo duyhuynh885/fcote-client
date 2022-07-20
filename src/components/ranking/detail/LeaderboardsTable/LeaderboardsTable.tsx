@@ -114,7 +114,7 @@ function createType(
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
-} 
+}
 
 interface TypeLeaderBoard {
   type: 'rank' | 'fullname' | 'university' | 'group' | 'organization' | 'score'

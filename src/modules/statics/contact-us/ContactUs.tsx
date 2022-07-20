@@ -43,7 +43,6 @@ export default function ContactUs() {
   const onSubmit: SubmitHandler<ContactsUs> = (data) => {
     const { email, description } = data
     // TODO
-    console.log(email, description)
   }
 
   return (

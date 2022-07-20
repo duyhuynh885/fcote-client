@@ -1,4 +1,3 @@
-import { Label } from '@mui/icons-material'
 import { Box, Grid, Stack, Tab, Tabs } from '@mui/material'
 import React from 'react'
 import Member from '../../../components/group/detail/Member/Member'

@@ -8,6 +8,7 @@ import { hideLoaderAction, showLoaderAction } from '../../layout/actions/loaderA
 import requestFailure from '../../../utils/onFailure'
 import { handleError } from '../../../utils/handleError'
 import assignmentApi from '../../../services/assignmentApi'
+import history from '../../../configs/routing/history'
 
 /**
  * Saga for fetch create assignment
@@ -32,7 +33,6 @@ function* createAssignmentFlow({
   setting,
   language,
   inputOutput,
-  authorSolution,
   testCase,
 }: CreateAssignmentRequestAction) {
   try {
@@ -41,13 +41,13 @@ function* createAssignmentFlow({
       setting,
       language,
       inputOutput,
-      authorSolution,
       testCase,
     })
     yield put({
       type: CreateAssignmentActionType.CREATE_ASSIGNMENT_SUCCESS,
       ...data,
     })
+    history.push('/assignment')
     yield put(hideLoaderAction())
   } catch (error) {
     yield call(

@@ -45,7 +45,6 @@ const assignmentApi = {
     return axiosClient.post<ViewListAssignmentResponse, ViewListAssignmentErrorResponse>(
       url,
       payload,
-      
     )
   },
 
@@ -56,7 +55,7 @@ const assignmentApi = {
    * @returns CreateAssignmentErrorResponse
    */
   createAssignment(payload: CreateAssignmentRequestPayload) {
-    const url = '/assignment/add-update-assignment'
+    const url = '/assignment/add-assignment'
     return axiosClient.post<CreateAssignmentResponse, CreateAssignmentErrorResponse>(url, payload)
   },
 

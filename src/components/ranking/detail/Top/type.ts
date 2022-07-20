@@ -13,12 +13,12 @@
  * 08-07-2022         TuanlA           Create
  */
 
- export interface DataTopRank {
-  rank: number,
-  order: number,
-  username: string,
-  fullname: string,
-  avatar: string,
-  organization: string,
-  score: number,
+export interface DataTopRank {
+  rank: number
+  order: number
+  username: string
+  fullname: string
+  avatar: string
+  organization: string
+  score: number
 }

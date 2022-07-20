@@ -1,10 +1,4 @@
-import { DifficultEnum } from '../list/type'
-import {
-  CreateAssignmentAction,
-  CreateAssignmentActionType,
-  CreateAssignmentState,
-  InputOutputCreateAssignment,
-} from './type'
+import { CreateAssignmentAction, CreateAssignmentActionType, CreateAssignmentState } from './type'
 
 /**
  * Reducer for create assignment

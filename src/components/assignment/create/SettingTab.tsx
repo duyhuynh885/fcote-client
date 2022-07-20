@@ -84,6 +84,9 @@ export default function SettingTab(props: SettingTabProps) {
           variant='outlined'
           size='small'
         />
+        <Typography className={classes.titleTextField}>
+          No spaces. Only letters and numbers starting with a letter.
+        </Typography>
         <Typography className={classes.titleTextField}>Level of difficult</Typography>
         <RadioGroup
           row

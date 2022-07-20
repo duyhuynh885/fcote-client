@@ -25,8 +25,8 @@ const initialState: RankingState = {
   rankingTypeRequest: {
     typeRanking: RankingTypeState.RANKING_UNIVERSITY,
     pageSize: 50,
-    pageNumber: 0
-  }
+    pageNumber: 0,
+  },
 }
 /**
  * @param  {} state=initialState
@@ -69,11 +69,11 @@ const reducer = (state = initialState, action: RankingAction) => {
     case RankingActionType.UPDATE_FILTER_RANKING:
       return {
         ...state,
-        rankingTypeRequest : {
+        rankingTypeRequest: {
           typeRanking: action.typeRanking,
           pageSize: action.pageSize,
-          pageNumber: action.pageNumber
-        }
+          pageNumber: action.pageNumber,
+        },
       }
 
     default:

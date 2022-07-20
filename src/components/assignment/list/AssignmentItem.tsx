@@ -29,7 +29,6 @@ interface AssignmentItemProps {
 const AssignmentItem: React.FC<AssignmentItemProps> = (props) => {
   const classes = AssignmentItemStyle()
   const { assignment } = props
-  console.log(assignment)
   const handleViewDetailAssignment = () => {
     history.push('/assignment/' + assignment.id)
   }

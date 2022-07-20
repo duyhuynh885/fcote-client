@@ -71,7 +71,11 @@ export type UpdateFilterRankingAction = ActionWithPayload<
   RankingRequestPayload
 >
 
-export type RankingAction = RankingRequestAction | RankingSuccessAction | RankingErrorAction | UpdateFilterRankingAction
+export type RankingAction =
+  | RankingRequestAction
+  | RankingSuccessAction
+  | RankingErrorAction
+  | UpdateFilterRankingAction
 
 export interface RankingState {
   requesting: boolean

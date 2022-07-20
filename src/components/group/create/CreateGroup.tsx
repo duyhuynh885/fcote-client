@@ -1,4 +1,4 @@
-import { Avatar, Box, IconButton, Modal, Paper, Stack, TextField, Typography } from '@mui/material'
+import { Modal, Paper, Stack, TextField, Typography } from '@mui/material'
 import React from 'react'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyle from './style'

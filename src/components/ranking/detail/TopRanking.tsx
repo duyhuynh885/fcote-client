@@ -23,19 +23,13 @@ interface UserInforProps {
 }
 
 const immutablySwapItems = (items: UserInfor[], firstIndex: number, secondIndex: number) =>
-  items.map(
-    (element, index) =>
-      index === firstIndex
-        ? items[secondIndex]
-        : index === secondIndex
-        ? items[firstIndex]
-        : element
+  items.map((element, index) =>
+    index === firstIndex ? items[secondIndex] : index === secondIndex ? items[firstIndex] : element,
   )
 
 const TopRanking: React.FC<UserInforProps> = (props) => {
   const classes = useStyles()
   const topRanking = immutablySwapItems(props.data, 0, 1)
-  console.log('TopRanking ', topRanking)
   return (
     <Paper
       elevation={8}

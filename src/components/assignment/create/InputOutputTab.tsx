@@ -157,7 +157,7 @@ function FormInput(props: FormInputProps) {
   })
   const nameFiled = register('name', { required: true })
   const typeFiled = register('type', { required: true })
-  const descriptionFiled = register('description', { required: true })
+  const descriptionFiled = register('description')
 
   const handleOnChange = (event: any) => {
     const updates = { [event.target.name]: event.target.value }
@@ -277,8 +277,7 @@ function FormOutput(props: FormOutputProps) {
 
   const handleChangeSelect = (event: SelectChangeEvent) => {
     setType(event.target.value)
-    const updates = { [event.target.name]: event.target.value }
-    handleChange(_.merge(output, updates))
+    handleChange({ ...output, type: +event.target.value })
   }
 
   return (

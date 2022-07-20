@@ -29,7 +29,6 @@ export const createAssignmentRequest = ({
   setting,
   language,
   inputOutput,
-  authorSolution,
   testCase,
 }: CreateAssignmentRequestPayload): CreateAssignmentRequestAction => {
   return {
@@ -37,7 +36,6 @@ export const createAssignmentRequest = ({
     setting,
     language,
     inputOutput,
-    authorSolution,
     testCase,
   }
 }

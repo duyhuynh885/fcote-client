@@ -63,7 +63,6 @@ export default function EditorTab() {
           aria-label='basic tabs example'
         >
           <Tab className={classes.tabFileName} label='test.java' {...a11yProps(0)} />
-          <Tab className={classes.tabTitle} label='Author Solution' {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

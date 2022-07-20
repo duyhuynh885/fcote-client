@@ -2,12 +2,11 @@ import { Box, Paper } from '@mui/material'
 import React from 'react'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import useStyles from './style'
 import LeaderboardsTable from './LeaderboardsTable/LeaderboardsTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { updateFillterRankingRequest } from '../../../modules/ranking/action'
-import { RankingTypeState } from '../../../modules/ranking/type'
+
 /**
  * Leaderboard component
  *
@@ -57,7 +56,6 @@ function ChangeValueProps(index: number) {
 }
 
 export default function Leaderboard(props: any) {
-  const classes = useStyles()
   const [value, setValue] = React.useState(0)
   const dispatch = useDispatch<AppDispatch>()
   const filterRankingState = useSelector((state: RootState) => state.ranking.rankingTypeRequest)
