@@ -141,8 +141,8 @@ const routes = [
   },
   {
     auth: true,
-    title: 'GROUP',
-    path: '/group/detail',
+    title: 'GROUP DETAIL',
+    path: '/group/:groupId',
     Component: DetailGroup,
     exact: true,
   },

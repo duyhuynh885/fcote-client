@@ -2,7 +2,12 @@ import React from 'react'
 import { Modal, Paper, Stack, TextField, Typography } from '@mui/material'
 import RegularButton from '../../common/button/RegularButton'
 import useStyle from './style'
-
+import { object, string, TypeOf } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import { joinGroupRequest } from '../../../modules/group/join-group/action'
 /**
  * Create Group component
  * <p>
@@ -22,6 +27,12 @@ interface ButtonProps {
   onClose: (shown: boolean) => void
 }
 
+const joinGroupSchema = object({
+  joinCode: string()
+    .min(6, 'Code must be more than 8 characters')
+    .max(32, 'Code must be less than 32 characters'),
+})
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -35,6 +46,32 @@ const style = {
 
 export default function JoinGroup({ open, onClose }: ButtonProps) {
   const classes = useStyle()
+  const dispatch = useDispatch<AppDispatch>()
+
+  type JoinGroupInput = TypeOf<typeof joinGroupSchema>
+
+  const rest = {
+    type: 'submit',
+  }
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<JoinGroupInput>({
+    resolver: zodResolver(joinGroupSchema),
+  })
+
+  const onCancel = () => {
+    onClose(true)
+  }
+
+  const onSubmit: SubmitHandler<JoinGroupInput> = (data) => {
+    const { joinCode } = data
+    dispatch(joinGroupRequest(joinCode))
+    onCancel()
+  }
+
   return (
     <React.Fragment>
       <Modal
@@ -43,45 +80,59 @@ export default function JoinGroup({ open, onClose }: ButtonProps) {
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
-        <Paper sx={style}>
-          <div className={classes.root}>
-            <Typography className={classes.newGroup}>Join Group</Typography>
-          </div>
-          <Stack>
-            <Typography className={classes.titleTextField}>Group Code</Typography>
-            <TextField id='outlined-basic' variant='outlined' />
-          </Stack>
-          <Stack direction='row' justifyContent='space-around' alignItems='center' spacing={8}>
-            <RegularButton
-              color={'danger'}
-              size={'sm'}
-              round={false}
-              fullWidth={true}
-              disabled={false}
-              simple={false}
-              block={false}
-              link={false}
-              justIcon={false}
-              className={''}
-            >
-              Cancel
-            </RegularButton>
-            <RegularButton
-              color={'success'}
-              size={'sm'}
-              round={false}
-              fullWidth={true}
-              disabled={false}
-              simple={false}
-              block={false}
-              link={false}
-              justIcon={false}
-              className={''}
-            >
-              Save
-            </RegularButton>
-          </Stack>
-        </Paper>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Paper sx={style}>
+            <div className={classes.root}>
+              <Typography className={classes.newGroup}>Join Group</Typography>
+            </div>
+            <Stack>
+              <Typography className={classes.titleTextField}>Group Code</Typography>
+              <TextField
+                required
+                id='outlined-password-input'
+                sx={{ width: '100%', marginBottom: '1.5rem' }}
+                label='Join Code'
+                type='join_code'
+                autoComplete='current-code'
+                error={!!errors['joinCode']}
+                helperText={errors['joinCode'] ? errors['joinCode'].message : ''}
+                {...register('joinCode')}
+              />
+            </Stack>
+            <Stack direction='row' justifyContent='space-around' alignItems='center' spacing={8}>
+              <RegularButton
+                color={'danger'}
+                size={'sm'}
+                round={false}
+                fullWidth={true}
+                disabled={false}
+                simple={false}
+                block={false}
+                link={false}
+                justIcon={false}
+                className={''}
+                onClick={onCancel}
+              >
+                Cancel
+              </RegularButton>
+              <RegularButton
+                color={'success'}
+                size={'sm'}
+                round={false}
+                fullWidth={true}
+                disabled={false}
+                simple={false}
+                block={false}
+                link={false}
+                justIcon={false}
+                className={''}
+                {...rest}
+              >
+                Join
+              </RegularButton>
+            </Stack>
+          </Paper>
+        </form>
       </Modal>
     </React.Fragment>
   )
