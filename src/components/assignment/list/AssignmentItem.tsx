@@ -41,11 +41,12 @@ const AssignmentItem: React.FC<AssignmentItemProps> = (props) => {
           <Avatar alt='Nguyen Tan Huy' src={assignment.image} />
           <Typography className={classes.userName}>{assignment.createdBy}</Typography>
         </Stack>
-        <Stack direction='row' justifyContent='space-between' alignItems='center'>
+        <Stack direction='row' justifyContent='center' alignItems='center'>
           <Typography className={classes.state}>{formatDate(assignment.createdAt)}</Typography>
         </Stack>
         <Stack direction='row' justifyContent='space-between' alignItems='center'>
-          <Typography className={classes.state}>{assignment.status}</Typography>
+          {/* <Typography className={classes.state}>{assignment.status}</Typography> */}
+          <Typography className={classes.state}>SOLVED</Typography>
           <Typography className={classes.level}>{DifficultEnum[assignment.difficulty]}</Typography>
         </Stack>
         <Stack>

@@ -27,38 +27,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   tabRight: {
     backgroundColor: theme.color.white,
   },
-  textTitle: {
-    textAlign: 'left',
-    fontWeight: '700 !important',
-    fontSize: '20px !important',
-    color: theme.color.darkGray,
-  },
-  textItem: {
-    textAlign: 'left',
-    paddingLeft: '20px',
-    fontWeight: '600 !important',
-    fontSize: '14px !important',
-    lineheight: '19px !important',
-    color: theme.color.brown,
-  },
-  colorBlack: {
-    color: `${theme.color.black}  !important`,
-  },
-  colorWhite: {
-    color: `${theme.color.white}  !important`,
-  },
-  colorLightBlack: {
-    color: `${theme.color.lightBlack}  !important`,
-  },
   footer: {
     width: '100%',
     backgroundColor: theme.color.white,
     borderTop: `0.5px solid ${theme.color.darkGray}`,
     padding: '5px 10px',
-  },
-  button: {
-    padding: '10px',
-    marginRight: '15px',
   },
 }))
 

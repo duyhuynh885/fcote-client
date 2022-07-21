@@ -58,6 +58,7 @@ export default function ListAssignment() {
         <Grid
           sx={{
             width: '100%',
+            minHeight: '70vh',
             margin: '0 auto',
           }}
           container

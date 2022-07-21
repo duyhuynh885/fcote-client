@@ -7,6 +7,7 @@ import {
   ViewListDataTypeResponse,
   ViewListDataTypeErrorResponse,
 } from '../modules/assignment/data-type/type'
+import { ViewAssignmentDetailRequestPayload } from '../modules/assignment/detail/type'
 import {
   ViewListLanguageResponse,
   ViewListLanguageErrorResponse,
@@ -77,6 +78,16 @@ const assignmentApi = {
   fetchListLanguage() {
     const url = '/assignment/get-language'
     return axiosClient.get<ViewListDataTypeResponse, ViewListDataTypeErrorResponse>(url)
+  },
+
+  /**
+   * Api for fetch assignment detail
+   * @returns ViewListDataTypeResponse
+   * @returns ViewListDataTypeErrorResponse
+   */
+   fetchAssignmentDetail(payload: ViewAssignmentDetailRequestPayload) {
+    const url = '/assignment/get-assignment-detail'
+    return axiosClient.post<ViewListDataTypeResponse, ViewListDataTypeErrorResponse>(url, payload)
   },
 }
 
