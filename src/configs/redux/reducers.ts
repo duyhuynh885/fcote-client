@@ -8,7 +8,8 @@ import createAssignmentReducer from '../../modules/assignment/create/reducer'
 import dataTypeReducer from '../../modules/assignment/data-type/reducer'
 import languageReducer from '../../modules/assignment/language/reducer'
 import rankingReducer from '../../modules/ranking/reducer'
-
+import listGroupReducer from '../../modules/group/list/reducer'
+import detailGroupReducer from '../../modules/group/detail/reducer'
 /**
  * Root Reducer
  * @param history any
@@ -26,6 +27,8 @@ const rootReducer = (history: any) =>
     createAssignment: createAssignmentReducer,
     dataType: dataTypeReducer,
     language: languageReducer,
+    listGroup: listGroupReducer,
+    detailGroup: detailGroupReducer,
   })
 
 export default rootReducer

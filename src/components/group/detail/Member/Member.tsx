@@ -20,12 +20,18 @@ import { ReactComponent as Platinum } from '../../../../assets/Platinum.svg'
 import { ReactComponent as Bronze } from '../../../../assets/Bronze.svg'
 import { FakeDataChallengDetails } from '../../../challenge/TableChallenge/FakeDataChallengeDetail'
 import LogoutIcon from '@mui/icons-material/Logout'
+import { MemberInGroup } from '../../../../modules/group/detail/type'
 
-export default function Member() {
+interface DetailGroupProps {
+  member: MemberInGroup[]
+}
+
+export default function Member(props: DetailGroupProps) {
   const classes = useStyles()
+  const { member } = props
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
-  const rows = FakeDataChallengDetails
+  const rows = member
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
   }
@@ -83,46 +89,41 @@ export default function Member() {
           </TableHead>
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+              const index = rows.indexOf(row)
               return (
                 <TableRow
                   hover
                   role='checkbox'
                   tabIndex={-1}
-                  key={row.ranking}
-                  className={row.ranking % 2 === 0 ? classes.tableRowBody1 : classes.tableRowBody2}
+                  key={index}
+                  className={index % 2 === 0 ? classes.tableRowBody1 : classes.tableRowBody2}
                 >
                   <TableCell className={classes.tableItemCell}>
-                    {renderRanking(row.ranking)}
+                    {renderRanking(index + 1)}
                   </TableCell>
                   <TableCell className={classes.tableItemCell}>
                     <Grid container>
                       <Grid item xs={3} lg={3} className={classes.avatarWrapper}>
-                        <Avatar
-                          className={classes.avatar}
-                          alt={row.username.avatar}
-                          src={row.username.avatar}
-                        />
+                        <Avatar className={classes.avatar} alt={row.avatar} src={row.avatar} />
                       </Grid>
                       <Grid item xs={9} lg={9} sx={{ paddingLeft: '0.3em' }}>
-                        <Typography className={classes.textUsername}>
-                          {row.username.name}
-                        </Typography>
+                        <Typography className={classes.textUsername}>{row.username}</Typography>
                       </Grid>
                     </Grid>
                   </TableCell>
                   <TableCell className={classes.tableItemCell}>
                     <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                      <Typography className={classes.textPoint}>{row.a.point}</Typography>
+                      <Typography className={classes.textPoint}>{row.totalCompleted}</Typography>
                     </Box>
                   </TableCell>
                   <TableCell className={classes.tableItemCell}>
                     <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                      <Typography className={classes.textPoint}>{row.b.point}</Typography>
+                      <Typography className={classes.textPoint}>{row.totalMissing}</Typography>
                     </Box>
                   </TableCell>
                   <TableCell className={classes.tableItemCell}>
                     <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                      <Typography className={classes.textPoint}>{row.c.point}</Typography>
+                      <Typography className={classes.textPoint}>{row.totalScore}</Typography>
                     </Box>
                   </TableCell>
                   <TableCell className={classes.tableItemCell}>

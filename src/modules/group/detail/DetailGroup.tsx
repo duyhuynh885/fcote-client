@@ -1,10 +1,14 @@
 import { Box, Grid, Stack, Tab, Tabs } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Member from '../../../components/group/detail/Member/Member'
 import TaskbarDetailGroup from '../../../components/group/detail/TaskbarDetailGroup/TaskbarDetailGroup'
 import Tasklist from '../../../components/group/detail/TaskList/Tasklist'
 
 import useStyles from './style'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import { fetchDetailGroupRequest } from './action'
+import { useParams } from 'react-router-dom'
 
 /**
  * Taskbar Group
@@ -19,12 +23,17 @@ import useStyles from './style'
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
  * 04-07-2022      HuyNT2711           Create
+ * 21-07-2022       TuanLA              Add Logic 
  */
 
 interface TabPanelProps {
   children?: React.ReactNode
   index: number
   value: number
+}
+
+interface ParamTypes {
+  groupId: string;
 }
 
 function a11yProps(index: number) {
@@ -55,11 +64,23 @@ export default function DetailGroup() {
     setValue(newValue)
   }
   const classes = useStyles()
+  const { groupId } = useParams<ParamTypes>()
+  const id = parseInt(groupId)
+  const dispatch = useDispatch<AppDispatch>()
+  const groupDetailState = useSelector((state: RootState) => state.detailGroup.groupDetail)
+  const groupMemberState = useSelector((state: RootState) => state.detailGroup.member)
+  const groupDetailRequestState = useSelector(
+    (state: RootState) => state.detailGroup.groupDetailRequest,
+  )
+
+  useEffect(() => {
+    dispatch(fetchDetailGroupRequest(groupDetailRequestState, id))
+  }, [groupDetailRequestState.id])
   return (
     <Stack margin={5}>
       <Grid container>
         <Grid item xs={12} marginBottom={2}>
-          <TaskbarDetailGroup />
+          <TaskbarDetailGroup code={groupDetailState.joinCode} />
         </Grid>
         <Grid className={classes.tabLeft} item xs={12} sx={{ height: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -77,7 +98,7 @@ export default function DetailGroup() {
             <Tasklist />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <Member />
+            <Member member={groupMemberState} />
           </TabPanel>
         </Grid>
       </Grid>
