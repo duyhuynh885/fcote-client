@@ -10,6 +10,7 @@ import languageReducer from '../../modules/assignment/language/reducer'
 import rankingReducer from '../../modules/ranking/reducer'
 import listGroupReducer from '../../modules/group/list/reducer'
 import detailGroupReducer from '../../modules/group/detail/reducer'
+import joinGroupReducer from '../../modules/group/join-group/reducer'
 /**
  * Root Reducer
  * @param history any
@@ -29,6 +30,7 @@ const rootReducer = (history: any) =>
     language: languageReducer,
     listGroup: listGroupReducer,
     detailGroup: detailGroupReducer,
+    joinGroup: joinGroupReducer,
   })
 
 export default rootReducer
