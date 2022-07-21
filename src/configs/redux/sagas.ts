@@ -8,6 +8,7 @@ import languageSaga from '../../modules/assignment/language/saga'
 import rankingSaga from '../../modules/ranking/saga'
 import viewListGroupSaga from '../../modules/group/list/saga'
 import viewDetailGroupSaga from '../../modules/group/detail/saga'
+import joinGroupSaga from '../../modules/group/join-group/saga'
 /**
  * Root Saga
  */
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     fork(rankingSaga),
     fork(viewListGroupSaga),
     fork(viewDetailGroupSaga),
+    fork(joinGroupSaga),
   ])
 }
