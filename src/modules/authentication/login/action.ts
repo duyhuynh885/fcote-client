@@ -46,10 +46,9 @@ export const logoutRequest = (): LogoutAction => {
 
 /**
  * Clear state action
- * @returns LogoutAction
  */
-export const clearState = (): LoginClearStateAction => {
+export const loginClearStateRequest = (): LoginClearStateAction => {
   return {
-    type: LoginActionType.CLEAR_STATE,
+    type: LoginActionType.LOGIN_CLEAR_STATE,
   }
 }

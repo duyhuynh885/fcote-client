@@ -56,7 +56,7 @@ const reducer = (state = initialState, action: ViewListLanguageAction) => {
         successful: false,
       }
 
-    case ViewListLanguageActionType.CLEAR_STATE:
+    case ViewListLanguageActionType.VIEW_LIST_LANGUAGE_CLEAR_STATE:
       return {
         ...initialState,
       }

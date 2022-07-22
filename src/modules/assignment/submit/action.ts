@@ -44,8 +44,8 @@ export const submitAssignmentDetailRequest = ({
  * Clear state action
  * @returns SubmitAssignmentDetailClearStateAction
  */
-export const clearState = (): SubmitAssignmentDetailClearStateAction => {
+export const submitAssignmentDetailClearStateRequest = (): SubmitAssignmentDetailClearStateAction => {
   return {
-    type: SubmitAssignmentDetailActionType.CLEAR_STATE,
+    type: SubmitAssignmentDetailActionType.SUBMIT_ASSIGNMENT_DETAIL_CLEAR_STATE,
   }
 }

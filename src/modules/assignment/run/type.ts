@@ -17,7 +17,7 @@ export enum RunAssignmentDetailActionType {
   RUN_ASSIGNMENT_DETAIL_REQUESTING = 'RUN_ASSIGNMENT_DETAIL_REQUESTING',
   RUN_ASSIGNMENT_DETAIL_SUCCESS = 'RUN_ASSIGNMENT_DETAIL_SUCCESS',
   RUN_ASSIGNMENT_DETAIL_ERROR = 'RUN_ASSIGNMENT_DETAIL_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  RUN_ASSIGNMENT_DETAIL_CLEAR_STATE = 'RUN_ASSIGNMENT_DETAIL_CLEAR_STATE',
 }
 
 export interface Result {
@@ -60,7 +60,7 @@ export type RunAssignmentDetailErrorAction = ActionWithPayload<
   RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_ERROR,
   RunAssignmentDetailErrorResponse
 >
-export type RunAssignmentDetailClearStateAction = Action<RunAssignmentDetailActionType.CLEAR_STATE>
+export type RunAssignmentDetailClearStateAction = Action<RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_CLEAR_STATE>
 
 export type RunAssignmentDetailAction =
   | RunAssignmentDetailRequestAction

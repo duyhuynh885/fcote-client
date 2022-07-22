@@ -38,8 +38,8 @@ export const fetchDataAssignmentDetailRequest = ({
  * Clear state action
  * @returns ViewAssignmentDetailClearStateAction
  */
-export const clearState = (): ViewAssignmentDetailClearStateAction => {
+export const viewAssignmentDetailClearStateRequest = (): ViewAssignmentDetailClearStateAction => {
   return {
-    type: ViewAssignmentDetailActionType.CLEAR_STATE,
+    type: ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_CLEAR_STATE,
   }
 }

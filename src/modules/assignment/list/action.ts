@@ -73,8 +73,8 @@ export const updateFilterListAssignmentRequest = ({
  * Clear state action
  * @returns ViewListAssignmentClearStateAction
  */
-export const clearState = (): ViewListAssignmentClearStateAction => {
+export const viewListAssignmentClearStateRequest = (): ViewListAssignmentClearStateAction => {
   return {
-    type: ViewListAssignmentActionType.CLEAR_STATE,
+    type: ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_CLEAR_STATE,
   }
 }

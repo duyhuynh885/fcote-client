@@ -81,7 +81,7 @@ const reducer = (state = initialState, action: ViewAssignmentDetailAction) => {
         successful: false,
       }
 
-    case ViewAssignmentDetailActionType.CLEAR_STATE:
+    case ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_CLEAR_STATE:
       return {
         ...initialState,
       }

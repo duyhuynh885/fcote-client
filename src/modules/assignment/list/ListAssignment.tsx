@@ -2,7 +2,7 @@ import { Grid, Pagination, PaginationItem, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import TaskbarFilter from '../../../components/common/toolbar/TaskbarFilter'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchListAssignmentRequest, updateFilterListAssignmentRequest, clearState } from './action'
+import { fetchListAssignmentRequest, updateFilterListAssignmentRequest, viewListAssignmentClearStateRequest } from './action'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import AssignmentItem from '../../../components/assignment/list/AssignmentItem'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -45,7 +45,7 @@ export default function ListAssignment() {
 
   useEffect(() => {
     return () => {
-      dispatch(clearState())
+      dispatch(viewListAssignmentClearStateRequest())
     }
   }, [])
 

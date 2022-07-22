@@ -17,7 +17,7 @@ export enum SubmitAssignmentDetailActionType {
   SUBMIT_ASSIGNMENT_DETAIL_REQUESTING = 'SUBMIT_ASSIGNMENT_DETAIL_REQUESTING',
   SUBMIT_ASSIGNMENT_DETAIL_SUCCESS = 'SUBMIT_ASSIGNMENT_DETAIL_SUCCESS',
   SUBMIT_ASSIGNMENT_DETAIL_ERROR = 'SUBMIT_ASSIGNMENT_DETAIL_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  SUBMIT_ASSIGNMENT_DETAIL_CLEAR_STATE = 'SUBMIT_ASSIGNMENT_DETAIL_CLEAR_STATE',
 }
 
 export interface Summarize {
@@ -68,7 +68,7 @@ export type SubmitAssignmentDetailErrorAction = ActionWithPayload<
   SubmitAssignmentDetailErrorResponse
 >
 export type SubmitAssignmentDetailClearStateAction =
-  Action<SubmitAssignmentDetailActionType.CLEAR_STATE>
+  Action<SubmitAssignmentDetailActionType.SUBMIT_ASSIGNMENT_DETAIL_CLEAR_STATE>
 
 export type SubmitAssignmentDetailAction =
   | SubmitAssignmentDetailRequestAction

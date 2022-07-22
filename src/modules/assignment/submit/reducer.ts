@@ -63,7 +63,7 @@ const reducer = (state = initialState, action: SubmitAssignmentDetailAction) => 
         successful: false,
       }
 
-    case SubmitAssignmentDetailActionType.CLEAR_STATE:
+    case SubmitAssignmentDetailActionType.SUBMIT_ASSIGNMENT_DETAIL_CLEAR_STATE:
       return {
         ...initialState,
       }

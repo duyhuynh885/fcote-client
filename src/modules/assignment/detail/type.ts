@@ -17,7 +17,7 @@ export enum ViewAssignmentDetailActionType {
   VIEW_ASSIGNMENT_DETAIL_REQUESTING = 'VIEW_ASSIGNMENT_DETAIL_REQUESTING',
   VIEW_ASSIGNMENT_DETAIL_SUCCESS = 'VIEW_ASSIGNMENT_DETAIL_SUCCESS',
   VIEW_ASSIGNMENT_DETAIL_ERROR = 'VIEW_ASSIGNMENT_DETAIL_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  VIEW_ASSIGNMENT_DETAIL_CLEAR_STATE = 'VIEW_ASSIGNMENT_DETAIL_CLEAR_STATE',
 }
 
 export interface Detail {
@@ -99,7 +99,7 @@ export type ViewAssignmentDetailErrorAction = ActionWithPayload<
   ViewAssignmentDetailErrorResponse
 >
 export type ViewAssignmentDetailClearStateAction =
-  Action<ViewAssignmentDetailActionType.CLEAR_STATE>
+  Action<ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_CLEAR_STATE>
 
 export type ViewAssignmentDetailAction =
   | ViewAssignmentDetailRequestAction

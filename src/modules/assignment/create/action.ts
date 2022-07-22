@@ -44,8 +44,8 @@ export const createAssignmentRequest = ({
  * Clear state action
  * @returns CreateAssignmentClearStateAction
  */
-export const clearState = (): CreateAssignmentClearStateAction => {
+export const createAssignmentClearStateRequest = (): CreateAssignmentClearStateAction => {
   return {
-    type: CreateAssignmentActionType.CLEAR_STATE,
+    type: CreateAssignmentActionType.CREATE_ASSIGNMENT_CLEAR_STATE,
   }
 }

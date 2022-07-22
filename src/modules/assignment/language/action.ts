@@ -34,8 +34,8 @@ export const fetchListLanguageRequest = (): ViewListLanguageRequestAction => {
  * Clear state action
  * @returns ViewListLanguageClearStateAction
  */
-export const clearState = (): ViewListLanguageClearStateAction => {
+export const viewListLanguageClearStateRequest = (): ViewListLanguageClearStateAction => {
   return {
-    type: ViewListLanguageActionType.CLEAR_STATE,
+    type: ViewListLanguageActionType.VIEW_LIST_LANGUAGE_CLEAR_STATE,
   }
 }

@@ -60,7 +60,7 @@ const reducer = (state = initialState, action: RunAssignmentDetailAction) => {
         successful: false,
       }
 
-    case RunAssignmentDetailActionType.CLEAR_STATE:
+    case RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_CLEAR_STATE:
       return {
         ...initialState,
       }

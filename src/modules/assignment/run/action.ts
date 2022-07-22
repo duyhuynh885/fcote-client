@@ -44,8 +44,8 @@ export const runAssignmentDetailRequest = ({
  * Clear state action
  * @returns RunAssignmentDetailClearStateAction
  */
-export const clearState = (): RunAssignmentDetailClearStateAction => {
+export const runAssignmentDetailClearStateRequest = (): RunAssignmentDetailClearStateAction => {
   return {
-    type: RunAssignmentDetailActionType.CLEAR_STATE,
+    type: RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_CLEAR_STATE,
   }
 }

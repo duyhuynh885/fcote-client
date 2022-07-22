@@ -57,7 +57,7 @@ const reducer = (state = initialState, action: RegisterAction) => {
         },
       }
 
-    case RegisterActionType.CLEAR_STATE:
+    case RegisterActionType.REGISTER_CLEAR_STATE:
       return {
         ...state,
       }
