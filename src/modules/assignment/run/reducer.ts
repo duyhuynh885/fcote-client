@@ -1,4 +1,8 @@
-import { ViewListLanguageAction, ViewListLanguageActionType, ViewListLanguageState } from './type'
+import {
+  RunAssignmentDetailAction,
+  RunAssignmentDetailActionType,
+  RunAssignmentDetailState,
+} from './type'
 
 /**
  * Reducer for create assignment
@@ -15,37 +19,37 @@ import { ViewListLanguageAction, ViewListLanguageActionType, ViewListLanguageSta
  * 13-07-2022         DuyHV           Create
  */
 
-const initialState: ViewListLanguageState = {
+const initialState: RunAssignmentDetailState = {
   requesting: false,
   successful: false,
   errors: {} as ErrorMessage,
-  languages: [],
+  result: [],
 }
 
 /**
  * Reducer Authentication
- * @param state ViewListLanguageState
- * @param action ViewListLanguageAction
+ * @param state RunAssignmentDetailState
+ * @param action RunAssignmentDetailAction
  * @returns
  */
-const reducer = (state = initialState, action: ViewListLanguageAction) => {
+const reducer = (state = initialState, action: RunAssignmentDetailAction) => {
   switch (action.type) {
-    case ViewListLanguageActionType.VIEW_LIST_LANGUAGE_REQUESTING:
+    case RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_REQUESTING:
       return {
         ...state,
         requesting: true,
         successful: false,
       }
 
-    case ViewListLanguageActionType.VIEW_LIST_LANGUAGE_SUCCESS:
+    case RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_SUCCESS:
       return {
         ...state,
         requesting: false,
         successful: true,
-        languages: action.languages,
+        result: action.result,
       }
 
-    case ViewListLanguageActionType.VIEW_LIST_LANGUAGE_ERROR:
+    case RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_ERROR:
       return {
         ...state,
         errors: {
@@ -56,7 +60,7 @@ const reducer = (state = initialState, action: ViewListLanguageAction) => {
         successful: false,
       }
 
-    case ViewListLanguageActionType.VIEW_LIST_LANGUAGE_CLEAR_STATE:
+    case RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_CLEAR_STATE:
       return {
         ...initialState,
       }

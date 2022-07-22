@@ -18,7 +18,7 @@ export enum LoginActionType {
   LOGIN_SUCCESS = 'LOGIN_SUCCESS',
   LOGIN_ERROR = 'LOGIN_ERROR',
   LOGOUT_REQUEST = 'LOGOUT_REQUEST',
-  CLEAR_STATE = 'CLEAR_STATE',
+  LOGIN_CLEAR_STATE = 'LOGIN_CLEAR_STATE',
 }
 
 export interface LoginRequestPayload {
@@ -43,7 +43,7 @@ export type LoginRequestAction = ActionWithPayload<
 export type LoginSuccessAction = ActionWithPayload<LoginActionType.LOGIN_SUCCESS, LoginResponse>
 export type LoginErrorAction = ActionWithPayload<LoginActionType.LOGIN_ERROR, LoginErrorResponse>
 export type LogoutAction = Action<LoginActionType.LOGOUT_REQUEST>
-export type LoginClearStateAction = Action<LoginActionType.CLEAR_STATE>
+export type LoginClearStateAction = Action<LoginActionType.LOGIN_CLEAR_STATE>
 
 export type LoginAction =
   | LoginRequestAction

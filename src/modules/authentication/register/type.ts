@@ -17,7 +17,7 @@ export enum RegisterActionType {
   REGISTER_REQUESTING = 'REGISTER_REQUESTING',
   REGISTER_SUCCESS = 'REGISTER_SUCCESS',
   REGISTER_ERROR = 'REGISTER_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  REGISTER_CLEAR_STATE = 'REGISTER_CLEAR_STATE',
 }
 
 export interface RegisterRequestPayload {
@@ -49,7 +49,7 @@ export type RegisterErrorAction = ActionWithPayload<
   RegisterActionType.REGISTER_ERROR,
   RegisterErrorResponse
 >
-export type RegisterClearStateAction = Action<RegisterActionType.CLEAR_STATE>
+export type RegisterClearStateAction = Action<RegisterActionType.REGISTER_CLEAR_STATE>
 
 export type RegisterAction =
   | RegisterRequestAction

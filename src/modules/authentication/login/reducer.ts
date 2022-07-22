@@ -64,7 +64,7 @@ const reducer = (state = initialState, action: LoginAction) => {
         ...initialState,
       }
 
-    case LoginActionType.CLEAR_STATE:
+    case LoginActionType.LOGIN_CLEAR_STATE:
       return {
         ...state,
       }

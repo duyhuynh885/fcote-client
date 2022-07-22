@@ -1,4 +1,4 @@
-import { RegisterActionType, RegisterRequestAction, RegisterRequestPayload } from './type'
+import { RegisterActionType, RegisterClearStateAction, RegisterRequestAction, RegisterRequestPayload } from './type'
 
 /**
  * Action Type for authenticate
@@ -34,5 +34,14 @@ export const registerRequest = ({
     username,
     email,
     password,
+  }
+}
+
+/**
+ * Clear state action
+ */
+ export const registerClearStateRequest = (): RegisterClearStateAction => {
+  return {
+    type: RegisterActionType.REGISTER_CLEAR_STATE,
   }
 }

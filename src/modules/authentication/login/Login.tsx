@@ -19,7 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import history from '../../../configs/routing/history'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import { clearState, loginRequest } from './action'
+import { loginClearStateRequest, loginRequest } from './action'
 import ErrorMessage from '../../../components/common/text/ErrorMessage'
 
 /**
@@ -64,7 +64,7 @@ export default function Login() {
 
   useEffect(() => {
     return () => {
-      dispatch(clearState())
+      dispatch(loginClearStateRequest())
     }
   }, [])
 

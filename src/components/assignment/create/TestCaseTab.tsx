@@ -116,7 +116,7 @@ export default function TestCaseTab(props: TestCaseTabProps) {
         direction='row'
         justifyContent='flex-start'
         sx={{
-          padding: '5px',
+          padding: '5px 10px',
           borderBottom: '1px solid black',
         }}
       >
