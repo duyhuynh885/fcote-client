@@ -11,7 +11,9 @@ import rankingReducer from '../../modules/ranking/reducer'
 import detailAssignmentReducer from '../../modules/assignment/detail/reducer'
 import runAssignmentReducer from '../../modules/assignment/run/reducer'
 import submitAssignmentReducer from '../../modules/assignment/submit/reducer'
-
+import listGroupReducer from '../../modules/group/list/reducer'
+import detailGroupReducer from '../../modules/group/detail/reducer'
+import joinGroupReducer from '../../modules/group/join-group/reducer'
 /**
  * Root Reducer
  * @param history any
@@ -32,6 +34,9 @@ const rootReducer = (history: any) =>
     detailAssignment: detailAssignmentReducer,
     runAssignment: runAssignmentReducer,
     submitAssignment: submitAssignmentReducer,
+    listGroup: listGroupReducer,
+    detailGroup: detailGroupReducer,
+    joinGroup: joinGroupReducer,
   })
 
 export default rootReducer

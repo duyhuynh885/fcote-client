@@ -9,7 +9,9 @@ import rankingSaga from '../../modules/ranking/saga'
 import detailAssignmentSaga from '../../modules/assignment/detail/saga'
 import runAssignmentSaga from '../../modules/assignment/run/saga'
 import submitAssignmentSaga from '../../modules/assignment/submit/saga'
-
+import viewListGroupSaga from '../../modules/group/list/saga'
+import viewDetailGroupSaga from '../../modules/group/detail/saga'
+import joinGroupSaga from '../../modules/group/join-group/saga'
 /**
  * Root Saga
  */
@@ -25,5 +27,8 @@ export default function* rootSaga() {
     fork(detailAssignmentSaga),
     fork(runAssignmentSaga),
     fork(submitAssignmentSaga),
+    fork(viewListGroupSaga),
+    fork(viewDetailGroupSaga),
+    fork(joinGroupSaga),
   ])
 }

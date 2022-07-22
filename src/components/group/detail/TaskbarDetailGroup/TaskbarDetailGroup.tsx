@@ -18,9 +18,14 @@ import useStyles from './style'
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
  * 04-07-2022      HuyNT2711           Create
+ * 21-07-2022       TuanLA             Add Show Invite Code 
  */
 
-export default function TaskbarDetailGroup() {
+interface TaskbarDetailGroupProps {
+  code: string
+}
+
+export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
   const classes = useStyles()
 
   return (
@@ -49,7 +54,7 @@ export default function TaskbarDetailGroup() {
         />
         <Divider orientation='vertical' flexItem />
         <Box sx={{ padding: '10px' }}>
-          <Typography className={classes.code}>CODE: 123456</Typography>
+          <Typography className={classes.code}>CODE: {props.code}</Typography>
         </Box>
       </Stack>
     </Paper>
