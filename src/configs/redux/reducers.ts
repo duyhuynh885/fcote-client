@@ -9,6 +9,8 @@ import dataTypeReducer from '../../modules/assignment/data-type/reducer'
 import languageReducer from '../../modules/assignment/language/reducer'
 import rankingReducer from '../../modules/ranking/reducer'
 import detailAssignmentReducer from '../../modules/assignment/detail/reducer'
+import runAssignmentReducer from '../../modules/assignment/run/reducer'
+import submitAssignmentReducer from '../../modules/assignment/submit/reducer'
 
 /**
  * Root Reducer
@@ -28,6 +30,8 @@ const rootReducer = (history: any) =>
     dataType: dataTypeReducer,
     language: languageReducer,
     detailAssignment: detailAssignmentReducer,
+    runAssignment: runAssignmentReducer,
+    submitAssignment: submitAssignmentReducer,
   })
 
 export default rootReducer

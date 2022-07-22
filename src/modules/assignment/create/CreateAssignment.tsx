@@ -22,6 +22,7 @@ import {
 } from './type'
 import { DifficultEnum } from '../list/type'
 import { createAssignmentRequest } from './action'
+import SaveAltOutlinedIcon from '@mui/icons-material/SaveAltOutlined'
 
 /**
  * Create Assignment Pages
@@ -158,7 +159,7 @@ export default function CreateAssignment() {
           className={''}
           onClick={handleSubmit}
         >
-          Save
+          <SaveAltOutlinedIcon fontSize='small' /> Save
         </RegularButton>
       </Stack>
     </Stack>

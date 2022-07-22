@@ -1,8 +1,8 @@
 import { call, put, fork, takeEvery, all } from 'redux-saga/effects'
 import {
-  ViewAssignmentDetailActionType,
-  ViewAssignmentDetailRequestAction,
-  ViewAssignmentDetailResponse,
+  RunAssignmentDetailActionType,
+  RunAssignmentDetailRequestAction,
+  RunAssignmentDetailResponse,
 } from './type'
 import { hideLoaderAction, showLoaderAction } from '../../layout/actions/loaderAction'
 import requestFailure from '../../../utils/onFailure'
@@ -25,39 +25,47 @@ import assignmentApi from '../../../services/assignmentApi'
  */
 
 /**
- * ViewAssignmentDetail flow generator function
- * @param payload ViewAssignmentDetailRequestPayload
+ * RunAssignmentDetail flow generator function
+ * @param payload RunAssignmentDetailRequestPayload
  */
-function* viewAssignmentDetailFlow({ id }: ViewAssignmentDetailRequestAction) {
+function* runAssignmentDetailFlow({
+  assignmentId,
+  challengeId,
+  sourceCode,
+  language,
+}: RunAssignmentDetailRequestAction) {
   try {
     yield put(showLoaderAction())
-    const data: ViewAssignmentDetailResponse = yield call(assignmentApi.fetchAssignmentDetail, {
-      id,
+    const data: RunAssignmentDetailResponse = yield call(assignmentApi.runAssignmentDetail, {
+      assignmentId,
+      challengeId,
+      sourceCode,
+      language,
     })
     yield put({
-      type: ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_SUCCESS,
+      type: RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_SUCCESS,
       ...data,
     })
     yield put(hideLoaderAction())
   } catch (error) {
     yield call(
       requestFailure,
-      ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_ERROR,
+      RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_ERROR,
       handleError(error),
     )
   }
 }
 
 /**
- * ViewAssignmentDetail watcher
+ * RunAssignmentDetail watcher
  */
-function* viewAssignmentDetailWatcher() {
+function* runAssignmentDetailWatcher() {
   yield takeEvery(
-    ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_REQUESTING,
-    viewAssignmentDetailFlow,
+    RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_REQUESTING,
+    runAssignmentDetailFlow,
   )
 }
 
-export default function* viewAssignmentDetailSaga() {
-  yield all([fork(viewAssignmentDetailWatcher)])
+export default function* runAssignmentDetailSaga() {
+  yield all([fork(runAssignmentDetailWatcher)])
 }

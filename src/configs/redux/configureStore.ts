@@ -28,7 +28,7 @@ import history from '../routing/history'
 const persistConfig = {
   key: `${process.env.REACT_APP_NAME}_persist_store`,
   storage,
-  whitelist: ['auth'],
+  whitelist: ['login', 'dataType', 'language'],
 }
 const pReducer = persistReducer(persistConfig, rootReducer(history))
 

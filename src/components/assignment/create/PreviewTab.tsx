@@ -45,21 +45,25 @@ export default function PreviewTab(props: PreviewTabProps) {
         </React.Fragment>
       )}
       {inputList && output && (
-        <Typography className={classes.titleNameInput}>Input/Ouput</Typography>
+        <Typography className={classes.titleNameInput}>Input/Output</Typography>
       )}
       <Stack marginLeft={2} direction='column'>
         {inputList.map((input) => (
-          <Typography key={input.order} className={classes.titleTextField}>
-            [input{input.order + 1}] {mapNameDataTypeByValue(dataTypeState, input.type)}{' '}
-            {input.name}
-            <br />
-            {input.description}
-          </Typography>
+          <React.Fragment key={input.order}>
+            <Typography className={classes.titleTextField}>
+              [input{input.order + 1}] {mapNameDataTypeByValue(dataTypeState, input.type)}
+              {input.name}
+              <br />
+              {input.description}
+            </Typography>
+            <Typography fontSize='14px'>{input.description}</Typography>
+          </React.Fragment>
         ))}
-        <Typography margin='0' className={classes.titleTextField}>
+        <Typography className={classes.titleTextField}>
           [output] {mapNameDataTypeByValue(dataTypeState, output.type)} <br />
           {output.description}
         </Typography>
+        <Typography fontSize='14px'>{output.description}</Typography>
       </Stack>
     </React.Fragment>
   )

@@ -1,4 +1,14 @@
 import {
+  SubmitAssignmentDetailErrorResponse,
+  SubmitAssignmentDetailRequestPayload,
+  SubmitAssignmentDetailResponse,
+} from './../modules/assignment/submit/type'
+import {
+  RunAssignmentDetailErrorResponse,
+  RunAssignmentDetailRequestPayload,
+  RunAssignmentDetailResponse,
+} from './../modules/assignment/run/type'
+import {
   CreateAssignmentRequestPayload,
   CreateAssignmentResponse,
   CreateAssignmentErrorResponse,
@@ -7,7 +17,11 @@ import {
   ViewListDataTypeResponse,
   ViewListDataTypeErrorResponse,
 } from '../modules/assignment/data-type/type'
-import { ViewAssignmentDetailRequestPayload } from '../modules/assignment/detail/type'
+import {
+  ViewAssignmentDetailErrorResponse,
+  ViewAssignmentDetailRequestPayload,
+  ViewAssignmentDetailResponse,
+} from '../modules/assignment/detail/type'
 import {
   ViewListLanguageResponse,
   ViewListLanguageErrorResponse,
@@ -85,9 +99,38 @@ const assignmentApi = {
    * @returns ViewListDataTypeResponse
    * @returns ViewListDataTypeErrorResponse
    */
-   fetchAssignmentDetail(payload: ViewAssignmentDetailRequestPayload) {
+  fetchAssignmentDetail(payload: ViewAssignmentDetailRequestPayload) {
     const url = '/assignment/get-assignment-detail'
-    return axiosClient.post<ViewListDataTypeResponse, ViewListDataTypeErrorResponse>(url, payload)
+    return axiosClient.post<ViewAssignmentDetailResponse, ViewAssignmentDetailErrorResponse>(
+      url,
+      payload,
+    )
+  },
+
+  /**
+   * Api for run assignment detail
+   * @returns RunAssignmentDetailResponse
+   * @returns RunAssignmentDetailErrorResponse
+   */
+  runAssignmentDetail(payload: RunAssignmentDetailRequestPayload) {
+    const url = '/assignment/run-assignment-detail'
+    return axiosClient.post<RunAssignmentDetailResponse, RunAssignmentDetailErrorResponse>(
+      url,
+      payload,
+    )
+  },
+
+  /**
+   * Api for submit assignment detail
+   * @returns SubmitAssignmentDetailResponse
+   * @returns SubmitAssignmentDetailErrorResponse
+   */
+  submitAssignmentDetail(payload: SubmitAssignmentDetailRequestPayload) {
+    const url = '/assignment/submit-assignment-detail'
+    return axiosClient.post<SubmitAssignmentDetailResponse, SubmitAssignmentDetailErrorResponse>(
+      url,
+      payload,
+    )
   },
 }
 

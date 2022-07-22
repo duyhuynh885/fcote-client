@@ -1,4 +1,4 @@
-import { Box, Stack, Tab, Tabs } from '@mui/material'
+import { Box, Stack, Tabs, Tab } from '@mui/material'
 import React from 'react'
 import IDE from '../general/IDE'
 import useStyles from './style'
@@ -45,8 +45,7 @@ function TabPanel(props: TabPanelProps) {
     </div>
   )
 }
-
-export default function EditorTab() {
+export default function IDETab() {
   const [value, setValue] = React.useState(0)
   const classes = useStyles()
 

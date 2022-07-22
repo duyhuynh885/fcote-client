@@ -31,7 +31,7 @@ i18n
       vi: { translation: vi },
     },
     fallbackLng: 'en',
-    debug: true,
+    debug: false,
     detection: {
       order: ['queryString', 'query'],
       caches: ['cookie'],

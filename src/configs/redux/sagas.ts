@@ -7,6 +7,8 @@ import dataTypeSaga from '../../modules/assignment/data-type/saga'
 import languageSaga from '../../modules/assignment/language/saga'
 import rankingSaga from '../../modules/ranking/saga'
 import detailAssignmentSaga from '../../modules/assignment/detail/saga'
+import runAssignmentSaga from '../../modules/assignment/run/saga'
+import submitAssignmentSaga from '../../modules/assignment/submit/saga'
 
 /**
  * Root Saga
@@ -21,5 +23,7 @@ export default function* rootSaga() {
     fork(languageSaga),
     fork(rankingSaga),
     fork(detailAssignmentSaga),
+    fork(runAssignmentSaga),
+    fork(submitAssignmentSaga),
   ])
 }

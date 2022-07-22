@@ -2,8 +2,44 @@ import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles((theme: Theme) => ({
-  scrollBar: {
-    height: '13rem',
+  titleNameInput: {
+    fontSize: theme.textFont.medium,
+    fontWeight: 'bold',
+    margin: '5px 0px',
+  },
+  tabFileName: {
+    fontSize: theme.textFont.extraSmall,
+    fontWeight: '800',
+    textTransform: 'lowercase',
+  },
+  tabTitle: {
+    fontSize: theme.textFont.extraSmall,
+    fontWeight: '800',
+    textTransform: 'capitalize',
+  },
+  titleTextField: {
+    fontSize: theme.textFont.extraSmall,
+    fontWeight: 'bold',
+    margin: '5px 0px',
+  },
+  tabEditor: {
+    '& .MuiTabs-indicator': {
+      backgroundColor: theme.color.darkGray,
+      height: 2,
+    },
+    '& .MuiTab-root.Mui-selected': {
+      color: theme.color.black,
+    },
+  },
+  testCaseTabsTitle: {
+    fontSize: theme.textFont.small,
+    fontWeight: '800',
+    paddingLeft: '10px',
+    textTransform: 'uppercase',
+  },
+  scrollBarTestCase: {
+    height: '25vh',
+    paddingRight: '20px',
     overflowX: 'hidden',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
@@ -16,23 +52,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       backgroundColor: theme.color.green,
       borderRadius: '10px',
     },
-  },
-  tabs: {
-    border: `1px solid ${theme.color.brown} !important`,
-  },
-  gridTestcase: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
-  textRight: {
-    width: '10em',
-  },
-  textTitle: {
-    textAlign: 'left',
-    fontWeight: '700 !important',
-    fontSize: '20px !important',
-    color: theme.color.darkGray,
   },
 }))
 

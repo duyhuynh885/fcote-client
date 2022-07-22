@@ -26,7 +26,7 @@ export interface Detail {
   description: string
   sample: string
   difficulty: number
-  total_testCase: number
+  totalTestCase: number
   score: number
   characterLimit: number
   totalParticipant: number
@@ -82,8 +82,8 @@ export interface ViewAssignmentDetailResponse {
 }
 
 export type ViewListAssignmentRequestAction = ActionWithPayload<
-ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_REQUESTING,
-ViewAssignmentDetailRequestPayload
+  ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_REQUESTING,
+  ViewAssignmentDetailRequestPayload
 >
 
 export type ViewAssignmentDetailRequestAction = ActionWithPayload<

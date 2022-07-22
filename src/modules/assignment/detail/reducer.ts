@@ -1,7 +1,6 @@
 import {
   ViewAssignmentDetailAction,
   ViewAssignmentDetailActionType,
-  ViewAssignmentDetailResponse,
   ViewAssignmentDetailState,
 } from './type'
 
@@ -24,7 +23,23 @@ const initialState: ViewAssignmentDetailState = {
   requesting: false,
   successful: false,
   errors: {} as ErrorMessage,
-  data: {} as ViewAssignmentDetailResponse,
+  data: {
+    detail: {
+      id: 0,
+      title: '',
+      description: '',
+      sample: '',
+      difficulty: 0,
+      totalTestCase: 0,
+      score: 0,
+      characterLimit: 0,
+      totalParticipant: 0,
+      createdBy: '',
+    },
+    languages: [],
+    parameters: [],
+    testCases: [],
+  },
 }
 
 /**
