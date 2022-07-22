@@ -17,7 +17,7 @@
   JOIN_GROUP_REQUESTING = 'JOIN_GROUP_REQUESTING',
   JOIN_GROUP_SUCCESS = 'JOIN_GROUP_SUCCESS',
   JOIN_GROUP_ERROR = 'JOIN_GROUP_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  JOIN_GROUP_CLEAR_STATE = 'JOIN_GROUP_CLEAR_STATE',
   UPDATE_FILTER_LIST_GROUP_REQUEST = 'UPDATE_FILTER_LIST_GROUP_REQUEST',
 }
 
@@ -49,7 +49,7 @@ export type JoinGroupErrorAction = ActionWithPayload<
   JoinGroupErrorResponse
 >
 
-export type JoinGroupClearStateAction = Action<JoinGroupActionType.CLEAR_STATE>
+export type JoinGroupClearStateAction = Action<JoinGroupActionType.JOIN_GROUP_CLEAR_STATE>
 
 export type JoinGroupAction =
   | JoinGroupRequestAction

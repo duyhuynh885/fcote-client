@@ -1,10 +1,12 @@
-import { call, put, fork, takeEvery, all } from 'redux-saga/effects'
+import { call, put, fork, takeEvery, all, delay } from 'redux-saga/effects'
 import {
   ViewDetailGroupActionType,
   ViewDetailGroupRequestAction,
   ViewDetailGroupResponse,
 } from './type'
 import { hideLoaderAction, showLoaderAction } from '../../layout/actions/loaderAction'
+import { hideToastAction, showToastAction } from '../../layout/toast/toastAction'
+
 import requestFailure from '../../../utils/onFailure'
 import { handleError } from '../../../utils/handleError'
 import groupApi from '../../../services/groupApi'
@@ -35,7 +37,11 @@ function* viewDetailGroupFlow({ id, pageSize, pageNumber }: ViewDetailGroupReque
     yield put({ type: ViewDetailGroupActionType.VIEW_DETAIL_GROUP_SUCCESS, ...data })
     yield put(hideLoaderAction())
   } catch (error) {
-    yield call(requestFailure, ViewDetailGroupActionType.VIEW_DETAIL_GROUP_ERROR, handleError(error))
+    yield call(
+      requestFailure,
+      ViewDetailGroupActionType.VIEW_DETAIL_GROUP_ERROR,
+      handleError(error),
+    )
   }
 }
 

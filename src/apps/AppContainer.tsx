@@ -1,5 +1,6 @@
 import React from 'react'
 import Loader from '../components/common/loader/Loader'
+import Toast from '../components/common/toast/Toast'
 import RoutesContainer from './RoutesContainer'
 import Navbar from '../components/common/navigation/NavBar'
 import { makeStyles } from '@mui/styles'
@@ -48,6 +49,9 @@ const hideNavbarPath = [
 function AppContainer() {
   const classes = useStyles()
   const loading = useSelector((state: RootState) => state.loader.loading)
+  const toastOpenState = useSelector((state: RootState) => state.toast.open)
+  const toastMessageState = useSelector((state: RootState) => state.toast.message)
+  const toastTypeState = useSelector((state: RootState) => state.toast.typeAl)
   const location = useLocation()
 
   const matchWithAssignmentId = matchPath(location.pathname, {
@@ -65,6 +69,7 @@ function AppContainer() {
   return (
     <React.Fragment>
       <Loader loading={loading} />
+      <Toast open={toastOpenState} type={toastTypeState} message={toastMessageState} />
       <Stack
         className={classes.appLayout}
         sx={{

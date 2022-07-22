@@ -34,8 +34,8 @@ export const joinGroupRequest = (code: string): JoinGroupRequestAction => {
  * Clear state action
  * @returns JoinGroupClearStateAction
  */
-export const clearState = (): JoinGroupClearStateAction => {
+export const clearStateJoinGroup = (): JoinGroupClearStateAction => {
   return {
-    type: JoinGroupActionType.CLEAR_STATE,
+    type: JoinGroupActionType.JOIN_GROUP_CLEAR_STATE,
   }
 }

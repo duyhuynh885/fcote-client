@@ -17,7 +17,7 @@ export enum ViewDetailGroupActionType {
   VIEW_DETAIL_GROUP_REQUESTING = 'VIEW_DETAIL_GROUP_REQUESTING',
   VIEW_DETAIL_GROUP_SUCCESS = 'VIEW_DETAIL_GROUP_SUCCESS',
   VIEW_DETAIL_GROUP_ERROR = 'VIEW_DETAIL_GROUP_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  VIEW_DETAIL_CLEAR_STATE = 'VIEW_DETAIL_CLEAR_STATE',
   UPDATE_FILTER_DETAIL_GROUP_REQUEST = 'UPDATE_FILTER_DETAIL_GROUP_REQUEST',
 }
 
@@ -70,7 +70,7 @@ export type ViewDetailGroupErrorAction = ActionWithPayload<
   ViewDetailGroupErrorResponse
 >
 
-export type ViewDetailGroupClearStateAction = Action<ViewDetailGroupActionType.CLEAR_STATE>
+export type ViewDetailGroupClearStateAction = Action<ViewDetailGroupActionType.VIEW_DETAIL_CLEAR_STATE>
 
 export type ViewDetailGroupAction =
   | ViewDetailGroupRequestAction

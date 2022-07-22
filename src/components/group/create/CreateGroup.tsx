@@ -1,8 +1,13 @@
 import { Modal, Paper, Stack, TextField, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyle from './style'
-
+import { object, string, TypeOf } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import { createGroupRequest } from '../../../modules/group/create-group/action'
 /**
  * Create Group component
  * <p>
@@ -34,8 +39,58 @@ const style = {
   p: 4,
 }
 
+const createGroupObject = object({
+  groupName: string()
+    .min(1, 'Group Name must be more than 1 characters')
+    .max(100, 'Group Name must be less than 100 characters'),
+  groupDescription: string()
+    .min(1, 'Description must be more than 1 characters')
+    .max(255, 'Description must be less than 255 characters'),
+})
+
 export default function CreateGroup({ open, onClose, urlNamePopup }: ButtonProps) {
   const classes = useStyle()
+  const dispatch = useDispatch<AppDispatch>()
+
+  type CreateGroupInput = TypeOf<typeof createGroupObject>
+  const groupDetailRequestState = useSelector(
+    (state: RootState) => state.createGroup.createGroupRequest,
+  )
+  const createGroupState = useSelector(
+    (state: RootState) => state.createGroup,
+  )
+  const rest = {
+    type: 'submit',
+  }
+
+  const {
+    reset,
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<CreateGroupInput>({
+    resolver: zodResolver(createGroupObject),
+  })
+
+  const onCancel = () => {
+    onClose(true)
+    reset()
+  }
+
+  const onSubmit: SubmitHandler<CreateGroupInput> = (data) => {
+    const { groupName, groupDescription } = data
+    dispatch(createGroupRequest(groupDetailRequestState, groupName, groupDescription))
+    console.log('Create', groupName, groupDescription)
+    onCancel()
+  }
+
+   /**
+   * Load error or success message if exist
+   */
+    useEffect(() => {
+      reset()
+    }, [createGroupState.successful, createGroupState.errors])
+
   return (
     <React.Fragment>
       <Modal
@@ -44,47 +99,71 @@ export default function CreateGroup({ open, onClose, urlNamePopup }: ButtonProps
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
-        <Paper sx={style}>
-          <div className={classes.root}>
-            <Typography className={classes.newGroup}>{urlNamePopup}</Typography>
-          </div>
-          <Stack className={classes.scrollBar}>
-            <Typography className={classes.titleTextField}>Group Name</Typography>
-            <TextField id='outlined-basic' variant='outlined' />
-            <Typography className={classes.titleTextField}>Description</Typography>
-            <TextField fullWidth multiline rows={3} />
-          </Stack>
-          <Stack direction='row' justifyContent='space-around' alignItems='center' spacing={8}>
-            <RegularButton
-              color={'danger'}
-              size={'sm'}
-              round={false}
-              fullWidth={true}
-              disabled={false}
-              simple={false}
-              block={false}
-              link={false}
-              justIcon={false}
-              className={''}
-            >
-              Cancel
-            </RegularButton>
-            <RegularButton
-              color={'success'}
-              size={'sm'}
-              round={false}
-              fullWidth={true}
-              disabled={false}
-              simple={false}
-              block={false}
-              link={false}
-              justIcon={false}
-              className={''}
-            >
-              Save
-            </RegularButton>
-          </Stack>
-        </Paper>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Paper sx={style}>
+            <div className={classes.root}>
+              <Typography className={classes.newGroup}>{urlNamePopup}</Typography>
+            </div>
+            <Stack className={classes.scrollBar}>
+              <Typography className={classes.titleTextField}>Group Name</Typography>
+              <TextField
+                required
+                id='outlined-groupName-input'
+                sx={{ width: '100%', marginBottom: '1.5rem' }}
+                type='groupName'
+                autoComplete='current-code'
+                error={!!errors['groupName']}
+                helperText={errors['groupName'] ? errors['groupName'].message : ''}
+                {...register('groupName')}
+              />
+              <Typography className={classes.titleTextField}>Description</Typography>
+              <TextField
+                required
+                id='outlined-groupDescription-input'
+                fullWidth
+                multiline
+                rows={3}
+                type='groupDescription'
+                autoComplete='current-code'
+                error={!!errors['groupDescription']}
+                helperText={errors['groupDescription'] ? errors['groupDescription'].message : ''}
+                {...register('groupDescription')}
+              />
+            </Stack>
+            <Stack direction='row' justifyContent='space-around' alignItems='center' spacing={8}>
+              <RegularButton
+                color={'danger'}
+                size={'sm'}
+                round={false}
+                fullWidth={true}
+                disabled={false}
+                simple={false}
+                block={false}
+                link={false}
+                justIcon={false}
+                className={''}
+                onClick={onCancel}
+              >
+                Cancel
+              </RegularButton>
+              <RegularButton
+                color={'success'}
+                size={'sm'}
+                round={false}
+                fullWidth={true}
+                disabled={false}
+                simple={false}
+                block={false}
+                link={false}
+                justIcon={false}
+                className={''}
+                {...rest}
+              >
+                Create
+              </RegularButton>
+            </Stack>
+          </Paper>
+        </form>
       </Modal>
     </React.Fragment>
   )

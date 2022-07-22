@@ -22,7 +22,12 @@ import JoinGroup from '../JoinGroup/JoinGroup'
  * 04-07-2022      HuyNT2711           Create
  */
 
-export default function TaskbarGroup() {
+type Props = {
+  queryParamValue?: string
+  onQueryParamChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export default function TaskbarGroup({ queryParamValue, onQueryParamChange }: Props) {
   const classes = useStyle()
   const [openJoin, setOpenJoin] = useState(false)
   const [openCreate, setOpenCreate] = useState(false)
@@ -60,6 +65,8 @@ export default function TaskbarGroup() {
               </InputAdornment>
             ),
           }}
+          onChange={onQueryParamChange}
+          value={queryParamValue}
         />
       </Stack>
       <Stack direction='row'>
@@ -94,7 +101,7 @@ export default function TaskbarGroup() {
           className={classes.button}
           onClick={handleOpenCreateGroup}
         >
-          + Create
+          Create
         </RegularButton>
       </Stack>
       <CreateGroup urlNamePopup='New Group' open={openCreate} onClose={handleCloseCreateGroup} />

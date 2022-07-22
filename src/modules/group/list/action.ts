@@ -40,8 +40,8 @@ export const fetchListGroupRequest = ({
  * Clear state action
  * @returns ViewListGroupClearStateAction
  */
- export const clearState = (): ViewListGroupClearStateAction => {
+ export const clearStateViewListGroup = (): ViewListGroupClearStateAction => {
   return {
-    type: ViewListGroupActionType.CLEAR_STATE,
+    type: ViewListGroupActionType.VIEW_LIST_CLEAR_STATE,
   }
 }

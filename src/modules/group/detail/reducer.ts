@@ -75,7 +75,7 @@ const initialState: ViewDetailGroupState = {
         successful: false,
       }
 
-    case ViewDetailGroupActionType.CLEAR_STATE:
+    case ViewDetailGroupActionType.VIEW_DETAIL_CLEAR_STATE:
       return {
         ...initialState,
       }

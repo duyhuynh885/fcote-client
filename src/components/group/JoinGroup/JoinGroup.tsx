@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Modal, Paper, Stack, TextField, Typography } from '@mui/material'
 import RegularButton from '../../common/button/RegularButton'
 import useStyle from './style'
@@ -50,11 +50,16 @@ export default function JoinGroup({ open, onClose }: ButtonProps) {
 
   type JoinGroupInput = TypeOf<typeof joinGroupSchema>
 
+  const joinGroupState = useSelector(
+    (state: RootState) => state.joinGroup,
+  )
+
   const rest = {
     type: 'submit',
   }
 
   const {
+    reset,
     register,
     formState: { errors },
     handleSubmit,
@@ -64,6 +69,7 @@ export default function JoinGroup({ open, onClose }: ButtonProps) {
 
   const onCancel = () => {
     onClose(true)
+    reset()
   }
 
   const onSubmit: SubmitHandler<JoinGroupInput> = (data) => {
@@ -71,6 +77,13 @@ export default function JoinGroup({ open, onClose }: ButtonProps) {
     dispatch(joinGroupRequest(joinCode))
     onCancel()
   }
+
+  /**
+   * Load error or success message if exist
+   */
+   useEffect(() => {
+    reset()
+  }, [joinGroupState.successful, joinGroupState.errors])
 
   return (
     <React.Fragment>
