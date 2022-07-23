@@ -17,7 +17,7 @@ export enum ViewListDataTypeActionType {
   VIEW_LIST_DATA_TYPE_REQUESTING = 'VIEW_LIST_DATA_TYPE_REQUESTING',
   VIEW_LIST_DATA_TYPE_SUCCESS = 'VIEW_LIST_DATA_TYPE_SUCCESS',
   VIEW_LIST_DATA_TYPE_ERROR = 'VIEW_LIST_DATA_TYPE_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  VIEW_LIST_DATA_TYPE_CLEAR_STATE = 'VIEW_LIST_DATA_TYPE_CLEAR_STATE',
   UPDATE_REQUEST_VIEW_LIST_DATA_TYPE = 'UPDATE_REQUEST_VIEW_LIST_DATA_TYPE',
 }
 
@@ -44,7 +44,8 @@ export type ViewListDataTypeErrorAction = ActionWithPayload<
   ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_ERROR,
   ViewListDataTypeErrorResponse
 >
-export type ViewListDataTypeClearStateAction = Action<ViewListDataTypeActionType.CLEAR_STATE>
+export type ViewListDataTypeClearStateAction =
+  Action<ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_CLEAR_STATE>
 
 export type ViewListDataTypeAction =
   | ViewListDataTypeRequestAction

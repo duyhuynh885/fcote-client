@@ -17,7 +17,7 @@ export enum ViewListAssignmentActionType {
   VIEW_LIST_ASSIGNMENT_REQUESTING = 'VIEW_LIST_ASSIGNMENT_REQUESTING',
   VIEW_LIST_ASSIGNMENT_SUCCESS = 'VIEW_LIST_ASSIGNMENT_SUCCESS',
   VIEW_LIST_ASSIGNMENT_ERROR = 'VIEW_LIST_ASSIGNMENT_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  VIEW_LIST_ASSIGNMENT_CLEAR_STATE = 'VIEW_LIST_ASSIGNMENT_CLEAR_STATE',
   UPDATE_FILTER_LIST_ASSIGNMENT_REQUEST = 'UPDATE_FILTER_LIST_ASSIGNMENT_REQUEST',
 }
 
@@ -78,7 +78,8 @@ export type ViewListAssignmentErrorAction = ActionWithPayload<
   ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_ERROR,
   ViewListAssignmentErrorResponse
 >
-export type ViewListAssignmentClearStateAction = Action<ViewListAssignmentActionType.CLEAR_STATE>
+export type ViewListAssignmentClearStateAction =
+  Action<ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_CLEAR_STATE>
 export type UpdateFilterListAssignmentAction = ActionWithPayload<
   ViewListAssignmentActionType.UPDATE_FILTER_LIST_ASSIGNMENT_REQUEST,
   ViewListAssignmentRequestPayload

@@ -18,8 +18,7 @@ import RegularButton from '../../../components/common/button/RegularButton'
 import useStyles from '../style'
 import { isAuth } from '../../../utils/auth'
 import history from '../../../configs/routing/history'
-import { registerRequest } from './action'
-import { clearState } from '../login/action'
+import { registerRequest, registerClearStateRequest } from './action'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import ErrorMessage from '../../../components/common/text/ErrorMessage'
@@ -59,7 +58,7 @@ export default function Register() {
 
   useEffect(() => {
     return () => {
-      dispatch(clearState())
+      dispatch(registerClearStateRequest())
     }
   }, [])
 
@@ -71,7 +70,7 @@ export default function Register() {
       reset()
     }
     if (registerState.successful) {
-      dispatch(clearState())
+      dispatch(registerClearStateRequest())
       reset()
     }
   }, [registerState.successful, registerState.errors])

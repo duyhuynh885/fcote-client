@@ -12,11 +12,7 @@
  * -----------------------------------------------------------------------
  * 21-06-2022         TuanLA           Create
  */
-import {
-  JoinGroupActionType,
-  JoinGroupRequestAction,
-  JoinGroupClearStateAction,
-} from './type'
+import { JoinGroupActionType, JoinGroupRequestAction, JoinGroupClearStateAction } from './type'
 
 /**
  * JoinGroup request action

@@ -105,8 +105,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 'semiBold',
     minHeight: '35px !important',
     padding: '0.2rem 0.406rem',
-    fontSize: theme.textFont.small,
-    lineHeight: '1',
+    fontSize: theme.textFont.extraSmall,
   },
   round: {
     borderRadius: '30px',
@@ -199,6 +198,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     '&:hover': {
       color: theme.color.green,
     },
+  },
+  textLanguageCode: {
+    fontWeight: '700',
+    fontSize: theme.textFont.superSmall,
+    color: theme.color.darkGray,
   },
 }))
 

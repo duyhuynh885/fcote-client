@@ -17,12 +17,12 @@ export enum ViewListLanguageActionType {
   VIEW_LIST_LANGUAGE_REQUESTING = 'VIEW_LIST_LANGUAGE_REQUESTING',
   VIEW_LIST_LANGUAGE_SUCCESS = 'VIEW_LIST_LANGUAGE_SUCCESS',
   VIEW_LIST_LANGUAGE_ERROR = 'VIEW_LIST_LANGUAGE_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  VIEW_LIST_LANGUAGE_CLEAR_STATE = 'VIEW_LIST_LANGUAGE_CLEAR_STATE',
 }
 
 export interface Language {
-  id: string
-  title: number
+  id: number
+  title: string
 }
 export interface ViewListLanguageErrorResponse {
   error: ErrorMessage
@@ -42,7 +42,8 @@ export type ViewListLanguageErrorAction = ActionWithPayload<
   ViewListLanguageActionType.VIEW_LIST_LANGUAGE_ERROR,
   ViewListLanguageErrorResponse
 >
-export type ViewListLanguageClearStateAction = Action<ViewListLanguageActionType.CLEAR_STATE>
+export type ViewListLanguageClearStateAction =
+  Action<ViewListLanguageActionType.VIEW_LIST_LANGUAGE_CLEAR_STATE>
 
 export type ViewListLanguageAction =
   | ViewListLanguageRequestAction

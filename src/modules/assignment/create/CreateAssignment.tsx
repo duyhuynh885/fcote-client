@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Box, Grid, Stack, Tab, Tabs } from '@mui/material'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyles from './style'
@@ -11,8 +11,6 @@ import PreviewTab from '../../../components/assignment/create/PreviewTab'
 import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../../apps/ReduxContainer'
-import { fetchListLanguageRequest } from '../language/action'
-import { fetchListDataTypeRequest } from '../data-type/action'
 import {
   InputCreateAssignment,
   LanguageCreateAssignment,
@@ -22,6 +20,7 @@ import {
 } from './type'
 import { DifficultEnum } from '../list/type'
 import { createAssignmentRequest } from './action'
+import SaveAltOutlinedIcon from '@mui/icons-material/SaveAltOutlined'
 
 /**
  * Create Assignment Pages
@@ -85,12 +84,6 @@ export default function CreateAssignment() {
       }),
     )
   }
-
-  // Fetch language and dataType first time
-  useEffect(() => {
-    dispatch(fetchListLanguageRequest())
-    dispatch(fetchListDataTypeRequest())
-  }, [])
 
   return (
     <Stack>
@@ -158,7 +151,7 @@ export default function CreateAssignment() {
           className={''}
           onClick={handleSubmit}
         >
-          Save
+          <SaveAltOutlinedIcon fontSize='small' /> Save
         </RegularButton>
       </Stack>
     </Stack>

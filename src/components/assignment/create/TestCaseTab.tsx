@@ -116,7 +116,7 @@ export default function TestCaseTab(props: TestCaseTabProps) {
         direction='row'
         justifyContent='flex-start'
         sx={{
-          padding: '5px',
+          padding: '5px 10px',
           borderBottom: '1px solid black',
         }}
       >
@@ -276,7 +276,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
     transform: 'rotate(90deg)',
   },
   '& .MuiAccordionSummary-content': {
-    marginLeft: theme.spacing(1),
+    margin: `${theme.spacing(0)} ${theme.spacing(1)}`,
   },
 }))
 

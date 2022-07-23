@@ -41,7 +41,7 @@ const initialState: ViewDetailGroupState = {
  * @param action ViewDetailGroupAction
  * @returns
  */
- const reducer = (state = initialState, action: ViewDetailGroupAction) => {
+const reducer = (state = initialState, action: ViewDetailGroupAction) => {
   switch (action.type) {
     case ViewDetailGroupActionType.VIEW_DETAIL_GROUP_REQUESTING:
       return {

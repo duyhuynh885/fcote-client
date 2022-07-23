@@ -34,8 +34,8 @@ export const fetchListDataTypeRequest = (): ViewListDataTypeRequestAction => {
  * Clear state action
  * @returns ViewListDataTypeClearStateAction
  */
-export const clearState = (): ViewListDataTypeClearStateAction => {
+export const viewListDataTypeClearStateRequest = (): ViewListDataTypeClearStateAction => {
   return {
-    type: ViewListDataTypeActionType.CLEAR_STATE,
+    type: ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_CLEAR_STATE,
   }
 }

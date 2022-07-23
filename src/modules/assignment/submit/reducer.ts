@@ -1,4 +1,9 @@
-import { ViewListLanguageAction, ViewListLanguageActionType, ViewListLanguageState } from './type'
+import {
+  SubmitAssignmentDetailAction,
+  SubmitAssignmentDetailActionType,
+  SubmitAssignmentDetailState,
+  Summarize,
+} from './type'
 
 /**
  * Reducer for create assignment
@@ -15,37 +20,39 @@ import { ViewListLanguageAction, ViewListLanguageActionType, ViewListLanguageSta
  * 13-07-2022         DuyHV           Create
  */
 
-const initialState: ViewListLanguageState = {
+const initialState: SubmitAssignmentDetailState = {
   requesting: false,
   successful: false,
   errors: {} as ErrorMessage,
-  languages: [],
+  summarize: {} as Summarize,
+  result: [],
 }
 
 /**
  * Reducer Authentication
- * @param state ViewListLanguageState
- * @param action ViewListLanguageAction
+ * @param state SubmitAssignmentDetailState
+ * @param action SubmitAssignmentDetailAction
  * @returns
  */
-const reducer = (state = initialState, action: ViewListLanguageAction) => {
+const reducer = (state = initialState, action: SubmitAssignmentDetailAction) => {
   switch (action.type) {
-    case ViewListLanguageActionType.VIEW_LIST_LANGUAGE_REQUESTING:
+    case SubmitAssignmentDetailActionType.SUBMIT_ASSIGNMENT_DETAIL_REQUESTING:
       return {
         ...state,
         requesting: true,
         successful: false,
       }
 
-    case ViewListLanguageActionType.VIEW_LIST_LANGUAGE_SUCCESS:
+    case SubmitAssignmentDetailActionType.SUBMIT_ASSIGNMENT_DETAIL_SUCCESS:
       return {
         ...state,
         requesting: false,
         successful: true,
-        languages: action.languages,
+        summarize: action.summarize,
+        result: action.result,
       }
 
-    case ViewListLanguageActionType.VIEW_LIST_LANGUAGE_ERROR:
+    case SubmitAssignmentDetailActionType.SUBMIT_ASSIGNMENT_DETAIL_ERROR:
       return {
         ...state,
         errors: {
@@ -56,7 +63,7 @@ const reducer = (state = initialState, action: ViewListLanguageAction) => {
         successful: false,
       }
 
-    case ViewListLanguageActionType.VIEW_LIST_LANGUAGE_CLEAR_STATE:
+    case SubmitAssignmentDetailActionType.SUBMIT_ASSIGNMENT_DETAIL_CLEAR_STATE:
       return {
         ...initialState,
       }

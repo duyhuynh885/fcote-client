@@ -8,6 +8,9 @@ import createAssignmentReducer from '../../modules/assignment/create/reducer'
 import dataTypeReducer from '../../modules/assignment/data-type/reducer'
 import languageReducer from '../../modules/assignment/language/reducer'
 import rankingReducer from '../../modules/ranking/reducer'
+import detailAssignmentReducer from '../../modules/assignment/detail/reducer'
+import runAssignmentReducer from '../../modules/assignment/run/reducer'
+import submitAssignmentReducer from '../../modules/assignment/submit/reducer'
 import listGroupReducer from '../../modules/group/list/reducer'
 import detailGroupReducer from '../../modules/group/detail/reducer'
 import joinGroupReducer from '../../modules/group/join-group/reducer'
@@ -30,6 +33,9 @@ const rootReducer = (history: any) =>
     createAssignment: createAssignmentReducer,
     dataType: dataTypeReducer,
     language: languageReducer,
+    detailAssignment: detailAssignmentReducer,
+    runAssignment: runAssignmentReducer,
+    submitAssignment: submitAssignmentReducer,
     listGroup: listGroupReducer,
     detailGroup: detailGroupReducer,
     joinGroup: joinGroupReducer,

@@ -56,7 +56,7 @@ const reducer = (state = initialState, action: ViewListDataTypeAction) => {
         successful: false,
       }
 
-    case ViewListDataTypeActionType.CLEAR_STATE:
+    case ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_CLEAR_STATE:
       return {
         ...initialState,
       }

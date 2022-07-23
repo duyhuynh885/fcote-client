@@ -19,7 +19,7 @@ export enum CreateAssignmentActionType {
   CREATE_ASSIGNMENT_REQUESTING = 'CREATE_ASSIGNMENT_REQUESTING',
   CREATE_ASSIGNMENT_SUCCESS = 'CREATE_ASSIGNMENT_SUCCESS',
   CREATE_ASSIGNMENT_ERROR = 'CREATE_ASSIGNMENT_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  CREATE_ASSIGNMENT_CLEAR_STATE = 'CREATE_ASSIGNMENT_CLEAR_STATE',
 }
 
 export interface SettingCreateAssignment {
@@ -101,7 +101,8 @@ export type CreateAssignmentErrorAction = ActionWithPayload<
   CreateAssignmentActionType.CREATE_ASSIGNMENT_ERROR,
   CreateAssignmentErrorResponse
 >
-export type CreateAssignmentClearStateAction = Action<CreateAssignmentActionType.CLEAR_STATE>
+export type CreateAssignmentClearStateAction =
+  Action<CreateAssignmentActionType.CREATE_ASSIGNMENT_CLEAR_STATE>
 
 export type CreateAssignmentAction =
   | CreateAssignmentRequestAction

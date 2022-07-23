@@ -2,8 +2,44 @@ import { Theme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles((theme: Theme) => ({
-  scrollBar: {
-    height: '13rem',
+  titleNameInput: {
+    fontSize: theme.textFont.medium,
+    fontWeight: 'bold',
+    margin: '5px 0px',
+  },
+  tabFileName: {
+    fontSize: theme.textFont.extraSmall,
+    fontWeight: '800',
+    textTransform: 'lowercase',
+  },
+  tabTitle: {
+    fontSize: theme.textFont.extraSmall,
+    fontWeight: '800',
+    textTransform: 'capitalize',
+  },
+  titleTextField: {
+    fontSize: theme.textFont.extraSmall,
+    fontWeight: 'bold',
+    margin: '5px 0px',
+  },
+  tabEditor: {
+    '& .MuiTabs-indicator': {
+      backgroundColor: theme.color.darkGray,
+      height: 2,
+    },
+    '& .MuiTab-root.Mui-selected': {
+      color: theme.color.black,
+    },
+  },
+  testCaseTabsTitle: {
+    fontSize: theme.textFont.small,
+    fontWeight: '800',
+    paddingLeft: '10px',
+    textTransform: 'uppercase',
+  },
+  scrollBarTestCase: {
+    height: '35vh',
+    paddingRight: '20px',
     overflowX: 'hidden',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
@@ -17,21 +53,22 @@ const useStyles = makeStyles((theme: Theme) => ({
       borderRadius: '10px',
     },
   },
-  tabs: {
-    border: `1px solid ${theme.color.brown} !important`,
+  iconWarning: {
+    color: theme.color.darkRed,
   },
-  gridTestcase: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
+  iconSuccess: {
+    color: theme.color.green,
   },
-  textRight: {
-    width: '10em',
+  testResultDescription: {
+    fontWeight: '700',
+    marginLeft: theme.spacing(1),
+    fontSize: theme.textFont.extraSmall,
+    color: theme.color.darkRed,
+    alignItems: 'center',
   },
-  textTitle: {
-    textAlign: 'left',
-    fontWeight: '700 !important',
-    fontSize: '20px !important',
+  inputTestCaseDescription: {
+    fontWeight: '600',
+    fontSize: theme.textFont.extraSmall,
     color: theme.color.darkGray,
   },
 }))
