@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Editor from '@monaco-editor/react'
-import Axios from 'axios'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../apps/ReduxContainer'
+import _ from 'lodash'
 
 /**
  * Assignment Item
@@ -17,47 +19,34 @@ import Axios from 'axios'
  * 08-06-2022      HuyNT2711           Create
  */
 
-function IDE() {
-  const [userCode, setUserCode] = useState('')
-  const [userLang, setUserLang] = useState('python')
-  const [userTheme, setUserTheme] = useState('vs-light')
-  const [fontSize, setFontSize] = useState(14)
-  const [userInput, setUserInput] = useState('')
-  const [userOutput, setUserOutput] = useState('')
-  const [loading, setLoading] = useState(false)
+interface IDEProps {
+  sourceCode?: string
+  onChange: (sourceCode: string) => void
+  language?: number
+}
 
+function IDE(props: IDEProps) {
+  const { language, sourceCode, onChange } = props
+
+  const languageState = useSelector((state: RootState) => state.language.languages)
   const options = {
     width: 'auto',
     flexGrow: 1,
-    fontSize: fontSize,
+    fontSize: 14,
   }
+
   function handleSetUser(value: any) {
-    setUserCode(value)
+    onChange(value)
   }
 
-  function compile() {
-    setLoading(true)
-    if (userCode === '') {
-      return
+  const mapLanguageById = (languageId: number | undefined) => {
+    if (languageState && languageId) {
+      const indexResult = _.findIndex(languageState, function (e) {
+        return e.id === languageId
+      })
+      return languageState[indexResult].title.toLowerCase()
     }
-
-    // Post request to compile endpoint
-    Axios.post('http://localhost:8000/compile', {
-      code: userCode,
-      language: userLang,
-      input: userInput,
-    })
-      .then((res) => {
-        setUserOutput(res.data.output)
-      })
-      .then(() => {
-        setLoading(false)
-      })
-  }
-
-  // Function to clear the output screen
-  function clearOutput() {
-    setUserOutput('')
+    return 'python'
   }
 
   return (
@@ -65,10 +54,9 @@ function IDE() {
       options={options}
       height='calc(50vh - 50px)'
       width='100%'
-      theme={userTheme}
-      language={userLang}
-      defaultLanguage='python'
-      defaultValue='# Enter your code here'
+      theme='vs-light'
+      language={mapLanguageById(language)}
+      defaultValue={sourceCode}
       onChange={handleSetUser}
     />
   )

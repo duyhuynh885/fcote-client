@@ -37,7 +37,18 @@ const initialState: ViewAssignmentDetailState = {
       createdBy: '',
     },
     languages: [],
-    parameters: [],
+    parameters: {
+      input: [],
+      output: {
+        id: 0,
+        assignment: 0,
+        order: 0,
+        type: 0,
+        name: '',
+        dataType: 0,
+        description: '',
+      },
+    },
     testCases: [],
   },
 }

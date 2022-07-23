@@ -78,7 +78,8 @@ export type ViewListAssignmentErrorAction = ActionWithPayload<
   ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_ERROR,
   ViewListAssignmentErrorResponse
 >
-export type ViewListAssignmentClearStateAction = Action<ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_CLEAR_STATE>
+export type ViewListAssignmentClearStateAction =
+  Action<ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_CLEAR_STATE>
 export type UpdateFilterListAssignmentAction = ActionWithPayload<
   ViewListAssignmentActionType.UPDATE_FILTER_LIST_ASSIGNMENT_REQUEST,
   ViewListAssignmentRequestPayload

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: 'uppercase',
   },
   scrollBarTestCase: {
-    height: '25vh',
+    height: '35vh',
     paddingRight: '20px',
     overflowX: 'hidden',
     overflowY: 'scroll',
@@ -52,6 +52,24 @@ const useStyles = makeStyles((theme: Theme) => ({
       backgroundColor: theme.color.green,
       borderRadius: '10px',
     },
+  },
+  iconWarning: {
+    color: theme.color.darkRed,
+  },
+  iconSuccess: {
+    color: theme.color.green,
+  },
+  testResultDescription: {
+    fontWeight: '700',
+    marginLeft: theme.spacing(1),
+    fontSize: theme.textFont.extraSmall,
+    color: theme.color.darkRed,
+    alignItems: 'center',
+  },
+  inputTestCaseDescription: {
+    fontWeight: '600',
+    fontSize: theme.textFont.extraSmall,
+    color: theme.color.darkGray,
   },
 }))
 

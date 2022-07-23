@@ -53,6 +53,11 @@ export default function EditorTab() {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
+
+  const handleOnChangeCode = (sourceCode: string) => {
+    // TODO : IN PROGRESS CODING
+    console.log(sourceCode)
+  }
   return (
     <Stack>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -66,7 +71,7 @@ export default function EditorTab() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <IDE />
+        <IDE onChange={handleOnChangeCode} />
       </TabPanel>
     </Stack>
   )

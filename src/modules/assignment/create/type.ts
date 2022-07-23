@@ -101,7 +101,8 @@ export type CreateAssignmentErrorAction = ActionWithPayload<
   CreateAssignmentActionType.CREATE_ASSIGNMENT_ERROR,
   CreateAssignmentErrorResponse
 >
-export type CreateAssignmentClearStateAction = Action<CreateAssignmentActionType.CREATE_ASSIGNMENT_CLEAR_STATE>
+export type CreateAssignmentClearStateAction =
+  Action<CreateAssignmentActionType.CREATE_ASSIGNMENT_CLEAR_STATE>
 
 export type CreateAssignmentAction =
   | CreateAssignmentRequestAction

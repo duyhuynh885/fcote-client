@@ -18,7 +18,11 @@ import {
   ViewDetailGroupRequestPayload,
   ViewDetailGroupResponse,
 } from '../modules/group/detail/type'
-import { JoinGroupErrorResponse, JoinGroupRequestPayload, JoinGroupResponse } from '../modules/group/join-group/type'
+import {
+  JoinGroupErrorResponse,
+  JoinGroupRequestPayload,
+  JoinGroupResponse,
+} from '../modules/group/join-group/type'
 import {
   ViewListGroupRequestPayload,
   ViewListGroupErrorResponse,
@@ -53,7 +57,7 @@ const groupApi = {
    * @returns ViewListAssignmentResponse
    * @returns ViewListAssignmentErrorResponse
    */
-   joinGroup(payload: JoinGroupRequestPayload) {
+  joinGroup(payload: JoinGroupRequestPayload) {
     const url = '/group/join-group'
     return axiosClient.post<JoinGroupResponse, JoinGroupErrorResponse>(url, payload)
   },

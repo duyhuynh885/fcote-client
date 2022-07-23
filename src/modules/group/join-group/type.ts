@@ -13,7 +13,7 @@
  * 21-07-2022         TuanLA           Create
  */
 
- export enum JoinGroupActionType {
+export enum JoinGroupActionType {
   JOIN_GROUP_REQUESTING = 'JOIN_GROUP_REQUESTING',
   JOIN_GROUP_SUCCESS = 'JOIN_GROUP_SUCCESS',
   JOIN_GROUP_ERROR = 'JOIN_GROUP_ERROR',

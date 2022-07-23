@@ -33,6 +33,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderTop: `0.5px solid ${theme.color.darkGray}`,
     padding: '5px 10px',
   },
+  score: {
+    color: theme.color.darkRed,
+    fontWeight: '700',
+    marginRight: theme.spacing(2),
+  },
+  totalParticipant: {
+    fontWeight: '700',
+    marginLeft: theme.spacing(1),
+  },
 }))
 
 export default useStyles

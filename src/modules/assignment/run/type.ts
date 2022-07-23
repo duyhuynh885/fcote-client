@@ -60,7 +60,8 @@ export type RunAssignmentDetailErrorAction = ActionWithPayload<
   RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_ERROR,
   RunAssignmentDetailErrorResponse
 >
-export type RunAssignmentDetailClearStateAction = Action<RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_CLEAR_STATE>
+export type RunAssignmentDetailClearStateAction =
+  Action<RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_CLEAR_STATE>
 
 export type RunAssignmentDetailAction =
   | RunAssignmentDetailRequestAction

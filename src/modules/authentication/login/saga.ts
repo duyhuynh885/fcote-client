@@ -1,3 +1,5 @@
+import { ViewListLanguageActionType } from './../../assignment/language/type'
+import { ViewListDataTypeActionType } from './../../assignment/data-type/type'
 import { call, put, take, fork, delay, all } from 'redux-saga/effects'
 import { LoginActionType, LoginRequestPayload, LoginResponse } from './type'
 import { hideLoaderAction, showLoaderAction } from '../../layout/actions/loaderAction'
@@ -30,8 +32,10 @@ function* loginFlow(payload: LoginRequestPayload) {
   try {
     yield put(showLoaderAction())
     const data: LoginResponse = yield call(authApi.login, payload)
-    authenticate(data)
+    yield call(authenticate, data)
     yield put({ type: LoginActionType.LOGIN_SUCCESS, ...data })
+    yield put({ type: ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_REQUESTING })
+    yield put({ type: ViewListLanguageActionType.VIEW_LIST_LANGUAGE_REQUESTING })
     history.push('/')
     yield put(hideLoaderAction())
   } catch (error) {

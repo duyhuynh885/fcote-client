@@ -44,7 +44,8 @@ export type ViewListDataTypeErrorAction = ActionWithPayload<
   ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_ERROR,
   ViewListDataTypeErrorResponse
 >
-export type ViewListDataTypeClearStateAction = Action<ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_CLEAR_STATE>
+export type ViewListDataTypeClearStateAction =
+  Action<ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_CLEAR_STATE>
 
 export type ViewListDataTypeAction =
   | ViewListDataTypeRequestAction

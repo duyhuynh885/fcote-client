@@ -31,6 +31,7 @@ const themeCustom = {
     brown: '#9D9D9E',
     darkBlue: '#1D3853',
     lightBlue: '#EFFDF3',
+    darkRed: '#AC5B4D',
   },
   textFont: {
     supperLarge: '28px',
