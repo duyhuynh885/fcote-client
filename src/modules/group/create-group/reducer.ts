@@ -1,5 +1,5 @@
 /**
- * Reducer for detail group
+ * Reducer create group
  *
  * Version 1.0
  *
@@ -13,49 +13,38 @@
  * 21-07-2022         TuanLA           Create
  */
 
-import {
-  GroupDetail,
-  ViewDetailGroupAction,
-  ViewDetailGroupActionType,
-  ViewDetailGroupState,
-} from './type'
+import { CreateGroupAction, CreateGroupActionType, CreateGroupState } from './type'
 
-const initialState: ViewDetailGroupState = {
+const initialState: CreateGroupState = {
   requesting: false,
   successful: false,
   messages: {} as Message,
   errors: {} as ErrorMessage,
-  groupDetailRequest: {
-    pageNumber: 0,
-    pageSize: 15,
-    id: 0,
+  createGroupRequest: {
+    title: '',
+    description: '',
+    image: '234251',
   },
-  groupDetail: {} as GroupDetail,
-  member: [],
-  currentSize: 0,
 }
 
 /**
  * Reducer Detail Group
- * @param state ViewDetailGroupState
- * @param action ViewDetailGroupAction
+ * @param state CreateGroupState
+ * @param action CreateGroupAction
  * @returns
  */
-const reducer = (state = initialState, action: ViewDetailGroupAction) => {
+const reducer = (state = initialState, action: CreateGroupAction) => {
   switch (action.type) {
-    case ViewDetailGroupActionType.VIEW_DETAIL_GROUP_REQUESTING:
+    case CreateGroupActionType.CREATE_GROUP_REQUESTING:
       return {
         ...state,
         requesting: true,
         successful: false,
       }
 
-    case ViewDetailGroupActionType.VIEW_DETAIL_GROUP_SUCCESS:
+    case CreateGroupActionType.CREATE_GROUP_SUCCESS:
       return {
         ...state,
-        currentSize: action.currentSize,
-        groupDetail: action.groupDetail,
-        member: action.member,
         messages: {
           messageEn: action.messageEn,
           messageVi: action.messageVi,
@@ -64,7 +53,7 @@ const reducer = (state = initialState, action: ViewDetailGroupAction) => {
         successful: true,
       }
 
-    case ViewDetailGroupActionType.VIEW_DETAIL_GROUP_ERROR:
+    case CreateGroupActionType.CREATE_GROUP_ERROR:
       return {
         ...state,
         errors: {
@@ -75,7 +64,7 @@ const reducer = (state = initialState, action: ViewDetailGroupAction) => {
         successful: false,
       }
 
-    case ViewDetailGroupActionType.VIEW_DETAIL_CLEAR_STATE:
+    case CreateGroupActionType.CREATE_GROUP_CLEAR_STATE:
       return {
         ...initialState,
       }

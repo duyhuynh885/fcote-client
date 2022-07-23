@@ -40,8 +40,8 @@ export const fetchDetailGroupRequest = (
  * Clear state action
  * @returns ViewDetailGroupClearStateAction
  */
-export const clearState = (): ViewDetailGroupClearStateAction => {
+export const clearStateViewDetail = (): ViewDetailGroupClearStateAction => {
   return {
-    type: ViewDetailGroupActionType.CLEAR_STATE,
+    type: ViewDetailGroupActionType.VIEW_DETAIL_CLEAR_STATE,
   }
 }

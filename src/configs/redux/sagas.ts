@@ -12,6 +12,8 @@ import submitAssignmentSaga from '../../modules/assignment/submit/saga'
 import viewListGroupSaga from '../../modules/group/list/saga'
 import viewDetailGroupSaga from '../../modules/group/detail/saga'
 import joinGroupSaga from '../../modules/group/join-group/saga'
+import createGroupSaga from '../../modules/group/create-group/saga'
+
 /**
  * Root Saga
  */
@@ -30,5 +32,6 @@ export default function* rootSaga() {
     fork(viewListGroupSaga),
     fork(viewDetailGroupSaga),
     fork(joinGroupSaga),
+    fork(createGroupSaga),
   ])
 }

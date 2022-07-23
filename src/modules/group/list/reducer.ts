@@ -67,7 +67,7 @@ const reducer = (state = initialState, action: ViewListGroupAction) => {
         successful: false,
       }
 
-    case ViewListGroupActionType.CLEAR_STATE:
+    case ViewListGroupActionType.VIEW_LIST_CLEAR_STATE:
       return {
         ...initialState,
       }

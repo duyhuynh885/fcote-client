@@ -14,6 +14,8 @@ import submitAssignmentReducer from '../../modules/assignment/submit/reducer'
 import listGroupReducer from '../../modules/group/list/reducer'
 import detailGroupReducer from '../../modules/group/detail/reducer'
 import joinGroupReducer from '../../modules/group/join-group/reducer'
+import createGroupReducer from '../../modules/group/create-group/reducer'
+import toastReducer from '../../modules/layout/toast/reducer'
 /**
  * Root Reducer
  * @param history any
@@ -37,6 +39,8 @@ const rootReducer = (history: any) =>
     listGroup: listGroupReducer,
     detailGroup: detailGroupReducer,
     joinGroup: joinGroupReducer,
+    createGroup: createGroupReducer,
+    toast: toastReducer,
   })
 
 export default rootReducer

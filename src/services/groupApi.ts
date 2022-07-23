@@ -28,6 +28,8 @@ import {
   ViewListGroupErrorResponse,
   ViewListGroupResponse,
 } from '../modules/group/list/type'
+import { CreateGroupErrorResponse, CreateGroupRequestPayload, CreateGroupResponse } from '../modules/group/create-group/type'
+
 import { axiosClient } from './clientApi'
 
 const groupApi = {
@@ -53,13 +55,23 @@ const groupApi = {
   },
 
   /**
-   * Api for fetch detail of group
+   * Api for join group
    * @returns ViewListAssignmentResponse
    * @returns ViewListAssignmentErrorResponse
    */
   joinGroup(payload: JoinGroupRequestPayload) {
     const url = '/group/join-group'
     return axiosClient.post<JoinGroupResponse, JoinGroupErrorResponse>(url, payload)
+  },
+
+  /**
+   * Api for fetch detail of group
+   * @returns ViewListAssignmentResponse
+   * @returns ViewListAssignmentErrorResponse
+   */
+   createGroup(payload: CreateGroupRequestPayload) {
+    const url = '/group/create-group'
+    return axiosClient.post<CreateGroupResponse, CreateGroupErrorResponse>(url, payload)
   },
 }
 

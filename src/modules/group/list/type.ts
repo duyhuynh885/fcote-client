@@ -17,7 +17,7 @@ export enum ViewListGroupActionType {
   VIEW_LIST_GROUP_REQUESTING = 'VIEW_LIST_GROUP_REQUESTING',
   VIEW_LIST_GROUP_SUCCESS = 'VIEW_LIST_GROUP_SUCCESS',
   VIEW_LIST_GROUP_ERROR = 'VIEW_LIST_GROUP_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  VIEW_LIST_CLEAR_STATE = 'VIEW_LIST_CLEAR_STATE',
   UPDATE_FILTER_LIST_GROUP_REQUEST = 'UPDATE_FILTER_LIST_GROUP_REQUEST',
 }
 
@@ -61,7 +61,7 @@ export type ViewListGroupErrorAction = ActionWithPayload<
   ViewListGroupErrorResponse
 >
 
-export type ViewListGroupClearStateAction = Action<ViewListGroupActionType.CLEAR_STATE>
+export type ViewListGroupClearStateAction = Action<ViewListGroupActionType.VIEW_LIST_CLEAR_STATE>
 
 export type ViewListGroupAction =
   | ViewListGroupRequestAction

@@ -62,7 +62,7 @@ const reducer = (state = initialState, action: JoinGroupAction) => {
         successful: false,
       }
 
-    case JoinGroupActionType.CLEAR_STATE:
+    case JoinGroupActionType.JOIN_GROUP_CLEAR_STATE:
       return {
         ...initialState,
       }
