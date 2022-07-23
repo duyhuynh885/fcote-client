@@ -18,7 +18,6 @@ import useStyles from './style'
 import { ReactComponent as Gold } from '../../../../assets/Gold.svg'
 import { ReactComponent as Platinum } from '../../../../assets/Platinum.svg'
 import { ReactComponent as Bronze } from '../../../../assets/Bronze.svg'
-import { FakeDataChallengDetails } from '../../../challenge/TableChallenge/FakeDataChallengeDetail'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { MemberInGroup } from '../../../../modules/group/detail/type'
 

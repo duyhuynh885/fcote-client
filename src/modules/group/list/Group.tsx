@@ -7,6 +7,7 @@ import useStyle from './style'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { fetchListGroupRequest } from './action'
+import { clearStateViewDetail } from '../detail/action'
 /**
  *  Group page
  * <p>
@@ -29,11 +30,11 @@ export default function Group() {
   const groupsState = useSelector((state: RootState) => state.listGroup.groups)
   const groupTypeRequestState = useSelector((state: RootState) => state.listGroup.groupTypeRequest)
   const createGroupSuccessfulState = useSelector((state: RootState) => state.createGroup.successful)
-
   const [query, setQuery] = useState('')
 
   useEffect(() => {
     dispatch(fetchListGroupRequest(groupTypeRequestState))
+    dispatch(clearStateViewDetail())
   }, [groupTypeRequestState])
 
   useEffect(() => {
@@ -41,7 +42,6 @@ export default function Group() {
       dispatch(fetchListGroupRequest(groupTypeRequestState))
     }
   }, [createGroupSuccessfulState])
-
   return (
     <Stack margin={5}>
       <Stack marginBottom={5}>
@@ -53,11 +53,6 @@ export default function Group() {
 
       <Paper elevation={8} className={classes.scrollBar}>
         <Grid container rowSpacing={4} columnSpacing={17} padding={3}>
-          {/* {groupsState.map((group) => (
-            <Grid xs={6} item key={group.id}>
-              <GroupCard group={group} />
-            </Grid>
-          ))} */}
           {groupsState.map((group) => {
             if (query == '' || group.title.toLowerCase().includes(query.toLowerCase())) {
               return (

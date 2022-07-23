@@ -1,8 +1,6 @@
 import React from 'react'
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert, { AlertColor, AlertProps } from '@mui/material/Alert'
-import { hideToastAction } from '../../../modules/layout/toast/toastAction'
-import { delay, put } from 'redux-saga/effects'
 
 /**
  * Toast ui component

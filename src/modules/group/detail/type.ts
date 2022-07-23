@@ -36,6 +36,7 @@ export interface GroupDetail {
   title: string
   totalMember: number
   joinCode: string
+  isOwner: boolean
 }
 
 export interface MemberInGroup {
