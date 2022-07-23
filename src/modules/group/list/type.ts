@@ -13,7 +13,7 @@
  * 21-07-2022         TuanLA           Create
  */
 
- export enum ViewListGroupActionType {
+export enum ViewListGroupActionType {
   VIEW_LIST_GROUP_REQUESTING = 'VIEW_LIST_GROUP_REQUESTING',
   VIEW_LIST_GROUP_SUCCESS = 'VIEW_LIST_GROUP_SUCCESS',
   VIEW_LIST_GROUP_ERROR = 'VIEW_LIST_GROUP_ERROR',

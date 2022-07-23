@@ -21,8 +21,8 @@ export enum ViewListLanguageActionType {
 }
 
 export interface Language {
-  id: string
-  title: number
+  id: number
+  title: string
 }
 export interface ViewListLanguageErrorResponse {
   error: ErrorMessage
@@ -42,7 +42,8 @@ export type ViewListLanguageErrorAction = ActionWithPayload<
   ViewListLanguageActionType.VIEW_LIST_LANGUAGE_ERROR,
   ViewListLanguageErrorResponse
 >
-export type ViewListLanguageClearStateAction = Action<ViewListLanguageActionType.VIEW_LIST_LANGUAGE_CLEAR_STATE>
+export type ViewListLanguageClearStateAction =
+  Action<ViewListLanguageActionType.VIEW_LIST_LANGUAGE_CLEAR_STATE>
 
 export type ViewListLanguageAction =
   | ViewListLanguageRequestAction

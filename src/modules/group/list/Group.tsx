@@ -20,7 +20,7 @@ import { fetchListGroupRequest } from './action'
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
  * 04-07-2022      HuyNT2711           Create
- * 21-07-2022       TuanLA              Add Logic 
+ * 21-07-2022       TuanLA              Add Logic
  */
 
 export default function Group() {
@@ -43,7 +43,7 @@ export default function Group() {
             <Grid xs={6} item key={group.id}>
               <GroupCard group={group} />
             </Grid>
-          ))}         
+          ))}
         </Grid>
       </Paper>
     </Stack>

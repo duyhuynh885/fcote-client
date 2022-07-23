@@ -21,8 +21,8 @@ const initialState: JoinGroupState = {
   messages: {} as Message,
   errors: {} as ErrorMessage,
   joinGroupRequest: {
-    joinCode: ''
-  }
+    joinCode: '',
+  },
 }
 
 /**

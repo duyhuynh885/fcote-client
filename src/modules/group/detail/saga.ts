@@ -35,7 +35,11 @@ function* viewDetailGroupFlow({ id, pageSize, pageNumber }: ViewDetailGroupReque
     yield put({ type: ViewDetailGroupActionType.VIEW_DETAIL_GROUP_SUCCESS, ...data })
     yield put(hideLoaderAction())
   } catch (error) {
-    yield call(requestFailure, ViewDetailGroupActionType.VIEW_DETAIL_GROUP_ERROR, handleError(error))
+    yield call(
+      requestFailure,
+      ViewDetailGroupActionType.VIEW_DETAIL_GROUP_ERROR,
+      handleError(error),
+    )
   }
 }
 

@@ -18,7 +18,7 @@ import useStyles from './style'
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
  * 04-07-2022      HuyNT2711           Create
- * 21-07-2022       TuanLA             Add Show Invite Code 
+ * 21-07-2022       TuanLA             Add Show Invite Code
  */
 
 interface TaskbarDetailGroupProps {

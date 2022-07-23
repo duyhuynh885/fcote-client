@@ -1,3 +1,4 @@
+import { DifficultEnum } from './../list/type'
 /**
  * Type for create assignment
  *
@@ -25,7 +26,7 @@ export interface Detail {
   title: string
   description: string
   sample: string
-  difficulty: number
+  difficulty: DifficultEnum
   totalTestCase: number
   score: number
   characterLimit: number
@@ -40,6 +41,11 @@ export interface Language {
 }
 
 export interface Parameter {
+  input: InputOutputParameters[]
+  output: InputOutputParameters
+}
+
+export interface InputOutputParameters {
   id: number
   assignment: number
   order: number
@@ -53,15 +59,17 @@ export interface TestCase {
   id: number
   assignment: number
   order: number
-  element: Element[]
+  input: InputOutputTestCase[]
+  output: InputOutputTestCase
   isPrivate: boolean
 }
 
-export interface Element {
+export interface InputOutputTestCase {
   id: number
   testCase: number
   order: number
   type: number
+  name: string
   dataType: number
   value: string
 }
@@ -77,7 +85,7 @@ export interface ViewAssignmentDetailErrorResponse {
 export interface ViewAssignmentDetailResponse {
   detail: Detail
   languages: Language[]
-  parameters: Parameter[]
+  parameters: Parameter
   testCases: TestCase[]
 }
 

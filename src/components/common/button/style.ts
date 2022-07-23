@@ -199,6 +199,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: theme.color.green,
     },
   },
+  textLanguageCode: {
+    fontWeight: '700',
+    fontSize: theme.textFont.superSmall,
+    color: theme.color.darkGray,
+  },
 }))
 
 export default useStyles

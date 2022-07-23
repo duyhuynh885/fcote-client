@@ -31,7 +31,7 @@ export default function GroupCard(props: IProps) {
   const { group } = props
   return (
     <Paper square className={classes.wrapper}>
-      <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={'/group/'+ group.id}>
+      <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={'/group/' + group.id}>
         <Stack direction='row'>
           <img
             className={classes.groupCardBanner}

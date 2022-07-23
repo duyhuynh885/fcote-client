@@ -23,7 +23,7 @@ import { useParams } from 'react-router-dom'
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
  * 04-07-2022      HuyNT2711           Create
- * 21-07-2022       TuanLA              Add Logic 
+ * 21-07-2022       TuanLA              Add Logic
  */
 
 interface TabPanelProps {
@@ -33,7 +33,7 @@ interface TabPanelProps {
 }
 
 interface ParamTypes {
-  groupId: string;
+  groupId: string
 }
 
 function a11yProps(index: number) {

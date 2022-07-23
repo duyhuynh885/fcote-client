@@ -1,5 +1,6 @@
 import { Box, Stack, Tabs, Tab } from '@mui/material'
 import React from 'react'
+import SwapLanguageCode from '../../common/button/SwapLanguageCode'
 import IDE from '../general/IDE'
 import useStyles from './style'
 
@@ -45,16 +46,33 @@ function TabPanel(props: TabPanelProps) {
     </div>
   )
 }
-export default function IDETab() {
+
+interface IDETabProps {
+  sourceCode: string
+  onChangeSourceCode: (sourceCode: string) => void
+  language: number
+  handleChangeLanguage: (language: number) => void
+}
+
+export default function IDETab(props: IDETabProps) {
   const [value, setValue] = React.useState(0)
   const classes = useStyles()
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const { sourceCode, onChangeSourceCode, language, handleChangeLanguage } = props
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
+
   return (
     <Stack>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderColor: 'divider',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         <Tabs
           className={classes.tabEditor}
           value={value}
@@ -63,9 +81,10 @@ export default function IDETab() {
         >
           <Tab className={classes.tabFileName} label='test.java' {...a11yProps(0)} />
         </Tabs>
+        <SwapLanguageCode language={language} onChange={handleChangeLanguage} />
       </Box>
       <TabPanel value={value} index={0}>
-        <IDE />
+        <IDE language={language} sourceCode={sourceCode} onChange={onChangeSourceCode} />
       </TabPanel>
     </Stack>
   )

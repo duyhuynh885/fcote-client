@@ -1,21 +1,20 @@
 import * as React from 'react'
 import Grid from '@mui/material/Grid'
-import { Stack } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import useStyles from './style'
 import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 import RegularButton from '../../../components/common/button/RegularButton'
 import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
-import { fetchDataAssignmentDetailRequest } from './action'
+import { useEffect, useState } from 'react'
+import { fetchDataAssignmentDetailRequest, viewAssignmentDetailClearStateRequest } from './action'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import DescriptionTab from '../../../components/assignment/detail/DescriptionTab'
 import IDETab from '../../../components/assignment/detail/IDETab'
 import TestCaseTab from '../../../components/assignment/detail/TestCaseTab'
-import { fetchListLanguageRequest } from '../language/action'
-import { fetchListDataTypeRequest } from '../data-type/action'
-import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
+import { runAssignmentDetailRequest } from '../run/action'
 
 /**
  * Detail Assignment
@@ -35,6 +34,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 interface RouteParams {
   assignmentId: string
+  challengeId: string
+  groupId: string
 }
 
 export default function DetailAssignment() {
@@ -43,13 +44,25 @@ export default function DetailAssignment() {
   const params = useParams<RouteParams>()
   const assignmentDetailState = useSelector((state: RootState) => state.detailAssignment.data)
   const { detail, languages, parameters, testCases } = assignmentDetailState
+  const assignmentId: number = +params.assignmentId
+  const challengeId: number = params.challengeId ? +params.challengeId : 1
+  const [sourceCode, setSourceCode] = useState<string>('def compare(a,b):')
+  const [language, setLanguage] = useState<number>(1)
 
   // Fetch language and dataType first time
   useEffect(() => {
-    dispatch(fetchDataAssignmentDetailRequest({ id: +params.assignmentId }))
-    dispatch(fetchListLanguageRequest())
-    dispatch(fetchListDataTypeRequest())
+    dispatch(fetchDataAssignmentDetailRequest({ id: assignmentId }))
   }, [])
+
+  useEffect(() => {
+    return () => {
+      dispatch(viewAssignmentDetailClearStateRequest())
+    }
+  }, [])
+
+  const handleRunTestCase = () => {
+    dispatch(runAssignmentDetailRequest({ assignmentId, challengeId, sourceCode, language }))
+  }
 
   return (
     <Stack>
@@ -61,29 +74,50 @@ export default function DetailAssignment() {
         <Grid className={classes.tabRight} item xs={6} sx={{ height: '100%' }}>
           <Grid container>
             <Grid item xs={12} sx={{ height: '50%' }}>
-              <IDETab />
+              <IDETab
+                sourceCode={sourceCode}
+                onChangeSourceCode={setSourceCode}
+                language={language}
+                handleChangeLanguage={setLanguage}
+              />
             </Grid>
             <Grid item xs={12} sx={{ height: '50%' }}>
-              <TestCaseTab />
+              <TestCaseTab
+                onRunTestCase={handleRunTestCase}
+                testCases={testCases}
+                detail={detail}
+              />
             </Grid>
           </Grid>
         </Grid>
       </Grid>
-      <Stack className={classes.footer} direction='row' justifyContent='flex-end'>
-        <RegularButton
-          color={'primary'}
-          size={'sm'}
-          round={false}
-          fullWidth={false}
-          disabled={false}
-          simple={false}
-          block={false}
-          link={false}
-          justIcon={false}
-          className={''}
-        >
-          <KeyboardArrowUpIcon fontSize='small' /> Submit
-        </RegularButton>
+      <Stack
+        className={classes.footer}
+        direction='row'
+        alignItems='center'
+        justifyContent='space-between'
+      >
+        <Stack direction='row' alignItems='center'>
+          <PersonOutlineIcon fontSize='small' />
+          <Typography className={classes.totalParticipant}>{detail.totalParticipant}</Typography>
+        </Stack>
+        <Stack direction='row' alignItems='center'>
+          <Typography className={classes.score}>0/{detail.score}</Typography>
+          <RegularButton
+            color={'primary'}
+            size={'sm'}
+            round={false}
+            fullWidth={false}
+            disabled={false}
+            simple={false}
+            block={false}
+            link={false}
+            justIcon={false}
+            className={''}
+          >
+            <KeyboardArrowUpIcon fontSize='small' /> Submit
+          </RegularButton>
+        </Stack>
       </Stack>
     </Stack>
   )
