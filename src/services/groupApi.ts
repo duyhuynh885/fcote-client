@@ -29,7 +29,11 @@ import {
   ViewListGroupResponse,
 } from '../modules/group/list/type'
 import { CreateGroupErrorResponse, CreateGroupRequestPayload, CreateGroupResponse } from '../modules/group/create-group/type'
-
+import {
+  DeleteGroupRequestPayload,
+  DeleteGroupResponse,
+  DeleteGroupErrorAction,
+} from '../modules/group/setting-group/delete-group/type'
 import { axiosClient } from './clientApi'
 
 const groupApi = {
@@ -71,6 +75,16 @@ const groupApi = {
    */
    createGroup(payload: CreateGroupRequestPayload) {
     const url = '/group/create-group'
+    return axiosClient.post<CreateGroupResponse, CreateGroupErrorResponse>(url, payload)
+  },
+
+  /**
+   * Api for delete group
+   * @returns ViewListAssignmentResponse
+   * @returns ViewListAssignmentErrorResponse
+   */
+   deleteGroup(payload: DeleteGroupRequestPayload) {
+    const url = '/group/delete-group'
     return axiosClient.post<CreateGroupResponse, CreateGroupErrorResponse>(url, payload)
   },
 }
