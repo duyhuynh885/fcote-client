@@ -13,6 +13,7 @@ import viewListGroupSaga from '../../modules/group/list/saga'
 import viewDetailGroupSaga from '../../modules/group/detail/saga'
 import joinGroupSaga from '../../modules/group/join-group/saga'
 import createGroupSaga from '../../modules/group/create-group/saga'
+import deleteGroupSaga from '../../modules/group/setting-group/delete-group/saga'
 
 /**
  * Root Saga
@@ -33,5 +34,6 @@ export default function* rootSaga() {
     fork(viewDetailGroupSaga),
     fork(joinGroupSaga),
     fork(createGroupSaga),
+    fork(deleteGroupSaga),
   ])
 }
