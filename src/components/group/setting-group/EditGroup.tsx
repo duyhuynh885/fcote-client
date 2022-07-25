@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import { TypeModalGroup } from './type'
 /**
  * Create Group component
  * <p>
@@ -21,11 +22,6 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
  * ------------------------------------------------
  * 04-07-2022      HuyNT2711           Create
  */
-
-enum TypeModalGroup {
-  CREATE_GROUP = 'New Group',
-  EDIT_GROUP = 'Edit Group',
-}
 
 interface ButtonProps {
   open: boolean
@@ -56,7 +52,7 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
   const classes = useStyle()
   const dispatch = useDispatch<AppDispatch>()
 
-  type CreateGroupInput = TypeOf<typeof editGroupObject>
+  type EditGroupInput = TypeOf<typeof editGroupObject>
   const groupDetailRequestState = useSelector(
     (state: RootState) => state.createGroup.createGroupRequest,
   )
@@ -71,7 +67,7 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<CreateGroupInput>({
+  } = useForm<EditGroupInput>({
     resolver: zodResolver(editGroupObject),
   })
 
@@ -80,7 +76,7 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
     reset()
   }
 
-  const onSubmit: SubmitHandler<CreateGroupInput> = (data) => {
+  const onSubmit: SubmitHandler<EditGroupInput> = (data) => {
     const { groupName, groupDescription } = data
     if (urlNamePopup === TypeModalGroup.EDIT_GROUP) {
       console.log('Edit', groupName, groupDescription)
@@ -165,7 +161,7 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
                 className={''}
                 {...rest}
               >
-                Create
+                Edit
               </RegularButton>
             </Stack>
           </Paper>
