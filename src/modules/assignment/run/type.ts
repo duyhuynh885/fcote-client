@@ -13,19 +13,13 @@
  * 13-07-2022         DuyHV           Create
  */
 
+import { Result } from '../detail/type'
+
 export enum RunAssignmentDetailActionType {
   RUN_ASSIGNMENT_DETAIL_REQUESTING = 'RUN_ASSIGNMENT_DETAIL_REQUESTING',
   RUN_ASSIGNMENT_DETAIL_SUCCESS = 'RUN_ASSIGNMENT_DETAIL_SUCCESS',
   RUN_ASSIGNMENT_DETAIL_ERROR = 'RUN_ASSIGNMENT_DETAIL_ERROR',
   RUN_ASSIGNMENT_DETAIL_CLEAR_STATE = 'RUN_ASSIGNMENT_DETAIL_CLEAR_STATE',
-}
-
-export interface Result {
-  testCaseId: number
-  isPassed: boolean
-  runSuccess: boolean
-  actualOutput: string
-  expectedOutput: string
 }
 
 export interface RunAssignmentDetailRequestPayload {
@@ -73,5 +67,4 @@ export interface RunAssignmentDetailState {
   requesting: boolean
   successful: boolean
   errors: ErrorMessage
-  result: Result[]
 }

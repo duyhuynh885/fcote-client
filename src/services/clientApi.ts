@@ -23,11 +23,12 @@ export const axiosClient = axios.create({
   },
 })
 
-axiosClient.defaults.headers.common = { Authorization: `Bearer ${getCookie('accessToken')}` }
-
 // Add a request interceptor
 axiosClient.interceptors.request.use(
   function (config: AxiosRequestConfig) {
+    config.headers = {
+      Authorization: `Bearer ${getCookie('accessToken')}`,
+    }
     return config
   },
   function (error: AxiosError) {

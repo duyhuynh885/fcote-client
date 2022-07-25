@@ -121,8 +121,15 @@ const routes = [
   {
     auth: true,
     title: 'CHALLENGE DETAIL',
-    path: '/challenge/:challengeId/assignment/:assignmentId',
+    path: '/challenge/:challengeId',
     Component: ChallengeDetail,
+    exact: true,
+  },
+  {
+    auth: true,
+    title: 'CHALLENGE DETAIL ASSIGNMENT DETAIL',
+    path: '/challenge/:challengeId/assignment/:assignmentId',
+    Component: DetailAssignment,
     exact: true,
   },
   {

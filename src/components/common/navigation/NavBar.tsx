@@ -151,9 +151,9 @@ function Navbar() {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign='center' className={classes.textDropdown}>
+                  <NavLink to='my-profile' className={`${classes.textDropdown}`}>
                     My Profile
-                  </Typography>
+                  </NavLink>
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
@@ -161,9 +161,7 @@ function Navbar() {
                     handleLogout()
                   }}
                 >
-                  <Typography textAlign='center' className={classes.textDropdown}>
-                    Logout
-                  </Typography>
+                  <Typography className={classes.textDropdown}>Logout</Typography>
                 </MenuItem>
               </Menu>
             </Box>
