@@ -1,5 +1,6 @@
 import { Box, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
+import { IChallenge } from '../../../modules/challenge/list/type'
 import ChallengeCard from '../../challenge/ChallengeCard/ChallengeCard'
 import useStyles from '../style'
 
@@ -18,8 +19,15 @@ import useStyles from '../style'
  * 21-06-2022         DuyHV           Create
  */
 
-export default function ChallengeCompleted() {
+interface ChallengeCompletedProps {
+  listChanllengeCompleted: IChallenge[]
+
+  // listChanllengeCompleted: MyProfile['ChallengeCompleted']
+}
+const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
   const classes = useStyles()
+  const { listChanllengeCompleted } = props
+
   return (
     <Paper
       elevation={8}
@@ -35,15 +43,14 @@ export default function ChallengeCompleted() {
           <Typography className={classes.title}>Challenge Completed</Typography>
         </Box>
         <Stack spacing={2} className={classes.scrollBar}>
-          <ChallengeCard url='/challenge/detail' />
-          <ChallengeCard url='/challenge/detail' />
-          <ChallengeCard url='/challenge/detail' />
-          <ChallengeCard url='/challenge/detail' />
-          <ChallengeCard url='/challenge/detail' />
-          <ChallengeCard url='/challenge/detail' />
-          <ChallengeCard url='/challenge/detail' />
+          {listChanllengeCompleted &&
+            listChanllengeCompleted.map((challenge, index) => (
+              <ChallengeCard key={index} url='/challenge/detail' challenge={challenge} />
+            ))}
         </Stack>
       </Stack>
     </Paper>
   )
 }
+
+export default ChallengeCompleted
