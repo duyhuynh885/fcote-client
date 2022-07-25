@@ -10,9 +10,11 @@ import {
   Typography,
 } from '@mui/material'
 import { Box } from '@mui/system'
+import { IUser } from '../../../modules/my-profile/view/type'
 import useStyles from '../style'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import EditProfileModel from '../general/EditProfileModel'
+import EditProfileModel from '../../../modules/my-profile/edit/EditProfileModel'
+import { formatDate } from '../../../utils/dateUtil'
 
 /**
  * Profile component
@@ -29,16 +31,36 @@ import EditProfileModel from '../general/EditProfileModel'
  * 21-06-2022         DuyHV           Create
  */
 
-export default function Profile() {
+interface ProfileProps {
+  user: IUser
+}
+const Profile: React.FC<ProfileProps> = (props) => {
   const classes = useStyles()
+  const handleGender = (): string => {
+    switch (`${props.user.gender}`) {
+      case '1':
+        return 'Female'
+      case '2':
+        return 'Male'
+      case '3':
+        return 'Other Gender'
+      default:
+        return ''
+    }
+  }
   const [open, setOpen] = useState(false)
   const rows = [
-    createData('Organization', 'FPT University Da Nang'),
-    createData('City', 'Da Nang, Viet Nam'),
-    createData('Email', 'duyhuynh885@gmail.com'),
-    createData('Phone', '0905425851'),
-    createData('Gender', 'Male'),
-    createData('Joined on', '13-2-2022'),
+    createData('Organization', `${props.user.organizationTitle}`),
+    createData(
+      'City',
+      `${props.user.city}` === 'null' || `${props.user.country}` === 'null'
+        ? ''
+        : `${props.user.city}` + ',' + `${props.user.country}`,
+    ),
+    createData('Email', `${props.user.email}`),
+    createData('Phone', `${props.user.phone}`),
+    createData('Gender', handleGender()),
+    createData('Joined on', formatDate(`${props.user.createdAt}`)),
   ]
 
   /**
@@ -81,15 +103,13 @@ export default function Profile() {
         <EditProfileModel open={open} onClose={handleClose} />
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Avatar
-          alt='Profile Image'
-          src='https://hanoimoi.com.vn/Uploads/images/tuandiep/2022/02/12/ro.jpg'
-          className={classes.myProfileAvatar}
-        />
+        <Avatar alt='Profile Image' src={props.user.avatar} className={classes.myProfileAvatar} />
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
-        <Typography className={classes.myProfileFullName}>Duy Huynh</Typography>
-        <Typography className={classes.myProfileUsername}>@duyhuynh 885</Typography>
+        <Typography className={classes.myProfileFullName}>
+          {props.user.firstName} {props.user.lastName}
+        </Typography>
+        <Typography className={classes.myProfileUsername}>{props.user.username}</Typography>
       </Box>
       <Box sx={{ padding: 5 }}>
         <TableContainer component={Paper}>
@@ -113,3 +133,4 @@ export default function Profile() {
     </Paper>
   )
 }
+export default Profile

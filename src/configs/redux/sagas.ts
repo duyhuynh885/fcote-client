@@ -15,6 +15,9 @@ import joinGroupSaga from '../../modules/group/join-group/saga'
 import createGroupSaga from '../../modules/group/create-group/saga'
 import deleteGroupSaga from '../../modules/group/setting-group/delete-group/saga'
 import editGroupSaga from '../../modules/group/setting-group/edit-group/saga'
+import viewMyProfileSaga from '../../modules/my-profile/view/saga'
+import viewListChallengeSaga from '../../modules/challenge/list/saga'
+import editMyProfileSaga from '../../modules/my-profile/edit/saga'
 
 /**
  * Root Saga
@@ -37,5 +40,8 @@ export default function* rootSaga() {
     fork(createGroupSaga),
     fork(deleteGroupSaga),
     fork(editGroupSaga),
+    fork(viewMyProfileSaga),
+    fork(viewListChallengeSaga),
+    fork(editMyProfileSaga),
   ])
 }

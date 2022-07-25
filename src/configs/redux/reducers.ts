@@ -16,8 +16,12 @@ import detailGroupReducer from '../../modules/group/detail/reducer'
 import joinGroupReducer from '../../modules/group/join-group/reducer'
 import createGroupReducer from '../../modules/group/create-group/reducer'
 import toastReducer from '../../modules/layout/toast/reducer'
-import deleteGroupReducer from '../../modules/group/setting-group/delete-group/reducer'
 import editGroupReducer from '../../modules/group/setting-group/edit-group/reducer'
+import myProfileReducer from '../../modules/my-profile/view/reducer'
+import editMyProfileReducer from '../../modules/my-profile/edit/reducer'
+import listChallengesReducer from '../../modules/challenge/list/reducer'
+import deleteGroupReducer from '../../modules/group/setting-group/delete-group/reducer'
+
 /**
  * Root Reducer
  * @param history any
@@ -43,8 +47,11 @@ const rootReducer = (history: any) =>
     joinGroup: joinGroupReducer,
     createGroup: createGroupReducer,
     toast: toastReducer,
-    deleteGroup: deleteGroupReducer,
     editGroup: editGroupReducer,
+    listChallenges: listChallengesReducer,
+    myProfile: myProfileReducer,
+    editMyProfile: editMyProfileReducer,
+    deleteGroup: deleteGroupReducer,
   })
 
 export default rootReducer

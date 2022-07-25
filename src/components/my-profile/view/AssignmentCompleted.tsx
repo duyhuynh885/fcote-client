@@ -4,6 +4,7 @@ import { ReactComponent as Gold } from '../../../assets/Gold.svg'
 import { ReactComponent as Platinum } from '../../../assets/Platinum.svg'
 import { ReactComponent as Bronze } from '../../../assets/Bronze.svg'
 import useStyles from '../style'
+import { IAssignmentCompleted } from '../../../modules/my-profile/view/type'
 
 /**
  * Assignment completed component
@@ -20,7 +21,10 @@ import useStyles from '../style'
  * 21-06-2022         DuyHV           Create
  */
 
-export default function AssignmentCompleted() {
+interface AssignmentCompletedProps {
+  assCompleted: IAssignmentCompleted
+}
+const AssignmentCompleted: React.FC<AssignmentCompletedProps> = (props) => {
   const classes = useStyles()
   return (
     <Paper
@@ -42,29 +46,33 @@ export default function AssignmentCompleted() {
               <Stack direction='column' alignItems='center'>
                 <Gold className={classes.assignmentWardIcon} />
                 <Typography className={classes.assignmentWardTitle}>HARD</Typography>
-                <Typography>12</Typography>
+                <Typography>{props.assCompleted.numberAssignmentCompletedFollowHard}</Typography>
               </Stack>
             </Grid>
             <Grid item>
               <Stack direction='column' alignItems='center'>
                 <Platinum className={classes.assignmentWardIcon} />
                 <Typography className={classes.assignmentWardTitle}>MEDIUM</Typography>
-                <Typography>12</Typography>
+                <Typography>{props.assCompleted.numberAssignmentCompletedFollowMedium}</Typography>
               </Stack>
             </Grid>
             <Grid item>
               <Stack direction='column' alignItems='center'>
                 <Bronze className={classes.assignmentWardIcon} />
                 <Typography className={classes.assignmentWardTitle}>EASY</Typography>
-                <Typography>12</Typography>
+                <Typography>{props.assCompleted.numberAssignmentCompletedFollowEasy}</Typography>
               </Stack>
             </Grid>
           </Grid>
         </Box>
         <Paper square className={classes.assignmentTotalScoreContainer}>
-          <Typography className={classes.assignmentTotalScore}>Total Score: 20000</Typography>
+          <Typography className={classes.assignmentTotalScore}>
+            {props.assCompleted.totalScore}
+          </Typography>
         </Paper>
       </Stack>
     </Paper>
   )
 }
+
+export default AssignmentCompleted
