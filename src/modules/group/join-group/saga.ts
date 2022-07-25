@@ -6,6 +6,7 @@ import { handleError } from '../../../utils/handleError'
 import groupApi from '../../../services/groupApi'
 import { hideToastAction, showToastAction } from '../../layout/toast/toastAction'
 import { swapMessage } from '../../../utils/helper'
+import { ViewListDataTypeActionType } from '../../assignment/data-type/type'
 
 /**
  * Saga for fetch list of Groups
@@ -29,11 +30,11 @@ function* JoinGroupFlow({ joinCode }: JoinGroupRequestAction) {
       joinCode,
     })
     yield put({ type: JoinGroupActionType.JOIN_GROUP_SUCCESS, ...data })
-    yield put({ type: JoinGroupActionType.JOIN_GROUP_CLEAR_STATE })
     yield put(hideLoaderAction())
     yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))
     yield delay(5000)
-    yield put(hideToastAction())
+    yield put(hideToastAction())  
+    yield put({ type: JoinGroupActionType.JOIN_GROUP_CLEAR_STATE })
   } catch (error) {
     yield call(requestFailure, JoinGroupActionType.JOIN_GROUP_ERROR, handleError(error))
   }

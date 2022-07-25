@@ -30,6 +30,7 @@ export default function Group() {
   const groupsState = useSelector((state: RootState) => state.listGroup.groups)
   const groupTypeRequestState = useSelector((state: RootState) => state.listGroup.groupTypeRequest)
   const createGroupSuccessfulState = useSelector((state: RootState) => state.createGroup.successful)
+  const joinGroupSuccessfulState = useSelector((state: RootState) => state.joinGroup.successful)
   const [query, setQuery] = useState('')
 
   useEffect(() => {
@@ -41,7 +42,10 @@ export default function Group() {
     if (createGroupSuccessfulState) {
       dispatch(fetchListGroupRequest(groupTypeRequestState))
     }
-  }, [createGroupSuccessfulState])
+    if (joinGroupSuccessfulState) {
+      dispatch(fetchListGroupRequest(groupTypeRequestState))
+    }
+  }, [createGroupSuccessfulState, joinGroupSuccessfulState])
   return (
     <Stack margin={5}>
       <Stack marginBottom={5}>

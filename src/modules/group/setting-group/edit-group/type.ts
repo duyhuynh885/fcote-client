@@ -14,7 +14,7 @@
  */
 
  export enum EditGroupActionType {
-  EDIT_GROUP_REQUEST = 'EDITT_GROUP_REQUEST',
+  EDIT_GROUP_REQUESTING = 'EDIT_GROUP_REQUESTING',
   EDIT_GROUP_SUCCESS = 'EDIT_GROUP_SUCCESS',
   EDIT_GROUP_ERROR = 'EDIT_GROUP_ERROR',
   EDIT_GROUP_CLEAR_STATE = 'EDIT_GROUP_CLEAR_STATE',
@@ -23,6 +23,7 @@
 
 
 export interface EditGroupRequestPayload {
+  groupId: number
   title: string
   description: string
   image: string
@@ -38,12 +39,12 @@ export interface EditGroupResponse {
 }
 
 export type EditGroupRequestAction = ActionWithPayload<
-  EditGroupActionType.EDIT_GROUP_REQUEST,
+  EditGroupActionType.EDIT_GROUP_REQUESTING,
   EditGroupRequestPayload
 >
 
 export type EditGroupSuccessAction = ActionWithPayload<
-  EditGroupActionType.EDIT_GROUP_REQUEST,
+  EditGroupActionType.EDIT_GROUP_SUCCESS,
   EditGroupResponse
 >
 

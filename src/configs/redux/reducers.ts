@@ -17,6 +17,7 @@ import joinGroupReducer from '../../modules/group/join-group/reducer'
 import createGroupReducer from '../../modules/group/create-group/reducer'
 import toastReducer from '../../modules/layout/toast/reducer'
 import deleteGroupReducer from '../../modules/group/setting-group/delete-group/reducer'
+import editGroupReducer from '../../modules/group/setting-group/edit-group/reducer'
 /**
  * Root Reducer
  * @param history any
@@ -43,6 +44,7 @@ const rootReducer = (history: any) =>
     createGroup: createGroupReducer,
     toast: toastReducer,
     deleteGroup: deleteGroupReducer,
+    editGroup: editGroupReducer,
   })
 
 export default rootReducer

@@ -72,15 +72,23 @@ export default function DetailGroup() {
   const groupDetailRequestState = useSelector(
     (state: RootState) => state.detailGroup.groupDetailRequest,
   )
+  const editGroupSuccessfulState = useSelector((state: RootState) => state.editGroup.successful)
 
   useEffect(() => {
     dispatch(fetchDetailGroupRequest(groupDetailRequestState, id))
   }, [groupDetailRequestState.id])
+
+  useEffect(() => {
+    if (editGroupSuccessfulState) {
+      dispatch(fetchDetailGroupRequest(groupDetailRequestState, id))
+    }
+  }, [editGroupSuccessfulState])
+
   return (
     <Stack margin={5}>
       <Grid container>
         <Grid item xs={12} marginBottom={2}>
-          <TaskbarDetailGroup code={groupDetailState.joinCode} isOwner={groupDetailState.isOwner}/>
+          <TaskbarDetailGroup code={groupDetailState.joinCode} isOwner={groupDetailState.isOwner} />
         </Grid>
         <Grid className={classes.tabLeft} item xs={12} sx={{ height: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
