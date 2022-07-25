@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Grid from '@mui/material/Grid'
-import { Box, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import useStyles from './style'
 import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 import RegularButton from '../../../components/common/button/RegularButton'
@@ -15,6 +15,7 @@ import TestCaseTab from '../../../components/assignment/detail/TestCaseTab'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import { runAssignmentDetailRequest } from '../run/action'
+import { submitAssignmentDetailRequest } from '../submit/action'
 
 /**
  * Detail Assignment
@@ -42,8 +43,8 @@ export default function DetailAssignment() {
   const classes = useStyles()
   const dispatch = useDispatch<AppDispatch>()
   const params = useParams<RouteParams>()
-  const assignmentDetailState = useSelector((state: RootState) => state.detailAssignment.data)
-  const { detail, languages, parameters, testCases } = assignmentDetailState
+  const assignmentDetailState = useSelector((state: RootState) => state.detailAssignment)
+  const { detail, languages, parameters, testCases, summarize } = assignmentDetailState
   const assignmentId: number = +params.assignmentId
   const challengeId: number = params.challengeId ? +params.challengeId : 1
   const [sourceCode, setSourceCode] = useState<string>('def compare(a,b):')
@@ -62,6 +63,10 @@ export default function DetailAssignment() {
 
   const handleRunTestCase = () => {
     dispatch(runAssignmentDetailRequest({ assignmentId, challengeId, sourceCode, language }))
+  }
+
+  const handleSubmitAssignment = () => {
+    dispatch(submitAssignmentDetailRequest({ assignmentId, challengeId, sourceCode, language }))
   }
 
   return (
@@ -102,7 +107,9 @@ export default function DetailAssignment() {
           <Typography className={classes.totalParticipant}>{detail.totalParticipant}</Typography>
         </Stack>
         <Stack direction='row' alignItems='center'>
-          <Typography className={classes.score}>0/{detail.score}</Typography>
+          <Typography className={classes.score}>
+            {summarize.score}/{detail.score}
+          </Typography>
           <RegularButton
             color={'primary'}
             size={'sm'}
@@ -114,6 +121,7 @@ export default function DetailAssignment() {
             link={false}
             justIcon={false}
             className={''}
+            onClick={handleSubmitAssignment}
           >
             <KeyboardArrowUpIcon fontSize='small' /> Submit
           </RegularButton>

@@ -47,6 +47,16 @@ const authApi = {
     const url = '/auth/post-reset'
     return axiosClient.post(url, payload)
   },
+
+  /**
+   * Api for logout
+   * @param payload RegisterRequestPayload
+   * @returns
+   */
+  logout(payload: RegisterRequestPayload) {
+    const url = '/auth/post-reset'
+    return axiosClient.post(url, payload)
+  },
 }
 
 export default authApi

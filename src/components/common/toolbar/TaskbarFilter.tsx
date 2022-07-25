@@ -47,6 +47,7 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
   )
   const [status, setStatus] = useState('0')
   const [difficult, setDifficult] = useState('0')
+  const [filterByCurrentAccount, setFilterByCurrentAccount] = useState('Public')
   const [search, setSearch] = useState('')
 
   const handleSearch = () => {
@@ -73,6 +74,18 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
     )
   }
 
+  const handleChangeFilterByPublic = (event: SelectChangeEvent) => {
+    const _value = event.target.value
+    setFilterByCurrentAccount(_value)
+    const resultMatched = _value === 'Public' ? false : true
+    dispatch(
+      updateFilterListAssignmentRequest({
+        ...filterAssignmentState,
+        filterByCurrentAccount: resultMatched,
+      }),
+    )
+  }
+
   return (
     <Paper
       square
@@ -81,7 +94,12 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
     >
       <Stack direction='row' justifyContent='flex-start' alignItems='center' spacing={2}>
         <FormControl color='success' variant='standard' sx={{ m: 1, minWidth: 120 }}>
-          <Select size='small' className={classes.taskFilterOptions} value='Public'>
+          <Select
+            onChange={handleChangeFilterByPublic}
+            size='small'
+            className={classes.taskFilterOptions}
+            value={filterByCurrentAccount}
+          >
             <MenuItem
               classes={{ selected: classes.selected }}
               className={classes.taskFilterOptions}
@@ -92,7 +110,7 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
             <MenuItem
               classes={{ selected: classes.selected }}
               className={classes.taskFilterOptions}
-              value='Created by me'
+              value='CreatedByMe'
             >
               Created by me
             </MenuItem>

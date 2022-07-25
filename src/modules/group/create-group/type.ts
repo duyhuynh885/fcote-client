@@ -13,7 +13,7 @@
  * 21-07-2022         TuanLA           Create
  */
 
- export enum CreateGroupActionType {
+export enum CreateGroupActionType {
   CREATE_GROUP_REQUESTING = 'CREATE_GROUP_REQUESTING',
   CREATE_GROUP_SUCCESS = 'CREATE_GROUP_SUCCESS',
   CREATE_GROUP_ERROR = 'CREATE_GROUP_ERROR',

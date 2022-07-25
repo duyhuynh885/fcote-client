@@ -1,3 +1,6 @@
+import { SubmitAssignmentDetailSuccessAction } from './../submit/type'
+import { RunAssignmentDetailSuccessAction } from './../run/type'
+import { Summarize } from '../submit/type'
 import { DifficultEnum } from './../list/type'
 /**
  * Type for create assignment
@@ -19,6 +22,8 @@ export enum ViewAssignmentDetailActionType {
   VIEW_ASSIGNMENT_DETAIL_SUCCESS = 'VIEW_ASSIGNMENT_DETAIL_SUCCESS',
   VIEW_ASSIGNMENT_DETAIL_ERROR = 'VIEW_ASSIGNMENT_DETAIL_ERROR',
   VIEW_ASSIGNMENT_DETAIL_CLEAR_STATE = 'VIEW_ASSIGNMENT_DETAIL_CLEAR_STATE',
+  VIEW_ASSIGNMENT_DETAIL_RUN_SUCCESS = 'RUN_ASSIGNMENT_DETAIL_SUCCESS',
+  VIEW_ASSIGNMENT_DETAIL_SUBMIT_SUCCESS = 'VIEW_ASSIGNMENT_DETAIL_SUBMIT_SUCCESS',
 }
 
 export interface Detail {
@@ -74,6 +79,28 @@ export interface InputOutputTestCase {
   value: string
 }
 
+export interface TestCaseResult {
+  id: number
+  assignment?: number
+  order: number
+  input: InputOutputTestCase[]
+  output: InputOutputTestCase
+  isPrivate: boolean
+  isPassed?: boolean
+  runSuccess?: boolean
+  actualOutput?: string
+  expectedOutput?: string
+}
+
+export interface Result {
+  testCaseId: number
+  isPassed: boolean
+  runSuccess: boolean
+  actualOutput?: string
+  expectedOutput?: string
+  isPrivate: boolean
+}
+
 export interface ViewAssignmentDetailRequestPayload {
   id: number
 }
@@ -114,10 +141,16 @@ export type ViewAssignmentDetailAction =
   | ViewAssignmentDetailSuccessAction
   | ViewAssignmentDetailErrorAction
   | ViewAssignmentDetailClearStateAction
+  | RunAssignmentDetailSuccessAction
+  | SubmitAssignmentDetailSuccessAction
 
 export interface ViewAssignmentDetailState {
   requesting: boolean
   successful: boolean
   errors: ErrorMessage
-  data: ViewAssignmentDetailResponse
+  detail: Detail
+  languages: Language[]
+  parameters: Parameter
+  testCases: TestCaseResult[]
+  summarize: Summarize
 }

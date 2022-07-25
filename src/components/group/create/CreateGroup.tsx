@@ -56,9 +56,7 @@ export default function CreateGroup({ open, onClose, urlNamePopup }: ButtonProps
   const groupDetailRequestState = useSelector(
     (state: RootState) => state.createGroup.createGroupRequest,
   )
-  const createGroupState = useSelector(
-    (state: RootState) => state.createGroup,
-  )
+  const createGroupState = useSelector((state: RootState) => state.createGroup)
   const rest = {
     type: 'submit',
   }
@@ -84,12 +82,12 @@ export default function CreateGroup({ open, onClose, urlNamePopup }: ButtonProps
     onCancel()
   }
 
-   /**
+  /**
    * Load error or success message if exist
    */
-    useEffect(() => {
-      reset()
-    }, [createGroupState.successful, createGroupState.errors])
+  useEffect(() => {
+    reset()
+  }, [createGroupState.successful, createGroupState.errors])
 
   return (
     <React.Fragment>

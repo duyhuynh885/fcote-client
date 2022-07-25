@@ -71,11 +71,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.color.darkGray,
     fontSize: theme.textFont.extraSmall,
     fontWeight: '700',
+    textAlign: 'center',
     marginLeft: theme.spacing(1),
     '&:hover': {
       color: theme.color.black,
       fontWeight: '800',
     },
+    textDecoration: 'none',
   },
 }))
 

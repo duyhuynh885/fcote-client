@@ -50,9 +50,7 @@ export default function JoinGroup({ open, onClose }: ButtonProps) {
 
   type JoinGroupInput = TypeOf<typeof joinGroupSchema>
 
-  const joinGroupState = useSelector(
-    (state: RootState) => state.joinGroup,
-  )
+  const joinGroupState = useSelector((state: RootState) => state.joinGroup)
 
   const rest = {
     type: 'submit',
@@ -81,7 +79,7 @@ export default function JoinGroup({ open, onClose }: ButtonProps) {
   /**
    * Load error or success message if exist
    */
-   useEffect(() => {
+  useEffect(() => {
     reset()
   }, [joinGroupState.successful, joinGroupState.errors])
 

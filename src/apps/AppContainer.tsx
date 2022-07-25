@@ -66,6 +66,12 @@ function AppContainer() {
     strict: false,
   })
 
+  const matchWithChallengeIdAndAssignmentId = matchPath(location.pathname, {
+    path: '/challenge/:challengeId/assignment/:assignmentId',
+    exact: true,
+    strict: false,
+  })
+
   return (
     <React.Fragment>
       <Loader loading={loading} />
@@ -79,6 +85,7 @@ function AppContainer() {
         }}
       >
         {_.includes(hideNavbarPath, location.pathname) ||
+        matchWithChallengeIdAndAssignmentId ||
         matchWithAssignmentId ||
         matchWithChallengeId ? null : (
           <Navbar />

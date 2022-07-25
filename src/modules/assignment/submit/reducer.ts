@@ -24,8 +24,6 @@ const initialState: SubmitAssignmentDetailState = {
   requesting: false,
   successful: false,
   errors: {} as ErrorMessage,
-  summarize: {} as Summarize,
-  result: [],
 }
 
 /**
@@ -48,8 +46,6 @@ const reducer = (state = initialState, action: SubmitAssignmentDetailAction) => 
         ...state,
         requesting: false,
         successful: true,
-        summarize: action.summarize,
-        result: action.result,
       }
 
     case SubmitAssignmentDetailActionType.SUBMIT_ASSIGNMENT_DETAIL_ERROR:

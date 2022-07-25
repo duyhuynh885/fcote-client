@@ -23,7 +23,6 @@ const initialState: RunAssignmentDetailState = {
   requesting: false,
   successful: false,
   errors: {} as ErrorMessage,
-  result: [],
 }
 
 /**
@@ -46,7 +45,6 @@ const reducer = (state = initialState, action: RunAssignmentDetailAction) => {
         ...state,
         requesting: false,
         successful: true,
-        result: action.result,
       }
 
     case RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_ERROR:
