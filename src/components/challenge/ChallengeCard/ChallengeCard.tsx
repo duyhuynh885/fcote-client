@@ -3,6 +3,7 @@ import React from 'react'
 import useStyles from './style'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import { Link } from 'react-router-dom'
+import { IChallenge } from '../../../modules/challenge/list/type'
 /**
  * Challenge Card Component
  *
@@ -17,11 +18,25 @@ import { Link } from 'react-router-dom'
  * -----------------------------------------------------------------------
  * 21-06-2022         DuyHV           Create
  */
-interface IProps {
+interface ChallengeCardProps {
   url: string
+  challenge: IChallenge
 }
-export default function ChallengeCard(props: IProps) {
+const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
   const classes = useStyles()
+  const challenge = props.challenge
+  const handleShowStatus = () => {
+    switch (challenge.status) {
+      case 1:
+        return 'NOT OPEN YET'
+      case 2:
+        return 'OPEN'
+      case 3:
+        return 'CLOSE'
+      default:
+        return ''
+    }
+  }
   return (
     <Paper
       elevation={4}
@@ -39,26 +54,21 @@ export default function ChallengeCard(props: IProps) {
           />
 
           <Stack direction='column' className={classes.challengeCardContainer}>
-            <Typography className={classes.challengeCardTittle}>
-              FPT TECHDAY 2021_CODE WARS: VÒNG ĐẤU TỰ DO - 03/12/2021
-            </Typography>
-
-            <Typography sx={{ marginBottom: '10px' }}>
-              Bảng thi giành cho mọi đối tượng đam mê lập trình, yêu thích công nghệ Đăng ký tham
-              gia vui lòng truy cập: https://techday2021.fpt.com.vn/vi/code-war
-            </Typography>
+            <Typography className={classes.challengeCardTittle}>{challenge.title}</Typography>
+            <Typography sx={{ marginBottom: '10px' }}>{challenge.decription}</Typography>
             <Box
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
+                paddingTop: '20px',
               }}
             >
               <Stack direction='row'>
                 <PersonOutlineIcon />
-                <Typography>300 Users</Typography>
+                <Typography>{challenge.totalMember}</Typography>
               </Stack>
-              <Typography>2022-25-02</Typography>
-              <Typography className={classes.challengeCardStatus}>Finished</Typography>
+              <Typography>{challenge.startAt}</Typography>
+              <Typography className={classes.challengeCardStatus}>{handleShowStatus()}</Typography>
             </Box>
           </Stack>
         </Stack>
@@ -66,3 +76,4 @@ export default function ChallengeCard(props: IProps) {
     </Paper>
   )
 }
+export default ChallengeCard

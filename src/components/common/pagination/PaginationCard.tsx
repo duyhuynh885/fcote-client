@@ -2,6 +2,7 @@ import { Pagination, PaginationItem, Stack } from '@mui/material'
 import React from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { count } from 'console'
 
 /**
  * Pagination Component
@@ -17,30 +18,36 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
  * ------------------------------------------------
  * 29-06-2022      HuyNT2711           Create
  */
-
-export default function PaginationCard() {
+interface PaginationCardProps {
+  page?: number
+  handleChangePage?: (_event: React.ChangeEvent<unknown>, value: number) => void
+  count?: number
+}
+const PaginationCard: React.FC<PaginationCardProps> = (props) => {
+  const page = props.page
+  const handleChangePage = props.handleChangePage
+  console.log('=========== handleChangePage', handleChangePage)
+  const count = props.count
   return (
-    <Stack
-      spacing={2}
-      width='100%'
-      display='flex'
-      direction='row'
-      justifyContent='center'
-      alignItems='center'
-      marginTop={2}
-    >
-      <Pagination
-        count={10}
-        renderItem={(item) => (
-          <PaginationItem
-            components={{
-              previous: ArrowBackIcon,
-              next: ArrowForwardIcon,
-            }}
-            {...item}
-          />
-        )}
-      />
-    </Stack>
+    <Pagination
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center',
+      }}
+      page={page}
+      onChange={handleChangePage}
+      count={count}
+      renderItem={(item) => (
+        <PaginationItem
+          components={{
+            previous: ArrowBackIcon,
+            next: ArrowForwardIcon,
+          }}
+          {...item}
+        />
+      )}
+    />
   )
 }
+export default PaginationCard
