@@ -9,12 +9,12 @@ export default function Tasklist() {
   return (
     <Stack>
       <Stack className={classes.scrollBar} spacing={2}>
+        {/* <ChallengeCardForOwner url='/challenge/detail' />
         <ChallengeCardForOwner url='/challenge/detail' />
         <ChallengeCardForOwner url='/challenge/detail' />
         <ChallengeCardForOwner url='/challenge/detail' />
         <ChallengeCardForOwner url='/challenge/detail' />
-        <ChallengeCardForOwner url='/challenge/detail' />
-        <ChallengeCardForOwner url='/challenge/detail' />
+        <ChallengeCardForOwner url='/challenge/detail' /> */}
       </Stack>
       <PaginationCard />
     </Stack>
