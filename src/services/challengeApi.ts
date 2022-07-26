@@ -27,6 +27,7 @@ const challengeApi = {
    * @returns
    */
   fetchChallengeApi(payload: ViewListChallengeRequestPayload) {
+    console.log('yeu em huy', payload)
     const url = '/challenge/get-list-challenge'
     return axiosClient.post<ViewListChallengeSuccessResponse, ViewListChallengeErrorResponse>(
       url,

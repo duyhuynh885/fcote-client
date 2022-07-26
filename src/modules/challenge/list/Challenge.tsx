@@ -84,9 +84,9 @@ export default function Challenge() {
     console.log('groupID', groupID)
     setGroupId(groupID)
   }
-  useEffect(() => {
-    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
-  }, [groupID])
+  // useEffect(() => {
+  //   dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
+  // }, [groupID])
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -96,10 +96,6 @@ export default function Challenge() {
     setPage(value)
     dispatch(updateFilterListChallengesRequest({ ...filterChallengesState, pageNumber: value }))
   }
-
-  useEffect(() => {
-    dispatch(fetchListChallengeRequest(filterChallengesState, undefined, undefined, undefined))
-  }, [filterChallengesState])
 
   useEffect(() => {
     return () => {
