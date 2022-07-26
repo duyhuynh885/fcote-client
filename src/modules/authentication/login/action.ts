@@ -7,7 +7,7 @@ import {
 } from './type'
 
 /**
- * Action Type for authenticate
+ * Action for login
  *
  * Version 1.0
  *

@@ -23,6 +23,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import ErrorMessage from '../../../components/common/text/ErrorMessage'
 
+/**
+ * Register Pages
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 22-06-2022         DuyHV           Create
+ */
+
 export default function Register() {
   const registerSchema = object({
     firstName: string().max(32, 'First name must be less than 100 characters'),

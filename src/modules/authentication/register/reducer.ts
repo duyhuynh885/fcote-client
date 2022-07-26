@@ -1,7 +1,7 @@
 import { RegisterAction, RegisterActionType, RegisterState } from './type'
 
 /**
- * Reducer for authenticate
+ * Reducer for register
  *
  * Version 1.0
  *

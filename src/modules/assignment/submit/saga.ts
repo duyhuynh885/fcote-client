@@ -10,7 +10,7 @@ import { handleError } from '../../../utils/handleError'
 import assignmentApi from '../../../services/assignmentApi'
 
 /**
- * Saga for fetch submit assignment
+ * Saga for submit assignments
  *
  * Version 1.0
  *

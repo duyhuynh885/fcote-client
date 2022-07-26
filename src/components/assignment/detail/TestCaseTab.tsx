@@ -17,6 +17,21 @@ import CircularProgress from '@mui/material/CircularProgress'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import _ from 'lodash'
 
+/**
+ * IDETabProps component
+ *
+ * Version 1.0
+ *
+ * Date: 26-07-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 26-07-2022         DuyHV           Create
+ */
+
 interface TestCaseTabProps {
   detail: Detail
   testCases: TestCaseResult[]
@@ -30,6 +45,10 @@ export default function TestCaseTab(props: TestCaseTabProps) {
   const submitAssignmentState = useSelector((state: RootState) => state.submitAssignment)
   const { requesting } = runAssignmentState
 
+  /**
+   * Handle show result description of run and submit testcase
+   * @returns testResult description
+   */
   const handleShowResultRunTestCase = () => {
     if (runAssignmentState.successful || submitAssignmentState.successful) {
       const countPassedTestCase = _.filter(testCases, function (o) {
