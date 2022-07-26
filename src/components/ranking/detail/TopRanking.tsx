@@ -21,10 +21,6 @@ import TopMember from './Top/TopMenber'
 interface UserInforProps {
   data: UserInfor[]
 }
-// const immutablySwapItems = (items: UserInfor[], firstIndex: number, secondIndex: number) =>
-//   items.map((element, index) =>
-//     index === firstIndex ? items[secondIndex] : index === secondIndex ? items[firstIndex] : element,
-//   )
 
 function immutablySwapItems(items: UserInfor[], firstIndex: number, secondIndex: number) {
   return items.map((element, index) => {
