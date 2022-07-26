@@ -1,6 +1,6 @@
 import { call, put, fork, takeEvery, all } from 'redux-saga/effects'
 import { RegisterActionType, RegisterRequestAction, RegisterResponse } from './type'
-import { hideLoaderAction, showLoaderAction } from '../../layout/actions/loaderAction'
+import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import authApi from '../../../services/authApi'
 import { handleError } from '../../../utils/handleError'
 import requestFailure from '../../../utils/onFailure'

@@ -2,7 +2,6 @@ import {
   SubmitAssignmentDetailAction,
   SubmitAssignmentDetailActionType,
   SubmitAssignmentDetailState,
-  Summarize,
 } from './type'
 
 /**

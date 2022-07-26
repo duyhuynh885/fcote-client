@@ -1,5 +1,3 @@
-import { IUser } from '../view/type'
-
 export enum EditMyProfileActionType {
   EDIT_MY_PROFILE_REQUESTING = ' EDIT_MY_PROFILE_REQUESTING',
   EDIT_MY_PROFILE_SUCCESS = 'EDIT_MY_PROFILE_SUCCESS',

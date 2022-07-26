@@ -50,7 +50,7 @@ export default function EditorTab() {
   const [value, setValue] = React.useState(0)
   const classes = useStyles()
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
 

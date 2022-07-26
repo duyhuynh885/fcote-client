@@ -5,7 +5,7 @@ import {
   EditMyProfileSuccessReponse,
 } from './type'
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
-import { hideLoaderAction, showLoaderAction } from '../../layout/actions/loaderAction'
+import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import profileApi from '../../../services/profileApi'
 import requestFailure from '../../../utils/onFailure'
 

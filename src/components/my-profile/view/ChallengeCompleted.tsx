@@ -1,7 +1,7 @@
 import { Box, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { IChallenge } from '../../../modules/challenge/list/type'
-import ChallengeCard from '../../challenge/ChallengeCard/ChallengeCard'
+import ChallengeCard from '../../challenge/general/ChallengeCard/ChallengeCard'
 import useStyles from '../style'
 
 /**

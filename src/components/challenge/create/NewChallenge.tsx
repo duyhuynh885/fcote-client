@@ -1,29 +1,18 @@
 import {
-  Box,
   FormControl,
   Grid,
   MenuItem,
-  OutlinedInput,
   Select,
   SelectChangeEvent,
-  Stack,
   TextField,
   Typography,
 } from '@mui/material'
-import React, { useState } from 'react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
+import React from 'react'
 import useStyles from './style'
-import parse from 'html-react-parser'
-import _ from 'lodash'
 import { object, string } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
-
-const config = {
-  toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
-}
 
 interface Input {
   id: number
@@ -31,14 +20,6 @@ interface Input {
   description?: string
   state?: string
   group?: string
-}
-
-interface FormInputProps {
-  index: number
-  listSize: number
-  input: Input
-  handleRemove: (index: number) => void
-  handleChange: (input: Input, index: number) => void
 }
 
 const inputSchema = object({
@@ -50,14 +31,8 @@ const inputSchema = object({
 
 export default function NewChallenge() {
   const classes = useStyles()
-  const [editorState, setEditorState] = useState('')
-  const handleOnChangeCK = (event: any, editor: ClassicEditor) => {
-    const data = editor.getData()
-    setEditorState(data)
-  }
 
   const {
-    register,
     formState: { errors },
   } = useForm<Input>({
     resolver: zodResolver(inputSchema),

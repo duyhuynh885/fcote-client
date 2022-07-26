@@ -1,11 +1,8 @@
 import {
-  ViewListGroupSuccessAction,
-  ViewListGroupErrorAction,
   ViewListGroupResponse,
   ViewListGroupErrorResponse,
   ViewListGroupRequestPayload,
 } from './../../group/list/type'
-import { StatusEnum } from '../../assignment/list/type'
 import { Group } from '../../group/list/type'
 
 /**

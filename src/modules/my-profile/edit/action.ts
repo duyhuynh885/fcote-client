@@ -1,6 +1,5 @@
 import {
   EditMyProfileRequestPayload,
-  EditMyProfileAction,
   EditMyProfileActionType,
   EditMyProfileClearStateAction,
   EditMyProfileRequestAction,
