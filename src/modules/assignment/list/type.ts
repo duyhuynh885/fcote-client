@@ -1,5 +1,5 @@
 /**
- * Type for authenticate
+ * Type for fetch list assignments
  *
  * Version 1.0
  *

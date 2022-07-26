@@ -7,7 +7,7 @@ import {
 } from './type'
 
 /**
- * Reducer for authenticate
+ * Reducer for fetch list assignments
  *
  * Version 1.0
  *

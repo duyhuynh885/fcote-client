@@ -50,21 +50,31 @@ export default function DetailAssignment() {
   const [sourceCode, setSourceCode] = useState<string>('def compare(a,b):')
   const [language, setLanguage] = useState<number>(1)
 
-  // Fetch language and dataType first time
-  useEffect(() => {
+  /**
+   * Fetch assignment detail for preview data
+   */ useEffect(() => {
     dispatch(fetchDataAssignmentDetailRequest({ id: assignmentId }))
   }, [])
 
+  /**
+   * Clear state
+   */
   useEffect(() => {
     return () => {
       dispatch(viewAssignmentDetailClearStateRequest())
     }
   }, [])
 
+  /**
+   * Handle run test case
+   */
   const handleRunTestCase = () => {
     dispatch(runAssignmentDetailRequest({ assignmentId, challengeId, sourceCode, language }))
   }
 
+  /**
+   * Handle submit assignment
+   */
   const handleSubmitAssignment = () => {
     dispatch(submitAssignmentDetailRequest({ assignmentId, challengeId, sourceCode, language }))
   }

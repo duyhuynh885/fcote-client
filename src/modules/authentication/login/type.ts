@@ -1,5 +1,5 @@
 /**
- * Type for authenticate
+ * Type for login
  *
  * Version 1.0
  *

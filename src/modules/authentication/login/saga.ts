@@ -10,7 +10,7 @@ import requestFailure from '../../../utils/onFailure'
 import { handleError } from '../../../utils/handleError'
 
 /**
- * Saga for authenticate
+ * Saga for login
  *
  * Version 1.0
  *

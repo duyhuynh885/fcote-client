@@ -7,6 +7,21 @@ import { RootState } from '../../../apps/ReduxContainer'
 import { Detail, Parameter } from '../../../modules/assignment/detail/type'
 import { mapNameDataTypeByValue } from '../../../utils/mapper'
 import useStyles from './style'
+
+/**
+ * DescriptionTab component
+ *
+ * Version 1.0
+ *
+ * Date: 26-07-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 26-07-2022         DuyHV           Create
+ */
 interface DescriptionTabProps {
   detail: Detail
   parameters: Parameter
@@ -16,6 +31,7 @@ export default function DescriptionTab(props: DescriptionTabProps) {
   const { detail, parameters } = props
   const classes = useStyles()
   const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
+
   return (
     <React.Fragment>
       {detail.description && parameters.input.length > 0 && parameters.output && (

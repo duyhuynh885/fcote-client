@@ -13,7 +13,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 /**
- * Client
+ * List Assignment
  *
  * Version 1.0
  *
@@ -38,15 +38,26 @@ export default function ListAssignment() {
   const PER_PAGE = 16
   const count = Math.ceil(currentSizeState / PER_PAGE)
 
+  /**
+   * handle update filter by pageNumber
+   * @param _event
+   * @param value
+   */
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
     dispatch(updateFilterListAssignmentRequest({ ...filterAssignmentState, pageNumber: value }))
   }
 
+  /**
+   * Follow filterAssignmentState to fetch list assignment
+   */
   useEffect(() => {
     dispatch(fetchListAssignmentRequest(filterAssignmentState))
   }, [filterAssignmentState])
 
+  /**
+   * clear state
+   */
   useEffect(() => {
     return () => {
       dispatch(viewListAssignmentClearStateRequest())

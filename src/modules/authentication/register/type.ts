@@ -1,5 +1,5 @@
 /**
- * Type for authenticate
+ * Type for register
  *
  * Version 1.0
  *
