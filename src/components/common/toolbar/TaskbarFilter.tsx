@@ -74,6 +74,15 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
     )
   }
 
+  const handleClearSearch = () => {
+    dispatch(
+      updateFilterListAssignmentRequest({
+        ...filterAssignmentState,
+        searchBy: '',
+      }),
+    )
+  }
+
   const handleChangeFilterByPublic = (event: SelectChangeEvent) => {
     const _value = event.target.value
     setFilterByCurrentAccount(_value)
@@ -207,7 +216,7 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
               </IconButton>
             ),
             endAdornment: search && (
-              <IconButton aria-label='toggle password visibility' onClick={() => setSearch('')}>
+              <IconButton aria-label='toggle password visibility' onClick={handleClearSearch}>
                 <ClearOutlinedIcon />
               </IconButton>
             ),

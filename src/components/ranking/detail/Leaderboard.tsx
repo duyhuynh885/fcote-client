@@ -2,7 +2,7 @@ import { Box, Paper } from '@mui/material'
 import React from 'react'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import LeaderboardsTable from './LeaderboardsTable/LeaderboardsTable'
+import LeaderBoardsTable from './LeaderBoardsTable/LeaderBoardsTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { updateFillterRankingRequest } from '../../../modules/ranking/action'
@@ -81,10 +81,10 @@ export default function Leaderboard(props: any) {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <LeaderboardsTable type='university' rankingList={props.data} />
+          <LeaderBoardsTable type='university' rankingList={props.data} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <LeaderboardsTable type='organization' rankingList={props.data} />
+          <LeaderBoardsTable type='organization' rankingList={props.data} />
         </TabPanel>
       </Box>
     </Paper>

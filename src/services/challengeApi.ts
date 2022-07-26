@@ -13,5 +13,9 @@ const challengeApi = {
       payload,
     )
   },
+  createChallenge() {
+    const url = '/challenge/get-list-challenge'
+    return axiosClient.post<ViewListChallengeSuccessReponse, ViewListChallengeErrorReponse>(url)
+  },
 }
 export default challengeApi

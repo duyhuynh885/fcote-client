@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Editor from '@monaco-editor/react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
