@@ -16,6 +16,7 @@ import detailGroupReducer from '../../modules/group/detail/reducer'
 import joinGroupReducer from '../../modules/group/join/reducer'
 import createGroupReducer from '../../modules/group/create/reducer'
 import toastReducer from '../../modules/layout/toast/reducer'
+import editGroupReducer from '../../modules/group/setting/edit/reducer'
 import myProfileReducer from '../../modules/my-profile/view/reducer'
 import editMyProfileReducer from '../../modules/my-profile/edit/reducer'
 import listChallengesReducer from '../../modules/challenge/list/reducer'
@@ -46,6 +47,7 @@ const rootReducer = (history: any) =>
     joinGroup: joinGroupReducer,
     createGroup: createGroupReducer,
     toast: toastReducer,
+    editGroup: editGroupReducer,
     listChallenges: listChallengesReducer,
     myProfile: myProfileReducer,
     editMyProfile: editMyProfileReducer,

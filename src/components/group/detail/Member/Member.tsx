@@ -2,6 +2,7 @@ import * as React from 'react'
 import {
   Avatar,
   Grid,
+  IconButton,
   Paper,
   Table,
   TableBody,
@@ -127,7 +128,9 @@ export default function Member(props: DetailGroupProps) {
                   </TableCell>
                   <TableCell className={classes.tableItemCell}>
                     <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                      <LogoutIcon />
+                      <IconButton color='primary' aria-label='logout'>
+                        <LogoutIcon />
+                      </IconButton>
                     </Box>
                   </TableCell>
                 </TableRow>

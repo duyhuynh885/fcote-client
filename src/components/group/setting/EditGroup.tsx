@@ -5,9 +5,10 @@ import useStyle from './style'
 import { object, string, TypeOf } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../apps/ReduxContainer'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { TypeModalGroup } from './type'
+import { editGroupRequest } from '../../../modules/group/setting/edit/action'
 /**
  * Create Group component
  * <p>
@@ -51,8 +52,11 @@ const editGroupObject = object({
 export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) {
   const classes = useStyle()
   type EditGroupInput = TypeOf<typeof editGroupObject>
+  const dispatch = useDispatch<AppDispatch>()
   const createGroupState = useSelector((state: RootState) => state.createGroup)
   const detailGroupState = useSelector((state: RootState) => state.detailGroup)
+  const editGroupState = useSelector((state: RootState) => state.editGroup.editGroupRequest)
+  const groupDetailIdState = useSelector((state: RootState) => state.detailGroup.groupDetail.id)
   const rest = {
     type: 'submit',
   }
@@ -73,7 +77,8 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
   const onSubmit: SubmitHandler<EditGroupInput> = (data) => {
     const { groupName, groupDescription } = data
     if (urlNamePopup === TypeModalGroup.EDIT_GROUP) {
-      return ''
+      console.log('Edit', groupName, groupDescription)
+      dispatch(editGroupRequest(editGroupState, groupDetailIdState, groupName, groupDescription))
     }
     onCancel()
   }
