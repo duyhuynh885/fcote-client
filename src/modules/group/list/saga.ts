@@ -1,6 +1,6 @@
 import { call, put, fork, takeEvery, all } from 'redux-saga/effects'
 import { ViewListGroupActionType, ViewListGroupRequestAction, ViewListGroupResponse } from './type'
-import { hideLoaderAction, showLoaderAction } from '../../layout/actions/loaderAction'
+import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import requestFailure from '../../../utils/onFailure'
 import { handleError } from '../../../utils/handleError'
 import groupApi from '../../../services/groupApi'

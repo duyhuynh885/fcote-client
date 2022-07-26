@@ -60,26 +60,15 @@ export default function ListAssignment() {
       </Stack>
       <Stack direction='column' alignItems='center' spacing={3}>
         <Grid
-          sx={{
-            width: '100%',
-            minHeight: '70vh',
-            margin: '0 auto',
-          }}
           container
+          spacing={0.5}
+          direction='row'
+          alignItems='flex-start'
+          justifyContent='center'
+          style={{ minHeight: '70vh' }}
         >
           {assignmentsState.map((assignment) => (
-            <Grid
-              key={assignment.id}
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignContent: 'center',
-                marginBottom: 2,
-              }}
-              item
-              xs={4}
-              lg={2.3}
-            >
+            <Grid key={assignment.id} item xs={4} lg={2.3}>
               <AssignmentItem assignment={assignment} />
             </Grid>
           ))}

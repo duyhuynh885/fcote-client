@@ -1,22 +1,17 @@
 import * as React from 'react'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import { Grid, Stack, Typography, Paper, Pagination, PaginationItem } from '@mui/material'
+import { Grid, Stack, Typography, Paper } from '@mui/material'
 import useStyles from './style'
 import GroupsSharpIcon from '@mui/icons-material/GroupsSharp'
-import ChallengeCard from '../ChallengeCard/ChallengeCard'
+import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
 import PaginationCard from '../../common/pagination/PaginationCard'
 import { Box } from '@mui/system'
 import { Group } from '../../../modules/group/list/type'
-import { IChallenge, ViewListChallengeRequestPayload } from '../../../modules/challenge/list/type'
-import { fetchListChallengeRequest } from '../../../modules/challenge/list/action'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../../apps/ReduxContainer'
+import { IChallenge } from '../../../modules/challenge/list/type'
 
 /**
  * ChallengeGroup
@@ -61,7 +56,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
             {challenges.map((challenge) => (
               <ChallengeCard
                 key={challenge.challengeId}
-                url='/challenge/detail'
+                url={`/challenge/${challenge.challengeId}`}
                 challenge={challenge}
               />
             ))}
