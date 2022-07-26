@@ -1,8 +1,6 @@
 import {
   IconButton,
-  InputAdornment,
   MenuItem,
-  NativeSelect,
   Paper,
   Select,
   SelectChangeEvent,
@@ -16,7 +14,6 @@ import FormControl from '@mui/material/FormControl'
 import { Link } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateFilterListAssignmentRequest } from '../../../modules/assignment/list/action'
 import useStyle from './style'
 import RegularButton from '../../common/button/RegularButton'
 import { updateFilterListChallengesRequest } from '../../../modules/challenge/list/action'

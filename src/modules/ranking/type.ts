@@ -37,13 +37,13 @@ export interface RankingErrorResponse {
   error: ErrorMessage
 }
 export interface RankingResponse {
-  top3: UserInfor[]
-  ranking_list: UserInfor[]
+  top3: UserInfo[]
+  ranking_list: UserInfo[]
   messageVi: string
   messageEn: string
 }
 
-export interface UserInfor {
+export interface UserInfo {
   id: number
   avatar: string
   username: string
@@ -82,7 +82,7 @@ export interface RankingState {
   successful: boolean
   messages: Message
   errors: ErrorMessage
-  top3: UserInfor[]
-  rankingList: UserInfor[]
+  top3: UserInfo[]
+  rankingList: UserInfo[]
   rankingTypeRequest: RankingRequestPayload
 }

@@ -1,7 +1,6 @@
 import React from 'react'
-import { Box, Grid, Paper, Stack } from '@mui/material'
-import { UserInfor } from '../../../modules/ranking/type'
-import useStyles from './style'
+import { Stack } from '@mui/material'
+import { UserInfo } from '../../../modules/ranking/type'
 import TopMember from './Top/TopMenber'
 /**
  * First Rank Card component
@@ -19,50 +18,37 @@ import TopMember from './Top/TopMenber'
  */
 
 interface UserInforProps {
-  data: UserInfor[]
+  data: UserInfo[]
 }
 
-const immutablySwapItems = (items: UserInfor[], firstIndex: number, secondIndex: number) =>
+const immutablySwapItems = (items: UserInfo[], firstIndex: number, secondIndex: number) =>
   items.map((element, index) =>
     index === firstIndex ? items[secondIndex] : index === secondIndex ? items[firstIndex] : element,
   )
 
 const TopRanking: React.FC<UserInforProps> = (props) => {
-  const classes = useStyles()
   const topRanking = immutablySwapItems(props.data, 0, 1)
   return (
-    <Paper
-      elevation={8}
-      square
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        padding: 2,
-      }}
-      className={classes.paperRoot}
+    <Stack
+      direction='row'
+      spacing={2}
+      alignItems='center'
+      justifyContent='space-around'
+      sx={{ maxHeight: '30vh' }}
     >
-      <Stack direction='column' spacing={2}>
-        <Box>
-          <Grid container spacing={10} sx={{ display: 'flex', justifyContent: 'center' }}>
-            {topRanking.map((top) => (
-              <Grid item key={top.order}>
-                <Stack direction='column' alignItems='center'>
-                  <TopMember
-                    order={top.order}
-                    rank={top.order}
-                    avatar={top.avatar}
-                    username={top.username}
-                    fullname={top.fullname}
-                    score={top.total_score}
-                    organization={top.organization}
-                  />
-                </Stack>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Stack>
-    </Paper>
+      {topRanking.map((top) => (
+        <TopMember
+          key={top.order}
+          order={top.order}
+          rank={top.order}
+          avatar={top.avatar}
+          username={top.username}
+          fullname={top.fullname}
+          score={top.total_score}
+          organization={top.organization}
+        />
+      ))}
+    </Stack>
   )
 }
 

@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import { createGroupRequest } from '../../../modules/group/create-group/action'
+import { createGroupRequest } from '../../../modules/group/create/action'
 /**
  * Create Group component
  * <p>
@@ -102,9 +102,10 @@ export default function CreateGroup({ open, onClose, urlNamePopup }: ButtonProps
             <div className={classes.root}>
               <Typography className={classes.newGroup}>{urlNamePopup}</Typography>
             </div>
-            <Stack className={classes.scrollBar}>
+            <Stack>
               <Typography className={classes.titleTextField}>Group Name</Typography>
               <TextField
+                size='small'
                 required
                 id='outlined-groupName-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -116,6 +117,7 @@ export default function CreateGroup({ open, onClose, urlNamePopup }: ButtonProps
               />
               <Typography className={classes.titleTextField}>Description</Typography>
               <TextField
+                size='small'
                 required
                 id='outlined-groupDescription-input'
                 fullWidth

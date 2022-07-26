@@ -1,4 +1,4 @@
-import { Box, Grid, Pagination, PaginationItem, Stack, Tab, Tabs } from '@mui/material'
+import { Box, Grid, Stack, Tab, Tabs } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import ChallengeOwner from '../../../components/challenge/list/ChallengeOwnerTab'
 import ChallengePublic from '../../../components/challenge/list/ChallengePublicTab'
@@ -7,8 +7,6 @@ import useStyles from './style'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
   clearStateViewListChallenge,
   fetchListChallengeGroupRequest,
@@ -17,7 +15,6 @@ import {
 } from './action'
 import TaskbarFilterOfChallenge from '../../../components/challenge/general/TaskbarFilterOfChallenge'
 import { ViewListChallengeRequestPayload } from './type'
-import { fetchListGroupRequest } from '../../group/list/action'
 import { ViewListGroupRequestPayload } from '../../group/list/type'
 
 /**

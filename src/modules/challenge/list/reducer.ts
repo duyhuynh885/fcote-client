@@ -1,6 +1,4 @@
-import { StatusEnum } from '../../assignment/list/type'
 import {
-  StatusChallengeEnum,
   ViewListChallengeAction,
   ViewListChallengeActionType,
   ViewlistChallengeState,

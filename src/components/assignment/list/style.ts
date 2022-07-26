@@ -19,35 +19,38 @@ import { makeStyles } from '@mui/styles'
 const AssignmentItemStyle = makeStyles((theme: Theme) => ({
   container: {
     width: '14.375rem',
-    height: '13rem',
+    height: '12.5rem',
     padding: '10px',
   },
-  state: {
-    fontWeight: '700',
-    fontSize: `${theme.textFont.extraSmall} `,
-    color: `${theme.color.brown} `,
+  wrapAvatarName: {
+    borderRadius: '50px',
+    width: 'fit-content',
+    padding: '5px',
+    margin: '5px auto !important',
+    backgroundColor: `${theme.color.darkGray}15`,
+  },
+  avatar: {
+    border: `1px solid ${theme.color.green}`,
   },
   name: {
-    fontWeight: '600',
-    fontSize: `${theme.textFont.small} `,
+    fontWeight: '700',
+    fontSize: `${theme.textFont.small}`,
     textTransform: 'capitalize',
-    color: `${theme.color.brown}`,
+    color: `${theme.color.black}`,
     textAlign: 'center',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
-  level: {
+  date: {
     fontWeight: '700',
-    fontSize: `${theme.textFont.extraSmall} `,
-    textTransform: 'capitalize',
-    color: `${theme.color.brown}`,
+    fontSize: `${theme.textFont.extraSmall}`,
+    color: `${theme.color.darkGray}`,
   },
   userName: {
     fontWeight: '700',
-    fontSize: `${theme.textFont.small}`,
-    textTransform: 'capitalize',
-    color: `${theme.color.black}`,
+    fontSize: `${theme.textFont.extraSmall}`,
+    color: `${theme.color.darkGray}`,
     textAlign: 'center',
   },
 }))

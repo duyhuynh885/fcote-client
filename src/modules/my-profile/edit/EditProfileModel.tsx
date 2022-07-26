@@ -1,16 +1,6 @@
-import {
-  Avatar,
-  IconButton,
-  MenuItem,
-  Modal,
-  Paper,
-  Select,
-  SelectChangeEvent,
-  Stack,
-  TextField,
-} from '@mui/material'
+import { Avatar, IconButton, MenuItem, Modal, Paper, Select, Stack, TextField } from '@mui/material'
 import { clearStateMyProfile, editMyProfileRequest } from './action'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyles from '../../../components/my-profile/style'
 import { object, string, TypeOf } from 'zod'

@@ -120,6 +120,13 @@ const routes = [
   },
   {
     auth: true,
+    title: 'CREATE CHALLENGE',
+    path: '/challenge/create',
+    Component: CreateChallenge,
+    exact: true,
+  },
+  {
+    auth: true,
     title: 'CHALLENGE DETAIL',
     path: '/challenge/:challengeId',
     Component: ChallengeDetail,
@@ -130,13 +137,6 @@ const routes = [
     title: 'CHALLENGE DETAIL ASSIGNMENT DETAIL',
     path: '/challenge/:challengeId/assignment/:assignmentId',
     Component: DetailAssignment,
-    exact: true,
-  },
-  {
-    auth: true,
-    title: 'CREATE CHALLENGE',
-    path: '/challenge/create',
-    Component: CreateChallenge,
     exact: true,
   },
   {

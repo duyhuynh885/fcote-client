@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material'
 import React from 'react'
 import useStyles from './style'
-import ChallengeCardForOwner from '../ChallengeCard/ChallengeCardForOwner'
+import ChallengeCardForOwner from '../general/ChallengeCard/ChallengeCardForOwner'
 import { IChallenge } from '../../../modules/challenge/list/type'
 import PaginationCard from '../../common/pagination/PaginationCard'
 
@@ -37,7 +37,7 @@ const ChallengePublic: React.FC<ChallengePublicProps> = (props) => {
         {listChallenges.map((challenge) => (
           <ChallengeCardForOwner
             key={challenge.challengeId}
-            url='/challenge/detail'
+            url={`/challenge/${challenge.challengeId}`}
             challenge={challenge}
           />
         ))}
