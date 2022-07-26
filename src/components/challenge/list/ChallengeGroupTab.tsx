@@ -46,12 +46,12 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   // handle show challenges follow Group
 
-  React.useEffect(() => {
-    if (groups !== null || groups !== []) {
-      const indexGroup: Group = groups[0]
-      indexGroup === null ? '' : onclick(indexGroup.id)
-    }
-  }, [])
+  // React.useEffect(() => {
+  //   if (groups !== null || groups !== []) {
+  //     const indexGroup: Group = groups[0]
+  //     indexGroup === null ? '' : onclick(indexGroup.id)
+  //   }
+  // })
 
   const handleClickGroup = (
     groupID: number | undefined,

@@ -83,10 +83,8 @@ export default function Challenge() {
   const callbackSetGroupID = (groupID: number | undefined) => {
     console.log('groupID', groupID)
     setGroupId(groupID)
+    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
   }
-  // useEffect(() => {
-  //   dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
-  // }, [groupID])
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -132,6 +130,7 @@ export default function Challenge() {
   }
   function handleGetChallengeGroup() {
     dispatch(fetchListChallengeGroupRequest(groupGroupRequest))
+    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
     console.log('=========== groupsState 1', groupsState)
     setTypeData(2)
   }
