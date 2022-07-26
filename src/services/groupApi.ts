@@ -22,14 +22,22 @@ import {
   JoinGroupErrorResponse,
   JoinGroupRequestPayload,
   JoinGroupResponse,
-} from '../modules/group/join-group/type'
+} from '../modules/group/join/type'
 import {
   ViewListGroupRequestPayload,
   ViewListGroupErrorResponse,
   ViewListGroupResponse,
 } from '../modules/group/list/type'
-import { CreateGroupErrorResponse, CreateGroupRequestPayload, CreateGroupResponse } from '../modules/group/create-group/type'
-
+import {
+  CreateGroupErrorResponse,
+  CreateGroupRequestPayload,
+  CreateGroupResponse,
+} from '../modules/group/create/type'
+import {
+  DeleteGroupRequestPayload,
+  DeleteGroupResponse,
+  DeleteGroupErrorAction,
+} from '../modules/group/setting/delete/type'
 import { axiosClient } from './clientApi'
 
 const groupApi = {
@@ -60,7 +68,7 @@ const groupApi = {
    * @returns ViewListAssignmentErrorResponse
    */
   joinGroup(payload: JoinGroupRequestPayload) {
-    const url = '/group/join-group'
+    const url = '/group/join'
     return axiosClient.post<JoinGroupResponse, JoinGroupErrorResponse>(url, payload)
   },
 
@@ -69,9 +77,19 @@ const groupApi = {
    * @returns ViewListAssignmentResponse
    * @returns ViewListAssignmentErrorResponse
    */
-   createGroup(payload: CreateGroupRequestPayload) {
-    const url = '/group/create-group'
+  createGroup(payload: CreateGroupRequestPayload) {
+    const url = '/group/create'
     return axiosClient.post<CreateGroupResponse, CreateGroupErrorResponse>(url, payload)
+  },
+
+  /**
+   * Api for delete group
+   * @returns ViewListAssignmentResponse
+   * @returns ViewListAssignmentErrorResponse
+   */
+  deleteGroup(payload: DeleteGroupRequestPayload) {
+    const url = '/group/delete'
+    return axiosClient.post<DeleteGroupResponse, DeleteGroupErrorAction>(url, payload)
   },
 }
 

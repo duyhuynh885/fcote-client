@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: 'uppercase',
   },
   scrollBarTestCase: {
-    height: '35vh',
+    height: '32vh',
     paddingRight: '20px',
     overflowX: 'hidden',
     overflowY: 'scroll',
@@ -61,10 +61,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   testResultDescription: {
     fontWeight: '700',
-    marginLeft: theme.spacing(1),
     fontSize: theme.textFont.extraSmall,
-    color: theme.color.darkRed,
     alignItems: 'center',
+  },
+  successText: {
+    color: theme.color.green,
+  },
+  failedText: {
+    color: theme.color.darkRed,
   },
   inputTestCaseDescription: {
     fontWeight: '600',

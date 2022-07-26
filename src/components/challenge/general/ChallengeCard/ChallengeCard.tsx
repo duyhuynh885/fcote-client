@@ -3,7 +3,7 @@ import React from 'react'
 import useStyles from './style'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import { Link } from 'react-router-dom'
-import { IChallenge } from '../../../modules/challenge/list/type'
+import { IChallenge } from '../../../../modules/challenge/list/type'
 /**
  * Challenge Card Component
  *

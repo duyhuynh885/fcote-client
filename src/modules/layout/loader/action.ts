@@ -1,4 +1,4 @@
-import { HideLoaderAction, LoaderActionType, ShowLoaderAction } from '../type'
+import { HideLoaderAction, LoaderActionType, ShowLoaderAction } from './type'
 
 /**
  * Action Type for loader

@@ -15,7 +15,7 @@
 import { JoinGroupActionType, JoinGroupRequestAction, JoinGroupClearStateAction } from './type'
 
 /**
- * JoinGroup request action
+ * join request action
  * @param param JoinGroupRequestPayload
  * @returns JoinGroupRequestAction
  */

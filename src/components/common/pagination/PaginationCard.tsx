@@ -1,4 +1,4 @@
-import { Pagination, PaginationItem, Stack } from '@mui/material'
+import { Pagination, PaginationItem } from '@mui/material'
 import React from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'

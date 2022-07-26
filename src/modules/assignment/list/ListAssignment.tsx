@@ -13,7 +13,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 /**
- * Client
+ * List Assignment
  *
  * Version 1.0
  *
@@ -38,15 +38,26 @@ export default function ListAssignment() {
   const PER_PAGE = 16
   const count = Math.ceil(currentSizeState / PER_PAGE)
 
+  /**
+   * handle update filter by pageNumber
+   * @param _event
+   * @param value
+   */
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
     dispatch(updateFilterListAssignmentRequest({ ...filterAssignmentState, pageNumber: value }))
   }
 
+  /**
+   * Follow filterAssignmentState to fetch list assignment
+   */
   useEffect(() => {
     dispatch(fetchListAssignmentRequest(filterAssignmentState))
   }, [filterAssignmentState])
 
+  /**
+   * clear state
+   */
   useEffect(() => {
     return () => {
       dispatch(viewListAssignmentClearStateRequest())
@@ -60,26 +71,15 @@ export default function ListAssignment() {
       </Stack>
       <Stack direction='column' alignItems='center' spacing={3}>
         <Grid
-          sx={{
-            width: '100%',
-            minHeight: '70vh',
-            margin: '0 auto',
-          }}
           container
+          spacing={0.5}
+          direction='row'
+          alignItems='flex-start'
+          justifyContent='center'
+          style={{ minHeight: '70vh' }}
         >
           {assignmentsState.map((assignment) => (
-            <Grid
-              key={assignment.id}
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignContent: 'center',
-                marginBottom: 2,
-              }}
-              item
-              xs={4}
-              lg={2.3}
-            >
+            <Grid key={assignment.id} item xs={4} lg={2.3}>
               <AssignmentItem assignment={assignment} />
             </Grid>
           ))}

@@ -16,7 +16,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import { useTheme } from '@mui/material/styles'
-import { UserInfor } from '../../../../modules/ranking/type'
+import { UserInfo } from '../../../../modules/ranking/type'
 
 /**
  * Leaderboard component
@@ -118,10 +118,10 @@ function capitalizeFirstLetter(string: string) {
 
 interface TypeLeaderBoard {
   type: 'rank' | 'fullname' | 'university' | 'group' | 'organization' | 'score'
-  rankingList: UserInfor[]
+  rankingList: UserInfo[]
 }
 
-export default function LeaderboardsTable(props: TypeLeaderBoard) {
+export default function LeaderBoardsTable(props: TypeLeaderBoard) {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
   const columns: readonly Column[] = [
@@ -140,7 +140,10 @@ export default function LeaderboardsTable(props: TypeLeaderBoard) {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
 
-  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+  const handleChangePage = (
+    _event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
     setPage(newPage)
   }
 

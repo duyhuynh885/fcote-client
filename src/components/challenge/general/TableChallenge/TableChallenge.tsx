@@ -15,9 +15,9 @@ import {
 import { Box } from '@mui/system'
 import useStyles from './style'
 import { FakeDataChallengDetails } from './FakeDataChallengeDetail'
-import { ReactComponent as Gold } from '../../../assets/Gold.svg'
-import { ReactComponent as Platinum } from '../../../assets/Platinum.svg'
-import { ReactComponent as Bronze } from '../../../assets/Bronze.svg'
+import { ReactComponent as Gold } from '../../../../assets/Gold.svg'
+import { ReactComponent as Platinum } from '../../../../assets/Platinum.svg'
+import { ReactComponent as Bronze } from '../../../../assets/Bronze.svg'
 
 /**
  * Table Challenge

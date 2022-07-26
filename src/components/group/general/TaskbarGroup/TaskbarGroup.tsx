@@ -2,11 +2,10 @@ import { IconButton, InputAdornment, Paper, Stack, TextField } from '@mui/materi
 import React, { useState } from 'react'
 import Divider from '@mui/material/Divider'
 import SearchIcon from '@mui/icons-material/Search'
-import RegularButton from '../../common/button/RegularButton'
-import useStyle from './style'
+import RegularButton from '../../../common/button/RegularButton'
 import GroupAddIcon from '@mui/icons-material/GroupAdd'
-import CreateGroup from '../create/CreateGroup'
-import JoinGroup from '../JoinGroup/JoinGroup'
+import CreateGroup from '../../create/CreateGroup'
+import JoinGroup from '../../join/JoinGroup'
 /**
  * Taskbar Group
  * <p>
@@ -28,7 +27,6 @@ type Props = {
 }
 
 export default function TaskbarGroup({ queryParamValue, onQueryParamChange }: Props) {
-  const classes = useStyle()
   const [openJoin, setOpenJoin] = useState(false)
   const [openCreate, setOpenCreate] = useState(false)
   const handleOpenCreateGroup = () => {
@@ -69,7 +67,7 @@ export default function TaskbarGroup({ queryParamValue, onQueryParamChange }: Pr
           value={queryParamValue}
         />
       </Stack>
-      <Stack direction='row'>
+      <Stack direction='row' spacing={1} alignItems='center'>
         <RegularButton
           color={'warning'}
           size={'sm'}
@@ -80,10 +78,10 @@ export default function TaskbarGroup({ queryParamValue, onQueryParamChange }: Pr
           block={false}
           link={false}
           justIcon={false}
-          className={classes.button}
+          className={''}
           onClick={handleOpenJoinGroup}
         >
-          <GroupAddIcon />
+          <GroupAddIcon sx={{ marginRight: '5px' }} fontSize='small' />
           Join
         </RegularButton>
         <Divider orientation='vertical' flexItem />
@@ -98,10 +96,10 @@ export default function TaskbarGroup({ queryParamValue, onQueryParamChange }: Pr
           block={false}
           link={false}
           justIcon={false}
-          className={classes.button}
           onClick={handleOpenCreateGroup}
+          className={''}
         >
-          Create
+          + Create
         </RegularButton>
       </Stack>
       <CreateGroup urlNamePopup='New Group' open={openCreate} onClose={handleCloseCreateGroup} />

@@ -66,6 +66,9 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
     type: 'submit',
   }
 
+  /**
+   * Handle create new a test case
+   */
   const onSubmit = handleSubmit((values) => {
     const { inputTestCaseValue, outputTestCaseValue } = values
     const inputTestCase: TestCaseInputCreateAssignment[] = inputTestCaseValue.map(

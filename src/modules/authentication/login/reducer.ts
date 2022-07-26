@@ -1,7 +1,7 @@
 import { LoginAction, LoginActionType, LoginState } from './type'
 
 /**
- * Reducer for authenticate
+ * Reducer for login
  *
  * Version 1.0
  *

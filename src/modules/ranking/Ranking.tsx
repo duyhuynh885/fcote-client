@@ -33,10 +33,10 @@ export default function Ranking() {
   return (
     <Stack sx={{}}>
       <Grid container spacing={5}>
-        <Grid item xs={12}>
+        <Grid item xs={12} sx={{ marginTop: '3rem' }}>
           <TopRanking data={topThreeState} />
         </Grid>
-        <Grid item xs={12} sx={{ marginLeft: '5em', marginRight: '5em' }}>
+        <Grid item xs={12} sx={{ margin: '2rem 5rem' }}>
           <Leaderboard data={rankingListState} />
         </Grid>
       </Grid>

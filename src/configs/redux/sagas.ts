@@ -11,11 +11,12 @@ import runAssignmentSaga from '../../modules/assignment/run/saga'
 import submitAssignmentSaga from '../../modules/assignment/submit/saga'
 import viewListGroupSaga from '../../modules/group/list/saga'
 import viewDetailGroupSaga from '../../modules/group/detail/saga'
-import joinGroupSaga from '../../modules/group/join-group/saga'
-import createGroupSaga from '../../modules/group/create-group/saga'
+import joinGroupSaga from '../../modules/group/join/saga'
+import createGroupSaga from '../../modules/group/create/saga'
 import viewMyProfileSaga from '../../modules/my-profile/view/saga'
 import viewListChallengeSaga from '../../modules/challenge/list/saga'
 import editMyProfileSaga from '../../modules/my-profile/edit/saga'
+import deleteGroupSaga from '../../modules/group/setting/delete/saga'
 
 /**
  * Root Saga
@@ -39,5 +40,6 @@ export default function* rootSaga() {
     fork(viewMyProfileSaga),
     fork(viewListChallengeSaga),
     fork(editMyProfileSaga),
+    fork(deleteGroupSaga),
   ])
 }

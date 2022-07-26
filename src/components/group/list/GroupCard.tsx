@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import GroupIcon from '@mui/icons-material/Group'
 import GroupAddIcon from '@mui/icons-material/GroupAdd'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
-import { Group } from '../../modules/group/list/type'
+import { Group } from '../../../modules/group/list/type'
 /**
  * Group Card
  *

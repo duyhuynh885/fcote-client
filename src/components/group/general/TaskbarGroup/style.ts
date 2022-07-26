@@ -18,12 +18,6 @@ const useStyle = makeStyles(() => ({
   taskFilterOptions: {
     fontWeight: 'bold',
   },
-  button: {
-    width: '100px',
-    height: '45px',
-    marginRight: '8px',
-    marginLeft: '8px',
-  },
 }))
 
 export default useStyle

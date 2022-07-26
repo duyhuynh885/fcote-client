@@ -17,6 +17,7 @@ import { axiosClient } from './clientApi'
  * 01-06-2022         DuyHV           Create
  * 05-07-2022         DuyHV           Update Response
  */
+
 const authApi = {
   /**
    * Api for login requests
@@ -44,6 +45,16 @@ const authApi = {
    * @returns
    */
   forgetPassword(payload: RegisterRequestPayload) {
+    const url = '/auth/post-reset'
+    return axiosClient.post(url, payload)
+  },
+
+  /**
+   * Api for logout
+   * @param payload RegisterRequestPayload
+   * @returns
+   */
+  logout(payload: RegisterRequestPayload) {
     const url = '/auth/post-reset'
     return axiosClient.post(url, payload)
   },

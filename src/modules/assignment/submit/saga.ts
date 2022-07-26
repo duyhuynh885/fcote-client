@@ -4,13 +4,13 @@ import {
   SubmitAssignmentDetailRequestAction,
   SubmitAssignmentDetailResponse,
 } from './type'
-import { hideLoaderAction, showLoaderAction } from '../../layout/actions/loaderAction'
+import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import requestFailure from '../../../utils/onFailure'
 import { handleError } from '../../../utils/handleError'
 import assignmentApi from '../../../services/assignmentApi'
 
 /**
- * Saga for fetch submit assignment
+ * Saga for submit assignments
  *
  * Version 1.0
  *

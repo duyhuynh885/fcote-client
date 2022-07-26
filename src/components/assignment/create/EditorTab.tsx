@@ -50,10 +50,19 @@ export default function EditorTab() {
   const [value, setValue] = React.useState(0)
   const classes = useStyles()
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  /**
+   * Handle change tab in editor tab
+   * @param _event
+   * @param newValue
+   */
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
 
+  /**
+   * Handle change source code in editor tab
+   * @param sourceCode
+   */
   const handleOnChangeCode = (sourceCode: string) => {
     // TODO : IN PROGRESS CODING
   }

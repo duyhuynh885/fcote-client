@@ -2,7 +2,7 @@ import { ViewListLanguageActionType } from './../../assignment/language/type'
 import { ViewListDataTypeActionType } from './../../assignment/data-type/type'
 import { call, put, take, fork, delay, all } from 'redux-saga/effects'
 import { LoginActionType, LoginRequestPayload, LoginResponse } from './type'
-import { hideLoaderAction, showLoaderAction } from '../../layout/actions/loaderAction'
+import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import { authenticate, getCookie, signOut } from '../../../utils/auth'
 import authApi from '../../../services/authApi'
 import history from '../../../configs/routing/history'
@@ -10,7 +10,7 @@ import requestFailure from '../../../utils/onFailure'
 import { handleError } from '../../../utils/handleError'
 
 /**
- * Saga for authenticate
+ * Saga for login
  *
  * Version 1.0
  *

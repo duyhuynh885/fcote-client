@@ -64,7 +64,6 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
         typeData: typeData,
       }),
     )
-    
   }
 
   const handleChangeFilterByStatus = (event: SelectChangeEvent) => {

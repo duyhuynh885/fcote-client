@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material'
 import React from 'react'
 import useStyles from './style'
-import ChallengeCardForOwner from '../ChallengeCard/ChallengeCardForOwner'
+import ChallengeCardForOwner from '../general/ChallengeCard/ChallengeCardForOwner'
 import PaginationCard from '../../common/pagination/PaginationCard'
 import { IChallenge } from '../../../modules/challenge/list/type'
 /**
@@ -37,7 +37,7 @@ const ChallengeOwner: React.FC<ChallengeOwnerProps> = (props) => {
           <ChallengeCardForOwner
             key={challenge.challengeId}
             challenge={challenge}
-            url='/challenge/detail'
+            url={`/challenge/${challenge.challengeId}`}
           />
         ))}
       </Stack>

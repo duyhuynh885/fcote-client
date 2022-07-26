@@ -9,45 +9,73 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
-import { Detail, TestCase } from '../../../modules/assignment/detail/type'
+import { Detail, TestCaseResult } from '../../../modules/assignment/detail/type'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { RootState } from '../../../apps/ReduxContainer'
 import { useSelector } from 'react-redux'
 import CircularProgress from '@mui/material/CircularProgress'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import _ from 'lodash'
+
+/**
+ * IDETabProps component
+ *
+ * Version 1.0
+ *
+ * Date: 26-07-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 26-07-2022         DuyHV           Create
+ */
 
 interface TestCaseTabProps {
   detail: Detail
-  testCases: TestCase[]
+  testCases: TestCaseResult[]
   onRunTestCase: () => void
 }
+
 export default function TestCaseTab(props: TestCaseTabProps) {
   const { detail, testCases, onRunTestCase } = props
   const classes = useStyles()
   const runAssignmentState = useSelector((state: RootState) => state.runAssignment)
-  const { requesting, result } = runAssignmentState
+  const submitAssignmentState = useSelector((state: RootState) => state.submitAssignment)
+  const { requesting } = runAssignmentState
 
+  /**
+   * Handle show result description of run and submit testcase
+   * @returns testResult description
+   */
   const handleShowResultRunTestCase = () => {
-    if (result && result.length > 0) {
-      const countPassedTestCase = _.filter(result, function (o) {
+    if (runAssignmentState.successful || submitAssignmentState.successful) {
+      const countPassedTestCase = _.filter(testCases, function (o) {
         if (o.isPassed) return o
       }).length
-      return (
-        <Stack
-          sx={{
-            padding: '10px 0px 0px 16px',
-          }}
-          direction='row'
-          alignItems='center'
-        >
-          <WarningAmberIcon fontSize='small' className={classes.iconWarning} />
-          <Typography className={classes.testResultDescription}>
-            Tests passed: {countPassedTestCase}/{detail.totalTestCase}.
-          </Typography>
-        </Stack>
-      )
+      if (countPassedTestCase === detail.totalTestCase) {
+        return (
+          <Stack marginBottom='10px' direction='row' alignItems='center'>
+            <Typography className={`${classes.testResultDescription} ${classes.successText}`}>
+              All tests passed.
+            </Typography>
+          </Stack>
+        )
+      } else
+        return (
+          <Stack marginBottom='10px' direction='row' alignItems='center'>
+            <WarningAmberIcon
+              fontSize='small'
+              className={classes.iconWarning}
+              sx={{ marginRight: 1 }}
+            />
+            <Typography className={`${classes.testResultDescription} ${classes.failedText}`}>
+              Tests passed: {countPassedTestCase}/{detail.totalTestCase}.
+            </Typography>
+          </Stack>
+        )
     }
-
     return null
   }
 
@@ -85,8 +113,8 @@ export default function TestCaseTab(props: TestCaseTabProps) {
         </Stack>
       ) : (
         <React.Fragment>
-          {handleShowResultRunTestCase()}
           <Stack direction='column' padding={2} className={classes.scrollBarTestCase}>
+            {handleShowResultRunTestCase()}
             {testCases.map((testCase, index) => (
               <GenerateTestCase key={index} testCase={testCase} />
             ))}
@@ -98,13 +126,46 @@ export default function TestCaseTab(props: TestCaseTabProps) {
 }
 
 interface GenerateTestCaseProps {
-  testCase: TestCase
+  testCase: TestCaseResult
 }
 
 // Form Input Create Assignment
 function GenerateTestCase(props: GenerateTestCaseProps) {
   const { testCase } = props
   const classes = useStyles()
+
+  const handleShowPassedTestCase = (isPassed: boolean | undefined) => {
+    if (typeof isPassed !== 'undefined') {
+      return isPassed ? (
+        <CheckCircleOutlineIcon fontSize='small' className={classes.iconSuccess} />
+      ) : (
+        <WarningAmberIcon fontSize='small' className={classes.iconWarning} />
+      )
+    }
+    return null
+  }
+
+  const handleShowActualOutput = (actualOutput: string | undefined) => {
+    if (typeof actualOutput !== 'undefined') {
+      return (
+        <Stack direction='row'>
+          <Typography
+            sx={{
+              width: '150px',
+            }}
+            className={classes.tabTitle}
+          >
+            Output:
+          </Typography>
+          <Typography className={classes.inputTestCaseDescription}>
+            {testCase.actualOutput}
+          </Typography>
+        </Stack>
+      )
+    }
+    return null
+  }
+
   return (
     <React.Fragment>
       <Accordion>
@@ -121,9 +182,10 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
             spacing={2}
           >
             <Typography className={classes.titleTextField}>Test {testCase.order}</Typography>
-            {/* <WarningAmberIcon fontSize='small' className={classes.iconWarning} />
-            <CheckCircleOutlineIcon fontSize='small' className={classes.iconSuccess} /> */}
-            {testCase.isPrivate && <LockOutlinedIcon fontSize='small' />}
+            <Stack direction='row' alignItems='center' spacing={2}>
+              {handleShowPassedTestCase(testCase.isPassed)}
+              {testCase.isPrivate && <LockOutlinedIcon fontSize='small' />}
+            </Stack>
           </Stack>
         </AccordionSummary>
         {testCase.isPrivate ? (
@@ -150,17 +212,7 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
                 ))}
               </Stack>
             </Stack>
-            <Stack direction='row'>
-              <Typography
-                sx={{
-                  width: '150px',
-                }}
-                className={classes.tabTitle}
-              >
-                Output:
-              </Typography>
-              <Typography className={classes.inputTestCaseDescription}>null</Typography>
-            </Stack>
+            {handleShowActualOutput(testCase.actualOutput)}
             <Stack direction='row'>
               <Typography
                 sx={{

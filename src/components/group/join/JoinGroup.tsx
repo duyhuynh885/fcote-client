@@ -1,5 +1,5 @@
-import { Modal, Paper, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
+import { Modal, Paper, Stack, TextField, Typography } from '@mui/material'
 import RegularButton from '../../common/button/RegularButton'
 import useStyle from './style'
 import { object, string, TypeOf } from 'zod'
@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import { joinGroupRequest } from '../../../modules/group/join/action'
 /**
  * Create Group component
  * <p>
@@ -21,47 +22,36 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
  * ------------------------------------------------
  * 04-07-2022      HuyNT2711           Create
  */
-
-enum TypeModalGroup {
-  CREATE_GROUP = 'New Group',
-  EDIT_GROUP = 'Edit Group',
-}
-
 interface ButtonProps {
   open: boolean
   onClose: (shown: boolean) => void
-  urlNamePopup: string
 }
+
+const joinGroupSchema = object({
+  joinCode: string()
+    .min(6, 'Code must be more than 8 characters')
+    .max(32, 'Code must be less than 32 characters'),
+})
+
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 450,
-  bgcolor: 'background.paper',
+  backgroundColor: 'background.paper',
   borderRadius: 3,
   p: 4,
 }
 
-const editGroupObject = object({
-  groupName: string()
-    .min(1, 'Group Name must be more than 1 characters')
-    .max(100, 'Group Name must be less than 100 characters'),
-  groupDescription: string()
-    .min(1, 'Description must be more than 1 characters')
-    .max(255, 'Description must be less than 255 characters'),
-})
-
-export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) {
+export default function JoinGroup({ open, onClose }: ButtonProps) {
   const classes = useStyle()
   const dispatch = useDispatch<AppDispatch>()
 
-  type CreateGroupInput = TypeOf<typeof editGroupObject>
-  const groupDetailRequestState = useSelector(
-    (state: RootState) => state.createGroup.createGroupRequest,
-  )
-  const createGroupState = useSelector((state: RootState) => state.createGroup)
-  const detailGroupState = useSelector((state: RootState) => state.detailGroup)
+  type JoinGroupInput = TypeOf<typeof joinGroupSchema>
+
+  const joinGroupState = useSelector((state: RootState) => state.joinGroup)
+
   const rest = {
     type: 'submit',
   }
@@ -71,8 +61,8 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<CreateGroupInput>({
-    resolver: zodResolver(editGroupObject),
+  } = useForm<JoinGroupInput>({
+    resolver: zodResolver(joinGroupSchema),
   })
 
   const onCancel = () => {
@@ -80,11 +70,9 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
     reset()
   }
 
-  const onSubmit: SubmitHandler<CreateGroupInput> = (data) => {
-    const { groupName, groupDescription } = data
-    if (urlNamePopup === TypeModalGroup.EDIT_GROUP) {
-      return ''
-    }
+  const onSubmit: SubmitHandler<JoinGroupInput> = (data) => {
+    const { joinCode } = data
+    dispatch(joinGroupRequest(joinCode))
     onCancel()
   }
 
@@ -93,7 +81,7 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
    */
   useEffect(() => {
     reset()
-  }, [createGroupState.successful, createGroupState.errors])
+  }, [joinGroupState.successful, joinGroupState.errors])
 
   return (
     <React.Fragment>
@@ -106,34 +94,21 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Paper sx={style}>
             <div className={classes.root}>
-              <Typography className={classes.newGroup}>{urlNamePopup}</Typography>
+              <Typography className={classes.newGroup}>Join Group</Typography>
             </div>
-            <Stack className={classes.scrollBar}>
-              <Typography className={classes.titleTextField}>Group Name</Typography>
+            <Stack>
+              <Typography className={classes.titleTextField}>Group Code</Typography>
               <TextField
                 required
-                id='outlined-groupName-input'
+                size='small'
+                id='outlined-password-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
-                type='groupName'
-                defaultValue={detailGroupState.groupDetail.title}
+                label='Join Code'
+                type='join_code'
                 autoComplete='current-code'
-                error={!!errors['groupName']}
-                helperText={errors['groupName'] ? errors['groupName'].message : ''}
-                {...register('groupName')}
-              />
-              <Typography className={classes.titleTextField}>Description</Typography>
-              <TextField
-                required
-                id='outlined-groupDescription-input'
-                fullWidth
-                multiline
-                rows={3}
-                type='groupDescription'
-                defaultValue={detailGroupState.groupDetail.joinCode}
-                autoComplete='current-code'
-                error={!!errors['groupDescription']}
-                helperText={errors['groupDescription'] ? errors['groupDescription'].message : ''}
-                {...register('groupDescription')}
+                error={!!errors['joinCode']}
+                helperText={errors['joinCode'] ? errors['joinCode'].message : ''}
+                {...register('joinCode')}
               />
             </Stack>
             <Stack direction='row' justifyContent='space-around' alignItems='center' spacing={8}>
@@ -165,7 +140,7 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
                 className={''}
                 {...rest}
               >
-                Create
+                Join
               </RegularButton>
             </Stack>
           </Paper>

@@ -71,7 +71,8 @@ export type ViewDetailGroupErrorAction = ActionWithPayload<
   ViewDetailGroupErrorResponse
 >
 
-export type ViewDetailGroupClearStateAction = Action<ViewDetailGroupActionType.VIEW_DETAIL_CLEAR_STATE>
+export type ViewDetailGroupClearStateAction =
+  Action<ViewDetailGroupActionType.VIEW_DETAIL_CLEAR_STATE>
 
 export type ViewDetailGroupAction =
   | ViewDetailGroupRequestAction

@@ -7,7 +7,8 @@ import useStyles from './style'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import EditGroup from '../../setting-group/EditGroup'
+import EditGroup from '../../setting/EditGroup'
+import DeleteGroup from '../../setting/DeleteGroup'
 
 /**
  * Taskbar Detail Group
@@ -55,7 +56,7 @@ export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
   }
 
   const handleMenuItemClick = (
-    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+    _event: React.MouseEvent<HTMLLIElement, MouseEvent>,
     index: number,
   ) => {
     handleClose()
@@ -67,6 +68,7 @@ export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
       case optionsEnum.LEAVE_GROUP:
         break
       case optionsEnum.DELETE_GROUP:
+        setOpenDelete(true)
         break
       default:
         break
@@ -77,6 +79,12 @@ export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
   const handleCloseEditGroup = () => {
     setOpenEdit(false)
   }
+
+  const [openDelete, setOpenDelete] = useState(false)
+  const handleCloseDeleteGroup = () => {
+    setOpenDelete(false)
+  }
+
   return (
     <Paper
       square
@@ -146,6 +154,7 @@ export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
         </Box>
       </Stack>
       <EditGroup urlNamePopup='Edit Group' open={openEdit} onClose={handleCloseEditGroup} />
+      <DeleteGroup urlNamePopup='Delete Group' open={openDelete} onClose={handleCloseDeleteGroup} />
     </Paper>
   )
 }

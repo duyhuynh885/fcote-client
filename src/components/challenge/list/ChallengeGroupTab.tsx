@@ -7,7 +7,7 @@ import ListItemText from '@mui/material/ListItemText'
 import { Grid, Stack, Typography, Paper, Pagination, PaginationItem } from '@mui/material'
 import useStyles from './style'
 import GroupsSharpIcon from '@mui/icons-material/GroupsSharp'
-import ChallengeCard from '../ChallengeCard/ChallengeCard'
+import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
 import PaginationCard from '../../common/pagination/PaginationCard'
 import { Box } from '@mui/system'
 import { Group } from '../../../modules/group/list/type'
@@ -64,7 +64,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
             {challenges.map((challenge) => (
               <ChallengeCard
                 key={challenge.challengeId}
-                url='/challenge/detail'
+                url={`/challenge/${challenge.challengeId}`}
                 challenge={challenge}
               />
             ))}
@@ -77,7 +77,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
               <Typography className={classes.myGroup}>My Group</Typography>
             </Box>
             <List className={classes.listGroupScroll}>
-              {groups.map((group, index) => (
+              {groups.map((group: any, index: number) => (
                 <ListItem key={group.id} disablePadding>
                   <ListItemButton
                     key={group.id}

@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material'
 import React from 'react'
-import TableChallenge from '../../../components/challenge/TableChallenge/TableChallenge'
+import TableChallenge from '../../../components/challenge/general/TableChallenge/TableChallenge'
 import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 
 /**

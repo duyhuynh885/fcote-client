@@ -6,18 +6,18 @@ import {
 } from './type'
 
 /**
- * Action for create assignments
+ * Action for get assignments detail
  *
  * Version 1.0
  *
- * Date: 13-07-2022
+ * Date: 26-07-2022
  *
  * Copyright
  *
  * Modification Logs:
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
- * 13-07-2022         DuyHV           Create
+ * 26-07-2022         DuyHV           Create
  */
 
 /**
@@ -26,6 +26,34 @@ import {
  * @returns ViewAssignmentDetailRequestAction
  */
 export const fetchDataAssignmentDetailRequest = ({
+  id,
+}: ViewAssignmentDetailRequestPayload): ViewAssignmentDetailRequestAction => {
+  return {
+    type: ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_REQUESTING,
+    id,
+  }
+}
+
+/**
+ * RunAssignmentSuccess request action
+ * @param param ViewAssignmentDetailRequestPayload
+ * @returns ViewAssignmentDetailRequestAction
+ */
+export const runAssignmentSuccess = ({
+  id,
+}: ViewAssignmentDetailRequestPayload): ViewAssignmentDetailRequestAction => {
+  return {
+    type: ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_REQUESTING,
+    id,
+  }
+}
+
+/**
+ * SubmitAssignmentSuccess request action
+ * @param param ViewAssignmentDetailRequestPayload
+ * @returns ViewAssignmentDetailRequestAction
+ */
+export const submitAssignmentSuccess = ({
   id,
 }: ViewAssignmentDetailRequestPayload): ViewAssignmentDetailRequestAction => {
   return {

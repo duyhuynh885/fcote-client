@@ -1,4 +1,4 @@
-import { Box, Grid, Pagination, PaginationItem, Stack, Tab, Tabs } from '@mui/material'
+import { Box, Grid, Stack, Tab, Tabs } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import ChallengeOwner from '../../../components/challenge/list/ChallengeOwnerTab'
 import ChallengePublic from '../../../components/challenge/list/ChallengePublicTab'
@@ -7,8 +7,6 @@ import useStyles from './style'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
   clearStateViewListChallenge,
   fetchListChallengeGroupRequest,
@@ -75,7 +73,6 @@ export default function Challenge() {
   const [value, setValue] = React.useState(0)
   const [page, setPage] = useState(1)
   const [typeData, setTypeData] = useState(1)
-
   const [groupID, setGroupId] = useState<number | undefined>(1)
   useEffect(() => {
     handleGetChallengeGroup()
