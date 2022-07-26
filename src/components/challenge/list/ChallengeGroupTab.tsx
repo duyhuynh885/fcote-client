@@ -1,6 +1,4 @@
 import * as React from 'react'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
@@ -45,13 +43,18 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   const classes = useStyles()
   const challenges = props.challenges
   const groups = props.groups
-
   const page = props.page
   const handleChangePage = props.handleChangePage
   const count = props.count
 
-  const handleClickGroup = (groupID: number | undefined) => {
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const handleClickGroup = (
+    groupID: number | undefined,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    index: number,
+  ) => {
     props.onclick(groupID)
+    setSelectedIndex(index)
   }
   return (
     <Stack>
@@ -69,14 +72,18 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
           <PaginationCard page={page} handleChangePage={handleChangePage} count={count} />
         </Grid>
         <Grid item xs={4} sx={{ paddingLeft: '1%' }}>
-          <Paper elevation={5} sx={{ height: '80vh' }}>
+          <Paper elevation={5} sx={{ height: '80vh', marginTop: '10px' }}>
             <Box>
               <Typography className={classes.myGroup}>My Group</Typography>
             </Box>
             <List className={classes.listGroupScroll}>
-              {groups.map((group) => (
+              {groups.map((group, index) => (
                 <ListItem key={group.id} disablePadding>
-                  <ListItemButton key={group.id} onClick={() => handleClickGroup(group.id)}>
+                  <ListItemButton
+                    key={group.id}
+                    selected={selectedIndex === index}
+                    onClick={(event) => handleClickGroup(group.id, event, index)}
+                  >
                     <ListItemIcon>
                       <GroupsSharpIcon color={'primary'} />
                     </ListItemIcon>

@@ -80,7 +80,6 @@ export default function CreateGroup({ open, onClose, urlNamePopup }: ButtonProps
   const onSubmit: SubmitHandler<CreateGroupInput> = (data) => {
     const { groupName, groupDescription } = data
     dispatch(createGroupRequest(groupDetailRequestState, groupName, groupDescription))
-    console.log('Create', groupName, groupDescription)
     onCancel()
   }
 

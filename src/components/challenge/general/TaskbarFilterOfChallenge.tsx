@@ -39,6 +39,8 @@ import { StatusChallengeEnum } from '../../../modules/challenge/list/type'
  */
 interface IProps {
   url: string
+  groupID: number | undefined
+  typeData: number
 }
 export default function TaskbarFilterOfChallenge(props: IProps) {
   const classes = useStyle()
@@ -46,14 +48,23 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
   const filterChallengeState = useSelector((state: RootState) => state.listChallenges.filterRequest)
   const [status, setStatus] = useState('0')
   const [search, setSearch] = useState('')
-
+  const groupID = props.groupID
+  const typeData = props.typeData
   const handleCheckSearch = (search: string) => {
     setSearch(search)
     return search === '' || search === 'undefined' ? false : true
   }
 
   const handleSearch = () => {
-    dispatch(updateFilterListChallengesRequest({ ...filterChallengeState, searchBy: search }))
+    dispatch(
+      updateFilterListChallengesRequest({
+        ...filterChallengeState,
+        searchBy: search,
+        groupID: groupID,
+        typeData: typeData,
+      }),
+    )
+    
   }
 
   const handleChangeFilterByStatus = (event: SelectChangeEvent) => {

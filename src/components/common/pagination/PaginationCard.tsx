@@ -26,7 +26,6 @@ interface PaginationCardProps {
 const PaginationCard: React.FC<PaginationCardProps> = (props) => {
   const page = props.page
   const handleChangePage = props.handleChangePage
-  console.log('=========== handleChangePage', handleChangePage)
   const count = props.count
   return (
     <Pagination

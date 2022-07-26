@@ -74,6 +74,8 @@ export default function Challenge() {
   )
   const [value, setValue] = React.useState(0)
   const [page, setPage] = useState(1)
+  const [typeData, setTypeData] = useState(1)
+
   const [groupID, setGroupId] = useState<number | undefined>(1)
   useEffect(() => {
     handleGetChallengeGroup()
@@ -81,9 +83,15 @@ export default function Challenge() {
   const PER_PAGE = 10
   const count = Math.ceil(currentSizeState / PER_PAGE)
 
+  // handle choose challenge follow Group
   const callbackSetGroupID = (groupID: number | undefined) => {
+    console.log('groupID', groupID)
     setGroupId(groupID)
   }
+  useEffect(() => {
+    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
+  }, [groupID])
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
@@ -111,11 +119,13 @@ export default function Challenge() {
     typeData: 2,
   }
   const groupGroupRequest: ViewListGroupRequestPayload = {
-    pageSize: 20,
+    pageSize: 50,
     pageNumber: 1,
   }
   const ownerRequest: ViewListChallengeRequestPayload = {
     typeData: 3,
+    pageSize: 50,
+    pageNumber: 1,
   }
 
   function handleGetChallengePublic() {
@@ -124,9 +134,11 @@ export default function Challenge() {
   function handleGetChallengeGroup() {
     dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
     dispatch(fetchListChallengeGroupRequest(groupGroupRequest))
+    setTypeData(2)
   }
   function handleGetChallengeOwner() {
     dispatch(fetchListChallengeRequest(ownerRequest, undefined, undefined, undefined))
+    setTypeData(3)
   }
 
   useEffect((): void => {
@@ -146,7 +158,7 @@ export default function Challenge() {
     <Stack sx={{ margin: 5 }}>
       <Grid container>
         <Grid item xs={12} marginBottom={2}>
-          <TaskbarFilterOfChallenge url='/challenge/create' />
+          <TaskbarFilterOfChallenge groupID={groupID} typeData={typeData} url='/challenge/create' />
         </Grid>
         <Grid className={classes.tabLeft} item xs={12} sx={{ height: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

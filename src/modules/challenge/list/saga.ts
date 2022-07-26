@@ -46,7 +46,6 @@ function* viewListChallengeFlow({
       username,
       status,
     })
-    console.log('SAGA data Challeneg 3 ', data)
     yield put({
       type: ViewListChallengeActionType.VIEW_LIST_CHALLENGE_SUCCESS,
       ...data,
