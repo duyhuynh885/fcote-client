@@ -143,8 +143,7 @@ export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
             {options.map((option, index) => (
               <MenuItem
                 key={option}
-                selected={option === 'Edit'}
-                disabled={option === 'Delete Group' && !props.isOwner}
+                disabled={(option === 'Delete Group' || option === 'Edit') && !props.isOwner}
                 onClick={(event) => handleMenuItemClick(event, index)}
               >
                 {option}

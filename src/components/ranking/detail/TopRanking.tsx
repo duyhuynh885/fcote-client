@@ -21,11 +21,18 @@ import TopMember from './Top/TopMenber'
 interface UserInforProps {
   data: UserInfor[]
 }
+// const immutablySwapItems = (items: UserInfor[], firstIndex: number, secondIndex: number) =>
+//   items.map((element, index) =>
+//     index === firstIndex ? items[secondIndex] : index === secondIndex ? items[firstIndex] : element,
+//   )
 
-const immutablySwapItems = (items: UserInfor[], firstIndex: number, secondIndex: number) =>
-  items.map((element, index) =>
-    index === firstIndex ? items[secondIndex] : index === secondIndex ? items[firstIndex] : element,
-  )
+function immutablySwapItems(items: UserInfor[], firstIndex: number, secondIndex: number) {
+  return items.map((element, index) => {
+    if (index === firstIndex) return items[secondIndex]
+    else if (index === secondIndex) return items[firstIndex]
+    else return element
+  })
+}
 
 const TopRanking: React.FC<UserInforProps> = (props) => {
   const classes = useStyles()
