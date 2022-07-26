@@ -1,16 +1,16 @@
 /**
- * Type for create assignment
+ * Type for get languages
  *
  * Version 1.0
  *
- * Date: 13-07-2022
+ * Date: 26-07-2022
  *
  * Copyright
  *
  * Modification Logs:
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
- * 13-07-2022         DuyHV           Create
+ * 26-07-2022         DuyHV           Create
  */
 
 export enum ViewListLanguageActionType {

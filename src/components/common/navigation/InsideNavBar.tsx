@@ -3,6 +3,21 @@ import useStyles from './style'
 import { AppBar, Toolbar, Typography } from '@mui/material'
 import ButtonBack from '../button/ButtonBack'
 
+/**
+ * InsideNavBar components
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 22-06-2022         DuyHV           Create
+ */
+
 interface InsideNavBarProps {
   namePage: string
 }

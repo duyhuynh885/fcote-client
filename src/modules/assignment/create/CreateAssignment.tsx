@@ -70,10 +70,18 @@ export default function CreateAssignment() {
     },
   ])
 
+  /**
+   * Handle change tab in create assignment page
+   * @param _event
+   * @param newValue
+   */
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
 
+  /**
+   * Handle submit to create assignment
+   */
   const handleSubmit = () => {
     dispatch(
       createAssignmentRequest({

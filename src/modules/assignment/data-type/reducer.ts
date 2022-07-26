@@ -1,18 +1,18 @@
 import { ViewListDataTypeAction, ViewListDataTypeActionType, ViewListDataTypeState } from './type'
 
 /**
- * Reducer for create assignment
+ * Reducer for get data-type
  *
  * Version 1.0
  *
- * Date: 13-07-2022
+ * Date: 26-07-2022
  *
  * Copyright
  *
  * Modification Logs:
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
- * 13-07-2022         DuyHV           Create
+ * 26-07-2022         DuyHV           Create
  */
 
 const initialState: ViewListDataTypeState = {

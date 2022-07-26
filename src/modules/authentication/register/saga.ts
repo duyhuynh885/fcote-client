@@ -7,7 +7,7 @@ import requestFailure from '../../../utils/onFailure'
 import history from '../../../configs/routing/history'
 
 /**
- * Saga for authenticate
+ * Saga for register
  *
  * Version 1.0
  *

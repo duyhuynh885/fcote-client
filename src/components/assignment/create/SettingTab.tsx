@@ -52,6 +52,11 @@ export default function SettingTab(props: SettingTabProps) {
   const { setting, handleSetting } = props
   const classes = useStyles()
 
+  /**
+   * Handle update description of setting
+   * @param _event
+   * @param editor
+   */
   const handleOnChangeEditor = (_event: any, editor: ClassicEditor) => {
     handleSetting({
       ...setting,
@@ -59,6 +64,10 @@ export default function SettingTab(props: SettingTabProps) {
     })
   }
 
+  /**
+   * Handle update name of setting
+   * @param event
+   */
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleSetting({
       ...setting,
@@ -66,6 +75,10 @@ export default function SettingTab(props: SettingTabProps) {
     })
   }
 
+  /**
+   * Handle update difficulty of setting
+   * @param event
+   */
   const handleChangeRadiobutton = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleSetting({
       ...setting,

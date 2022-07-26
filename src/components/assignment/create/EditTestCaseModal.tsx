@@ -67,6 +67,9 @@ export default function EditTestCaseModal(props: EditTestCaseModalProps) {
     type: 'submit',
   }
 
+  /**
+   * Handle save data to edit a test case
+   */
   const onSubmit = handleSubmit((values) => {
     if (testCase) {
       const { inputTestCaseValue, outputTestCaseValue } = values
