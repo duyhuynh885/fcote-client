@@ -1,7 +1,7 @@
 import {
   ViewListChallengeAction,
   ViewListChallengeActionType,
-  ViewlistChallengeState,
+  ViewListChallengeState,
 } from './type'
 
 /**
@@ -19,7 +19,7 @@ import {
  * 10-07-2022      HuyNT2711           Create
  */
 
-const initialState: ViewlistChallengeState = {
+const initialState: ViewListChallengeState = {
   requesting: false,
   successful: false,
   messages: {} as Message,
@@ -28,9 +28,9 @@ const initialState: ViewlistChallengeState = {
     typeData: 1,
     searchBy: '',
     groupID: 1,
-    pageSize: 1,
+    pageSize: 50,
     pageNumber: 1,
-    username: 'thuan12',
+    username: '',
     status: 1,
   },
   challenges: [],
@@ -64,21 +64,21 @@ const reducer = (state = initialState, action: ViewListChallengeAction) => {
         requesting: false,
         successful: false,
       }
-    case ViewListChallengeActionType.VIEW_LIST_GROUPID_REQUESTING:
+    case ViewListChallengeActionType.VIEW_LIST_GROUP_ID_REQUESTING:
       return {
         ...state,
         requesting: true,
         successful: false,
       }
-    case ViewListChallengeActionType.VIEW_LIST_GROUPID_SUCCESS:
-      console.log('VIEW_LIST_GROUPID_SUCCESS:', action.groups)
+    case ViewListChallengeActionType.VIEW_LIST_GROUP_ID_SUCCESS:
+      console.log('VIEW_LIST_GROUP_ID_SUCCESS:', action.groups)
       return {
         ...state,
         groups: action.groups,
         requesting: false,
         successful: true,
       }
-    case ViewListChallengeActionType.VIEW_LIST_GROUPID_ERROR:
+    case ViewListChallengeActionType.VIEW_LIST_GROUP_ID_ERROR:
       return {
         ...state,
         errors: {

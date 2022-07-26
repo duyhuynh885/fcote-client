@@ -28,11 +28,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: '600',
     color: theme.color.black,
     textDecoration: 'none',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   challengeCardStatus: {
     fontWeight: '600',
     textTransform: 'uppercase',
     paddingRight: '10px',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
 }))
 

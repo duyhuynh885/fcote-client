@@ -40,6 +40,6 @@ export default function* rootSaga() {
     fork(viewMyProfileSaga),
     fork(viewListChallengeSaga),
     fork(editMyProfileSaga),
-    fork(deleteGroupSaga),
+    fork(deleteGroupSaga)
   ])
 }

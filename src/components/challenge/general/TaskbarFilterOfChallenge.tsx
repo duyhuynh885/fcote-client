@@ -48,20 +48,21 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
   const filterChallengeState = useSelector((state: RootState) => state.listChallenges.filterRequest)
   const [status, setStatus] = useState('0')
   const [search, setSearch] = useState('')
-  const groupID = props.groupID
-  const typeData = props.typeData
+  const { url, groupID, typeData } = props
+
   const handleCheckSearch = (search: string) => {
     setSearch(search)
     return search === '' || search === 'undefined' ? false : true
   }
 
   const handleSearch = () => {
+    console.log('------------- Taskbar groupID', groupID)
     dispatch(
       updateFilterListChallengesRequest({
         ...filterChallengeState,
+        typeData: typeData,
         searchBy: search,
         groupID: groupID,
-        typeData: typeData,
       }),
     )
   }
@@ -102,21 +103,21 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
               className={classes.taskFilterOptions}
               value={StatusChallengeEnum.NOT_OPEN_YET}
             >
-              NOT OPEN YET
+              not open yet
             </MenuItem>
             <MenuItem
               classes={{ selected: classes.selected }}
               className={classes.taskFilterOptions}
               value={StatusChallengeEnum.OPEN}
             >
-              OPEN
+              open
             </MenuItem>
             <MenuItem
               classes={{ selected: classes.selected }}
               className={classes.taskFilterOptions}
               value={StatusChallengeEnum.CLOSE}
             >
-              CLOSE
+              close
             </MenuItem>
           </Select>
         </FormControl>
@@ -144,7 +145,7 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
           }}
         />
         <Divider orientation='vertical' flexItem />
-        <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
+        <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={url}>
           <RegularButton
             color={'primary'}
             size={'sm'}

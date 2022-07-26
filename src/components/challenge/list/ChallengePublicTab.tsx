@@ -4,6 +4,7 @@ import useStyles from './style'
 import ChallengeCardForOwner from '../general/ChallengeCard/ChallengeCardForOwner'
 import { IChallenge } from '../../../modules/challenge/list/type'
 import PaginationCard from '../../common/pagination/PaginationCard'
+import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
 
 /**
  * ChallengePublic
@@ -35,10 +36,10 @@ const ChallengePublic: React.FC<ChallengePublicProps> = (props) => {
     <Stack>
       <Stack className={classes.scrollBar} spacing={2}>
         {listChallenges.map((challenge) => (
-          <ChallengeCardForOwner
+          <ChallengeCard
             key={challenge.challengeId}
-            url={`/challenge/${challenge.challengeId}`}
             challenge={challenge}
+            url={`/challenge/${challenge.challengeId}`}
           />
         ))}
       </Stack>

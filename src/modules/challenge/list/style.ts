@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   tabLeft: {
-    borderRight: `0.5px solid ${theme.color.darkGray}`,
     backgroundColor: theme.color.white,
   },
 

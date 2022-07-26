@@ -15,6 +15,7 @@ import { IChallenge, ViewListChallengeRequestPayload } from '../../../modules/ch
 import { fetchListChallengeRequest } from '../../../modules/challenge/list/action'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../../apps/ReduxContainer'
+import { TypeModalGroup } from '../../group/setting/type'
 
 /**
  * ChallengeGroup
@@ -41,21 +42,27 @@ interface ChallengeGroupProps {
 }
 const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   const classes = useStyles()
-  const challenges = props.challenges
-  const groups = props.groups
-  const page = props.page
-  const handleChangePage = props.handleChangePage
-  const count = props.count
-
+  const { challenges, groups, onclick, page, handleChangePage, count } = props
   const [selectedIndex, setSelectedIndex] = React.useState(0)
+  // handle show challenges follow Group
+
+  React.useEffect(() => {
+    if (groups !== null || groups !== []) {
+      const indexGroup: Group = groups[0]
+      indexGroup === null ? '' : onclick(indexGroup.id)
+    }
+  }, [])
+
   const handleClickGroup = (
     groupID: number | undefined,
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number,
   ) => {
-    props.onclick(groupID)
+    onclick(groupID)
+    console.log('ChallengeGroup GroupID', groupID)
     setSelectedIndex(index)
   }
+
   return (
     <Stack>
       <Grid container xs={12}>
@@ -77,7 +84,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
               <Typography className={classes.myGroup}>My Group</Typography>
             </Box>
             <List className={classes.listGroupScroll}>
-              {groups.map((group: any, index: number) => (
+              {groups.map((group, index: number) => (
                 <ListItem key={group.id} disablePadding>
                   <ListItemButton
                     key={group.id}

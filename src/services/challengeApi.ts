@@ -1,7 +1,7 @@
 import {
-  ViewListChallengeErrorReponse,
+  ViewListChallengeErrorResponse,
   ViewListChallengeRequestPayload,
-  ViewListChallengeSuccessReponse,
+  ViewListChallengeSuccessResponse,
 } from './../modules/challenge/list/type'
 import { axiosClient } from './clientApi'
 
@@ -28,7 +28,7 @@ const challengeApi = {
    */
   fetchChallengeApi(payload: ViewListChallengeRequestPayload) {
     const url = '/challenge/get-list-challenge'
-    return axiosClient.post<ViewListChallengeSuccessReponse, ViewListChallengeErrorReponse>(
+    return axiosClient.post<ViewListChallengeSuccessResponse, ViewListChallengeErrorResponse>(
       url,
       payload,
     )
@@ -40,7 +40,7 @@ const challengeApi = {
    */
   createChallenge() {
     const url = '/challenge/create-challenge'
-    return axiosClient.post<ViewListChallengeSuccessReponse, ViewListChallengeErrorReponse>(url)
+    return axiosClient.post<ViewListChallengeSuccessResponse, ViewListChallengeErrorResponse>(url)
   },
 }
 export default challengeApi

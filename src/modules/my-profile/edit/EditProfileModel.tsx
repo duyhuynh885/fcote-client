@@ -22,7 +22,8 @@ import { fetchUserAssignmentRequest } from '../view/action'
  * Modification Logs:
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
- * 21-06-2022         DuyHV           Create
+ * 21-06-2022         DuyHV           Create ui
+ * 20-07-2022         HuyNT2711       Create logic
  */
 
 interface ButtonProps {
@@ -126,6 +127,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
             <Stack className={classes.scrollBar}>
               <TextField
                 {...register('firstName')}
+                color='info'
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-firstname-input'

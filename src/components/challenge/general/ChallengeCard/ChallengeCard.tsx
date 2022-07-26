@@ -4,6 +4,7 @@ import useStyles from './style'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import { Link } from 'react-router-dom'
 import { IChallenge } from '../../../../modules/challenge/list/type'
+import { formatDate } from '../../../../utils/dateUtil'
 /**
  * Challenge Card Component
  *
@@ -25,6 +26,7 @@ interface ChallengeCardProps {
 const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
   const classes = useStyles()
   const challenge = props.challenge
+  console.log('------------challenge.description ', challenge.description)
   const handleShowStatus = () => {
     switch (challenge.status) {
       case 1:
@@ -38,42 +40,51 @@ const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
     }
   }
   return (
-    <Paper
-      elevation={4}
-      square
-      sx={{
-        width: '100%',
-        height: '125px',
-      }}
-    >
-      <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
+    <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
+      <Paper
+        elevation={4}
+        square
+        sx={{
+          width: '100%',
+          height: '125px',
+        }}
+      >
         <Stack direction='row'>
           <img
             className={classes.challengeCardBanner}
             src='https://img.freepik.com/free-vector/joystick-game-sport-technology_138676-2045.jpg?w=2000'
           />
 
-          <Stack direction='column' className={classes.challengeCardContainer}>
+          <Stack
+            sx={{
+              width: '100%',
+            }}
+            direction='column'
+            justifyContent='space-between'
+            alignItems='flex-start'
+            className={classes.challengeCardContainer}
+            spacing={1}
+          >
             <Typography className={classes.challengeCardTittle}>{challenge.title}</Typography>
-            <Typography sx={{ marginBottom: '10px' }}>{challenge.decription}</Typography>
-            <Box
+            <Typography sx={{ marginBottom: '10px' }}>{challenge.description}</Typography>
+            <Stack
               sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                paddingTop: '20px',
+                width: '100%',
               }}
+              direction='row'
+              justifyContent='space-between'
             >
               <Stack direction='row'>
                 <PersonOutlineIcon />
                 <Typography>{challenge.totalMember}</Typography>
               </Stack>
-              <Typography>{challenge.startAt}</Typography>
+              <Typography>{formatDate(challenge.startAt)}</Typography>
               <Typography className={classes.challengeCardStatus}>{handleShowStatus()}</Typography>
-            </Box>
+            </Stack>
           </Stack>
         </Stack>
-      </Link>
-    </Paper>
+      </Paper>
+    </Link>
   )
 }
 export default ChallengeCard

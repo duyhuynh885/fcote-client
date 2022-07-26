@@ -4,7 +4,6 @@ import ChallengeOwner from '../../../components/challenge/list/ChallengeOwnerTab
 import ChallengePublic from '../../../components/challenge/list/ChallengePublicTab'
 import ChallengeGroup from '../../../components/challenge/list/ChallengeGroupTab'
 import useStyles from './style'
-
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import {
@@ -15,8 +14,7 @@ import {
 } from './action'
 import TaskbarFilterOfChallenge from '../../../components/challenge/general/TaskbarFilterOfChallenge'
 import { ViewListChallengeRequestPayload } from './type'
-import { fetchListGroupRequest } from '../../group/list/action'
-import { ViewListGroupRequestPayload } from '../../group/list/type'
+import { Group, ViewListGroupRequestPayload } from '../../group/list/type'
 
 /**
  * Challenge
@@ -30,7 +28,8 @@ import { ViewListGroupRequestPayload } from '../../group/list/type'
  * Modification Logs:
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
- * 29-06-2022      HuyNT2711           Create
+ * 29-06-2022      HuyNT2711           Create ui
+ * 22-07-2022      HuyNT2711           Create logic
  */
 
 interface TabPanelProps {
@@ -73,7 +72,7 @@ export default function Challenge() {
   const [value, setValue] = React.useState(0)
   const [page, setPage] = useState(1)
   const [typeData, setTypeData] = useState(1)
-  const [groupID, setGroupId] = useState<number | undefined>(1)
+  const [groupID, setGroupId] = useState<number | undefined>()
   useEffect(() => {
     handleGetChallengeGroup()
   }, [groupID])
@@ -101,6 +100,7 @@ export default function Challenge() {
   useEffect(() => {
     dispatch(fetchListChallengeRequest(filterChallengesState, undefined, undefined, undefined))
   }, [filterChallengesState])
+
   useEffect(() => {
     return () => {
       dispatch(clearStateViewListChallenge())
@@ -112,13 +112,18 @@ export default function Challenge() {
     pageSize: 50,
     pageNumber: 1,
   }
+
   const groupChallengeRequest: ViewListChallengeRequestPayload = {
     typeData: 2,
+    pageSize: 50,
+    pageNumber: 1,
   }
+
   const groupGroupRequest: ViewListGroupRequestPayload = {
     pageSize: 50,
     pageNumber: 1,
   }
+
   const ownerRequest: ViewListChallengeRequestPayload = {
     typeData: 3,
     pageSize: 50,
@@ -127,12 +132,22 @@ export default function Challenge() {
 
   function handleGetChallengePublic() {
     dispatch(fetchListChallengeRequest(publicRequest, undefined, undefined, undefined))
+    setTypeData(1)
   }
   function handleGetChallengeGroup() {
-    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
     dispatch(fetchListChallengeGroupRequest(groupGroupRequest))
+    console.log('=========== groupsState 1', groupsState)
     setTypeData(2)
   }
+  // useEffect(() => {
+  //   if (groupsState !== null || groupsState !== []) {
+  //     const indexGroup: Group = groupsState[0]
+  //     console.log('=========== groupsState 2', groupsState)
+  //     dispatch(
+  //       fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, indexGroup.id),
+  //     )
+  //   }
+  // }, [groupsState])
   function handleGetChallengeOwner() {
     dispatch(fetchListChallengeRequest(ownerRequest, undefined, undefined, undefined))
     setTypeData(3)
