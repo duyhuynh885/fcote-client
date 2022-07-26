@@ -21,10 +21,13 @@ interface UserInforProps {
   data: UserInfo[]
 }
 
-const immutablySwapItems = (items: UserInfo[], firstIndex: number, secondIndex: number) =>
-  items.map((element, index) =>
-    index === firstIndex ? items[secondIndex] : index === secondIndex ? items[firstIndex] : element,
-  )
+function immutablySwapItems(items: UserInfo[], firstIndex: number, secondIndex: number) {
+  return items.map((element, index) => {
+    if (index === firstIndex) return items[secondIndex]
+    else if (index === secondIndex) return items[firstIndex]
+    else return element
+  })
+}
 
 const TopRanking: React.FC<UserInforProps> = (props) => {
   const topRanking = immutablySwapItems(props.data, 0, 1)

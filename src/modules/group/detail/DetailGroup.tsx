@@ -72,10 +72,18 @@ export default function DetailGroup() {
   const groupDetailRequestState = useSelector(
     (state: RootState) => state.detailGroup.groupDetailRequest,
   )
+  const editGroupSuccessfulState = useSelector((state: RootState) => state.editGroup.successful)
 
   useEffect(() => {
     dispatch(fetchDetailGroupRequest(groupDetailRequestState, id))
   }, [groupDetailRequestState.id])
+
+  useEffect(() => {
+    if (editGroupSuccessfulState) {
+      dispatch(fetchDetailGroupRequest(groupDetailRequestState, id))
+    }
+  }, [editGroupSuccessfulState])
+
   return (
     <Stack margin={5}>
       <Grid container>
