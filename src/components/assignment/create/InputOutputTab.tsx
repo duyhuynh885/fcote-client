@@ -190,6 +190,7 @@ function FormInput(props: FormInputProps) {
         <Grid item xs={6}>
           <Typography className={classes.titleTextField}>Name</Typography>
           <TextField
+            color='success'
             size='small'
             value={input.name}
             fullWidth
@@ -206,6 +207,7 @@ function FormInput(props: FormInputProps) {
           <FormControl fullWidth sx={{ height: 50 }}>
             <Typography className={classes.titleTextField}>Type</Typography>
             <Select
+              color='success'
               size='small'
               labelId='demo-simple-select-label'
               id='demo-simple-select'
@@ -231,6 +233,7 @@ function FormInput(props: FormInputProps) {
       <Grid item xs={12}>
         <Typography className={classes.titleTextField}>Description</Typography>
         <TextField
+          color='success'
           size='small'
           fullWidth
           multiline
@@ -288,6 +291,7 @@ function FormOutput(props: FormOutputProps) {
       <FormControl fullWidth>
         <Typography className={classes.titleTextField}>Type</Typography>
         <Select
+          color='success'
           size='small'
           labelId='demo-simple-select-label'
           id='demo-simple-select'
@@ -307,6 +311,7 @@ function FormOutput(props: FormOutputProps) {
       <Grid item xs={12}>
         <Typography className={classes.titleTextField}>Description</Typography>
         <TextField
+          color='success'
           {...descriptionFiled}
           onChange={(e) => {
             descriptionFiled.onChange(e)

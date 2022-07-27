@@ -52,7 +52,6 @@ function IDE(props: IDEProps) {
   return (
     <Editor
       options={options}
-      height='calc(50vh - 50px)'
       width='100%'
       theme='vs-light'
       language={mapLanguageById(language)}

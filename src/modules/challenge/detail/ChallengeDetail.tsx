@@ -8,14 +8,14 @@ import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
  *
  * Version 1.0
  *
- * Date: 30-06-2022
+ * Date: 27-07-2022
  *
- * Copyright By HuyNT2711
+ * Copyright By DuyHV
  *
  * Modification Logs:
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
- * 30-06-2022      HuyNT2711           Create
+ * 27-07-2022       DuyHV           Create
  */
 
 export default function ChallengeDetail() {

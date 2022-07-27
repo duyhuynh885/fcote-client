@@ -35,9 +35,14 @@ import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
  * 08-06-2022      HuyNT2711           Create
  * 24-06-2022      DuyHV               Update UI
  */
+export enum TypeFilterTaskBarEnum {
+  LIST_ASSIGNMENT,
+  CREATE_CHALLENGE,
+}
 
 interface TaskbarFilterProps {
   url: string
+  type: TypeFilterTaskBarEnum
 }
 
 export default function TaskbarFilter(props: TaskbarFilterProps) {
@@ -76,6 +81,7 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
   }
 
   const handleClearSearch = () => {
+    setSearch('')
     dispatch(
       updateFilterListAssignmentRequest({
         ...filterAssignmentState,
@@ -99,7 +105,7 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
   return (
     <Paper
       square
-      elevation={3}
+      elevation={props.type === TypeFilterTaskBarEnum.CREATE_CHALLENGE ? 0 : 3}
       sx={{ width: '100%', padding: '10px', display: 'flex', justifyContent: 'space-between' }}
     >
       <Stack direction='row' justifyContent='flex-start' alignItems='center' spacing={2}>
@@ -223,23 +229,27 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
             ),
           }}
         />
-        <Divider orientation='vertical' flexItem />
-        <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
-          <RegularButton
-            color={'primary'}
-            size={'sm'}
-            round={false}
-            fullWidth={false}
-            disabled={false}
-            simple={false}
-            block={false}
-            link={false}
-            justIcon={false}
-            className=''
-          >
-            + Create
-          </RegularButton>
-        </Link>
+        {props.type === TypeFilterTaskBarEnum.CREATE_CHALLENGE ? null : (
+          <React.Fragment>
+            <Divider orientation='vertical' flexItem />
+            <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
+              <RegularButton
+                color={'primary'}
+                size={'sm'}
+                round={false}
+                fullWidth={false}
+                disabled={false}
+                simple={false}
+                block={false}
+                link={false}
+                justIcon={false}
+                className=''
+              >
+                + Create
+              </RegularButton>
+            </Link>
+          </React.Fragment>
+        )}
       </Stack>
     </Paper>
   )

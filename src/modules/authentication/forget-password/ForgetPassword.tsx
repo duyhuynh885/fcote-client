@@ -46,6 +46,7 @@ export default function ForgetPassword() {
             <form className='form'>
               <TextField
                 required
+                color='success'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-email-input'
                 label='Email'

@@ -129,6 +129,7 @@ export default function EditTestCaseModal(props: EditTestCaseModalProps) {
                         )
                       </Typography>
                       <TextField
+                        color='success'
                         {...register(`inputTestCaseValue.${_input.order}`)}
                         fullWidth
                         id='outlined-basic'
@@ -145,6 +146,7 @@ export default function EditTestCaseModal(props: EditTestCaseModalProps) {
                 ({mapNameDataTypeByValue(dataTypeState, output.type)})
               </Typography>
               <TextField
+                color='success'
                 {...register('outputTestCaseValue')}
                 size='small'
                 fullWidth

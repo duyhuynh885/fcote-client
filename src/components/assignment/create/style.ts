@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: 'uppercase',
   },
   scrollBar: {
-    height: '80vh',
+    height: '72vh',
     paddingRight: '20px',
     overflowX: 'hidden',
     overflowY: 'scroll',

@@ -109,6 +109,7 @@ export default function Login() {
             <form onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 required
+                color='success'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-email-input'
                 autoComplete='email'
@@ -119,6 +120,7 @@ export default function Login() {
               />
               <TextField
                 required
+                color='success'
                 id='outlined-password-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 label='Password'

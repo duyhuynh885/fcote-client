@@ -27,7 +27,7 @@ const AssignmentItemStyle = makeStyles((theme: Theme) => ({
     width: 'fit-content',
     padding: '5px',
     margin: '5px auto !important',
-    backgroundColor: `${theme.color.darkGray}15`,
+    backgroundColor: `${theme.color.darkGray}10`,
   },
   avatar: {
     border: `1px solid ${theme.color.green}`,

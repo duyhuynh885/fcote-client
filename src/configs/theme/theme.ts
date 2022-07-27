@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles'
 import { ThemeOptions as ThemeOptionsOld } from '@mui/material/styles/createTheme'
+import type {} from '@mui/x-date-pickers/themeAugmentation'
 
 /**
  * Override the default theme of material ui
@@ -54,6 +55,9 @@ const themeCustom = {
     darkBlue: {
       main: '#1D3853',
       contrastText: '#fff',
+    },
+    success: {
+      main: '#23C686',
     },
   },
   border: {

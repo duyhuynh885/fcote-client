@@ -96,6 +96,7 @@ export default function SettingTab(props: SettingTabProps) {
           id='outlined-basic'
           variant='outlined'
           size='small'
+          color='success'
         />
         <Typography className={classes.titleTextField}>
           No spaces. Only letters and numbers starting with a letter.

@@ -80,29 +80,23 @@ export default function DetailAssignment() {
   }
 
   return (
-    <Stack>
+    <Stack className={classes.container}>
       <InsideNavBar namePage={detail.title} />
-      <Grid container className={classes.container}>
+      <Grid sx={{ height: '100% !important' }} container>
         <Grid className={classes.tabLeft} item xs={6} sx={{ height: '100%' }} padding={3}>
           <DescriptionTab detail={detail} parameters={parameters} />
         </Grid>
-        <Grid className={classes.tabRight} item xs={6} sx={{ height: '100%' }}>
-          <Grid container>
-            <Grid item xs={12} sx={{ height: '50%' }}>
-              <IDETab
-                sourceCode={sourceCode}
-                onChangeSourceCode={setSourceCode}
-                language={language}
-                handleChangeLanguage={setLanguage}
-              />
-            </Grid>
-            <Grid item xs={12} sx={{ height: '50%' }}>
-              <TestCaseTab
-                onRunTestCase={handleRunTestCase}
-                testCases={testCases}
-                detail={detail}
-              />
-            </Grid>
+        <Grid container className={classes.tabRight} item xs={6} sx={{ height: '100%' }}>
+          <Grid item xs={12} sx={{ height: '50%' }}>
+            <IDETab
+              sourceCode={sourceCode}
+              onChangeSourceCode={setSourceCode}
+              language={language}
+              handleChangeLanguage={setLanguage}
+            />
+          </Grid>
+          <Grid item xs={12} sx={{ height: '50%' }}>
+            <TestCaseTab onRunTestCase={handleRunTestCase} testCases={testCases} detail={detail} />
           </Grid>
         </Grid>
       </Grid>

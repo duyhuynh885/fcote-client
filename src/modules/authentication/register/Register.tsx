@@ -126,6 +126,7 @@ export default function Register() {
               <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid item xs={6}>
                   <TextField
+                    color='success'
                     {...register('firstName')}
                     required
                     sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -137,6 +138,7 @@ export default function Register() {
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
+                    color='success'
                     {...register('lastName')}
                     required
                     sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -148,6 +150,7 @@ export default function Register() {
                 </Grid>
               </Grid>
               <TextField
+                color='success'
                 {...register('username')}
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -157,6 +160,7 @@ export default function Register() {
                 helperText={errors['username'] ? errors['username'].message : ''}
               />
               <TextField
+                color='success'
                 {...register('email')}
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -167,6 +171,7 @@ export default function Register() {
                 {...register('email')}
               />
               <TextField
+                color='success'
                 {...register('password')}
                 required
                 id='outlined-password-input'
@@ -178,6 +183,7 @@ export default function Register() {
                 {...register('password')}
               />
               <TextField
+                color='success'
                 {...register('confirmPassword')}
                 required
                 id='outlined-confirm-password-input'
