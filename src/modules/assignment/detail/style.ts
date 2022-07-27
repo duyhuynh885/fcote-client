@@ -17,7 +17,7 @@ import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
-    height: '90vh',
+    height: '100vh',
     backgroundColor: theme.color.blueLight,
   },
   tabLeft: {

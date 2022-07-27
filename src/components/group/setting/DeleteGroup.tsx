@@ -64,7 +64,6 @@ export default function DeleteGroup({ open, onClose, urlNamePopup }: ButtonProps
 
   const onSubmit: SubmitHandler<CreateGroupInput> = (data) => {
     if (urlNamePopup === TypeModalGroup.DELETE_GROUP) {
-      console.log('Delete Group')
       dispatch(deleteGroupRequest(detailGroupState.groupDetail.id))
     }
     onCancel()

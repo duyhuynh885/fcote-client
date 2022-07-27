@@ -94,10 +94,10 @@ export default function CreateAssignment() {
   }
 
   return (
-    <Stack>
+    <Stack className={classes.container}>
       <InsideNavBar namePage='New Assignment' />
-      <Grid container className={classes.container}>
-        <Grid className={classes.tabLeft} item xs={6} sx={{ height: '100%' }}>
+      <Grid container sx={{ height: '100% !important' }}>
+        <Grid className={classes.tabLeft} item xs={6} sx={{ height: '100% !important' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs
               className={classes.tabStyle}
@@ -130,18 +130,16 @@ export default function CreateAssignment() {
           </TabPanel>
         </Grid>
         <Grid className={classes.tabRight} item xs={6} sx={{ height: '100%' }}>
-          <Grid container>
-            <Grid item xs={12} sx={{ height: '50%' }}>
-              <EditorTab />
-            </Grid>
-            <Grid item xs={12} sx={{ height: '50%' }}>
-              <TestCaseTab
-                inputList={inputList}
-                output={output}
-                testCaseList={testCaseList}
-                handleTestCaseList={setTestCaseList}
-              />
-            </Grid>
+          <Grid item xs={12} sx={{ height: '50%' }}>
+            <EditorTab />
+          </Grid>
+          <Grid item xs={12} sx={{ height: '50%' }}>
+            <TestCaseTab
+              inputList={inputList}
+              output={output}
+              testCaseList={testCaseList}
+              handleTestCaseList={setTestCaseList}
+            />
           </Grid>
         </Grid>
       </Grid>

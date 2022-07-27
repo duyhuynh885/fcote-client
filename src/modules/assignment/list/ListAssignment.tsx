@@ -1,6 +1,8 @@
-import { Grid, Pagination, PaginationItem, Stack } from '@mui/material'
+import { CircularProgress, Grid, Pagination, PaginationItem, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import TaskbarFilter from '../../../components/common/toolbar/TaskbarFilter'
+import TaskbarFilter, {
+  TypeFilterTaskBarEnum,
+} from '../../../components/common/toolbar/TaskbarFilter'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   fetchListAssignmentRequest,
@@ -29,14 +31,12 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 export default function ListAssignment() {
   const dispatch = useDispatch<AppDispatch>()
-  const assignmentsState = useSelector((state: RootState) => state.listAssignment.assignments)
-  const currentSizeState = useSelector((state: RootState) => state.listAssignment.currentSize)
-  const filterAssignmentState = useSelector(
-    (state: RootState) => state.listAssignment.filterRequest,
-  )
+  const assignmentsState = useSelector((state: RootState) => state.listAssignment)
+  const { requesting, currentSize, assignments, filterRequest } = assignmentsState
+
   const [page, setPage] = useState(1)
   const PER_PAGE = 16
-  const count = Math.ceil(currentSizeState / PER_PAGE)
+  const count = Math.ceil(currentSize / PER_PAGE)
 
   /**
    * handle update filter by pageNumber
@@ -45,15 +45,15 @@ export default function ListAssignment() {
    */
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
-    dispatch(updateFilterListAssignmentRequest({ ...filterAssignmentState, pageNumber: value }))
+    dispatch(updateFilterListAssignmentRequest({ ...filterRequest, pageNumber: value }))
   }
 
   /**
    * Follow filterAssignmentState to fetch list assignment
    */
   useEffect(() => {
-    dispatch(fetchListAssignmentRequest(filterAssignmentState))
-  }, [filterAssignmentState])
+    dispatch(fetchListAssignmentRequest(filterRequest))
+  }, [filterRequest])
 
   /**
    * clear state
@@ -67,7 +67,7 @@ export default function ListAssignment() {
   return (
     <Stack sx={{ margin: 5 }} direction='column'>
       <Stack marginBottom={5}>
-        <TaskbarFilter url='/assignment/create' />
+        <TaskbarFilter url='/assignment/create' type={TypeFilterTaskBarEnum.LIST_ASSIGNMENT} />
       </Stack>
       <Stack direction='column' alignItems='center' spacing={3}>
         <Grid
@@ -78,11 +78,19 @@ export default function ListAssignment() {
           justifyContent='center'
           style={{ minHeight: '70vh' }}
         >
-          {assignmentsState.map((assignment) => (
-            <Grid key={assignment.id} item xs={4} lg={2.3}>
-              <AssignmentItem assignment={assignment} />
-            </Grid>
-          ))}
+          {requesting ? (
+            <Stack alignItems='center'>
+              <CircularProgress color='success' />
+            </Stack>
+          ) : (
+            <React.Fragment>
+              {assignments.map((assignment) => (
+                <Grid key={assignment.id} item xs={4} lg={2.3}>
+                  <AssignmentItem assignment={assignment} />
+                </Grid>
+              ))}
+            </React.Fragment>
+          )}
         </Grid>
         <Pagination
           page={page}

@@ -17,29 +17,37 @@ import { makeStyles } from '@mui/styles'
  */
 const useStyles = makeStyles((theme: Theme) => ({
   paperWrap: {
-    width: '100%',
+    width: '100% !important',
     height: 'auto',
     border: '1px solid black',
-    padding: '8px',
+    padding: '10px 10px',
   },
   link: {
     textDecoration: 'none',
     color: theme.color.black,
   },
   name: {
-    fontWeight: '600',
+    fontWeight: '700',
+    width: '150px',
     fontSize: `${theme.textFont.small}`,
     textTransform: 'capitalize',
+    color: `${theme.color.black}`,
+    textAlign: 'start',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
-  level: {
+  userName: {
+    fontWeight: '700',
+    fontSize: `${theme.textFont.extraSmall}`,
+    color: `${theme.color.darkGray}`,
+    textAlign: 'start',
+  },
+  score: {
     fontWeight: '800',
-    fontSize: `${theme.textFont.small}`,
-    textTransform: 'capitalize',
-    color: `${theme.color.brown}`,
-  },
-  title: {
-    fontSize: theme.textFont.large,
-    fontWeight: 'bold',
+    fontSize: `${theme.textFont.extraSmall}`,
+    color: `${theme.color.darkRed}`,
+    textAlign: 'start',
   },
   scrollBar: {
     height: '730px',
@@ -56,6 +64,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       backgroundColor: theme.color.green,
       borderRadius: '10px',
     },
+  },
+  avatar: {
+    border: `1px solid ${theme.color.green}`,
   },
 }))
 

@@ -26,7 +26,7 @@ export default function InsideNavBar(props: InsideNavBarProps) {
   const classes = useStyles()
 
   return (
-    <AppBar position='sticky' className={classes.navBarCreate}>
+    <AppBar position='static' className={classes.navBarCreate}>
       <Toolbar
         sx={{
           display: 'flex',

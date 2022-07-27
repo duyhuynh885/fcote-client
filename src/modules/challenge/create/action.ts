@@ -2,6 +2,7 @@ import {
   CreateChallengeActionType,
   CreateChallengeClearStateAction,
   CreateChallengeRequestAction,
+  CreateChallengeRequestPayload,
 } from './type'
 
 /**
@@ -9,14 +10,14 @@ import {
  *
  * Version 1.0
  *
- * Date: 22-06-2022
+ * Date: 27-07-2022
  *
  * Copyright
  *
  * Modification Logs:
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
- * 22-06-2022         DuyHV           Create
+ * 27-07-2022         DuyHV           Create
  */
 
 /**
@@ -24,9 +25,24 @@ import {
  * @param param CreateChallengeRequestPayload
  * @returns CreateChallengeRequestAction
  */
-export const CreateChallengeRequest = (): CreateChallengeRequestAction => {
+export const CreateChallengeRequest = ({
+  title,
+  description,
+  image,
+  groupId,
+  startAt,
+  endAt,
+  element,
+}: CreateChallengeRequestPayload): CreateChallengeRequestAction => {
   return {
     type: CreateChallengeActionType.CREATE_CHALLENGE_REQUESTING,
+    title,
+    description,
+    image,
+    groupId,
+    startAt,
+    endAt,
+    element,
   }
 }
 

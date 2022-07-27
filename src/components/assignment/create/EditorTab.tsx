@@ -1,4 +1,4 @@
-import { Box, Stack, Tab, Tabs } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import React from 'react'
 import IDE from '../general/IDE'
 import useStyles from './style'
@@ -18,46 +18,8 @@ import useStyles from './style'
  * 28-06-2022         DuyHV           Create
  */
 
-interface TabPanelProps {
-  children?: React.ReactNode
-  index: number
-  value: number
-}
-
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  }
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
-  return (
-    <div
-      role='tabpanel'
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box>{children}</Box>}
-    </div>
-  )
-}
-
 export default function EditorTab() {
-  const [value, setValue] = React.useState(0)
   const classes = useStyles()
-
-  /**
-   * Handle change tab in editor tab
-   * @param _event
-   * @param newValue
-   */
-  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-  }
 
   /**
    * Handle change source code in editor tab
@@ -68,20 +30,19 @@ export default function EditorTab() {
     console.log(sourceCode)
   }
   return (
-    <Stack>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs
-          className={classes.tabEditor}
-          value={value}
-          onChange={handleChange}
-          aria-label='basic tabs example'
-        >
-          <Tab className={classes.tabFileName} label='test.java' {...a11yProps(0)} />
-        </Tabs>
-      </Box>
-      <TabPanel value={value} index={0}>
+    <Stack sx={{ height: '100%' }}>
+      <Typography
+        sx={{
+          padding: '10px',
+          borderBottom: 'solid 1px black',
+        }}
+        className={classes.tabFileName}
+      >
+        test.py
+      </Typography>
+      <Stack sx={{ height: '100% !important' }}>
         <IDE onChange={handleOnChangeCode} />
-      </TabPanel>
+      </Stack>
     </Stack>
   )
 }
