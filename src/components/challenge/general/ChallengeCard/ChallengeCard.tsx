@@ -26,7 +26,6 @@ interface ChallengeCardProps {
 const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
   const classes = useStyles()
   const challenge = props.challenge
-  console.log('------------challenge.description ', challenge.description)
   const handleShowStatus = () => {
     switch (challenge.status) {
       case 1:

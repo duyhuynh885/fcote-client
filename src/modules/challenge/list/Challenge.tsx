@@ -66,6 +66,7 @@ export default function Challenge() {
   const challengesState = useSelector((state: RootState) => state.listChallenges.challenges)
   const groupsState = useSelector((state: RootState) => state.listChallenges.groups)
   const currentSizeState = useSelector((state: RootState) => state.listChallenges.currentSize)
+  const groupSuccessState = useSelector((state: RootState) => state.listChallenges.successful)
   const filterChallengesState = useSelector(
     (state: RootState) => state.listChallenges.filterRequest,
   )
@@ -74,6 +75,7 @@ export default function Challenge() {
   const [typeData, setTypeData] = useState(1)
   const [groupID, setGroupId] = useState<number | undefined>()
   useEffect(() => {
+    console.log('-============== groupID', groupID)
     handleGetChallengeGroup()
   }, [groupID])
   const PER_PAGE = 10
@@ -123,17 +125,23 @@ export default function Challenge() {
     pageSize: 50,
     pageNumber: 1,
   }
-
+  console.log('value', value)
   function handleGetChallengePublic() {
+    console.log('------- Action 1 ------')
     dispatch(fetchListChallengeRequest(publicRequest, undefined, undefined, undefined))
     setTypeData(1)
   }
+
   function handleGetChallengeGroup() {
     dispatch(fetchListChallengeGroupRequest(groupGroupRequest))
-    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
-    console.log('=========== groupsState 1', groupsState)
+    console.log(' groupsState 1', groupsState)
     setTypeData(2)
   }
+
+  // useEffect(() => {
+  //   dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
+  // }, [groupSuccessState])
+
   // useEffect(() => {
   //   if (groupsState !== null || groupsState !== []) {
   //     const indexGroup: Group = groupsState[0]
@@ -143,6 +151,7 @@ export default function Challenge() {
   //     )
   //   }
   // }, [groupsState])
+
   function handleGetChallengeOwner() {
     dispatch(fetchListChallengeRequest(ownerRequest, undefined, undefined, undefined))
     setTypeData(3)

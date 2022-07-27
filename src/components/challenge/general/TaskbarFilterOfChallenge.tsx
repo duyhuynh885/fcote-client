@@ -34,7 +34,7 @@ import { StatusChallengeEnum } from '../../../modules/challenge/list/type'
  * Modification Logs:
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
- * 08-06-2022      HuyNT2711           Createe
+ * 08-06-2022      HuyNT2711           Create UI
  * 24-06-2022      DuyHV               Update UI
  */
 interface IProps {
