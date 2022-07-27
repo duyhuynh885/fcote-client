@@ -46,7 +46,6 @@ function* viewListChallengeFlow({
       username,
       status,
     })
-    console.log('SAGA data Challeneg 3 ', data)
     yield put({
       type: ViewListChallengeActionType.VIEW_LIST_CHALLENGE_SUCCESS,
       ...data,
@@ -68,7 +67,6 @@ function* viewListGroupFlow({ pageSize, pageNumber }: ViewListGroupRequestAction
       pageSize,
       pageNumber,
     })
-    console.log('SAGA data group 3 ', data)
     yield put({ type: ViewListChallengeActionType.VIEW_LIST_GROUPID_SUCCESS, ...data })
     yield put(hideLoaderAction())
   } catch (error) {

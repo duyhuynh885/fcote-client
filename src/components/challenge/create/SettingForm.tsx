@@ -45,9 +45,7 @@ export default function SettingForm() {
   const handleGroupChange = (event: SelectChangeEvent) => {
     setGroup(event.target.value)
   }
-  console.log(getCurrentDateTime())
-
-  console.log(new Date(getCurrentDateTime()))
+  
   return (
     <Grid container spacing={4}>
       <Grid item xs={5}>

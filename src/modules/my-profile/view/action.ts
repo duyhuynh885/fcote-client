@@ -50,7 +50,6 @@ export const fetchChallengeCompletedRequest = ({
   username,
   typeData,
 }: ViewChallengeCompletedRequestingPayload): ViewChallengeCompletedRequestAction => {
-  console.log('---------------username,typeData', username, typeData)
   return {
     type: ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
     username,
