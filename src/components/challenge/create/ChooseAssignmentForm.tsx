@@ -28,7 +28,7 @@ import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
 import { Assignment } from '../../../modules/assignment/list/type'
 
 interface ChooseAssignmentFormProps {
-  handleChangeAssignmentIdSelected: (listId: number[]) => void
+  handleChangeAssignmentIdSelected?: (listId: number[]) => void
 }
 
 export default function ChooseAssignmentForm(props: ChooseAssignmentFormProps) {
