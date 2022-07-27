@@ -77,7 +77,6 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
   const onSubmit: SubmitHandler<EditGroupInput> = (data) => {
     const { groupName, groupDescription } = data
     if (urlNamePopup === TypeModalGroup.EDIT_GROUP) {
-      console.log('Edit', groupName, groupDescription)
       dispatch(editGroupRequest(editGroupState, groupDetailIdState, groupName, groupDescription))
     }
     onCancel()

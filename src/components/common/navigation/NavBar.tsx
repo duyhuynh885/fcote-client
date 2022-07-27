@@ -19,6 +19,11 @@ import { isAuth } from '../../../utils/auth'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { logoutRequest } from '../../../modules/authentication/login/action'
 import { useDispatch, useSelector } from 'react-redux'
+import MilitaryTechOutlinedIcon from '@mui/icons-material/MilitaryTechOutlined'
+import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined'
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
+import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
+import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined'
 
 /**
  * Navbar components
@@ -39,22 +44,27 @@ const pages = [
   {
     path: '/my-profile',
     title: 'MyProfile',
+    icon: <PermIdentityOutlinedIcon fontSize='small' sx={{ marginRight: '3px' }} />,
   },
   {
     path: '/assignment',
     title: 'Assignment',
+    icon: <AssignmentOutlinedIcon fontSize='small' sx={{ marginRight: '3px' }} />,
   },
   {
     path: '/challenge',
     title: 'Challenge',
+    icon: <WhatshotOutlinedIcon fontSize='small' sx={{ marginRight: '3px' }} />,
   },
   {
     path: '/group',
     title: 'Group',
+    icon: <GroupOutlinedIcon fontSize='small' sx={{ marginRight: '3px' }} />,
   },
   {
     path: '/ranking',
     title: 'Ranking',
+    icon: <MilitaryTechOutlinedIcon fontSize='small' sx={{ marginRight: '3px' }} />,
   },
 ]
 
@@ -123,7 +133,7 @@ function Navbar() {
                   to={page.path}
                   className={classes.link}
                 >
-                  {t(page.title)}
+                  {page.icon} {t(page.title)}
                 </NavLink>
               ))}
             </Box>

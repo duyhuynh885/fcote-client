@@ -14,16 +14,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     textDecoration: 'none',
     textTransform: 'uppercase',
     color: theme.color.darkGray,
+    display: 'flex',
+    alignItems: 'items',
     fontSize: theme.textFont.extraSmall,
     fontWeight: 'bold',
     marginLeft: theme.spacing(5),
     '&:hover': {
       color: theme.color.black,
     },
-  },
-  containerNavlink: {
-    display: 'flex',
-    justifyContent: 'space-around !important',
   },
   button: {
     minWidth: 'auto',

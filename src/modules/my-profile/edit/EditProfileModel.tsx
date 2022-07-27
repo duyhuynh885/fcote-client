@@ -83,16 +83,6 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
 
   const onSubmit: SubmitHandler<EditProfileInput> = (data) => {
     const { firstName, lastName, organization, city, country, phone, gender } = data
-    console.log(
-      'firstName, lastName, organization, city, country, phone, gender',
-      firstName,
-      lastName,
-      organization,
-      city,
-      country,
-      phone,
-      gender,
-    )
     dispatch(
       editMyProfileRequest({
         firstName,

@@ -60,7 +60,6 @@ export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
     index: number,
   ) => {
     handleClose()
-    console.log(`You clicked ${options[index]}`)
     switch (index) {
       case optionsEnum.EDIT:
         setOpenEdit(true)
