@@ -73,7 +73,7 @@ const groupApi = {
    * @returns ViewListAssignmentErrorResponse
    */
   joinGroup(payload: JoinGroupRequestPayload) {
-    const url = '/group/join'
+    const url = '/group/join-group'
     return axiosClient.post<JoinGroupResponse, JoinGroupErrorResponse>(url, payload)
   },
 
@@ -83,7 +83,7 @@ const groupApi = {
    * @returns ViewListAssignmentErrorResponse
    */
   createGroup(payload: CreateGroupRequestPayload) {
-    const url = '/group/create'
+    const url = '/group/create-group'
     return axiosClient.post<CreateGroupResponse, CreateGroupErrorResponse>(url, payload)
   },
 
