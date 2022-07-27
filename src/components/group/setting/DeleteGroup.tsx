@@ -81,7 +81,7 @@ export default function DeleteGroup({ open, onClose, urlNamePopup }: ButtonProps
         <form onSubmit={handleSubmit(onSubmit)}>
           <Paper sx={style}>
             <div className={classes.root}>
-              <Typography className={classes.newGroup}>{urlNamePopup}</Typography>
+              <Typography className={classes.newGroup}>Are you sure ?</Typography>
             </div>
             <Stack direction='row' justifyContent='space-around' alignItems='center' spacing={8}>
               <RegularButton
