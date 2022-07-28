@@ -21,7 +21,9 @@ import { ReactComponent as Platinum } from '../../../../assets/Platinum.svg'
 import { ReactComponent as Bronze } from '../../../../assets/Bronze.svg'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { MemberInGroup } from '../../../../modules/group/detail/type'
-import { isNoSubstitutionTemplateLiteral } from 'typescript'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../../apps/ReduxContainer'
+import { kickGroupRequest } from '../../../../modules/group/setting/kick/action'
 
 interface DetailGroupProps {
   member: MemberInGroup[]
@@ -34,6 +36,10 @@ export default function Member(props: DetailGroupProps) {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
   const rows = member
+
+  const dispatch = useDispatch<AppDispatch>()
+  const groupIdState = useSelector((state : RootState) => state.detailGroup.groupDetail.id)
+
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage)
   }
@@ -64,6 +70,7 @@ export default function Member(props: DetailGroupProps) {
           aria-label='logout'
           onClick={() => {
             console.log('ID member: ', idMember)
+            dispatch(kickGroupRequest(groupIdState, idMember))
           }}
         >
           <LogoutIcon />

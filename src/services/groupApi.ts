@@ -49,6 +49,11 @@ import {
   LeaveGroupRequestPayload,
   LeaveGroupResponse,
 } from '../modules/group/setting/leave/type'
+import {
+  KickGroupErrorResponse,
+  KickGroupRequestPayload,
+  KickGroupResponse,
+} from '../modules/group/setting/kick/type'
 
 const groupApi = {
   /**
@@ -121,6 +126,16 @@ const groupApi = {
     const url = '/group/out-member'
     return axiosClient.post<LeaveGroupResponse, LeaveGroupErrorResponse>(url, payload)
   },
+
+   /**
+   * Api for Leave group
+   * @returns KickGroupResponse
+   * @returns KickGroupErrorResponse
+   */
+    kickMemberGroup(payload: KickGroupRequestPayload) {
+      const url = '/group/kick-member'
+      return axiosClient.post<KickGroupResponse, KickGroupErrorResponse>(url, payload)
+    },
 }
 
 export default groupApi
