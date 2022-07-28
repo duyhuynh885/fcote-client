@@ -8,7 +8,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { TypeModalGroup } from './type'
-import { deleteGroupRequest } from '../../../modules/group/setting/delete/action'
+import { leaveGroupRequest } from '../../../modules/group/setting/leave/action'
 
 /**
  * Create Group component
@@ -41,30 +41,30 @@ const style = {
   p: 4,
 }
 
-const deleteGroupObject = object({})
+const leaveGroupObject = object({})
 
-export default function DeleteGroup({ open, onClose, urlNamePopup }: ButtonProps) {
+export default function LeaveGroup({ open, onClose, urlNamePopup }: ButtonProps) {
   const classes = useStyle()
   const dispatch = useDispatch<AppDispatch>()
 
-  type DeleteGroupInput = TypeOf<typeof deleteGroupObject>
+  type LeaveGroupInput = TypeOf<typeof leaveGroupObject>
 
   const detailGroupState = useSelector((state: RootState) => state.detailGroup)
   const rest = {
     type: 'submit',
   }
 
-  const { handleSubmit } = useForm<DeleteGroupInput>({
-    resolver: zodResolver(deleteGroupObject),
+  const { handleSubmit } = useForm<LeaveGroupInput>({
+    resolver: zodResolver(leaveGroupObject),
   })
 
   const onCancel = () => {
     onClose(true)
   }
 
-  const onSubmit: SubmitHandler<DeleteGroupInput> = () => {
-    if (urlNamePopup === TypeModalGroup.DELETE_GROUP) {
-      dispatch(deleteGroupRequest(detailGroupState.groupDetail.id))
+  const onSubmit: SubmitHandler<LeaveGroupInput> = () => {
+    if (urlNamePopup === TypeModalGroup.LEAVE_GROUP) {
+      dispatch(leaveGroupRequest(detailGroupState.groupDetail.id))
     }
     onCancel()
   }
@@ -111,7 +111,7 @@ export default function DeleteGroup({ open, onClose, urlNamePopup }: ButtonProps
                 className={''}
                 {...rest}
               >
-                Delete
+                Leave
               </RegularButton>
             </Stack>
           </Paper>

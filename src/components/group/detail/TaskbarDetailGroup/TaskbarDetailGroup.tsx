@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import EditGroup from '../../setting/EditGroup'
 import DeleteGroup from '../../setting/DeleteGroup'
+import LeaveGroup from '../../setting/LeaveGroup'
 
 /**
  * Taskbar Detail Group
@@ -65,6 +66,7 @@ export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
         setOpenEdit(true)
         break
       case optionsEnum.LEAVE_GROUP:
+        setOpenLeave(true)
         break
       case optionsEnum.DELETE_GROUP:
         setOpenDelete(true)
@@ -82,6 +84,11 @@ export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
   const [openDelete, setOpenDelete] = useState(false)
   const handleCloseDeleteGroup = () => {
     setOpenDelete(false)
+  }
+
+  const [openLeave, setOpenLeave] = useState(false)
+  const handleCloseLeaveGroup = () => {
+    setOpenLeave(false)
   }
 
   return (
@@ -139,20 +146,21 @@ export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
               },
             }}
           >
-            {options.map((option, index) => (
-              <MenuItem
-                key={option}
-                disabled={(option === 'Delete Group' || option === 'Edit') && !props.isOwner}
-                onClick={(event) => handleMenuItemClick(event, index)}
-              >
-                {option}
-              </MenuItem>
-            ))}
+            {options.map((option, index) => {
+              if (!((option === 'Delete Group' || option === 'Edit') && !props.isOwner)) {
+                return (
+                  <MenuItem key={option} onClick={(event) => handleMenuItemClick(event, index)}>
+                    {option}
+                  </MenuItem>
+                )
+              }
+            })}
           </Menu>
         </Box>
       </Stack>
       <EditGroup urlNamePopup='Edit Group' open={openEdit} onClose={handleCloseEditGroup} />
       <DeleteGroup urlNamePopup='Delete Group' open={openDelete} onClose={handleCloseDeleteGroup} />
+      <LeaveGroup urlNamePopup='Leave Group' open={openLeave} onClose={handleCloseLeaveGroup} />
     </Paper>
   )
 }
