@@ -16,12 +16,12 @@ import { editGroupRequest } from '../../../modules/group/setting/edit/action'
  * <p>
  * Date: 04-07-2022
  * <p>
- * Copyright By HuyNT2711
+ * Copyright By TuanLA
  * <p>
  * Modification Logs:
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
- * 04-07-2022      HuyNT2711           Create
+ * 04-07-2022      TuanLA           Create
  */
 
 interface ButtonProps {

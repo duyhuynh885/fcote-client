@@ -21,6 +21,7 @@ import myProfileReducer from '../../modules/my-profile/view/reducer'
 import editMyProfileReducer from '../../modules/my-profile/edit/reducer'
 import listChallengesReducer from '../../modules/challenge/list/reducer'
 import deleteGroupReducer from '../../modules/group/setting/delete/reducer'
+import leaveGroupReducer from '../../modules/group/setting/leave/reducer'
 
 /**
  * Root Reducer
@@ -52,6 +53,7 @@ const rootReducer = (history: any) =>
     myProfile: myProfileReducer,
     editMyProfile: editMyProfileReducer,
     deleteGroup: deleteGroupReducer,
+    leaveGroup: leaveGroupReducer,
   })
 
 export default rootReducer

@@ -44,6 +44,11 @@ import {
   EditGroupRequestPayload,
   EditGroupResponse,
 } from '../modules/group/setting/edit/type'
+import {
+  LeaveGroupErrorResponse,
+  LeaveGroupRequestPayload,
+  LeaveGroupResponse,
+} from '../modules/group/setting/leave/type'
 
 const groupApi = {
   /**
@@ -105,6 +110,16 @@ const groupApi = {
   editGroup(payload: EditGroupRequestPayload) {
     const url = '/group/update-group'
     return axiosClient.post<EditGroupResponse, EditGroupErrorResponse>(url, payload)
+  },
+
+  /**
+   * Api for Leave group
+   * @returns LeaveGroupResponse
+   * @returns LeaveGroupErrorResponse
+   */
+   leaveGroup(payload: LeaveGroupRequestPayload) {
+    const url = '/group/out-member'
+    return axiosClient.post<LeaveGroupResponse, LeaveGroupErrorResponse>(url, payload)
   },
 }
 
