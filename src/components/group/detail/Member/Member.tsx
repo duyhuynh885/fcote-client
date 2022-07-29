@@ -38,7 +38,7 @@ export default function Member(props: DetailGroupProps) {
   const rows = member
 
   const dispatch = useDispatch<AppDispatch>()
-  const groupIdState = useSelector((state : RootState) => state.detailGroup.groupDetail.id)
+  const groupIdState = useSelector((state: RootState) => state.detailGroup.groupDetail.id)
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage)

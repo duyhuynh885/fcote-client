@@ -64,11 +64,7 @@ export default function TopUser() {
   }
 
   return (
-    <Paper
-      square
-      sx={{ width: '100%', overflow: 'hidden' }}
-      className={classes.containerWraper}
-    >
+    <Paper square sx={{ width: '100%', overflow: 'hidden' }} className={classes.containerWraper}>
       <TableContainer sx={{ maxHeight: 440 }} className={classes.tableContainer}>
         <Table stickyHeader aria-label='sticky table' className={classes.table}>
           <TableHead>

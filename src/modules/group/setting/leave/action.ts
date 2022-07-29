@@ -12,11 +12,7 @@
  * -----------------------------------------------------------------------
  * 21-06-2022         TuanLA           Create
  */
- import {
-  LeaveGroupActionType,
-  LeaveGroupRequestAction,
-  LeaveGroupClearStateAction,
-} from './type'
+import { LeaveGroupActionType, LeaveGroupRequestAction, LeaveGroupClearStateAction } from './type'
 
 /**
  * LeaveGroup request action

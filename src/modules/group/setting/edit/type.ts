@@ -13,7 +13,7 @@
  * 23-07-2022         TuanLA           Create
  */
 
- export enum EditGroupActionType {
+export enum EditGroupActionType {
   EDIT_GROUP_REQUESTING = 'EDIT_GROUP_REQUESTING',
   EDIT_GROUP_SUCCESS = 'EDIT_GROUP_SUCCESS',
   EDIT_GROUP_ERROR = 'EDIT_GROUP_ERROR',

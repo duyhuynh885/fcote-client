@@ -13,7 +13,7 @@
  * 23-07-2022         TuanLA           Create
  */
 
- export enum LeaveGroupActionType {
+export enum LeaveGroupActionType {
   LEAVE_GROUP_REQUESTING = 'LEAVE_GROUP_REQUESTING',
   LEAVE_GROUP_SUCCESS = 'LEAVE_GROUP_SUCCESS',
   LEAVE_GROUP_ERROR = 'LEAVE_GROUP_ERROR',

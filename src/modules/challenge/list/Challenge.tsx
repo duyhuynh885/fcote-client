@@ -10,7 +10,7 @@ import {
   clearStateViewListChallenge,
   fetchListChallengeGroupRequest,
   fetchListChallengeRequest,
-  updateFilterListChallengesRequest
+  updateFilterListChallengesRequest,
 } from './action'
 import useStyles from './style'
 import { ViewListChallengeRequestPayload } from './type'
