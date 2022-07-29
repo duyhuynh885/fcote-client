@@ -21,8 +21,6 @@ import useStyles from '../style'
 
 interface ChallengeCompletedProps {
   listChanllengeCompleted: IChallenge[]
-
-  // listChanllengeCompleted: MyProfile['ChallengeCompleted']
 }
 const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
   const classes = useStyles()

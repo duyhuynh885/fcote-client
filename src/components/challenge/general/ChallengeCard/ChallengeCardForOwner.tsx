@@ -59,7 +59,7 @@ const ChallengeCardForOwner: React.FC<ChallengeCardForOwnerProps> = (props) => {
           />
           <Stack direction='column' className={classes.challengeCardContainer}>
             <Typography className={classes.challengeCardTittle}>{data.challenge.title}</Typography>
-            <Typography sx={{ marginTop: '18px' }}>{data.challenge.decription}</Typography>
+            <Typography sx={{ marginTop: '18px' }}>{data.challenge.description}</Typography>
             <Box
               sx={{
                 display: 'flex',

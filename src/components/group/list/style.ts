@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: '600 !important',
     color: `${theme.color.black} !important`,
     textDecoration: 'none',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   challengeCardStatus: {
     fontWeight: '600',

@@ -31,7 +31,7 @@ export interface ViewListGroupErrorResponse {
 }
 
 export interface Group {
-  id: number
+  id: number | undefined
   title: string
   image: string
   totalMember: number

@@ -24,9 +24,9 @@ export enum ViewListChallengeActionType {
   VIEW_LIST_CHALLENGE_REQUESTING = 'VIEW_LIST_CHALLENGE_REQUESTING',
   VIEW_LIST_CHALLENGE_SUCCESS = 'VIEW_LIST_CHALLENGE_SUCCESS',
   VIEW_LIST_CHALLENGE_ERROR = 'VIEW_LIST_CHALLENGE_ERROR',
-  VIEW_LIST_GROUPID_SUCCESS = 'VIEW_LIST_GROUPID_SUCCESS',
-  VIEW_LIST_GROUPID_REQUESTING = 'VIEW_LIST_GROUPID_REQUESTING',
-  VIEW_LIST_GROUPID_ERROR = 'VIEW_LIST_GROUPID_ERROR',
+  VIEW_LIST_GROUP_ID_SUCCESS = 'VIEW_LIST_GROUP_ID_SUCCESS',
+  VIEW_LIST_GROUP_ID_REQUESTING = 'VIEW_LIST_GROUP_ID_REQUESTING',
+  VIEW_LIST_GROUP_ID_ERROR = 'VIEW_LIST_GROUP_ID_ERROR',
   VIEW_LIST_CHALLENGE_CLEAR_STATE = 'VIEW_LIST_CHALLENGE_CLEAR_STATE',
   UPDATE_FILTER_LIST_CHALLENGE_REQUEST = ' UPDATE_FILTER_LIST_CHALLENGE_REQUEST',
 }
@@ -42,7 +42,7 @@ export interface IChallenge {
   challengeId: string
   image: string
   title: string
-  decription: string
+  description: string
   totalMember: string
   startAt: string
   endAt: string
@@ -59,25 +59,25 @@ export interface ViewListChallengeRequestPayload {
   status?: StatusChallengeEnum
 }
 
-export interface ViewListChallengeSuccessReponse {
+export interface ViewListChallengeSuccessResponse {
   challenges: IChallenge[]
   currentSize: number
 }
 
-export interface ViewListChallengeErrorReponse {
+export interface ViewListChallengeErrorResponse {
   error: ErrorMessage
 }
 
 export type ViewListGroupIdRequestAction = ActionWithPayload<
-  ViewListChallengeActionType.VIEW_LIST_GROUPID_REQUESTING,
+  ViewListChallengeActionType.VIEW_LIST_GROUP_ID_REQUESTING,
   ViewListGroupRequestPayload
 >
 export type ViewListGroupIdSuccessAction = ActionWithPayload<
-  ViewListChallengeActionType.VIEW_LIST_GROUPID_SUCCESS,
+  ViewListChallengeActionType.VIEW_LIST_GROUP_ID_SUCCESS,
   ViewListGroupResponse
 >
 export type ViewListGroupIdErrorAction = ActionWithPayload<
-  ViewListChallengeActionType.VIEW_LIST_GROUPID_ERROR,
+  ViewListChallengeActionType.VIEW_LIST_GROUP_ID_ERROR,
   ViewListGroupErrorResponse
 >
 
@@ -87,11 +87,11 @@ export type ViewListChallengeRequestAction = ActionWithPayload<
 >
 export type ViewListChallengeSuccessAction = ActionWithPayload<
   ViewListChallengeActionType.VIEW_LIST_CHALLENGE_SUCCESS,
-  ViewListChallengeSuccessReponse
+  ViewListChallengeSuccessResponse
 >
 export type ViewListChallengeErrorAction = ActionWithPayload<
   ViewListChallengeActionType.VIEW_LIST_CHALLENGE_ERROR,
-  ViewListChallengeErrorReponse
+  ViewListChallengeErrorResponse
 >
 export type ViewListChallengeClearStateAction =
   Action<ViewListChallengeActionType.VIEW_LIST_CHALLENGE_CLEAR_STATE>
@@ -111,7 +111,7 @@ export type ViewListChallengeAction =
   | ViewListChallengeClearStateAction
   | UpdateFilterListChallengeAction
 
-export interface ViewlistChallengeState {
+export interface ViewListChallengeState {
   requesting: boolean
   successful: boolean
   messages: Message
