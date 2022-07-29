@@ -47,7 +47,7 @@ export const fetchListChallengeGroupRequest = ({
   pageNumber,
 }: ViewListGroupRequestPayload): ViewListGroupIdRequestAction => {
   return {
-    type: ViewListChallengeActionType.VIEW_LIST_GROUPID_REQUESTING,
+    type: ViewListChallengeActionType.VIEW_LIST_GROUP_ID_REQUESTING,
     pageSize,
     pageNumber,
   }

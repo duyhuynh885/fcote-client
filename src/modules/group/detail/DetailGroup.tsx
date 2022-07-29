@@ -106,7 +106,7 @@ export default function DetailGroup() {
             <Tasklist />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <Member member={groupMemberState} isOwner={groupDetailState.isOwner}/>
+            <Member member={groupMemberState} isOwner={groupDetailState.isOwner} />
           </TabPanel>
         </Grid>
       </Grid>

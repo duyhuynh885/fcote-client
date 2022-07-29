@@ -5,9 +5,9 @@ import {
   CreateChallengeResponse,
 } from './../modules/challenge/create/type'
 import {
-  ViewListChallengeErrorReponse,
+  ViewListChallengeErrorResponse,
   ViewListChallengeRequestPayload,
-  ViewListChallengeSuccessReponse,
+  ViewListChallengeSuccessResponse,
 } from './../modules/challenge/list/type'
 import { axiosClient } from './clientApi'
 
@@ -34,7 +34,7 @@ const challengeApi = {
    */
   fetchChallengeApi(payload: ViewListChallengeRequestPayload) {
     const url = '/challenge/get-list-challenge'
-    return axiosClient.post<ViewListChallengeSuccessReponse, ViewListChallengeErrorReponse>(
+    return axiosClient.post<ViewListChallengeSuccessResponse, ViewListChallengeErrorResponse>(
       url,
       payload,
     )

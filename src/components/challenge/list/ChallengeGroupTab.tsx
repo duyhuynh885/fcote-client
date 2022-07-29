@@ -1,17 +1,17 @@
-import * as React from 'react'
+import GroupsSharpIcon from '@mui/icons-material/GroupsSharp'
+import { Grid, Paper, Stack, Typography } from '@mui/material'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import { Grid, Stack, Typography, Paper } from '@mui/material'
-import useStyles from './style'
-import GroupsSharpIcon from '@mui/icons-material/GroupsSharp'
-import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
-import PaginationCard from '../../common/pagination/PaginationCard'
 import { Box } from '@mui/system'
-import { Group } from '../../../modules/group/list/type'
+import * as React from 'react'
 import { IChallenge } from '../../../modules/challenge/list/type'
+import { Group } from '../../../modules/group/list/type'
+import PaginationCard from '../../common/pagination/PaginationCard'
+import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
+import useStyles from './style'
 
 /**
  * ChallengeGroup
@@ -38,16 +38,19 @@ interface ChallengeGroupProps {
 }
 const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   const classes = useStyles()
-  const challenges = props.challenges
-  const groups = props.groups
+  const { challenges, groups, onclick, page, handleChangePage, count } = props
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
 
-  const page = props.page
-  const handleChangePage = props.handleChangePage
-  const count = props.count
-
-  const handleClickGroup = (groupID: number | undefined) => {
-    props.onclick(groupID)
+  // handle show challenges follow Group
+  const handleClickGroup = (
+    groupID: number | undefined,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    index: number,
+  ) => {
+    onclick(groupID)
+    setSelectedIndex(index)
   }
+
   return (
     <Stack>
       <Grid container xs={12}>
@@ -64,16 +67,24 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
           <PaginationCard page={page} handleChangePage={handleChangePage} count={count} />
         </Grid>
         <Grid item xs={4} sx={{ paddingLeft: '1%' }}>
-          <Paper elevation={5} sx={{ height: '80vh' }}>
+          <Paper elevation={5} sx={{ height: '80vh', marginTop: '10px' }}>
             <Box>
               <Typography className={classes.myGroup}>My Group</Typography>
             </Box>
             <List className={classes.listGroupScroll}>
-              {groups.map((group) => (
-                <ListItem key={group.id} disablePadding>
-                  <ListItemButton key={group.id} onClick={() => handleClickGroup(group.id)}>
+              {groups.map((group, index: number) => (
+                <ListItem
+                  key={group.id}
+                  disablePadding
+                  classes={{ selected: classes.selectedActive }}
+                >
+                  <ListItemButton
+                    key={group.id}
+                    selected={selectedIndex === index}
+                    onClick={(event) => handleClickGroup(group.id, event, index)}
+                  >
                     <ListItemIcon>
-                      <GroupsSharpIcon color={'primary'} />
+                      <GroupsSharpIcon color={'success'} />
                     </ListItemIcon>
                     <ListItemText className={classes.groupTittle} primary={group.title} />
                   </ListItemButton>

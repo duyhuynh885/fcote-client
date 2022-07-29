@@ -19,7 +19,8 @@ import { fetchChallengeCompletedRequest, fetchUserAssignmentRequest } from './ac
  * Modification Logs:
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
- * 22-06-2022         DuyHV           Create
+ * 22-06-2022         DuyHV           Create ui
+ * 22-07-2022         HuyNT2711       Create logic
  */
 
 export default function MyProfile() {

@@ -2,7 +2,7 @@ import { handleError } from './../../../utils/handleError'
 import {
   ViewListChallengeActionType,
   ViewListChallengeRequestAction,
-  ViewListChallengeSuccessReponse,
+  ViewListChallengeSuccessResponse,
 } from './type'
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
@@ -37,7 +37,7 @@ function* viewListChallengeFlow({
 }: ViewListChallengeRequestAction) {
   try {
     yield put(showLoaderAction())
-    const data: ViewListChallengeSuccessReponse = yield call(challengeApi.fetchChallengeApi, {
+    const data: ViewListChallengeSuccessResponse = yield call(challengeApi.fetchChallengeApi, {
       typeData,
       searchBy,
       groupID,
@@ -67,12 +67,12 @@ function* viewListGroupFlow({ pageSize, pageNumber }: ViewListGroupRequestAction
       pageSize,
       pageNumber,
     })
-    yield put({ type: ViewListChallengeActionType.VIEW_LIST_GROUPID_SUCCESS, ...data })
+    yield put({ type: ViewListChallengeActionType.VIEW_LIST_GROUP_ID_SUCCESS, ...data })
     yield put(hideLoaderAction())
   } catch (error) {
     yield call(
       requestFailure,
-      ViewListChallengeActionType.VIEW_LIST_GROUPID_ERROR,
+      ViewListChallengeActionType.VIEW_LIST_GROUP_ID_ERROR,
       handleError(error),
     )
   }
@@ -80,8 +80,14 @@ function* viewListGroupFlow({ pageSize, pageNumber }: ViewListGroupRequestAction
 
 function* viewListChallengeWatcher() {
   yield takeEvery(ViewListChallengeActionType.VIEW_LIST_CHALLENGE_REQUESTING, viewListChallengeFlow)
-  yield takeEvery(ViewListChallengeActionType.VIEW_LIST_GROUPID_REQUESTING, viewListGroupFlow)
+  yield takeEvery(ViewListChallengeActionType.VIEW_LIST_GROUP_ID_REQUESTING, viewListGroupFlow)
+}
+function* searchListChallengeWatcher() {
+  yield takeEvery(
+    ViewListChallengeActionType.UPDATE_FILTER_LIST_CHALLENGE_REQUEST,
+    viewListChallengeFlow,
+  )
 }
 export default function* viewListChallengeSaga() {
-  yield all([fork(viewListChallengeWatcher)])
+  yield all([fork(viewListChallengeWatcher), fork(searchListChallengeWatcher)])
 }

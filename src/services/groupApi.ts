@@ -122,20 +122,20 @@ const groupApi = {
    * @returns LeaveGroupResponse
    * @returns LeaveGroupErrorResponse
    */
-   leaveGroup(payload: LeaveGroupRequestPayload) {
+  leaveGroup(payload: LeaveGroupRequestPayload) {
     const url = '/group/out-member'
     return axiosClient.post<LeaveGroupResponse, LeaveGroupErrorResponse>(url, payload)
   },
 
-   /**
+  /**
    * Api for Leave group
    * @returns KickGroupResponse
    * @returns KickGroupErrorResponse
    */
-    kickMemberGroup(payload: KickGroupRequestPayload) {
-      const url = '/group/kick-member'
-      return axiosClient.post<KickGroupResponse, KickGroupErrorResponse>(url, payload)
-    },
+  kickMemberGroup(payload: KickGroupRequestPayload) {
+    const url = '/group/kick-member'
+    return axiosClient.post<KickGroupResponse, KickGroupErrorResponse>(url, payload)
+  },
 }
 
 export default groupApi
