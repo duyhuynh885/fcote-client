@@ -65,9 +65,6 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
   }
 
   const handleSearch = () => {
-    console.log('------------- Taskbar groupID', groupID)
-    console.log('------------- Taskbar typeData', typeData)
-    console.log('------------- Taskbar search', search)
     dispatch(
       updateFilterListChallengesRequest({
         ...filterChallengeState,

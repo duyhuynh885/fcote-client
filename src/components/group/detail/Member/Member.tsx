@@ -69,7 +69,6 @@ export default function Member(props: DetailGroupProps) {
           color='primary'
           aria-label='logout'
           onClick={() => {
-            console.log('ID member: ', idMember)
             dispatch(kickGroupRequest(groupIdState, idMember))
           }}
         >

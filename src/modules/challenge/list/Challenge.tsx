@@ -71,7 +71,6 @@ export default function Challenge() {
 
   // handle choose challenge follow Group
   const callbackSetGroupID = (groupID: number | undefined) => {
-    console.log('groupID', groupID)
     setGroupId(groupID)
     dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
   }
@@ -115,20 +114,17 @@ export default function Challenge() {
   }
 
   function handleGetChallengePublic() {
-    console.log('------- Action 1 ------')
     dispatch(fetchListChallengeRequest(publicRequest, undefined, undefined, undefined))
     setTypeData(1)
   }
 
   function handleGetChallengeGroup() {
     dispatch(fetchListChallengeGroupRequest(groupGroupRequest))
-    console.log('=========== groupsState 2', groupsState)
     setTypeData(2)
   }
 
   useEffect(() => {
     if (groupsState.length > 0) {
-      console.log('=========== groupsState 2', groupsState)
       dispatch(
         fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupsState[0].id),
       )
@@ -140,7 +136,6 @@ export default function Challenge() {
     setTypeData(3)
   }
 
-  console.log('value', value)
   useEffect((): void => {
     switch (value) {
       case 0:

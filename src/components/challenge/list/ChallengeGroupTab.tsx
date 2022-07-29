@@ -59,7 +59,6 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
     index: number,
   ) => {
     onclick(groupID)
-    console.log('ChallengeGroup GroupID', groupID)
     setSelectedIndex(index)
   }
 

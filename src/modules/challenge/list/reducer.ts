@@ -70,7 +70,6 @@ const reducer = (state = initialState, action: ViewListChallengeAction) => {
         successful: false,
       }
     case ViewListChallengeActionType.VIEW_LIST_GROUP_ID_SUCCESS:
-      console.log('VIEW_LIST_GROUP_ID_SUCCESS:', action.groups)
       return {
         ...state,
         groups: action.groups,
