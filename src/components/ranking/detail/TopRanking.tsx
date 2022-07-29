@@ -17,7 +17,7 @@ import TopMember from './Top/TopMenber'
  * 24-06-2022         TuanLA           Create
  */
 
-interface UserInforProps {
+interface UserInfoProps {
   data: UserInfo[]
 }
 
@@ -29,7 +29,7 @@ function immutablySwapItems(items: UserInfo[], firstIndex: number, secondIndex: 
   })
 }
 
-const TopRanking: React.FC<UserInforProps> = (props) => {
+const TopRanking: React.FC<UserInfoProps> = (props) => {
   const topRanking = immutablySwapItems(props.data, 0, 1)
   return (
     <Stack

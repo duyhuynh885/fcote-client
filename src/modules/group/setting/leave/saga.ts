@@ -1,11 +1,12 @@
 import { call, put, fork, takeEvery, all, delay } from 'redux-saga/effects'
-import { EditGroupActionType, EditGroupRequestAction, EditGroupResponse } from './type'
+import { LeaveGroupActionType, LeaveGroupRequestAction, LeaveGroupResponse } from './type'
 import { hideLoaderAction, showLoaderAction } from '../../../layout/loader/action'
 import requestFailure from '../../../../utils/onFailure'
 import { handleError } from '../../../../utils/handleError'
 import groupApi from '../../../../services/groupApi'
 import { hideToastAction, showToastAction } from '../../../layout/toast/toastAction'
 import { swapMessage } from '../../../../utils/helper'
+import history from '../../../../configs/routing/history'
 
 /**
  * Saga for delete group
@@ -22,29 +23,28 @@ import { swapMessage } from '../../../../utils/helper'
  * 21-07-2022         TuanLA           Create
  */
 
-function* editGroupFlow({ image, groupId, title, description }: EditGroupRequestAction) {
+function* leaveGroupFlow({ groupId }: LeaveGroupRequestAction) {
   try {
     yield put(showLoaderAction())
-    const data: EditGroupResponse = yield call(groupApi.editGroup, {
-      image,
+    const data: LeaveGroupResponse = yield call(groupApi.leaveGroup, {
       groupId,
-      title,
-      description,
     })
-    yield put({ type: EditGroupActionType.EDIT_GROUP_SUCCESS, ...data })
+    yield put({ type: LeaveGroupActionType.LEAVE_GROUP_SUCCESS, ...data })
+    yield put({ type: LeaveGroupActionType.LEAVE_GROUP_CLEAR_STATE })
     yield put(hideLoaderAction())
     yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))
+    yield history.goBack()
     yield delay(5000)
     yield put(hideToastAction())
   } catch (error) {
-    yield call(requestFailure, EditGroupActionType.EDIT_GROUP_ERROR, handleError(error))
+    yield call(requestFailure, LeaveGroupActionType.LEAVE_GROUP_ERROR, handleError(error))
   }
 }
 
-function* editGroupWatcher() {
-  yield takeEvery(EditGroupActionType.EDIT_GROUP_REQUESTING, editGroupFlow)
+function* leaveGroupWatcher() {
+  yield takeEvery(LeaveGroupActionType.LEAVE_GROUP_REQUESTING, leaveGroupFlow)
 }
 
-export default function* EditGroupSaga() {
-  yield all([fork(editGroupWatcher)])
+export default function* LeaveGroupSaga() {
+  yield all([fork(leaveGroupWatcher)])
 }

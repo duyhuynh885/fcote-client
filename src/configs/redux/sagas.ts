@@ -21,7 +21,8 @@ import editGroupSaga from '../../modules/group/setting/edit/saga'
 import showToastSaga from '../../modules/layout/toast/saga'
 import createChallengeSaga from '../../modules/challenge/create/saga'
 import detailChallengeSaga from '../../modules/challenge/detail/saga'
-
+import leaveGroupSaga from '../../modules/group/setting/leave/saga'
+import kickMemberGroupSaga from '../../modules/group/setting/kick/saga'
 /**
  * Root Saga
  */
@@ -49,5 +50,7 @@ export default function* rootSaga() {
     fork(showToastSaga),
     fork(createChallengeSaga),
     fork(detailChallengeSaga),
+    fork(leaveGroupSaga),
+    fork(kickMemberGroupSaga),
   ])
 }

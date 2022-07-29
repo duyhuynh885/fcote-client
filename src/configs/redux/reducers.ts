@@ -23,6 +23,8 @@ import listChallengesReducer from '../../modules/challenge/list/reducer'
 import deleteGroupReducer from '../../modules/group/setting/delete/reducer'
 import createChallengeReducer from '../../modules/challenge/create/reducer'
 import detailChallengeReducer from '../../modules/challenge/detail/reducer'
+import leaveGroupReducer from '../../modules/group/setting/leave/reducer'
+import kickGroupReducer from '../../modules/group/setting/kick/reducer'
 
 /**
  * Root Reducer
@@ -56,6 +58,8 @@ const rootReducer = (history: any) =>
     deleteGroup: deleteGroupReducer,
     createChallenge: createChallengeReducer,
     detailChallenge: detailChallengeReducer,
+    leaveGroup: leaveGroupReducer,
+    kickGroup: kickGroupReducer,
   })
 
 export default rootReducer
