@@ -10,3 +10,7 @@ export const formatDate = (dateTime: string) => {
 export const getCurrentDateTime = () => {
   return moment().toDate()
 }
+
+export const getPreviousDate = () => {
+  return moment().subtract(1, 'days').toDate()
+}
