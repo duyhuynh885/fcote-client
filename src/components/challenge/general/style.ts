@@ -22,6 +22,19 @@ const useStyle = makeStyles((theme: Theme) => ({
   selected: {
     backgroundColor: `${theme.color.green}30  !important`,
   },
+  tabTitle: {
+    fontSize: theme.textFont.small,
+    fontWeight: 'bold',
+  },
+  tabStyle: {
+    '& .MuiTabs-indicator': {
+      backgroundColor: theme.color.green,
+      height: 3,
+    },
+    '& .MuiTab-root.Mui-selected': {
+      color: theme.color.green,
+    },
+  },
 }))
 
 export default useStyle

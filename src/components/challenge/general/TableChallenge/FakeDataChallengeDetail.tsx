@@ -186,7 +186,7 @@ export const FakeDataChallengDetails = [
       point: 100,
       progressTime: '00:07:41',
       complieTime: '0,01 s',
-      numberTry: '1 try',
+    numberTry: '1 try',
       numberSubmit: '1/10 submission',
     },
     d: {

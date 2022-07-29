@@ -85,14 +85,18 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
             </Box>
             <List className={classes.listGroupScroll}>
               {groups.map((group, index: number) => (
-                <ListItem key={group.id} disablePadding>
+                <ListItem
+                  key={group.id}
+                  disablePadding
+                  classes={{ selected: classes.selectedActive }}
+                >
                   <ListItemButton
                     key={group.id}
                     selected={selectedIndex === index}
                     onClick={(event) => handleClickGroup(group.id, event, index)}
                   >
                     <ListItemIcon>
-                      <GroupsSharpIcon color={'primary'} />
+                      <GroupsSharpIcon color={'success'} />
                     </ListItemIcon>
                     <ListItemText className={classes.groupTittle} primary={group.title} />
                   </ListItemButton>

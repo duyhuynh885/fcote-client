@@ -1,7 +1,5 @@
-import { Box, Grid, Stack, Tab, Tabs } from '@mui/material'
+import { Box, Grid, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import ChallengeOwner from '../../../components/challenge/list/ChallengeOwnerTab'
-import ChallengePublic from '../../../components/challenge/list/ChallengePublicTab'
 import ChallengeGroup from '../../../components/challenge/list/ChallengeGroupTab'
 import useStyles from './style'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,7 +12,8 @@ import {
 } from './action'
 import TaskbarFilterOfChallenge from '../../../components/challenge/general/TaskbarFilterOfChallenge'
 import { ViewListChallengeRequestPayload } from './type'
-import { Group, ViewListGroupRequestPayload } from '../../group/list/type'
+import { ViewListGroupRequestPayload } from '../../group/list/type'
+import ChallengePublicOwner from '../../../components/challenge/list/ChallengeOwnerTab'
 
 /**
  * Challenge
@@ -38,13 +37,6 @@ interface TabPanelProps {
   value: number
 }
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  }
-}
-
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
   return (
@@ -66,7 +58,6 @@ export default function Challenge() {
   const challengesState = useSelector((state: RootState) => state.listChallenges.challenges)
   const groupsState = useSelector((state: RootState) => state.listChallenges.groups)
   const currentSizeState = useSelector((state: RootState) => state.listChallenges.currentSize)
-  const groupSuccessState = useSelector((state: RootState) => state.listChallenges.successful)
   const filterChallengesState = useSelector(
     (state: RootState) => state.listChallenges.filterRequest,
   )
@@ -74,10 +65,7 @@ export default function Challenge() {
   const [page, setPage] = useState(1)
   const [typeData, setTypeData] = useState(1)
   const [groupID, setGroupId] = useState<number | undefined>()
-  useEffect(() => {
-    console.log('-============== groupID', groupID)
-    handleGetChallengeGroup()
-  }, [groupID])
+
   const PER_PAGE = 10
   const count = Math.ceil(currentSizeState / PER_PAGE)
 
@@ -125,7 +113,7 @@ export default function Challenge() {
     pageSize: 50,
     pageNumber: 1,
   }
-  console.log('value', value)
+
   function handleGetChallengePublic() {
     console.log('------- Action 1 ------')
     dispatch(fetchListChallengeRequest(publicRequest, undefined, undefined, undefined))
@@ -134,29 +122,25 @@ export default function Challenge() {
 
   function handleGetChallengeGroup() {
     dispatch(fetchListChallengeGroupRequest(groupGroupRequest))
-    console.log(' groupsState 1', groupsState)
+    console.log('=========== groupsState 2', groupsState)
     setTypeData(2)
   }
 
-  // useEffect(() => {
-  //   dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
-  // }, [groupSuccessState])
+  useEffect(() => {
+    if (groupsState.length > 0) {
+      console.log('=========== groupsState 2', groupsState)
+      dispatch(
+        fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupsState[0].id),
+      )
+    }
+  }, [groupsState])
 
-  // useEffect(() => {
-  //   if (groupsState !== null || groupsState !== []) {
-  //     const indexGroup: Group = groupsState[0]
-  //     console.log('=========== groupsState 2', groupsState)
-  //     dispatch(
-  //       fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, indexGroup.id),
-  //     )
-  //   }
-  // }, [groupsState])
-
-  function handleGetChallengeOwner() {
+  function handleGetChallengePublicOwner() {
     dispatch(fetchListChallengeRequest(ownerRequest, undefined, undefined, undefined))
     setTypeData(3)
   }
 
+  console.log('value', value)
   useEffect((): void => {
     switch (value) {
       case 0:
@@ -164,7 +148,7 @@ export default function Challenge() {
       case 1:
         return handleGetChallengeGroup()
       case 2:
-        return handleGetChallengeOwner()
+        return handleGetChallengePublicOwner()
       default:
         return undefined
     }
@@ -174,23 +158,17 @@ export default function Challenge() {
     <Stack sx={{ margin: 5 }}>
       <Grid container>
         <Grid item xs={12} marginBottom={2}>
-          <TaskbarFilterOfChallenge groupID={groupID} typeData={typeData} url='/challenge/create' />
+          <TaskbarFilterOfChallenge
+            groupID={groupID}
+            typeData={typeData}
+            url='/challenge/create'
+            handleChangeTab={handleChange}
+            tabValue={value}
+          />
         </Grid>
         <Grid className={classes.tabLeft} item xs={12} sx={{ height: '100%' }}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs
-              className={classes.tabStyle}
-              value={value}
-              onChange={handleChange}
-              aria-label='basic tabs example'
-            >
-              <Tab className={classes.tabTitle} label='Public' {...a11yProps(0)} />
-              <Tab className={classes.tabTitle} label='Group' {...a11yProps(1)} />
-              <Tab className={classes.tabTitle} label='Owner' {...a11yProps(2)} />
-            </Tabs>
-          </Box>
           <TabPanel value={value} index={0}>
-            <ChallengePublic
+            <ChallengePublicOwner
               listChallenges={challengesState}
               count={count}
               handleChangePage={handleChangePage}
@@ -208,7 +186,7 @@ export default function Challenge() {
             />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <ChallengeOwner
+            <ChallengePublicOwner
               listChallenges={challengesState}
               count={count}
               handleChangePage={handleChangePage}

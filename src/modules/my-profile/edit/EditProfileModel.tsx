@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { fetchUserAssignmentRequest } from '../view/action'
+import { debug } from 'console'
 
 /**
  * Edit profile model component
@@ -95,7 +95,6 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
         gender,
       }),
     )
-
     onClose()
   }
 

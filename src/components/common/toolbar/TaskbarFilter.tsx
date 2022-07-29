@@ -46,6 +46,7 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
   const filterAssignmentState = useSelector(
     (state: RootState) => state.listAssignment.filterRequest,
   )
+  console.log('---------filterAssignmentState', filterAssignmentState)
   const [status, setStatus] = useState('0')
   const [difficult, setDifficult] = useState('0')
   const [filterByCurrentAccount, setFilterByCurrentAccount] = useState('Public')

@@ -1,12 +1,12 @@
 import {
   IconButton,
-  InputAdornment,
   MenuItem,
-  NativeSelect,
   Paper,
   Select,
   SelectChangeEvent,
   Stack,
+  Tab,
+  Tabs,
   TextField,
 } from '@mui/material'
 import React, { useState } from 'react'
@@ -16,12 +16,12 @@ import FormControl from '@mui/material/FormControl'
 import { Link } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateFilterListAssignmentRequest } from '../../../modules/assignment/list/action'
 import useStyle from './style'
 import RegularButton from '../../common/button/RegularButton'
 import { updateFilterListChallengesRequest } from '../../../modules/challenge/list/action'
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
 import { StatusChallengeEnum } from '../../../modules/challenge/list/type'
+
 /**
  * TaskbarFilter
  * <p>
@@ -37,26 +37,37 @@ import { StatusChallengeEnum } from '../../../modules/challenge/list/type'
  * 08-06-2022      HuyNT2711           Create UI
  * 24-06-2022      DuyHV               Update UI
  */
+
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  }
+}
 interface IProps {
   url: string
   groupID: number | undefined
   typeData: number
+  handleChangeTab: (event: React.SyntheticEvent, newValue: number) => void
+  tabValue: number
 }
+
 export default function TaskbarFilterOfChallenge(props: IProps) {
   const classes = useStyle()
   const dispatch = useDispatch<AppDispatch>()
   const filterChallengeState = useSelector((state: RootState) => state.listChallenges.filterRequest)
   const [status, setStatus] = useState('0')
   const [search, setSearch] = useState('')
-  const { url, groupID, typeData } = props
+  const { url, groupID, typeData, handleChangeTab, tabValue } = props
 
   const handleCheckSearch = (search: string) => {
-    setSearch(search)
-    return search === '' || search === 'undefined' ? false : true
+    search === '' || search === 'undefined' ? setSearch('') : setSearch(search)
   }
 
   const handleSearch = () => {
     console.log('------------- Taskbar groupID', groupID)
+    console.log('------------- Taskbar typeData', typeData)
+    console.log('------------- Taskbar search', search)
     dispatch(
       updateFilterListChallengesRequest({
         ...filterChallengeState,
@@ -84,6 +95,16 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
       sx={{ width: '100%', padding: '10px', display: 'flex', justifyContent: 'space-between' }}
     >
       <Stack direction='row' justifyContent='flex-start' alignItems='center' spacing={2}>
+        <Tabs
+          className={classes.tabStyle}
+          value={tabValue}
+          onChange={handleChangeTab}
+          aria-label='basic tabs example'
+        >
+          <Tab className={classes.tabTitle} label='Public' {...a11yProps(0)} />
+          <Tab className={classes.tabTitle} label='Group' {...a11yProps(1)} />
+          <Tab className={classes.tabTitle} label='Owner' {...a11yProps(2)} />
+        </Tabs>
         <FormControl color='success' variant='standard' sx={{ m: 1, minWidth: 120 }}>
           <Select
             value={status}
@@ -128,7 +149,7 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
           type='text'
           variant='outlined'
           color='success'
-          onChange={(e) => handleCheckSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           value={search}
           placeholder='Search'
           InputProps={{

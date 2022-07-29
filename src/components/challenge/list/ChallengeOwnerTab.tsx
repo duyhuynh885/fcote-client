@@ -1,12 +1,11 @@
 import { Stack } from '@mui/material'
 import React from 'react'
 import useStyles from './style'
-import ChallengeCardForOwner from '../general/ChallengeCard/ChallengeCardForOwner'
 import PaginationCard from '../../common/pagination/PaginationCard'
 import { IChallenge } from '../../../modules/challenge/list/type'
 import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
 /**
- * ChallengeOwner
+ * ChallengePublicOwner
  *
  * Version 1.0
  *
@@ -19,13 +18,13 @@ import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
  * ------------------------------------------------
  * 29-06-2022      HuyNT2711           Create
  */
-interface ChallengeOwnerProps {
+interface ChallengePublicOwnerProps {
   listChallenges: IChallenge[]
   page?: number
   handleChangePage?: (_event: React.ChangeEvent<unknown>, value: number) => void
   count?: number
 }
-const ChallengeOwner: React.FC<ChallengeOwnerProps> = (props) => {
+const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
   const listChallenges = props.listChallenges
   const page = props.page
   const handleChangePage = props.handleChangePage
@@ -46,4 +45,4 @@ const ChallengeOwner: React.FC<ChallengeOwnerProps> = (props) => {
     </Stack>
   )
 }
-export default ChallengeOwner
+export default ChallengePublicOwner

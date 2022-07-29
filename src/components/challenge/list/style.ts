@@ -51,7 +51,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       borderRadius: '10px',
     },
   },
-
+  selectedActive: {
+    '&.Mui-selected': {
+      backgroundColor: `${theme.color.green} !important`,
+    },
+  },
   groupTittle: {
     fontSize: theme.textFont.small,
     fontWeight: '500',

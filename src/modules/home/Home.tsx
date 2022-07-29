@@ -1,3 +1,4 @@
+import { HomeMiniOutlined } from '@mui/icons-material'
 import React from 'react'
 
 /**
@@ -14,6 +15,9 @@ import React from 'react'
  * -----------------------------------------------------------------------
  * 22-06-2022         DuyHV           Create
  */
-export default function Home() {
-  return <div>Home</div>
+
+const  Home :React.FC  = ()=> {
+  return  <></>
 }
+
+export default Home
