@@ -33,7 +33,7 @@ function* JoinGroupFlow({ joinCode }: JoinGroupRequestAction) {
     yield put(hideLoaderAction())
     yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))
     yield delay(5000)
-    yield put(hideToastAction())  
+    yield put(hideToastAction())
     yield put({ type: JoinGroupActionType.JOIN_GROUP_CLEAR_STATE })
   } catch (error) {
     yield call(requestFailure, JoinGroupActionType.JOIN_GROUP_ERROR, handleError(error))

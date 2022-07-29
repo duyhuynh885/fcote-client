@@ -53,41 +53,6 @@ export default function SettingForm() {
     setGroup(event.target.value)
   }
 
-  const disableWeekends = (date: any) => {
-    /* date interdites french format dd/mm for all year ! 
-     01/01
-     01/05
-     08/08
-     14/07
-     15/08
-     01/11
-     11/11
-     25/12 
-     replace date.getFullYear() by the desired year otherwise
-     */
-    // in the following array format is us month are starting from 0 till 11
-    const dateInterditesRaw = [
-      new Date(date.getFullYear(), 0, 1),
-      new Date(date.getFullYear(), 4, 1),
-      new Date(date.getFullYear(), 7, 8),
-      new Date(date.getFullYear(), 6, 14),
-      new Date(date.getFullYear(), 7, 15),
-      new Date(date.getFullYear(), 10, 1),
-      new Date(date.getFullYear(), 10, 11),
-      new Date(date.getFullYear(), 11, 25),
-    ]
-
-    /* make a new array with the getTime() without it date comparaison are 
-     never true  */
-
-    const dateInterdites = dateInterditesRaw.map((arrVal) => {
-      return
-      arrVal.getTime()
-    })
-
-    return date.getDay() === 0 || dateInterdites.includes(date.getTime())
-  }
-
   return (
     <Grid container spacing={4}>
       <Grid item xs={5}>

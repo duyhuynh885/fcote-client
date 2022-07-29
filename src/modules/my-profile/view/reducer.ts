@@ -21,7 +21,7 @@ export const initialStateMyProfile: ViewMyProfileState = {
   messages: {} as Message,
   errors: {} as ErrorMessage,
   userAssignmentRequest: {
-    username: 'thuan12',
+    username: 'duyhuynh885',
     typeData: 4,
     firstName: '',
     lastName: '',
@@ -32,7 +32,7 @@ export const initialStateMyProfile: ViewMyProfileState = {
     gender: '',
   },
   challengeCompletedRequest: {
-    username: 'thuan12',
+    username: 'duyhuynh885',
     typeData: 4,
   },
   user: {

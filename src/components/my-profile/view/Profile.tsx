@@ -49,6 +49,9 @@ const Profile: React.FC<ProfileProps> = (props) => {
     }
   }
   const [open, setOpen] = useState(false)
+  const handleShowNull = (event: string) => {
+    return event === null ? '' : event
+  }
   const rows = [
     createData('Organization', `${props.user.organizationTitle}`),
     createData(
@@ -57,10 +60,10 @@ const Profile: React.FC<ProfileProps> = (props) => {
         ? ''
         : `${props.user.city}` + ',' + `${props.user.country}`,
     ),
-    createData('Email', `${props.user.email}`),
-    createData('Phone', `${props.user.phone}`),
+    createData('Email', handleShowNull(`${props.user.email}`)),
+    createData('Phone', handleShowNull(`${props.user.phone}`)),
     createData('Gender', handleGender()),
-    createData('Joined on', formatDate(`${props.user.createdAt}`)),
+    createData('Joined on', handleShowNull(formatDate(`${props.user.createdAt}`))),
   ]
 
   /**

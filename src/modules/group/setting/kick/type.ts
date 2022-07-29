@@ -13,7 +13,7 @@
  * 23-07-2022         TuanLA           Create
  */
 
- export enum KickGroupActionType {
+export enum KickGroupActionType {
   KICK_GROUP_REQUESTING = 'KICK_GROUP_REQUESTING',
   KICK_GROUP_SUCCESS = 'KICK_GROUP_SUCCESS',
   KICK_GROUP_ERROR = 'KICK_GROUP_ERROR',

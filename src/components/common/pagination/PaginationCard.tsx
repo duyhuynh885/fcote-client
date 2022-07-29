@@ -2,6 +2,7 @@ import { Pagination, PaginationItem } from '@mui/material'
 import React from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { count } from 'console'
 
 /**
  * Pagination Component
@@ -26,7 +27,6 @@ const PaginationCard: React.FC<PaginationCardProps> = (props) => {
   const page = props.page
   const handleChangePage = props.handleChangePage
   const count = props.count
-
   return (
     <Pagination
       sx={{
