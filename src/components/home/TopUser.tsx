@@ -66,7 +66,6 @@ export default function TopUser() {
   return (
     <Paper
       square
-      elevation={8}
       sx={{ width: '100%', overflow: 'hidden' }}
       className={classes.containerWraper}
     >
@@ -93,9 +92,9 @@ export default function TopUser() {
                   role='checkbox'
                   tabIndex={-1}
                   key={row.ranking}
-                  className={row.ranking % 2 === 0 ? classes.tableRowBody1 : classes.tableRowBody2}
+                  className={classes.tableRowBody2}
                 >
-                  <TableCell className={classes.tableItemCell}>
+                  <TableCell className={classes.tableRankingCell}>
                     {renderRanking(row.ranking)}
                   </TableCell>
                   <TableCell className={classes.tableItemCell}>
@@ -107,15 +106,9 @@ export default function TopUser() {
                           src={row.username.avatar}
                         />
                       </Grid>
-                      <Grid item xs={9} lg={9} sx={{ paddingLeft: '0.3em' }}>
+                      <Grid item xs={9} lg={9} sx={{ paddingLeft: '0.3em', paddingTop: '0.4em' }}>
                         <Typography className={classes.textUsername}>
                           {row.username.name}
-                        </Typography>
-                        <Typography className={classes.textAddressOrganization}>
-                          {row.username.address}
-                        </Typography>
-                        <Typography className={classes.textAddressOrganization}>
-                          {row.username.organization}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -123,14 +116,6 @@ export default function TopUser() {
 
                   <TableCell className={classes.tableItemCellOfTotal}>
                     <Typography className={classes.textPointOfTotal}>{row.total.point}</Typography>
-                    <Typography className={classes.textItemCell}>
-                      {row.total.progressTime}
-                    </Typography>
-                    <Typography className={classes.textItemCell}>
-                      {row.total.complieTime}
-                    </Typography>
-                    <Typography className={classes.textItemCell}>{row.total.numberTry}</Typography>
-                    <Typography className={classes.textItemCell}></Typography>
                   </TableCell>
                 </TableRow>
               )

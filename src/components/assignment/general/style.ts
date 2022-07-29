@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: '600',
     fontSize: `${theme.textFont.small}`,
     textTransform: 'capitalize',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   level: {
     fontWeight: '800',

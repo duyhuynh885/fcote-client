@@ -47,7 +47,7 @@ const TopAssignment: React.FC = (props) => {
     >
       <Stack direction='column' spacing={2}>
         <Box>
-          <Typography className={classes.title}>Challenge Completed</Typography>
+          <Typography className={classes.title}>Top Assignment</Typography>
         </Box>
         <Stack spacing={2} className={classes.scrollBar}>
           <MyAssignmentItem />

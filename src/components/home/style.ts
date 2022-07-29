@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxHeight: '50%',
   },
   table: {
-    minWidth: '40vw',
+    minWidth: '10vw',
   },
   tableContainer: {
     maxWidth: '100%',
@@ -37,26 +37,35 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tableHeaderCell: {
     backgroundColor: `${theme.color.green} !important`,
-    maxWidth: '2em',
+    padding: '3px !important',
+    maxWidth: '1em !important',
   },
   tableHeaderCellRanking: {
-    maxWidth: '0.5em !important',
+    maxWidth: '0.7em !important',
+    textAlign: 'center',
+    padding: '0px !important',
     backgroundColor: `${theme.color.green} !important`,
   },
   tableHeaderCellUsername: {
-    maxWidth: '1em',
+    maxWidth: '2em !important',
+    padding: '3px !important',
     backgroundColor: `${theme.color.green} !important`,
   },
   textHeaderCell: {
-    maxWidth: '1em',
     textAlign: 'center',
     fontWeight: '600 !important',
     color: `${theme.color.white} !important`,
     fontSize: `${theme.textFont.large} !important`,
   },
+  tableRankingCell: {
+    textAlign: 'center',
+    padding: '0px !important',
+    maxWidth: '0.7em',
+  },
   tableItemCell: {
     textAlign: 'center',
-    padding: '10px 0px 10px 0px',
+    padding: '10px 0px 10px 0px !important',
+    maxWidth: '1.5em',
   },
   tableItemCellOfTotal: {
     textAlign: 'center',
