@@ -54,7 +54,7 @@ export default function Group() {
         />
       </Stack>
 
-      <Paper elevation={8} className={classes.scrollBar}>
+      <Paper square elevation={8} className={classes.scrollBar}>
         <Grid container rowSpacing={4} columnSpacing={17} padding={3}>
           {groupsState.map((group) => {
             if (query == '' || group.title.toLowerCase().includes(query.toLowerCase())) {

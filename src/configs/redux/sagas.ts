@@ -18,6 +18,8 @@ import viewListChallengeSaga from '../../modules/challenge/list/saga'
 import editMyProfileSaga from '../../modules/my-profile/edit/saga'
 import deleteGroupSaga from '../../modules/group/setting/delete/saga'
 import editGroupSaga from '../../modules/group/setting/edit/saga'
+import leaveGroupSaga from '../../modules/group/setting/leave/saga'
+import kickMemberGroupSaga from '../../modules/group/setting/kick/saga'
 /**
  * Root Saga
  */
@@ -42,6 +44,7 @@ export default function* rootSaga() {
     fork(viewMyProfileSaga),
     fork(viewListChallengeSaga),
     fork(editMyProfileSaga),
-    fork(deleteGroupSaga),
+    fork(leaveGroupSaga),
+    fork(kickMemberGroupSaga),
   ])
 }

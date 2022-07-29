@@ -22,9 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.color.blueLight,
   },
 
-  tabLeft: {
-  },
-
+  tabLeft: {},
   backgroundTabResize: {
     cursor: 'col-resize',
     width: 5,

@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
-    height: '90vh',
+    height: '100vh !important',
     backgroundColor: theme.color.blueLight,
   },
   tabTitle: {
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   tabLeft: {
+    height: '100% !important',
     borderRight: `0.5px solid ${theme.color.darkGray}`,
     backgroundColor: theme.color.white,
   },

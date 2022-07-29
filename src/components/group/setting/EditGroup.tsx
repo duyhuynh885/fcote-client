@@ -16,12 +16,12 @@ import { editGroupRequest } from '../../../modules/group/setting/edit/action'
  * <p>
  * Date: 04-07-2022
  * <p>
- * Copyright By HuyNT2711
+ * Copyright By TuanLA
  * <p>
  * Modification Logs:
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
- * 04-07-2022      HuyNT2711           Create
+ * 04-07-2022      TuanLA           Create
  */
 
 interface ButtonProps {
@@ -77,7 +77,6 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
   const onSubmit: SubmitHandler<EditGroupInput> = (data) => {
     const { groupName, groupDescription } = data
     if (urlNamePopup === TypeModalGroup.EDIT_GROUP) {
-      console.log('Edit', groupName, groupDescription)
       dispatch(editGroupRequest(editGroupState, groupDetailIdState, groupName, groupDescription))
     }
     onCancel()

@@ -1,3 +1,9 @@
+import { ViewDetailChallengeRequestPayload } from './../modules/challenge/detail/type'
+import {
+  CreateChallengeErrorResponse,
+  CreateChallengeRequestPayload,
+  CreateChallengeResponse,
+} from './../modules/challenge/create/type'
 import {
   ViewListChallengeErrorResponse,
   ViewListChallengeRequestPayload,
@@ -39,9 +45,18 @@ const challengeApi = {
    * Api for create challenge
    * @returns
    */
-  createChallenge() {
+  createChallenge(payload: CreateChallengeRequestPayload) {
     const url = '/challenge/create-challenge'
-    return axiosClient.post<ViewListChallengeSuccessResponse, ViewListChallengeErrorResponse>(url)
+    return axiosClient.post<CreateChallengeResponse, CreateChallengeErrorResponse>(url, payload)
+  },
+
+  /**
+   * Api for get detail challenge
+   * @returns
+   */
+  getDetailChallenge(payload: ViewDetailChallengeRequestPayload) {
+    const url = '/challenge/get-detail-challenge'
+    return axiosClient.post<CreateChallengeResponse, CreateChallengeErrorResponse>(url, payload)
   },
 }
 export default challengeApi

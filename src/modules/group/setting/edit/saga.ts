@@ -41,10 +41,10 @@ function* editGroupFlow({ image, groupId, title, description }: EditGroupRequest
   }
 }
 
-function* editGroupWather() {
+function* editGroupWatcher() {
   yield takeEvery(EditGroupActionType.EDIT_GROUP_REQUESTING, editGroupFlow)
 }
 
 export default function* EditGroupSaga() {
-  yield all([fork(editGroupWather)])
+  yield all([fork(editGroupWatcher)])
 }

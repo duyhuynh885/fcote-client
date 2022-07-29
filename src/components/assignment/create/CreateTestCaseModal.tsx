@@ -118,6 +118,7 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
                     {_input.name} ({mapNameDataTypeByValue(dataTypeState, _input.type)})
                   </Typography>
                   <TextField
+                    color='success'
                     {...register(`inputTestCaseValue.${_input.order}`)}
                     fullWidth
                     id='outlined-basic'
@@ -132,6 +133,7 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
                 ({mapNameDataTypeByValue(dataTypeState, output.type)})
               </Typography>
               <TextField
+                color='success'
                 {...register('outputTestCaseValue')}
                 size='small'
                 fullWidth
@@ -142,19 +144,11 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
               <FormGroup>
                 <FormControlLabel
                   control={<Checkbox defaultChecked color='success' />}
-                  label='Hidden'
+                  label={<Typography className={classes.titleTextField}>Hide test case</Typography>}
                 />
               </FormGroup>
             </Stack>
-            <Stack
-              direction='row'
-              justifyContent='space-around'
-              alignItems='center'
-              spacing={8}
-              sx={{
-                paddingTop: 2,
-              }}
-            >
+            <Stack direction='row' justifyContent='space-around' alignItems='center' spacing={8}>
               <RegularButton
                 color={'danger'}
                 size={'sm'}

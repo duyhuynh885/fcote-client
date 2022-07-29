@@ -2,11 +2,12 @@ import { Avatar, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import AssignmentItemStyle from './style'
 import RegularButton from '../../../components/common/button/RegularButton'
-import { Assignment, DifficultEnum } from '../../../modules/assignment/list/type'
+import { Assignment, DifficultEnum, StatusEnum } from '../../../modules/assignment/list/type'
 import history from '../../../configs/routing/history'
 import { formatDate } from '../../../utils/dateUtil'
 import Difficultly from '../../common/text/Difficultly'
 import Status from '../../common/text/Status'
+import { mapStatusAssignment, mapDifficultyAssignment } from '../../../utils/mapper'
 
 /**
  * Assignment Item
@@ -28,7 +29,7 @@ interface AssignmentItemProps {
   assignment: Assignment
 }
 
-const AssignmentItem: React.FC<AssignmentItemProps> = (props) => {
+const AssignmentItem = (props: AssignmentItemProps) => {
   const classes = AssignmentItemStyle()
   const { assignment } = props
   const handleViewDetailAssignment = () => {
@@ -40,15 +41,22 @@ const AssignmentItem: React.FC<AssignmentItemProps> = (props) => {
       <Stack direction='column' spacing={0.5}>
         <Typography className={classes.name}>{assignment.title}</Typography>
         <Stack direction='row' alignItems='center' spacing={1} className={classes.wrapAvatarName}>
-          <Avatar alt='Avatar' src={assignment.image} className={classes.avatar} />
+          {/* <Avatar alt='Avatar' src={assignment.image} className={classes.avatar} /> */}
+          <Avatar alt='Avatar' src={'https://picsum.photos/200'} className={classes.avatar} />
           <Typography className={classes.userName}>{assignment.createdBy}</Typography>
         </Stack>
         <Stack direction='row' justifyContent='center' alignItems='center'>
           <Typography className={classes.date}>{formatDate(assignment.createdAt)}</Typography>
         </Stack>
         <Stack direction='row' justifyContent='space-between' alignItems='center'>
-          <Status status={'solved'} displayText={'SOLVED'}></Status>
-          <Difficultly difficult={'hard'} displayText={DifficultEnum[assignment.difficulty]} />
+          <Status
+            status={mapStatusAssignment(StatusEnum.IN_PROGRESS)}
+            displayText={'IN PROGRESS'}
+          ></Status>
+          <Difficultly
+            difficult={mapDifficultyAssignment(assignment.difficulty)}
+            displayText={DifficultEnum[assignment.difficulty]}
+          />
         </Stack>
         <Stack>
           <RegularButton

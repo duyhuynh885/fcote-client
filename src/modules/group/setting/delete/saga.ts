@@ -41,10 +41,10 @@ function* deleteGroupFlow({ id }: DeleteGroupRequestAction) {
   }
 }
 
-function* deleteGroupWather() {
+function* deleteGroupWatcher() {
   yield takeEvery(DeleteGroupActionType.DELETE_GROUP_REQUESTING, deleteGroupFlow)
 }
 
-export default function* DeleteGroupSaga() {
-  yield all([fork(deleteGroupWather)])
+export default function* deleteGroupSaga() {
+  yield all([fork(deleteGroupWatcher)])
 }

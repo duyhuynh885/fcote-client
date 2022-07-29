@@ -47,7 +47,6 @@ const reducer = (state = initialState, action: ViewListChallengeAction) => {
         successful: false,
       }
     case ViewListChallengeActionType.VIEW_LIST_CHALLENGE_SUCCESS:
-      console.log('VIEW_LIST_CHALLENGE_SUCCESS:', action.challenges)
       return {
         ...state,
         challenges: action.challenges,

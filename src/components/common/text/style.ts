@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   easy: { color: '#1a9991', backgroundColor: '#7cdf9150' },
   medium: { color: '#e38d34', backgroundColor: '#f5b84950' },
   hard: { color: '#b51b43', backgroundColor: '#e3513e50' },
-  notSolved: { color: '#1a9991', backgroundColor: '#7cdf9150' },
-  inProgress: { color: '#e38d34', backgroundColor: '#f5b84950' },
+  notSolved: { color: '#605e5e', backgroundColor: '#C8C3C250' },
+  inProgress: { color: '#3366FF', backgroundColor: '#ADC8FF50' },
   solved: { color: '#605e5e', backgroundColor: '#C8C3C250' },
 }))
 

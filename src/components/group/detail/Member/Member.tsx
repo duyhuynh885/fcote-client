@@ -21,21 +21,28 @@ import { ReactComponent as Platinum } from '../../../../assets/Platinum.svg'
 import { ReactComponent as Bronze } from '../../../../assets/Bronze.svg'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { MemberInGroup } from '../../../../modules/group/detail/type'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../../apps/ReduxContainer'
+import { kickGroupRequest } from '../../../../modules/group/setting/kick/action'
 
 interface DetailGroupProps {
   member: MemberInGroup[]
+  isOwner: boolean
 }
 
 export default function Member(props: DetailGroupProps) {
   const classes = useStyles()
-  const { member } = props
+  const { member, isOwner } = props
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
   const rows = member
+
+  const dispatch = useDispatch<AppDispatch>()
+  const groupIdState = useSelector((state : RootState) => state.detailGroup.groupDetail.id)
+
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage)
   }
-
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value)
     setPage(0)
@@ -53,6 +60,22 @@ export default function Member(props: DetailGroupProps) {
         default:
           return <Typography className={classes.ranking}>{ranking}</Typography>
       }
+    }
+  }
+  function renderKickMemberButton(isOwner: boolean, idMember: number) {
+    if (isOwner) {
+      return (
+        <IconButton
+          color='primary'
+          aria-label='logout'
+          onClick={() => {
+            console.log('ID member: ', idMember)
+            dispatch(kickGroupRequest(groupIdState, idMember))
+          }}
+        >
+          <LogoutIcon />
+        </IconButton>
+      )
     }
   }
 
@@ -128,9 +151,7 @@ export default function Member(props: DetailGroupProps) {
                   </TableCell>
                   <TableCell className={classes.tableItemCell}>
                     <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                      <IconButton color='primary' aria-label='logout'>
-                        <LogoutIcon />
-                      </IconButton>
+                      {renderKickMemberButton(isOwner, row.id)}
                     </Box>
                   </TableCell>
                 </TableRow>

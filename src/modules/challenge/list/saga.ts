@@ -83,8 +83,11 @@ function* viewListChallengeWatcher() {
   yield takeEvery(ViewListChallengeActionType.VIEW_LIST_GROUP_ID_REQUESTING, viewListGroupFlow)
 }
 function* searchListChallengeWatcher() {
-  yield takeEvery(ViewListChallengeActionType.UPDATE_FILTER_LIST_CHALLENGE_REQUEST, viewListChallengeFlow)
+  yield takeEvery(
+    ViewListChallengeActionType.UPDATE_FILTER_LIST_CHALLENGE_REQUEST,
+    viewListChallengeFlow,
+  )
 }
 export default function* viewListChallengeSaga() {
-  yield all([fork(viewListChallengeWatcher),fork(searchListChallengeWatcher)])
+  yield all([fork(viewListChallengeWatcher), fork(searchListChallengeWatcher)])
 }

@@ -17,12 +17,12 @@ import { deleteGroupRequest } from '../../../modules/group/setting/delete/action
  * <p>
  * Date: 04-07-2022
  * <p>
- * Copyright By HuyNT2711
+ * Copyright By TuanLA
  * <p>
  * Modification Logs:
  * DATE             AUTHOR              DESCRIPTION
  * ------------------------------------------------
- * 04-07-2022      HuyNT2711           Create
+ * 04-07-2022      TuanLA           Create
  */
 
 interface ButtonProps {
@@ -41,30 +41,29 @@ const style = {
   p: 4,
 }
 
-const editGroupObject = object({})
+const deleteGroupObject = object({})
 
 export default function DeleteGroup({ open, onClose, urlNamePopup }: ButtonProps) {
   const classes = useStyle()
   const dispatch = useDispatch<AppDispatch>()
 
-  type CreateGroupInput = TypeOf<typeof editGroupObject>
+  type DeleteGroupInput = TypeOf<typeof deleteGroupObject>
 
   const detailGroupState = useSelector((state: RootState) => state.detailGroup)
   const rest = {
     type: 'submit',
   }
 
-  const { handleSubmit } = useForm<CreateGroupInput>({
-    resolver: zodResolver(editGroupObject),
+  const { handleSubmit } = useForm<DeleteGroupInput>({
+    resolver: zodResolver(deleteGroupObject),
   })
 
   const onCancel = () => {
     onClose(true)
   }
 
-  const onSubmit: SubmitHandler<CreateGroupInput> = (data) => {
+  const onSubmit: SubmitHandler<DeleteGroupInput> = () => {
     if (urlNamePopup === TypeModalGroup.DELETE_GROUP) {
-      console.log('Delete Group')
       dispatch(deleteGroupRequest(detailGroupState.groupDetail.id))
     }
     onCancel()
