@@ -60,10 +60,6 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
   const [search, setSearch] = useState('')
   const { url, groupID, typeData, handleChangeTab, tabValue } = props
 
-  const handleCheckSearch = (search: string) => {
-    search === '' || search === 'undefined' ? setSearch('') : setSearch(search)
-  }
-
   const handleSearch = () => {
     dispatch(
       updateFilterListChallengesRequest({

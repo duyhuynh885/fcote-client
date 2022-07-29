@@ -1,21 +1,17 @@
-import * as React from 'react'
+import GroupsSharpIcon from '@mui/icons-material/GroupsSharp'
+import { Grid, Paper, Stack, Typography } from '@mui/material'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import { Grid, Stack, Typography, Paper, Pagination, PaginationItem } from '@mui/material'
-import useStyles from './style'
-import GroupsSharpIcon from '@mui/icons-material/GroupsSharp'
-import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
-import PaginationCard from '../../common/pagination/PaginationCard'
 import { Box } from '@mui/system'
+import * as React from 'react'
+import { IChallenge } from '../../../modules/challenge/list/type'
 import { Group } from '../../../modules/group/list/type'
-import { IChallenge, ViewListChallengeRequestPayload } from '../../../modules/challenge/list/type'
-import { fetchListChallengeRequest } from '../../../modules/challenge/list/action'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../../apps/ReduxContainer'
-import { TypeModalGroup } from '../../group/setting/type'
+import PaginationCard from '../../common/pagination/PaginationCard'
+import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
+import useStyles from './style'
 
 /**
  * ChallengeGroup
@@ -44,15 +40,8 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   const classes = useStyles()
   const { challenges, groups, onclick, page, handleChangePage, count } = props
   const [selectedIndex, setSelectedIndex] = React.useState(0)
+
   // handle show challenges follow Group
-
-  // React.useEffect(() => {
-  //   if (groups !== null || groups !== []) {
-  //     const indexGroup: Group = groups[0]
-  //     indexGroup === null ? '' : onclick(indexGroup.id)
-  //   }
-  // })
-
   const handleClickGroup = (
     groupID: number | undefined,
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
