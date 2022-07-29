@@ -31,16 +31,10 @@ const Home = () => {
           </Stack>
         </Grid>
         <Grid item xs={4}>
-          <Stack sx={{ padding: '0px 10px 0px 20px' }}>
-            <Paper elevation={8} sx={{ width: '100%' }}>
-              <Box>
-                <Typography className={classes.title}>LeaderBoard</Typography>
-              </Box>
-              <Box>
-                <TopUser />
-              </Box>
-            </Paper>
-          </Stack>
+          <Paper elevation={8} sx={{ padding: '0px 20px 0px 0px'}}>
+            <Typography className={classes.title}>LeaderBoard</Typography>
+            <TopUser />
+          </Paper>
         </Grid>
       </Grid>
     </Stack>

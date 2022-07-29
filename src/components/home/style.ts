@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: `${theme.color.white} !important`,
   },
   tableHeaderCell: {
-    backgroundColor: `${theme.color.green} !important`,
     padding: '3px !important',
     maxWidth: '1em !important',
   },
@@ -44,17 +43,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: '0.7em !important',
     textAlign: 'center',
     padding: '0px !important',
-    backgroundColor: `${theme.color.green} !important`,
   },
   tableHeaderCellUsername: {
     maxWidth: '2em !important',
     padding: '3px !important',
-    backgroundColor: `${theme.color.green} !important`,
   },
   textHeaderCell: {
     textAlign: 'center',
     fontWeight: '600 !important',
-    color: `${theme.color.white} !important`,
+    color: `${theme.color.brown} !important`,
     fontSize: `${theme.textFont.large} !important`,
   },
   tableRankingCell: {

@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: theme.textFont.large,
     fontWeight: 'bold',
     marginLeft: '10px',
-    marginTop: '10px',
   },
 }))
 

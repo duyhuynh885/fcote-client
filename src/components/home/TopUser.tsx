@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   Avatar,
   Grid,
@@ -10,12 +9,12 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography,
+  Typography
 } from '@mui/material'
-import { Box } from '@mui/system'
+import * as React from 'react'
+import { ReactComponent as Bronze } from '../../assets/Bronze.svg'
 import { ReactComponent as Gold } from '../../assets/Gold.svg'
 import { ReactComponent as Platinum } from '../../assets/Platinum.svg'
-import { ReactComponent as Bronze } from '../../assets/Bronze.svg'
 import { FakeDataChallengDetails } from '../challenge/general/TableChallenge/FakeDataChallengeDetail'
 import useStyles from './style'
 
