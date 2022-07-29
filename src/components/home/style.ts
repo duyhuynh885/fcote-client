@@ -37,17 +37,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tableHeaderCell: {
     backgroundColor: `${theme.color.green} !important`,
-    maxWidth: '4em',
+    maxWidth: '2em',
   },
   tableHeaderCellRanking: {
-    maxWidth: '1.5em',
+    maxWidth: '0.5em !important',
     backgroundColor: `${theme.color.green} !important`,
   },
   tableHeaderCellUsername: {
-    maxWidth: '8em',
+    maxWidth: '1em',
     backgroundColor: `${theme.color.green} !important`,
   },
   textHeaderCell: {
+    maxWidth: '1em',
     textAlign: 'center',
     fontWeight: '600 !important',
     color: `${theme.color.white} !important`,
@@ -55,13 +56,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tableItemCell: {
     textAlign: 'center',
-    maxWidth: '3em',
     padding: '10px 0px 10px 0px',
   },
   tableItemCellOfTotal: {
     textAlign: 'center',
     padding: '10px 0px',
-    maxWidth: '4em',
+    maxWidth: '1em',
   },
   textPoint: {
     fontWeight: '700 !important',

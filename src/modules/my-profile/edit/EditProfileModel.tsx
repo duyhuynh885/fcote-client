@@ -1,14 +1,13 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Avatar, IconButton, MenuItem, Modal, Paper, Select, Stack, TextField } from '@mui/material'
-import { clearStateMyProfile, editMyProfileRequest } from './action'
 import React, { useEffect } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { object, string, TypeOf } from 'zod'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyles from '../../../components/my-profile/style'
-import { object, string, TypeOf } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { debug } from 'console'
+import { clearStateMyProfile, editMyProfileRequest } from './action'
 
 /**
  * Edit profile model component
@@ -41,7 +40,8 @@ const style = {
   borderRadius: 3,
   p: 4,
 }
-
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 const editProfileSchema = object({
   firstName: string().max(32, 'First name must be less than 100 characters'),
   lastName: string().max(32, 'Last name must be less than 100 characters'),
