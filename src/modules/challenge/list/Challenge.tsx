@@ -1,19 +1,19 @@
 import { Box, Grid, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import ChallengeGroup from '../../../components/challenge/list/ChallengeGroupTab'
-import useStyles from './style'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import TaskbarFilterOfChallenge from '../../../components/challenge/general/TaskbarFilterOfChallenge'
+import ChallengeGroup from '../../../components/challenge/list/ChallengeGroupTab'
+import ChallengePublicOwner from '../../../components/challenge/list/ChallengeOwnerTab'
+import { ViewListGroupRequestPayload } from '../../group/list/type'
 import {
   clearStateViewListChallenge,
   fetchListChallengeGroupRequest,
   fetchListChallengeRequest,
-  updateFilterListChallengesRequest,
+  updateFilterListChallengesRequest
 } from './action'
-import TaskbarFilterOfChallenge from '../../../components/challenge/general/TaskbarFilterOfChallenge'
+import useStyles from './style'
 import { ViewListChallengeRequestPayload } from './type'
-import { ViewListGroupRequestPayload } from '../../group/list/type'
-import ChallengePublicOwner from '../../../components/challenge/list/ChallengeOwnerTab'
 
 /**
  * Challenge
