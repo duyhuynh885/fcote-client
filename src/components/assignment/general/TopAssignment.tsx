@@ -3,7 +3,6 @@ import { Box } from '@mui/system'
 import React from 'react'
 import { Assignment } from '../../../modules/assignment/list/type'
 import { makeStyles } from '@mui/styles'
-import MyAssignmentItem from './MyAssignmentItem'
 
 const useStyles = makeStyles((theme: Theme) => ({
   scrollBar: {
@@ -49,13 +48,7 @@ const TopAssignment: React.FC = (props) => {
         <Box>
           <Typography className={classes.title}>Top Assignment</Typography>
         </Box>
-        <Stack spacing={2} className={classes.scrollBar}>
-          <MyAssignmentItem />
-          <MyAssignmentItem />
-          <MyAssignmentItem />
-          <MyAssignmentItem />
-          <MyAssignmentItem />
-        </Stack>
+        <Stack spacing={2} className={classes.scrollBar}></Stack>
       </Stack>
     </Paper>
   )
