@@ -27,6 +27,7 @@ export default function EditorTab() {
    */
   const handleOnChangeCode = (sourceCode: string) => {
     // TODO : IN PROGRESS CODING
+    console.log(sourceCode)
   }
   return (
     <Stack sx={{ height: '100%' }}>
