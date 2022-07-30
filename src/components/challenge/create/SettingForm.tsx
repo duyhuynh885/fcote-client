@@ -1,4 +1,5 @@
 import {
+  Box,
   FormControl,
   Grid,
   MenuItem,
@@ -7,23 +8,29 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { fetchListGroupRequest } from '../../../modules/group/list/action'
-import { getCurrentDateTime } from '../../../utils/dateUtil'
+import { useFormContext } from 'react-hook-form'
 import useStyles from './style'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 
 export default function SettingForm() {
   const classes = useStyles()
   const [startDate, setStartDate] = React.useState<Date | null>(new Date())
-  const [endDate, setEndDate] = React.useState<Date | null>(null)
+  const [endDate, setEndDate] = React.useState<Date | null>(new Date())
   const [secret, setSecret] = React.useState<string>('Public')
-  const [group, setGroup] = React.useState<string>('')
+  const [group, setGroup] = React.useState<string>('1')
   const dispatch = useDispatch<AppDispatch>()
   const groupState = useSelector((state: RootState) => state.listGroup.groups)
 
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext()
+
+  console.log(errors)
   useEffect(() => {
     dispatch(fetchListGroupRequest({}))
   }, [])
@@ -38,7 +45,7 @@ export default function SettingForm() {
 
   const handleSecretChange = (event: SelectChangeEvent) => {
     const value = event.target.value
-    if (value === 'Public') setGroup('')
+    if (value === 'Public') setGroup('1')
     setSecret(value)
   }
 
@@ -51,26 +58,43 @@ export default function SettingForm() {
       <Grid item xs={5}>
         <FormControl fullWidth variant='filled'>
           <Typography className={classes.titleTextField}>Tittle</Typography>
-          <TextField size='small' color='success' id='outlined-basic' variant='outlined' />
+          <TextField
+            {...register('title')}
+            error={!!errors['title']}
+            helperText={errors['title'] ? errors['title'].message : ''}
+            size='small'
+            color='success'
+            id='outlined-basic'
+            variant='outlined'
+          />
           <Typography className={classes.titleTextField}>Description</Typography>
-          <TextField size='small' color='success' fullWidth multiline rows={3} />
+          <TextField
+            {...register('description')}
+            error={!!errors['description']}
+            helperText={errors['description'] ? errors['description'].message : ''}
+            size='small'
+            color='success'
+            fullWidth
+            multiline
+            rows={3}
+          />
         </FormControl>
       </Grid>
       <Grid item xs={3.5}>
         <FormControl fullWidth>
           <Typography className={classes.titleTextField}>Start date</Typography>
-          <DateTimePicker
-            // minDate={new Date()}
-            renderInput={(props) => (
+          <DatePicker
+            value={startDate}
+            disablePast
+            onChange={handleStartDateChange}
+            renderInput={(params) => (
               <TextField
                 size='small'
                 placeholder='Please select start date'
                 color='success'
-                {...props}
+                {...params}
               />
             )}
-            value={startDate}
-            onChange={handleStartDateChange}
           />
         </FormControl>
         <FormControl fullWidth>
@@ -78,6 +102,7 @@ export default function SettingForm() {
           <Select
             color='success'
             size='small'
+            {...register('secret')}
             labelId='demo-simple-select-label'
             id='demo-simple-select'
             value={secret}
@@ -91,20 +116,20 @@ export default function SettingForm() {
       <Grid item xs={3.5}>
         <FormControl fullWidth variant='filled'>
           <Typography className={classes.titleTextField}>End date</Typography>
-          <DateTimePicker
-            renderInput={(props) => (
+          <DatePicker
+            value={endDate}
+            shouldDisableDate={() => disableWeekends(new Date())}
+            onChange={handleEndDateChange}
+            renderInput={(params) => (
               <TextField
                 size='small'
                 placeholder='Please select end date'
                 color='success'
-                {...props}
+                {...params}
               />
             )}
-            value={endDate}
-            onChange={handleEndDateChange}
           />
         </FormControl>
-
         <FormControl fullWidth>
           <Typography className={classes.titleTextField}>Group</Typography>
           <Select
@@ -115,14 +140,18 @@ export default function SettingForm() {
             id='demo-simple-select'
             value={group}
             displayEmpty
-            // defaultValue={group || ''}
+            {...register('group')}
             onChange={handleGroupChange}
           >
-            {groupState.map((_group, index) => (
-              <MenuItem key={index} value={_group.id}>
-                {_group.title}
-              </MenuItem>
-            ))}
+            {secret === 'Public' ? (
+              <MenuItem value={1}>None Group</MenuItem>
+            ) : (
+              groupState.map((_group, index) => (
+                <MenuItem key={index} value={_group.id}>
+                  {_group.title}
+                </MenuItem>
+              ))
+            )}
           </Select>
         </FormControl>
       </Grid>

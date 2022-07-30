@@ -6,7 +6,7 @@ import { makeStyles } from '@mui/styles'
 import AssignmentItemRectangle from './AssignmentItemRectangle'
 
 /**
- * Top Assignment component 
+ * Top Assignment component
  *
  * Version 1.0
  *
