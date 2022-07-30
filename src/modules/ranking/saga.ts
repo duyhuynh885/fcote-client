@@ -24,14 +24,12 @@ import rankingApi from '../../services/rankingApi'
  */
 function* rankingFlow({ typeRanking, pageNumber, pageSize }: RankingRequestAction) {
   try {
-    yield put(showLoaderAction())
     const data: RankingResponse = yield call(rankingApi.fetchRanking, {
       typeRanking,
       pageNumber,
       pageSize,
     })
     yield put({ type: RankingActionType.RANKING_SUCCESS, ...data })
-    yield put(hideLoaderAction())
   } catch (error) {
     yield call(requestFailure, RankingActionType.RANKING_ERROR, handleError(error))
   }

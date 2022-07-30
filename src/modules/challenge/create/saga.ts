@@ -9,6 +9,8 @@ import requestFailure from '../../../utils/onFailure'
 import { handleError } from '../../../utils/handleError'
 import history from '../../../configs/routing/history'
 import challengeApi from '../../../services/challengeApi'
+import { showToastAction } from '../../layout/toast/toastAction'
+import { swapMessage } from '../../../utils/helper'
 
 /**
  * Saga for fetch create challenge
@@ -55,6 +57,12 @@ function* CreateChallengeFlow({
     })
     history.push('/challenge')
     yield put(hideLoaderAction())
+    yield put(
+      showToastAction(
+        'success',
+        swapMessage('Create challenge successful', 'Tạo thử thách thành công'),
+      ),
+    )
   } catch (error) {
     yield call(requestFailure, CreateChallengeActionType.CREATE_CHALLENGE_ERROR, handleError(error))
   }

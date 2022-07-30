@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: theme.textFont.large,
     fontWeight: 'bold',
+    paddingLeft: '20px',
   },
   // Style for assignment completed
   assignmentWardIcon: {

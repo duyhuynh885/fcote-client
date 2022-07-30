@@ -28,14 +28,15 @@ import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
 import { Assignment } from '../../../modules/assignment/list/type'
 
 interface ChooseAssignmentFormProps {
-  handleChangeAssignmentIdSelected?: (listId: number[]) => void
+  assignmentIdSelected: number[]
+  handleChangeAssignmentIdSelected: (listId: number[]) => void
 }
 
 export default function ChooseAssignmentForm(props: ChooseAssignmentFormProps) {
   const classes = useStyles()
+  const { assignmentIdSelected, handleChangeAssignmentIdSelected } = props
   const dispatch = useDispatch<AppDispatch>()
   const assignmentsState = useSelector((state: RootState) => state.listAssignment)
-  const [checked, setChecked] = useState<number[]>([])
   const filterAssignmentState = useSelector(
     (state: RootState) => state.listAssignment.filterRequest,
   )
@@ -61,8 +62,8 @@ export default function ChooseAssignmentForm(props: ChooseAssignmentFormProps) {
   }, [filterAssignmentState])
 
   const handleToggle = (value: number) => () => {
-    const currentIndex = checked.indexOf(value)
-    const newChecked = [...checked]
+    const currentIndex = assignmentIdSelected.indexOf(value)
+    const newChecked = [...assignmentIdSelected]
     const selectedAssignmentClone = [...selectedAssignment]
 
     if (currentIndex === -1) {
@@ -75,7 +76,7 @@ export default function ChooseAssignmentForm(props: ChooseAssignmentFormProps) {
     }
 
     setSelectedAssignment(selectedAssignmentClone)
-    setChecked(newChecked)
+    handleChangeAssignmentIdSelected(newChecked)
   }
 
   return (
@@ -115,7 +116,7 @@ export default function ChooseAssignmentForm(props: ChooseAssignmentFormProps) {
                         size='medium'
                         color='success'
                         edge='start'
-                        checked={checked.indexOf(assignment.id) !== -1}
+                        checked={assignmentIdSelected.indexOf(assignment.id) !== -1}
                         tabIndex={-1}
                         disableRipple
                       />

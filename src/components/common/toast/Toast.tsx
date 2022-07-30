@@ -34,21 +34,10 @@ const defaultProps: ToastProps = {
 }
 
 const Toast: React.FC<ToastProps> = (props) => {
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return
-    }
-  }
-
   return (
     <div>
-      <Snackbar
-        open={props.open}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        autoHideDuration={5000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity={props.type} sx={{ width: '100%' }}>
+      <Snackbar open={props.open} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+        <Alert variant='standard' severity={props.type} sx={{ width: '100%' }}>
           {props.message}
         </Alert>
       </Snackbar>

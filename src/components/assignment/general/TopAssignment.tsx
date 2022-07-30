@@ -1,8 +1,26 @@
-import { Theme, Paper, Stack, Typography } from '@mui/material'
+import { Theme, Paper, Stack, Typography, CircularProgress } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 import { Assignment } from '../../../modules/assignment/list/type'
 import { makeStyles } from '@mui/styles'
+import AssignmentItemRectangle from './AssignmentItemRectangle'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../apps/ReduxContainer'
+
+/**
+ * Top Assignment component
+ *
+ * Version 1.0
+ *
+ * Date: 22-06-2022
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 30-07-2022         HuyNT2711           Create
+ */
 
 const useStyles = makeStyles((theme: Theme) => ({
   scrollBar: {
@@ -24,15 +42,29 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: theme.textFont.large,
     fontWeight: 'bold',
+    paddingLeft: '20px',
   },
 }))
 
 interface TopAssignmentProps {
   listAssignment: Assignment[]
 }
-const TopAssignment: React.FC = (props) => {
+
+const List: React.FC<TopAssignmentProps> = (props) => {
+  const listAssignment = props.listAssignment
+  return (
+    <>
+      {listAssignment.map((assignment) => (
+        <AssignmentItemRectangle key={assignment.id} assignment={assignment} />
+      ))}
+    </>
+  )
+}
+
+const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
+  const topAssignmentsState = useSelector((state: RootState) => state.listAssignment)
   const classes = useStyles()
-  // const { listAssignment } = props
+  const { listAssignment } = props
 
   return (
     <Paper
@@ -48,7 +80,15 @@ const TopAssignment: React.FC = (props) => {
         <Box>
           <Typography className={classes.title}>Top Assignment</Typography>
         </Box>
-        <Stack spacing={2} className={classes.scrollBar}></Stack>
+        <Stack spacing={2} className={classes.scrollBar}>
+          {topAssignmentsState.requesting ? (
+            <Stack alignItems='center' justifyContent='center'>
+              <CircularProgress color='success' />
+            </Stack>
+          ) : (
+            <List listAssignment={listAssignment} />
+          )}
+        </Stack>
       </Stack>
     </Paper>
   )

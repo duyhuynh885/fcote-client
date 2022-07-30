@@ -19,13 +19,14 @@ import { makeStyles } from '@mui/styles'
 const useStyles = makeStyles((theme: Theme) => ({
   containerWraper: {
     margin: '10px 10px',
-    maxWidth: '80vw',
+    maxWidth: '100%',
     maxHeight: '50%',
   },
   table: {
     minWidth: '10vw',
   },
   tableContainer: {
+    margin: '10px 10px',
     maxWidth: '100%',
     maxHeight: '100%',
   },
@@ -36,7 +37,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: `${theme.color.white} !important`,
   },
   tableHeaderCell: {
-    backgroundColor: `${theme.color.green} !important`,
     padding: '3px !important',
     maxWidth: '1em !important',
   },
@@ -44,18 +44,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: '0.7em !important',
     textAlign: 'center',
     padding: '0px !important',
-    backgroundColor: `${theme.color.green} !important`,
   },
   tableHeaderCellUsername: {
     maxWidth: '2em !important',
     padding: '3px !important',
-    backgroundColor: `${theme.color.green} !important`,
   },
   textHeaderCell: {
     textAlign: 'center',
-    fontWeight: '600 !important',
-    color: `${theme.color.white} !important`,
-    fontSize: `${theme.textFont.large} !important`,
+    fontWeight: '700 !important',
+    color: `${theme.color.brown} !important`,
+    fontSize: `${theme.textFont.medium} !important`,
   },
   tableRankingCell: {
     textAlign: 'center',
@@ -64,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tableItemCell: {
     textAlign: 'center',
-    padding: '10px 0px 10px 0px !important',
+    padding: '16px 0px 16px 0px !important',
     maxWidth: '1.5em',
   },
   tableItemCellOfTotal: {
@@ -104,6 +102,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: `${theme.color.black} !important`,
     fontSize: `${theme.textFont.small} !important`,
     textAlign: 'left',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   textAddressOrganization: {
     fontWeight: '600 !important',

@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   Avatar,
   Grid,
@@ -8,37 +7,39 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TablePagination,
   TableRow,
   Typography,
 } from '@mui/material'
-import { Box } from '@mui/system'
+import * as React from 'react'
+import { ReactComponent as Bronze } from '../../assets/Bronze.svg'
 import { ReactComponent as Gold } from '../../assets/Gold.svg'
 import { ReactComponent as Platinum } from '../../assets/Platinum.svg'
-import { ReactComponent as Bronze } from '../../assets/Bronze.svg'
-import { FakeDataChallengDetails } from '../challenge/general/TableChallenge/FakeDataChallengeDetail'
+import { UserInfo } from '../../modules/ranking/type'
 import useStyles from './style'
 
 /**
- * Table Challenge
+ * Top User Component
  *
  * Version 1.0
  *
- * Date: 30-06-2022
+ * Date: 22-06-2022
  *
- * Copyright By HuyNT2711
+ * Copyright
  *
  * Modification Logs:
- * DATE             AUTHOR              DESCRIPTION
- * ------------------------------------------------
- * 30-06-2022      HuyNT2711           Create
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 30-07-2022         HuyNT2711           Create
  */
-
-export default function TopUser() {
+interface TopUserProps {
+  rankingList: UserInfo[]
+}
+const TopUser: React.FC<TopUserProps> = (props) => {
   const classes = useStyles()
+  const { rankingList } = props
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
-  const rows = FakeDataChallengDetails
+  const rows = rankingList
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
   }
@@ -64,70 +65,55 @@ export default function TopUser() {
   }
 
   return (
-    <Paper square sx={{ width: '100%', overflow: 'hidden' }} className={classes.containerWraper}>
-      <TableContainer sx={{ maxHeight: 440 }} className={classes.tableContainer}>
-        <Table stickyHeader aria-label='sticky table' className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell className={classes.tableHeaderCellRanking}>
-                <Typography className={classes.textHeaderCell}>RANK</Typography>
-              </TableCell>
-              <TableCell className={classes.tableHeaderCellUsername}>
-                <Typography className={classes.textHeaderCell}>USER NAME</Typography>
-              </TableCell>
-              <TableCell className={classes.tableHeaderCell}>
-                <Typography className={classes.textHeaderCell}>Point</Typography>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-              return (
-                <TableRow
-                  hover
-                  role='checkbox'
-                  tabIndex={-1}
-                  key={row.ranking}
-                  className={classes.tableRowBody2}
-                >
-                  <TableCell className={classes.tableRankingCell}>
-                    {renderRanking(row.ranking)}
-                  </TableCell>
-                  <TableCell className={classes.tableItemCell}>
-                    <Grid container>
-                      <Grid item xs={3} lg={3} className={classes.avatarWrapper}>
-                        <Avatar
-                          className={classes.avatar}
-                          alt={row.username.avatar}
-                          src={row.username.avatar}
-                        />
-                      </Grid>
-                      <Grid item xs={9} lg={9} sx={{ paddingLeft: '0.3em', paddingTop: '0.4em' }}>
-                        <Typography className={classes.textUsername}>
-                          {row.username.name}
-                        </Typography>
-                      </Grid>
+    <TableContainer className={classes.tableContainer}>
+      <Table stickyHeader aria-label='sticky table' className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell className={classes.tableHeaderCellRanking}>
+              <Typography className={classes.textHeaderCell}>RANK</Typography>
+            </TableCell>
+            <TableCell className={classes.tableHeaderCellUsername}>
+              <Typography className={classes.textHeaderCell}>USER NAME</Typography>
+            </TableCell>
+            <TableCell className={classes.tableHeaderCell}>
+              <Typography className={classes.textHeaderCell}>Point</Typography>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+            return (
+              <TableRow
+                hover
+                role='checkbox'
+                tabIndex={-1}
+                key={row.id}
+                className={classes.tableRowBody2}
+              >
+                <TableCell className={classes.tableRankingCell}>
+                  {renderRanking(index + 1)}
+                </TableCell>
+                <TableCell className={classes.tableItemCell}>
+                  <Grid container>
+                    <Grid item xs={3} lg={3} className={classes.avatarWrapper}>
+                      <Avatar className={classes.avatar} alt={row.avatar} src={row.avatar} />
                     </Grid>
-                  </TableCell>
+                    <Grid item xs={9} lg={9} sx={{ paddingLeft: '0.3em', paddingTop: '0.4em' }}>
+                      <Typography className={classes.textUsername}>{row.username}</Typography>
+                    </Grid>
+                  </Grid>
+                </TableCell>
 
-                  <TableCell className={classes.tableItemCellOfTotal}>
-                    <Typography className={classes.textPointOfTotal}>{row.total.point}</Typography>
-                  </TableCell>
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component='div'
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
+                <TableCell className={classes.tableItemCellOfTotal}>
+                  <Typography className={classes.textPointOfTotal}>{row.total_score}</Typography>
+                </TableCell>
+              </TableRow>
+            )
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
+
+export default TopUser
