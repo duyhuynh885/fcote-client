@@ -50,9 +50,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   textHeaderCell: {
     textAlign: 'center',
-    fontWeight: '600 !important',
+    fontWeight: '700 !important',
     color: `${theme.color.brown} !important`,
-    fontSize: `${theme.textFont.large} !important`,
+    fontSize: `${theme.textFont.medium} !important`,
   },
   tableRankingCell: {
     textAlign: 'center',
@@ -101,6 +101,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: `${theme.color.black} !important`,
     fontSize: `${theme.textFont.small} !important`,
     textAlign: 'left',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   textAddressOrganization: {
     fontWeight: '600 !important',

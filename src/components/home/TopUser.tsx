@@ -9,35 +9,40 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
+  Typography,
 } from '@mui/material'
 import * as React from 'react'
 import { ReactComponent as Bronze } from '../../assets/Bronze.svg'
 import { ReactComponent as Gold } from '../../assets/Gold.svg'
 import { ReactComponent as Platinum } from '../../assets/Platinum.svg'
+import { UserInfo } from '../../modules/ranking/type'
 import { FakeDataChallengDetails } from '../challenge/general/TableChallenge/FakeDataChallengeDetail'
 import useStyles from './style'
 
 /**
- * Table Challenge
+ * Top User Component
  *
  * Version 1.0
  *
- * Date: 30-06-2022
+ * Date: 22-06-2022
  *
- * Copyright By HuyNT2711
+ * Copyright
  *
  * Modification Logs:
- * DATE             AUTHOR              DESCRIPTION
- * ------------------------------------------------
- * 30-06-2022      HuyNT2711           Create
+ * DATE               AUTHOR          DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 30-07-2022         HuyNT2711           Create
  */
-
-export default function TopUser() {
+interface TopUserProps {
+  rankingList: UserInfo[]
+}
+const TopUser: React.FC<TopUserProps> = (props) => {
   const classes = useStyles()
+  const { rankingList } = props
+  console.log('------- rankingList', rankingList)
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
-  const rows = FakeDataChallengDetails
+  const rows = rankingList
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
   }
@@ -80,37 +85,31 @@ export default function TopUser() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
               return (
                 <TableRow
                   hover
                   role='checkbox'
                   tabIndex={-1}
-                  key={row.ranking}
+                  key={row.id}
                   className={classes.tableRowBody2}
                 >
                   <TableCell className={classes.tableRankingCell}>
-                    {renderRanking(row.ranking)}
+                    {renderRanking(index + 1)}
                   </TableCell>
                   <TableCell className={classes.tableItemCell}>
                     <Grid container>
                       <Grid item xs={3} lg={3} className={classes.avatarWrapper}>
-                        <Avatar
-                          className={classes.avatar}
-                          alt={row.username.avatar}
-                          src={row.username.avatar}
-                        />
+                        <Avatar className={classes.avatar} alt={row.avatar} src={row.avatar} />
                       </Grid>
                       <Grid item xs={9} lg={9} sx={{ paddingLeft: '0.3em', paddingTop: '0.4em' }}>
-                        <Typography className={classes.textUsername}>
-                          {row.username.name}
-                        </Typography>
+                        <Typography className={classes.textUsername}>{row.username}</Typography>
                       </Grid>
                     </Grid>
                   </TableCell>
 
                   <TableCell className={classes.tableItemCellOfTotal}>
-                    <Typography className={classes.textPointOfTotal}>{row.total.point}</Typography>
+                    <Typography className={classes.textPointOfTotal}>{row.total_score}</Typography>
                   </TableCell>
                 </TableRow>
               )
@@ -130,3 +129,5 @@ export default function TopUser() {
     </Paper>
   )
 }
+
+export default TopUser

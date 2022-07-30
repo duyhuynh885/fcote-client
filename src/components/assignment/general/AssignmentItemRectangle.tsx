@@ -29,7 +29,7 @@ export enum TypeAssignmentItemRectangleEnum {
 
 interface AssignmentItemRectangleProps {
   assignment: Assignment
-  type: TypeAssignmentItemRectangleEnum
+  type?: TypeAssignmentItemRectangleEnum
 }
 
 export default function AssignmentItemRectangle(props: AssignmentItemRectangleProps) {
