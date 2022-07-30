@@ -1,9 +1,11 @@
-import { Theme, Paper, Stack, Typography } from '@mui/material'
+import { Theme, Paper, Stack, Typography, CircularProgress } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 import { Assignment } from '../../../modules/assignment/list/type'
 import { makeStyles } from '@mui/styles'
 import AssignmentItemRectangle from './AssignmentItemRectangle'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../apps/ReduxContainer'
 
 /**
  * Top Assignment component
@@ -47,7 +49,20 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface TopAssignmentProps {
   listAssignment: Assignment[]
 }
+
+const List: React.FC<TopAssignmentProps> = (props) => {
+  const listAssignment = props.listAssignment
+  return (
+    <>
+      {listAssignment.map((assignment) => (
+        <AssignmentItemRectangle key={assignment.id} assignment={assignment} />
+      ))}
+    </>
+  )
+}
+
 const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
+  const topAssignmentsState = useSelector((state: RootState) => state.listAssignment)
   const classes = useStyles()
   const { listAssignment } = props
 
@@ -66,9 +81,13 @@ const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
           <Typography className={classes.title}>Top Assignment</Typography>
         </Box>
         <Stack spacing={2} className={classes.scrollBar}>
-          {listAssignment.map((assignment) => (
-            <AssignmentItemRectangle key={assignment.id} assignment={assignment} />
-          ))}
+          {topAssignmentsState.requesting ? (
+            <Stack alignItems='center' justifyContent='center'>
+              <CircularProgress color='success' />
+            </Stack>
+          ) : (
+            <List listAssignment={listAssignment} />
+          )}
         </Stack>
       </Stack>
     </Paper>

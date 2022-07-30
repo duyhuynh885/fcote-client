@@ -32,7 +32,7 @@ export default function Ranking() {
   }, [rankingState.rankingTypeRequest])
 
   return (
-  <Stack sx={{}}>
+    <Stack sx={{}}>
       <Grid container spacing={5}>
         <Grid item xs={12} sx={{ marginTop: '3rem' }}>
           <TopRanking data={topThreeState} />

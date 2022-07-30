@@ -1,5 +1,7 @@
-import { Box, Paper, Stack, Typography } from '@mui/material'
+import { Box, CircularProgress, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../apps/ReduxContainer'
 import { IChallenge } from '../../../modules/challenge/list/type'
 import ChallengeCard from '../../challenge/general/ChallengeCard/ChallengeCard'
 import useStyles from '../style'
@@ -25,7 +27,7 @@ interface ChallengeCompletedProps {
 const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
   const classes = useStyles()
   const { listChanllengeCompleted } = props
-
+  const topChallengeState = useSelector((state: RootState) => state.listChallenges)
   return (
     <Paper
       elevation={8}
@@ -41,10 +43,18 @@ const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
           <Typography className={classes.title}>Challenge Completed</Typography>
         </Box>
         <Stack spacing={2} className={classes.scrollBar}>
-          {listChanllengeCompleted &&
-            listChanllengeCompleted.map((challenge, index) => (
-              <ChallengeCard key={index} url='/challenge/detail' challenge={challenge} />
-            ))}
+          {topChallengeState.requesting ? (
+            <Stack alignItems='center' justifyContent='center'>
+              <CircularProgress color='success' />
+            </Stack>
+          ) : (
+            <>
+              {listChanllengeCompleted &&
+                listChanllengeCompleted.map((challenge, index) => (
+                  <ChallengeCard key={index} url='/challenge/detail' challenge={challenge} />
+                ))}
+            </>
+          )}
         </Stack>
       </Stack>
     </Paper>

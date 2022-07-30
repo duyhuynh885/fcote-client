@@ -59,25 +59,12 @@ const Home = () => {
       <Grid container>
         <Grid item xs={8} sx={{ padding: '0px 40px 10px 0px' }}>
           <Stack spacing={2}>
-            {topChallengeState.requesting ? (
-              <Stack alignItems='center'>
-                <CircularProgress color='success' />
-              </Stack>
-            ) : (
-              <TopAssignment listAssignment={topAssignmentsState.assignments} />
-            )}
-
-            {topAssignmentsState.requesting ? (
-              <Stack alignItems='center'>
-                <CircularProgress color='success' />
-              </Stack>
-            ) : (
-              <ChallengeCompleted listChanllengeCompleted={topChallengeState.challenges} />
-            )}
+            <TopAssignment listAssignment={topAssignmentsState.assignments} />
+            <ChallengeCompleted listChanllengeCompleted={topChallengeState.challenges} />
           </Stack>
         </Grid>
         <Grid item xs={4}>
-          <Paper elevation={8} sx={{ padding: '0px 20px 0px 0px', maxHeight: '1000px' }}>
+          <Paper elevation={8} sx={{ padding: '0px 20px 0px 0px', height: '835px' }}>
             <Typography className={classes.title}>Top User</Typography>
             {rankingState.requesting ? (
               <Stack alignItems='center'>

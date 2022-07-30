@@ -32,7 +32,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 export default function ListAssignment() {
   const dispatch = useDispatch<AppDispatch>()
   const assignmentsState = useSelector((state: RootState) => state.listAssignment)
-  const { requesting, currentSize, assignments, filterRequest} = assignmentsState
+  const { requesting, currentSize, assignments, filterRequest } = assignmentsState
 
   const [page, setPage] = useState(1)
   const PER_PAGE = 16

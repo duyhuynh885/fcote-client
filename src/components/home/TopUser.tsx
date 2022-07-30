@@ -37,7 +37,6 @@ interface TopUserProps {
 const TopUser: React.FC<TopUserProps> = (props) => {
   const classes = useStyles()
   const { rankingList } = props
-  console.log('------- rankingList', rankingList)
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
   const rows = rankingList
@@ -66,7 +65,7 @@ const TopUser: React.FC<TopUserProps> = (props) => {
   }
 
   return (
-    <TableContainer sx={{ maxHeight: 440 }} className={classes.tableContainer}>
+    <TableContainer className={classes.tableContainer}>
       <Table stickyHeader aria-label='sticky table' className={classes.table}>
         <TableHead>
           <TableRow>
