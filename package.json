@@ -71,6 +71,7 @@
     "@types/ckeditor__ckeditor5-build-classic": "^29.0.1",
     "@types/js-cookie": "^3.0.2",
     "@types/lodash": "^4.14.182",
+    "@types/moment": "^2.13.0",
     "@types/node": "^17.0.38",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.11",

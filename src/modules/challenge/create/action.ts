@@ -25,7 +25,7 @@ import {
  * @param param CreateChallengeRequestPayload
  * @returns CreateChallengeRequestAction
  */
-export const CreateChallengeRequest = ({
+export const createChallengeRequest = ({
   title,
   description,
   image,
@@ -50,7 +50,7 @@ export const CreateChallengeRequest = ({
  * Clear state action
  * @returns CreateChallengeClearStateAction
  */
-export const CreateChallengeClearStateRequest = (): CreateChallengeClearStateAction => {
+export const createChallengeClearStateRequest = (): CreateChallengeClearStateAction => {
   return {
     type: CreateChallengeActionType.CREATE_CHALLENGE_CLEAR_STATE,
   }

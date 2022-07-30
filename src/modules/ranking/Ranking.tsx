@@ -5,6 +5,7 @@ import TopRanking from '../../components/ranking/detail/TopRanking'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../apps/ReduxContainer'
 import { fetchRankingRequest } from './action'
+
 /**
  * ranking Pages
  *
