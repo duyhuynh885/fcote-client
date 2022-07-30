@@ -5,10 +5,10 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import TaskbarFilterOfChallenge from '../../../components/challenge/general/TaskbarFilterOfChallenge'
 import ChallengeGroup from '../../../components/challenge/list/ChallengeGroupTab'
 import ChallengePublicOwner from '../../../components/challenge/list/ChallengeOwnerTab'
+import { fetchListGroupRequest } from '../../group/list/action'
 import { ViewListGroupRequestPayload } from '../../group/list/type'
 import {
   clearStateViewListChallenge,
-  fetchListChallengeGroupRequest,
   fetchListChallengeRequest,
   updateFilterListChallengesRequest,
 } from './action'
@@ -56,7 +56,7 @@ export default function Challenge() {
   const classes = useStyles()
   const dispatch = useDispatch<AppDispatch>()
   const challengesState = useSelector((state: RootState) => state.listChallenges.challenges)
-  const groupsState = useSelector((state: RootState) => state.listChallenges.groups)
+  const groupsState = useSelector((state: RootState) => state.listGroup.groups)
   const currentSizeState = useSelector((state: RootState) => state.listChallenges.currentSize)
   const filterChallengesState = useSelector(
     (state: RootState) => state.listChallenges.filterRequest,
@@ -70,12 +70,12 @@ export default function Challenge() {
   const count = Math.ceil(currentSizeState / PER_PAGE)
 
   // handle choose challenge follow Group
-  const callbackSetGroupID = (groupID: number | undefined) => {
-    setGroupId(groupID)
-    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
+  const callbackSetGroupID = (value: number | undefined) => {
+    setGroupId(value)
+    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, value))
   }
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
 
@@ -84,11 +84,11 @@ export default function Challenge() {
     dispatch(updateFilterListChallengesRequest({ ...filterChallengesState, pageNumber: value }))
   }
 
-  useEffect(() => {
-    return () => {
-      dispatch(clearStateViewListChallenge())
-    }
-  }, [])
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(clearStateViewListChallenge())
+  //   }
+  // }, [])
 
   const publicRequest: ViewListChallengeRequestPayload = {
     typeData: 1,
@@ -98,11 +98,6 @@ export default function Challenge() {
 
   const groupChallengeRequest: ViewListChallengeRequestPayload = {
     typeData: 2,
-    pageSize: 50,
-    pageNumber: 1,
-  }
-
-  const groupGroupRequest: ViewListGroupRequestPayload = {
     pageSize: 50,
     pageNumber: 1,
   }
@@ -119,7 +114,7 @@ export default function Challenge() {
   }
 
   function handleGetChallengeGroup() {
-    dispatch(fetchListChallengeGroupRequest(groupGroupRequest))
+    dispatch(fetchListGroupRequest({}))
     setTypeData(2)
   }
 
@@ -136,7 +131,7 @@ export default function Challenge() {
     setTypeData(3)
   }
 
-  useEffect((): void => {
+  useEffect(() => {
     switch (value) {
       case 0:
         return handleGetChallengePublic()

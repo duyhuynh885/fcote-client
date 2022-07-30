@@ -3,6 +3,7 @@ import {
   Avatar,
   Grid,
   Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -12,12 +13,12 @@ import {
   TableRow,
   Typography,
 } from '@mui/material'
-import { Box } from '@mui/system'
 import useStyles from './style'
-import { FakeDataChallengDetails } from './FakeDataChallengeDetail'
 import { ReactComponent as Gold } from '../../../../assets/Gold.svg'
 import { ReactComponent as Platinum } from '../../../../assets/Platinum.svg'
 import { ReactComponent as Bronze } from '../../../../assets/Bronze.svg'
+import { AssignmentList, Submit, UserInfo } from '../../../../modules/challenge/detail/type'
+import { Link, useRouteMatch } from 'react-router-dom'
 
 /**
  * Table Challenge
@@ -34,11 +35,45 @@ import { ReactComponent as Bronze } from '../../../../assets/Bronze.svg'
  * 30-06-2022      HuyNT2711           Create
  */
 
-export default function TableChallenge() {
+interface TableChallengeProps {
+  assignmentList: AssignmentList[]
+  submits: Submit[]
+}
+
+interface AssignmentResult {
+  point: string | number
+  progressTime: string | number
+  compileTime: string | number
+  numberTry: string
+  numberSubmit: string | number
+}
+
+interface TotalResult {
+  totalPoint: number
+  totalProgressTime: number
+  totalCompileTime: number
+  totalNumberTry: number
+  totalNumberSubmit: number
+}
+
+interface IDataRow {
+  ranking: number
+  userInfo: UserInfo
+  result: AssignmentResult[]
+  total: TotalResult
+}
+
+export default function TableChallenge(props: TableChallengeProps) {
   const classes = useStyles()
+  const { assignmentList, submits } = props
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
-  const rows = FakeDataChallengDetails
+  const match = useRouteMatch()
+
+  function createData({ ranking, userInfo, result, total }: IDataRow): IDataRow {
+    return { ranking, userInfo, result, total }
+  }
+
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
   }
@@ -46,6 +81,45 @@ export default function TableChallenge() {
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value)
     setPage(0)
+  }
+
+  const handleShowResultSubmit = () => {
+    return submits.map((submit) => {
+      const total: TotalResult = {
+        totalPoint: 0,
+        totalProgressTime: 0,
+        totalCompileTime: 0,
+        totalNumberTry: 0,
+        totalNumberSubmit: 0,
+      }
+      const result: AssignmentResult[] = submit.assignmentResults.map((_assignmentResult) => {
+        total.totalPoint +=
+          typeof _assignmentResult.highestScore === 'string' ? 0 : _assignmentResult.highestScore
+        total.totalProgressTime +=
+          typeof _assignmentResult.shortestRuntime === 'string'
+            ? 0
+            : _assignmentResult.shortestRuntime
+        total.totalCompileTime +=
+          typeof _assignmentResult.time === 'string' ? 0 : _assignmentResult.time
+        total.totalNumberTry +=
+          typeof _assignmentResult.counter === 'string' ? 0 : _assignmentResult.counter
+        total.totalNumberSubmit +=
+          typeof _assignmentResult.counter === 'string' ? 0 : _assignmentResult.counter
+        return {
+          point: _assignmentResult.highestScore,
+          progressTime: _assignmentResult.shortestRuntime,
+          compileTime: _assignmentResult.time,
+          numberTry: _assignmentResult.counter,
+          numberSubmit: _assignmentResult.counter,
+        } as AssignmentResult
+      })
+      return createData({
+        ranking: submit.ranking,
+        userInfo: submit.userInfo,
+        result,
+        total,
+      })
+    })
   }
 
   function renderRanking(ranking: number) {
@@ -63,12 +137,28 @@ export default function TableChallenge() {
     }
   }
 
+  const handleShowTitleTable = () => {
+    const nameAssignment = ['A', 'B', 'C', 'D', 'E', 'F']
+    return assignmentList.map((assignment, index) => (
+      <TableCell key={index} className={classes.tableHeaderCell}>
+        <Typography className={classes.textHeaderCell}>
+          <Link
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+            to={`${match.url}/assignment/${assignment.assignmentId}`}
+          >
+            {nameAssignment[assignment.order - 1]}(100)
+          </Link>
+        </Typography>
+      </TableCell>
+    ))
+  }
+
   return (
     <Paper
       square
       elevation={8}
       sx={{ width: '100%', overflow: 'hidden' }}
-      className={classes.containerWraper}
+      className={classes.container}
     >
       <TableContainer sx={{ maxHeight: 440 }} className={classes.tableContainer}>
         <Table stickyHeader aria-label='sticky table' className={classes.table}>
@@ -80,139 +170,94 @@ export default function TableChallenge() {
               <TableCell className={classes.tableHeaderCellUsername}>
                 <Typography className={classes.textHeaderCell}>USER NAME</Typography>
               </TableCell>
-              <TableCell className={classes.tableHeaderCell}>
-                <Typography className={classes.textHeaderCell}>A(100)</Typography>
-              </TableCell>
-              <TableCell className={classes.tableHeaderCell} sx={{ maxWidth: '4em' }}>
-                <Typography className={classes.textHeaderCell}>B(150)</Typography>
-              </TableCell>
-              <TableCell className={classes.tableHeaderCell} sx={{ maxWidth: '4em' }}>
-                <Typography className={classes.textHeaderCell}>C(130)</Typography>
-              </TableCell>
-              <TableCell className={classes.tableHeaderCell} sx={{ maxWidth: '4em' }}>
-                <Typography className={classes.textHeaderCell}>D(100)</Typography>
-              </TableCell>
-              <TableCell className={classes.tableHeaderCell} sx={{ maxWidth: '4em' }}>
-                <Typography className={classes.textHeaderCell}>E(150)</Typography>
-              </TableCell>
-              <TableCell className={classes.tableHeaderCell} sx={{ maxWidth: '4em' }}>
-                <Typography className={classes.textHeaderCell}>F(100)</Typography>
-              </TableCell>
+              {handleShowTitleTable()}
               <TableCell className={classes.tableHeaderCell}>
                 <Typography className={classes.textHeaderCell}>TOTAL</Typography>
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-              return (
-                <TableRow
-                  hover
-                  role='checkbox'
-                  tabIndex={-1}
-                  key={row.ranking}
-                  className={row.ranking % 2 === 0 ? classes.tableRowBody1 : classes.tableRowBody2}
-                >
-                  <TableCell className={classes.tableItemCell}>
-                    {renderRanking(row.ranking)}
-                  </TableCell>
-                  <TableCell className={classes.tableItemCell}>
-                    <Grid container>
-                      <Grid item xs={3} lg={3} className={classes.avatarWrapper}>
-                        <Avatar
-                          className={classes.avatar}
-                          alt={row.username.avatar}
-                          src={row.username.avatar}
-                        />
+            {handleShowResultSubmit()
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                return (
+                  <TableRow
+                    hover
+                    role='checkbox'
+                    tabIndex={-1}
+                    key={row.ranking}
+                    className={
+                      row.ranking % 2 === 0 ? classes.tableRowBody1 : classes.tableRowBody2
+                    }
+                  >
+                    <TableCell className={classes.tableItemCell}>
+                      {renderRanking(row.ranking)}
+                    </TableCell>
+                    <TableCell className={classes.tableItemCell}>
+                      <Grid container>
+                        <Grid item xs={3} lg={3} className={classes.avatarWrapper}>
+                          <Avatar
+                            className={classes.avatar}
+                            alt={row.userInfo.avatar}
+                            src={row.userInfo.avatar}
+                          />
+                        </Grid>
+                        <Grid item xs={9} lg={9}>
+                          <Typography className={classes.textUsername}>
+                            {row.userInfo.username}
+                          </Typography>
+                          <Typography className={classes.textAddressOrganization}>
+                            {row.userInfo.city}
+                          </Typography>
+                          <Typography className={classes.textAddressOrganization}>
+                            {row.userInfo.organization}
+                          </Typography>
+                        </Grid>
                       </Grid>
-                      <Grid item xs={9} lg={9} sx={{ paddingLeft: '0.3em' }}>
-                        <Typography className={classes.textUsername}>
-                          {row.username.name}
-                        </Typography>
-                        <Typography className={classes.textAddressOrganization}>
-                          {row.username.address}
-                        </Typography>
-                        <Typography className={classes.textAddressOrganization}>
-                          {row.username.organization}
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </TableCell>
-                  <TableCell className={classes.tableItemCell}>
-                    <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                      <Typography className={classes.textPoint}>{row.a.point}</Typography>
-                      <Typography className={classes.textItemCell}>{row.a.progressTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.a.complieTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.a.numberTry}</Typography>
-                      <Typography className={classes.textItemCell}>{row.a.numberSubmit}</Typography>
-                    </Box>
-                  </TableCell>
-                  <TableCell className={classes.tableItemCell}>
-                    <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                      <Typography className={classes.textPoint}>{row.b.point}</Typography>
-                      <Typography className={classes.textItemCell}>{row.b.progressTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.b.complieTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.b.numberTry}</Typography>
-                      <Typography className={classes.textItemCell}>{row.b.numberSubmit}</Typography>
-                    </Box>
-                  </TableCell>
-                  <TableCell className={classes.tableItemCell}>
-                    <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                      <Typography className={classes.textPoint}>{row.c.point}</Typography>
-                      <Typography className={classes.textItemCell}>{row.c.progressTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.c.complieTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.c.numberTry}</Typography>
-                      <Typography className={classes.textItemCell}>{row.c.numberSubmit}</Typography>
-                    </Box>
-                  </TableCell>
-                  <TableCell className={classes.tableItemCell}>
-                    <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                      <Typography className={classes.textPoint}>{row.d.point}</Typography>
-                      <Typography className={classes.textItemCell}>{row.d.progressTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.d.complieTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.d.numberTry}</Typography>
-                      <Typography className={classes.textItemCell}>{row.d.numberSubmit}</Typography>
-                    </Box>
-                  </TableCell>
-                  <TableCell className={classes.tableItemCell}>
-                    <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                      <Typography className={classes.textPoint}>{row.e.point}</Typography>
-                      <Typography className={classes.textItemCell}>{row.e.progressTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.e.complieTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.e.numberTry}</Typography>
-                      <Typography className={classes.textItemCell}>{row.e.numberSubmit}</Typography>
-                    </Box>
-                  </TableCell>
-                  <TableCell className={classes.tableItemCell}>
-                    <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                      <Typography className={classes.textPoint}>{row.f.point}</Typography>
-                      <Typography className={classes.textItemCell}>{row.f.progressTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.f.complieTime}</Typography>
-                      <Typography className={classes.textItemCell}>{row.f.numberTry}</Typography>
-                      <Typography className={classes.textItemCell}>{row.f.numberSubmit}</Typography>
-                    </Box>
-                  </TableCell>
-                  <TableCell className={classes.tableItemCellOfTotal}>
-                    <Typography className={classes.textPointOfTotal}>{row.total.point}</Typography>
-                    <Typography className={classes.textItemCell}>
-                      {row.total.progressTime}
-                    </Typography>
-                    <Typography className={classes.textItemCell}>
-                      {row.total.complieTime}
-                    </Typography>
-                    <Typography className={classes.textItemCell}>{row.total.numberTry}</Typography>
-                    <Typography className={classes.textItemCell}></Typography>
-                  </TableCell>
-                </TableRow>
-              )
-            })}
+                    </TableCell>
+                    {row.result.map((_result, index) => (
+                      <TableCell key={index} className={classes.tableItemCell}>
+                        <Stack direction='column' alignItems='center'>
+                          <Typography className={classes.textPoint}>{_result.point}</Typography>
+                          <Typography className={classes.textItemCell}>
+                            {_result.progressTime}
+                          </Typography>
+                          <Typography className={classes.textItemCell}>
+                            {_result.compileTime} s
+                          </Typography>
+                          <Typography className={classes.textItemCell}>
+                            {_result.numberTry} try
+                          </Typography>
+                          <Typography className={classes.textItemCell}>
+                            {_result.numberSubmit}/10 submission
+                          </Typography>
+                        </Stack>
+                      </TableCell>
+                    ))}
+                    <TableCell className={classes.tableItemCellOfTotal}>
+                      <Typography className={classes.textPointOfTotal}>
+                        {row.total.totalPoint}
+                      </Typography>
+                      <Typography className={classes.textItemCell}>
+                        {row.total.totalProgressTime}
+                      </Typography>
+                      <Typography className={classes.textItemCell}>
+                        {row.total.totalCompileTime} s
+                      </Typography>
+                      <Typography className={classes.textItemCell}>
+                        {row.total.totalNumberTry} tries
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                )
+              })}
           </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component='div'
-        count={rows.length}
+        count={handleShowResultSubmit().length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

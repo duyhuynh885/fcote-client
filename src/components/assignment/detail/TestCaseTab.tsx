@@ -108,7 +108,7 @@ export default function TestCaseTab(props: TestCaseTabProps) {
         </RegularButton>
       </Stack>
       {requesting ? (
-        <Stack alignItems='center'>
+        <Stack marginTop={5} alignItems='center'>
           <CircularProgress color='success' />
         </Stack>
       ) : (

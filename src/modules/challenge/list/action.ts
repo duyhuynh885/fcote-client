@@ -5,7 +5,6 @@ import {
   ViewListChallengeActionType,
   ViewListChallengeClearStateAction,
   UpdateFilterListChallengeAction,
-  ViewListGroupIdRequestAction,
   StatusChallengeEnum,
 } from './type'
 
@@ -42,16 +41,6 @@ export const fetchListChallengeRequest = (
   }
 }
 
-export const fetchListChallengeGroupRequest = ({
-  pageSize,
-  pageNumber,
-}: ViewListGroupRequestPayload): ViewListGroupIdRequestAction => {
-  return {
-    type: ViewListChallengeActionType.VIEW_LIST_GROUP_ID_REQUESTING,
-    pageSize,
-    pageNumber,
-  }
-}
 export const updateFilterListChallengesRequest = ({
   typeData,
   searchBy,

@@ -17,8 +17,8 @@ import { makeStyles } from '@mui/styles'
  */
 const useStyles = makeStyles((theme: Theme) => ({
   scrollBar: {
-    height: '80vh',
-    padding: '10px 50px',
+    height: '70vh',
+    paddingRight: '20px',
     overflowX: 'hidden',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.color.green,
   },
   listGroupScroll: {
-    height: '80vh',
-    padding: '10px',
+    height: '70vh',
+    paddingRight: '20px',
     overflowX: 'hidden',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   selectedActive: {
     '&.Mui-selected': {
-      backgroundColor: `${theme.color.green} !important`,
+      backgroundColor: 'red',
     },
   },
   groupTittle: {
@@ -63,9 +63,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   myGroup: {
     fontSize: theme.textFont.large,
     fontWeight: 'bold',
-    paddingLeft: '5%',
-    paddingTop: '5px',
   },
+  root: {
+    '&$selected': {
+      backgroundColor: 'red',
+      '&:hover': {
+        backgroundColor: 'yellow',
+      },
+    },
+  },
+  selected: {},
 }))
 
 export default useStyles

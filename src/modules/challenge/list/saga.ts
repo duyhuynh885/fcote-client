@@ -36,7 +36,6 @@ function* viewListChallengeFlow({
   status,
 }: ViewListChallengeRequestAction) {
   try {
-    yield put(showLoaderAction())
     const data: ViewListChallengeSuccessResponse = yield call(challengeApi.fetchChallengeApi, {
       typeData,
       searchBy,
@@ -50,7 +49,6 @@ function* viewListChallengeFlow({
       type: ViewListChallengeActionType.VIEW_LIST_CHALLENGE_SUCCESS,
       ...data,
     })
-    yield put(hideLoaderAction())
   } catch (error) {
     yield call(
       requestFailure,
@@ -60,34 +58,17 @@ function* viewListChallengeFlow({
   }
 }
 
-function* viewListGroupFlow({ pageSize, pageNumber }: ViewListGroupRequestAction) {
-  try {
-    yield put(showLoaderAction())
-    const data: ViewListGroupResponse = yield call(groupApi.fetchListGroup, {
-      pageSize,
-      pageNumber,
-    })
-    yield put({ type: ViewListChallengeActionType.VIEW_LIST_GROUP_ID_SUCCESS, ...data })
-    yield put(hideLoaderAction())
-  } catch (error) {
-    yield call(
-      requestFailure,
-      ViewListChallengeActionType.VIEW_LIST_GROUP_ID_ERROR,
-      handleError(error),
-    )
-  }
-}
-
 function* viewListChallengeWatcher() {
   yield takeEvery(ViewListChallengeActionType.VIEW_LIST_CHALLENGE_REQUESTING, viewListChallengeFlow)
-  yield takeEvery(ViewListChallengeActionType.VIEW_LIST_GROUP_ID_REQUESTING, viewListGroupFlow)
 }
+
 function* searchListChallengeWatcher() {
   yield takeEvery(
     ViewListChallengeActionType.UPDATE_FILTER_LIST_CHALLENGE_REQUEST,
     viewListChallengeFlow,
   )
 }
+
 export default function* viewListChallengeSaga() {
   yield all([fork(viewListChallengeWatcher), fork(searchListChallengeWatcher)])
 }

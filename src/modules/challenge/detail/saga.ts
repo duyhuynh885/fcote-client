@@ -31,7 +31,6 @@ import challengeApi from '../../../services/challengeApi'
  */
 function* viewDetailChallengeFlow({ id }: ViewDetailChallengeRequestAction) {
   try {
-    yield put(showLoaderAction())
     const data: ViewDetailChallengeResponse = yield call(challengeApi.getDetailChallenge, {
       id,
     })
@@ -39,8 +38,6 @@ function* viewDetailChallengeFlow({ id }: ViewDetailChallengeRequestAction) {
       type: ViewDetailChallengeActionType.VIEW_DETAIL_CHALLENGE_SUCCESS,
       ...data,
     })
-    history.push('/challenge')
-    yield put(hideLoaderAction())
   } catch (error) {
     yield call(
       requestFailure,

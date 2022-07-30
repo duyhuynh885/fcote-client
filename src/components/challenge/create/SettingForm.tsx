@@ -118,7 +118,6 @@ export default function SettingForm() {
           <Typography className={classes.titleTextField}>End date</Typography>
           <DatePicker
             value={endDate}
-            shouldDisableDate={() => disableWeekends(new Date())}
             onChange={handleEndDateChange}
             renderInput={(params) => (
               <TextField

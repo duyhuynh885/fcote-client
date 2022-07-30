@@ -12,7 +12,6 @@ import {
 import React, { useState } from 'react'
 import Divider from '@mui/material/Divider'
 import SearchIcon from '@mui/icons-material/Search'
-import FormControl from '@mui/material/FormControl'
 import { Link } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,7 +19,6 @@ import useStyle from './style'
 import RegularButton from '../../common/button/RegularButton'
 import { updateFilterListChallengesRequest } from '../../../modules/challenge/list/action'
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
-import { StatusChallengeEnum } from '../../../modules/challenge/list/type'
 
 /**
  * TaskbarFilter
@@ -56,7 +54,6 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
   const classes = useStyle()
   const dispatch = useDispatch<AppDispatch>()
   const filterChallengeState = useSelector((state: RootState) => state.listChallenges.filterRequest)
-  const [status, setStatus] = useState('0')
   const [search, setSearch] = useState('')
   const { url, groupID, typeData, handleChangeTab, tabValue } = props
 
@@ -67,16 +64,6 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
         typeData: typeData,
         searchBy: search,
         groupID: groupID,
-      }),
-    )
-  }
-
-  const handleChangeFilterByStatus = (event: SelectChangeEvent) => {
-    setStatus(event.target.value)
-    dispatch(
-      updateFilterListChallengesRequest({
-        ...filterChallengeState,
-        status: +event.target.value,
       }),
     )
   }
@@ -98,43 +85,6 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
           <Tab className={classes.tabTitle} label='Group' {...a11yProps(1)} />
           <Tab className={classes.tabTitle} label='Owner' {...a11yProps(2)} />
         </Tabs>
-        <FormControl color='success' variant='standard' sx={{ m: 1, minWidth: 120 }}>
-          <Select
-            value={status}
-            size='small'
-            onChange={handleChangeFilterByStatus}
-            className={classes.taskFilterOptions}
-          >
-            <MenuItem
-              classes={{ selected: classes.selected }}
-              className={classes.taskFilterOptions}
-              value={StatusChallengeEnum.ALL}
-            >
-              All statuses
-            </MenuItem>
-            <MenuItem
-              classes={{ selected: classes.selected }}
-              className={classes.taskFilterOptions}
-              value={StatusChallengeEnum.NOT_OPEN_YET}
-            >
-              not open yet
-            </MenuItem>
-            <MenuItem
-              classes={{ selected: classes.selected }}
-              className={classes.taskFilterOptions}
-              value={StatusChallengeEnum.OPEN}
-            >
-              open
-            </MenuItem>
-            <MenuItem
-              classes={{ selected: classes.selected }}
-              className={classes.taskFilterOptions}
-              value={StatusChallengeEnum.CLOSE}
-            >
-              close
-            </MenuItem>
-          </Select>
-        </FormControl>
       </Stack>
       <Stack direction='row' alignItems='center' spacing={2}>
         <TextField

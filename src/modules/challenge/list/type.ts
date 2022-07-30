@@ -1,10 +1,3 @@
-import {
-  ViewListGroupResponse,
-  ViewListGroupErrorResponse,
-  ViewListGroupRequestPayload,
-} from './../../group/list/type'
-import { Group } from '../../group/list/type'
-
 /**
  * type list challenge
  *
@@ -24,9 +17,6 @@ export enum ViewListChallengeActionType {
   VIEW_LIST_CHALLENGE_REQUESTING = 'VIEW_LIST_CHALLENGE_REQUESTING',
   VIEW_LIST_CHALLENGE_SUCCESS = 'VIEW_LIST_CHALLENGE_SUCCESS',
   VIEW_LIST_CHALLENGE_ERROR = 'VIEW_LIST_CHALLENGE_ERROR',
-  VIEW_LIST_GROUP_ID_SUCCESS = 'VIEW_LIST_GROUP_ID_SUCCESS',
-  VIEW_LIST_GROUP_ID_REQUESTING = 'VIEW_LIST_GROUP_ID_REQUESTING',
-  VIEW_LIST_GROUP_ID_ERROR = 'VIEW_LIST_GROUP_ID_ERROR',
   VIEW_LIST_CHALLENGE_CLEAR_STATE = 'VIEW_LIST_CHALLENGE_CLEAR_STATE',
   UPDATE_FILTER_LIST_CHALLENGE_REQUEST = ' UPDATE_FILTER_LIST_CHALLENGE_REQUEST',
 }
@@ -68,19 +58,6 @@ export interface ViewListChallengeErrorResponse {
   error: ErrorMessage
 }
 
-export type ViewListGroupIdRequestAction = ActionWithPayload<
-  ViewListChallengeActionType.VIEW_LIST_GROUP_ID_REQUESTING,
-  ViewListGroupRequestPayload
->
-export type ViewListGroupIdSuccessAction = ActionWithPayload<
-  ViewListChallengeActionType.VIEW_LIST_GROUP_ID_SUCCESS,
-  ViewListGroupResponse
->
-export type ViewListGroupIdErrorAction = ActionWithPayload<
-  ViewListChallengeActionType.VIEW_LIST_GROUP_ID_ERROR,
-  ViewListGroupErrorResponse
->
-
 export type ViewListChallengeRequestAction = ActionWithPayload<
   ViewListChallengeActionType.VIEW_LIST_CHALLENGE_REQUESTING,
   ViewListChallengeRequestPayload
@@ -105,9 +82,6 @@ export type ViewListChallengeAction =
   | ViewListChallengeRequestAction
   | ViewListChallengeSuccessAction
   | ViewListChallengeErrorAction
-  | ViewListGroupIdRequestAction
-  | ViewListGroupIdSuccessAction
-  | ViewListGroupIdErrorAction
   | ViewListChallengeClearStateAction
   | UpdateFilterListChallengeAction
 
@@ -119,5 +93,4 @@ export interface ViewListChallengeState {
   filterRequest: ViewListChallengeRequestPayload
   challenges: IChallenge[]
   currentSize: number
-  groups: Group[]
 }

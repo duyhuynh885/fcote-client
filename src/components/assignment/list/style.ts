@@ -18,8 +18,8 @@ import { makeStyles } from '@mui/styles'
  */
 const AssignmentItemStyle = makeStyles((theme: Theme) => ({
   container: {
-    width: '14.375rem',
-    height: '12.5rem',
+    maxWidth: '15rem',
+    height: 'auto',
     padding: '10px',
   },
   wrapAvatarName: {

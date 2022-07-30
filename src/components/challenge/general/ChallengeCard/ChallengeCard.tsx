@@ -53,7 +53,6 @@ const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
             className={classes.challengeCardBanner}
             src='https://img.freepik.com/free-vector/joystick-game-sport-technology_138676-2045.jpg?w=2000'
           />
-
           <Stack
             sx={{
               width: '100%',

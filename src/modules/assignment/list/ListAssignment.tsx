@@ -69,29 +69,22 @@ export default function ListAssignment() {
       <Stack marginBottom={5}>
         <TaskbarFilter url='/assignment/create' type={TypeFilterTaskBarEnum.LIST_ASSIGNMENT} />
       </Stack>
-      <Stack direction='column' alignItems='center' spacing={3}>
-        <Grid
-          container
-          spacing={0.5}
-          direction='row'
-          alignItems='flex-start'
-          justifyContent='center'
-          style={{ minHeight: '70vh' }}
-        >
-          {requesting ? (
-            <Stack alignItems='center'>
-              <CircularProgress color='success' />
-            </Stack>
-          ) : (
-            <React.Fragment>
-              {assignments.map((assignment) => (
-                <Grid key={assignment.id} item xs={4} lg={2.3}>
-                  <AssignmentItem assignment={assignment} />
-                </Grid>
-              ))}
-            </React.Fragment>
-          )}
-        </Grid>
+      <Stack alignItems='center' sx={{ minHeight: '70vh', width: '100%' }}>
+        {requesting ? (
+          <Stack alignItems='center'>
+            <CircularProgress color='success' />
+          </Stack>
+        ) : (
+          <Grid container rowSpacing={4} columnSpacing={4} sx={{ width: '80%' }}>
+            {assignments.map((assignment) => (
+              <Grid key={assignment.id} item xs={3}>
+                <AssignmentItem assignment={assignment} />
+              </Grid>
+            ))}
+          </Grid>
+        )}
+      </Stack>
+      <Stack alignItems='center'>
         <Pagination
           page={page}
           onChange={handleChange}
