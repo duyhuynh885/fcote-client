@@ -7,7 +7,6 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TablePagination,
   TableRow,
   Typography,
 } from '@mui/material'
@@ -16,7 +15,6 @@ import { ReactComponent as Bronze } from '../../assets/Bronze.svg'
 import { ReactComponent as Gold } from '../../assets/Gold.svg'
 import { ReactComponent as Platinum } from '../../assets/Platinum.svg'
 import { UserInfo } from '../../modules/ranking/type'
-import { FakeDataChallengDetails } from '../challenge/general/TableChallenge/FakeDataChallengeDetail'
 import useStyles from './style'
 
 /**
@@ -68,65 +66,54 @@ const TopUser: React.FC<TopUserProps> = (props) => {
   }
 
   return (
-    <Paper square sx={{ width: '100%', overflow: 'hidden' }} className={classes.containerWraper}>
-      <TableContainer sx={{ maxHeight: 440 }} className={classes.tableContainer}>
-        <Table stickyHeader aria-label='sticky table' className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell className={classes.tableHeaderCellRanking}>
-                <Typography className={classes.textHeaderCell}>RANK</Typography>
-              </TableCell>
-              <TableCell className={classes.tableHeaderCellUsername}>
-                <Typography className={classes.textHeaderCell}>USER NAME</Typography>
-              </TableCell>
-              <TableCell className={classes.tableHeaderCell}>
-                <Typography className={classes.textHeaderCell}>Point</Typography>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
-              return (
-                <TableRow
-                  hover
-                  role='checkbox'
-                  tabIndex={-1}
-                  key={row.id}
-                  className={classes.tableRowBody2}
-                >
-                  <TableCell className={classes.tableRankingCell}>
-                    {renderRanking(index + 1)}
-                  </TableCell>
-                  <TableCell className={classes.tableItemCell}>
-                    <Grid container>
-                      <Grid item xs={3} lg={3} className={classes.avatarWrapper}>
-                        <Avatar className={classes.avatar} alt={row.avatar} src={row.avatar} />
-                      </Grid>
-                      <Grid item xs={9} lg={9} sx={{ paddingLeft: '0.3em', paddingTop: '0.4em' }}>
-                        <Typography className={classes.textUsername}>{row.username}</Typography>
-                      </Grid>
+    <TableContainer sx={{ maxHeight: 440 }} className={classes.tableContainer}>
+      <Table stickyHeader aria-label='sticky table' className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell className={classes.tableHeaderCellRanking}>
+              <Typography className={classes.textHeaderCell}>RANK</Typography>
+            </TableCell>
+            <TableCell className={classes.tableHeaderCellUsername}>
+              <Typography className={classes.textHeaderCell}>USER NAME</Typography>
+            </TableCell>
+            <TableCell className={classes.tableHeaderCell}>
+              <Typography className={classes.textHeaderCell}>Point</Typography>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+            return (
+              <TableRow
+                hover
+                role='checkbox'
+                tabIndex={-1}
+                key={row.id}
+                className={classes.tableRowBody2}
+              >
+                <TableCell className={classes.tableRankingCell}>
+                  {renderRanking(index + 1)}
+                </TableCell>
+                <TableCell className={classes.tableItemCell}>
+                  <Grid container>
+                    <Grid item xs={3} lg={3} className={classes.avatarWrapper}>
+                      <Avatar className={classes.avatar} alt={row.avatar} src={row.avatar} />
                     </Grid>
-                  </TableCell>
+                    <Grid item xs={9} lg={9} sx={{ paddingLeft: '0.3em', paddingTop: '0.4em' }}>
+                      <Typography className={classes.textUsername}>{row.username}</Typography>
+                    </Grid>
+                  </Grid>
+                </TableCell>
 
-                  <TableCell className={classes.tableItemCellOfTotal}>
-                    <Typography className={classes.textPointOfTotal}>{row.total_score}</Typography>
-                  </TableCell>
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component='div'
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
+                <TableCell className={classes.tableItemCellOfTotal}>
+                  <Typography className={classes.textPointOfTotal}>{row.total_score}</Typography>
+                </TableCell>
+              </TableRow>
+            )
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
 

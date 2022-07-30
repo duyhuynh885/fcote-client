@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Box, CircularProgress, Grid, Paper, Stack, Typography } from '@mui/material'
 import TopAssignment from '../../components/assignment/general/TopAssignment'
 
 import ChallengeCompleted from '../../components/my-profile/view/ChallengeCompleted'
@@ -12,6 +12,7 @@ import { fetchListAssignmentRequest } from '../assignment/list/action'
 import { ViewListAssignmentRequestPayload } from '../assignment/list/type'
 import { fetchRankingRequest } from '../ranking/action'
 import TopUser from '../../components/home/TopUser'
+
 /**
  * Home Pages
  *
@@ -34,12 +35,12 @@ const Home = () => {
   const topAssignmentsState = useSelector((state: RootState) => state.listAssignment)
   const rankingState = useSelector((state: RootState) => state.ranking)
 
-  const TopChallengeRequest: ViewListChallengeRequestPayload = {
+  const customTopChallengeRequest: ViewListChallengeRequestPayload = {
     typeData: 3,
-    pageSize: 50,
+    pageSize: 10,
     pageNumber: 1,
   }
-  const TopAssignmentRequest: ViewListAssignmentRequestPayload = {
+  const customTopAssignmentRequest: ViewListAssignmentRequestPayload = {
     pageSize: 10,
     filterByCurrentAccount: false,
     pageNumber: 0,
@@ -47,26 +48,44 @@ const Home = () => {
     filterByStatus: 0,
     searchBy: '',
   }
+
   useEffect(() => {
-    dispatch(fetchListChallengeRequest(TopChallengeRequest, undefined, undefined, undefined))
-    dispatch(fetchListAssignmentRequest(TopAssignmentRequest))
+    dispatch(fetchListChallengeRequest(customTopChallengeRequest, undefined, undefined, undefined))
+    dispatch(fetchListAssignmentRequest(customTopAssignmentRequest))
     dispatch(fetchRankingRequest(rankingState.rankingTypeRequest))
   }, [])
-  console.log('---------- topAssignmentsState', topAssignmentsState.assignments)
-
   return (
     <Stack sx={{ margin: 5 }}>
       <Grid container>
         <Grid item xs={8} sx={{ padding: '0px 40px 10px 0px' }}>
           <Stack spacing={2}>
-            <TopAssignment listAssignment={topAssignmentsState.assignments} />
-            <ChallengeCompleted listChanllengeCompleted={topChallengeState.challenges} />
+            {topChallengeState.requesting ? (
+              <Stack alignItems='center'>
+                <CircularProgress color='success' />
+              </Stack>
+            ) : (
+              <TopAssignment listAssignment={topAssignmentsState.assignments} />
+            )}
+
+            {topAssignmentsState.requesting ? (
+              <Stack alignItems='center'>
+                <CircularProgress color='success' />
+              </Stack>
+            ) : (
+              <ChallengeCompleted listChanllengeCompleted={topChallengeState.challenges} />
+            )}
           </Stack>
         </Grid>
         <Grid item xs={4}>
-          <Paper elevation={8} sx={{ padding: '0px 20px 0px 0px' }}>
-            <Typography className={classes.title}>LeaderBoard</Typography>
-            <TopUser rankingList={rankingState.rankingList} />
+          <Paper elevation={8} sx={{ padding: '0px 20px 0px 0px', maxHeight: '1000px' }}>
+            <Typography className={classes.title}>Top User</Typography>
+            {rankingState.requesting ? (
+              <Stack alignItems='center'>
+                <CircularProgress color='success' />
+              </Stack>
+            ) : (
+              <TopUser rankingList={rankingState.rankingList} />
+            )}
           </Paper>
         </Grid>
       </Grid>

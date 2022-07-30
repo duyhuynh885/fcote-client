@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: theme.textFont.large,
     fontWeight: 'bold',
-    marginLeft: '10px',
-    padding: '15px 0px 10px 0px',
+    marginLeft: '20px',
+    padding: '15px 0px 15px 0px',
   },
 }))
 

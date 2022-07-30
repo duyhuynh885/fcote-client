@@ -5,6 +5,7 @@ import TopRanking from '../../components/ranking/detail/TopRanking'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../apps/ReduxContainer'
 import { fetchRankingRequest } from './action'
+
 /**
  * ranking Pages
  *
@@ -31,7 +32,7 @@ export default function Ranking() {
   }, [rankingState.rankingTypeRequest])
 
   return (
-    <Stack sx={{}}>
+  <Stack sx={{}}>
       <Grid container spacing={5}>
         <Grid item xs={12} sx={{ marginTop: '3rem' }}>
           <TopRanking data={topThreeState} />
