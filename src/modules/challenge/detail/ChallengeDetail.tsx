@@ -7,7 +7,6 @@ import Banner from '../../../components/challenge/detail/Banner'
 import TableChallenge from '../../../components/challenge/general/TableChallenge/TableChallenge'
 import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 import { viewDetailChallengeRequest } from './action'
-import useStyles from './style'
 
 /**
  * Challenge Detail
