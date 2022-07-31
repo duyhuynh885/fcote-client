@@ -7,7 +7,7 @@ import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 import useStyles from './style'
 import SaveAltOutlinedIcon from '@mui/icons-material/SaveAltOutlined'
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
-import { number, object, string, TypeOf } from 'zod'
+import { object, string, TypeOf } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../../apps/ReduxContainer'
@@ -20,10 +20,10 @@ export default function CreateChallenge() {
   const registerSchema = object({
     title: string().min(1, { message: 'Must be 1 or more characters long' }).trim(),
     description: string().min(1, { message: 'Must be 1 or more characters long' }).trim(),
-    startAt: string().trim(),
+    startAt: string(),
     endAt: string().trim(),
     secret: string(),
-    group: number().int().nonnegative().nullable(),
+    group: string(),
   })
   type CreateChallengeInput = TypeOf<typeof registerSchema>
   const dispatch = useDispatch<AppDispatch>()
@@ -39,15 +39,28 @@ export default function CreateChallenge() {
     let groupId = 1
     const image = ''
     let element: Element[]
+    const ms = moment(startAt, 'YYYY-MM-DD HH:mm:ss').diff(moment(endAt, 'YYYY-MM-DD HH:mm:ss'))
+    const d = moment.duration(ms)
+    const days = d.asDays()
+
+    if (days === 0) {
+      dispatch(showToastAction('error', 'Challenge duration least 1 day'))
+      return
+    }
+    if (moment(startAt).isAfter(endAt)) {
+      dispatch(showToastAction('error', 'Please select end date larger start date'))
+      return
+    }
     if (assignmentIdSelected.length >= 3) {
       element = assignmentIdSelected.map((assignmentId) => {
         return {
           assignmentId: assignmentId,
         } as Element
       })
-      if (group && secret === 'Private') {
+      if (group !== '1' && secret === 'Private') {
         groupId = +group
       }
+
       dispatch(
         createChallengeRequest({
           title,
@@ -60,7 +73,7 @@ export default function CreateChallenge() {
         }),
       )
     } else {
-      dispatch(showToastAction('warning', 'Please choose at least 3 and at most 6 exercises'))
+      dispatch(showToastAction('error', 'Please choose at least 3 and at most 6 exercises'))
     }
   }
 

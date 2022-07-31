@@ -4,7 +4,7 @@ import {
   ViewListAssignmentRequestAction,
   ViewListAssignmentResponse,
 } from './type'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
 import assignmentApi from '../../../services/assignmentApi'
 

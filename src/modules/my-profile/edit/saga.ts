@@ -2,12 +2,12 @@ import { handleError } from '../../../utils/handleError'
 import {
   EditMyProfileActionType,
   EditMyProfileRequestAction,
-  EditMyProfileSuccessReponse,
+  EditMyProfileSuccessResponse,
 } from './type'
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import profileApi from '../../../services/profileApi'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 
 function* editMyProfileFlow({
   firstName,
@@ -20,7 +20,7 @@ function* editMyProfileFlow({
 }: EditMyProfileRequestAction) {
   try {
     yield put(showLoaderAction())
-    const data: EditMyProfileSuccessReponse = yield call(profileApi.fetchEditMyProfileApi, {
+    const data: EditMyProfileSuccessResponse = yield call(profileApi.fetchEditMyProfileApi, {
       firstName,
       lastName,
       organization,

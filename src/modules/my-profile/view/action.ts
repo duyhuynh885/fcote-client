@@ -1,9 +1,10 @@
 import {
-  ViewMyProfileAcionType,
+  ViewMyProfileActionType,
   ViewUserAssignmentRequestingPayload,
   ViewUserAssignmentRequestAction,
   ViewChallengeCompletedRequestingPayload,
   ViewChallengeCompletedRequestAction,
+  ViewDetailProfileClearStateAction,
 } from './type'
 
 /**
@@ -33,7 +34,7 @@ export const fetchUserAssignmentRequest = ({
   gender,
 }: ViewUserAssignmentRequestingPayload): ViewUserAssignmentRequestAction => {
   return {
-    type: ViewMyProfileAcionType.VIEW_USER_ASSIGNMENT_REQUESTING,
+    type: ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_REQUESTING,
     username,
     typeData,
     firstName,
@@ -51,8 +52,18 @@ export const fetchChallengeCompletedRequest = ({
   typeData,
 }: ViewChallengeCompletedRequestingPayload): ViewChallengeCompletedRequestAction => {
   return {
-    type: ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
+    type: ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
     username,
     typeData,
+  }
+}
+
+/**
+ * Clear state action
+ * @returns viewDetailProfileClearStateRequest
+ */
+export const viewDetailProfileClearStateRequest = (): ViewDetailProfileClearStateAction => {
+  return {
+    type: ViewMyProfileActionType.VIEW_MY_PROFILE_CLEAR_STATE,
   }
 }

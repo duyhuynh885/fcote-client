@@ -15,14 +15,16 @@ import { IChallenge } from '../../challenge/list/type'
  * 10-07-2022      HuyNT2711           Create
  */
 
-export enum ViewMyProfileAcionType {
+export enum ViewMyProfileActionType {
   VIEW_USER_ASSIGNMENT_REQUESTING = 'VIEW_USER_ASSIGNMENT_REQUESTING',
   VIEW_USER_ASSIGNMENT_SUCCESS = 'VIEW_USER_ASSIGNMENT_SUCCESS',
   VIEW_USER_ASSIGNMENT_ERROR = 'VIEW_USER_ASSIGNMENT_ERROR',
   VIEW_CHALLENGE_COMPLETED_REQUESTING = 'VIEW_CHALLENGE_COMPLETED_REQUESTING',
   VIEW_CHALLENGE_COMPLETED_SUCCESS = 'VIEW_CHALLENGE_COMPLETED_SUCCESS',
   VIEW_CHALLENGE_COMPLETED_ERROR = 'VIEW_CHALLENGE_COMPLETED_ERROR ',
+  VIEW_MY_PROFILE_CLEAR_STATE = 'VIEW_MY_PROFILE_CLEAR_STATE',
 }
+
 export interface IUser {
   userId: string
   avatar: string
@@ -37,12 +39,14 @@ export interface IUser {
   gender: string
   createdAt: string
 }
+
 export interface IAssignmentCompleted {
   numberAssignmentCompletedFollowHard: number
   numberAssignmentCompletedFollowMedium: number
   numberAssignmentCompletedFollowEasy: number
   totalScore: number
 }
+
 export interface ViewUserAssignmentRequestingPayload {
   typeData: number
   username: string
@@ -59,6 +63,7 @@ export interface ViewUserAssignmentSuccessResponse {
   user: IUser
   assignmentCompleted: IAssignmentCompleted
 }
+
 export interface ViewUserAssignmentErrorResponse {
   error: ErrorMessage
 }
@@ -77,32 +82,34 @@ export interface ViewChallengeCompletedErrorResponse {
 }
 
 export type ViewUserAssignmentRequestAction = ActionWithPayload<
-  ViewMyProfileAcionType.VIEW_USER_ASSIGNMENT_REQUESTING,
+  ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_REQUESTING,
   ViewUserAssignmentRequestingPayload
 >
 
 export type ViewUserAssignmentSuccessAction = ActionWithPayload<
-  ViewMyProfileAcionType.VIEW_USER_ASSIGNMENT_SUCCESS,
+  ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_SUCCESS,
   ViewUserAssignmentSuccessResponse
 >
 export type ViewUserAssignmentErrorAction = ActionWithPayload<
-  ViewMyProfileAcionType.VIEW_USER_ASSIGNMENT_ERROR,
+  ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_ERROR,
   ViewUserAssignmentErrorResponse
 >
 
 export type ViewChallengeCompletedRequestAction = ActionWithPayload<
-  ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
+  ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
   ViewChallengeCompletedRequestingPayload
 >
 
 export type ViewChallengeCompletedSuccessAction = ActionWithPayload<
-  ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_SUCCESS,
+  ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_SUCCESS,
   ViewChallengeCompletedSuccessResponse
 >
 export type ViewChallengeCompletedErrorAction = ActionWithPayload<
-  ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_ERROR,
+  ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_ERROR,
   ViewChallengeCompletedErrorResponse
 >
+export type ViewDetailProfileClearStateAction =
+  Action<ViewMyProfileActionType.VIEW_MY_PROFILE_CLEAR_STATE>
 
 export type ViewMyProfileAction =
   | ViewUserAssignmentRequestAction
@@ -111,6 +118,7 @@ export type ViewMyProfileAction =
   | ViewChallengeCompletedRequestAction
   | ViewChallengeCompletedSuccessAction
   | ViewChallengeCompletedErrorAction
+  | ViewDetailProfileClearStateAction
 
 export interface ViewMyProfileState {
   requesting: boolean
@@ -121,7 +129,6 @@ export interface ViewMyProfileState {
   challengeCompletedRequest: ViewChallengeCompletedRequestingPayload
   user: IUser
   assignmentCompleted: IAssignmentCompleted
-  // challengeCompleted: ViewChallengeCompletedSuccessResponse
   challengeCompleted: {
     listChallengeCompleted: IChallenge[]
     currentSize: number
