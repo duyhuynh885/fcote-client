@@ -42,7 +42,7 @@ export interface Group {
 export interface ViewListGroupResponse {
   messageVi: string
   messageEn: string
-  currentSize: number
+  totalGroup: number
   groups: Group[]
 }
 
@@ -76,5 +76,5 @@ export interface ViewListGroupState {
   errors: ErrorMessage
   groupTypeRequest: ViewListGroupRequestPayload
   groups: Group[]
-  currentSize: number
+  totalGroup: number
 }

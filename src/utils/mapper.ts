@@ -1,6 +1,7 @@
 import { DataType } from '../modules/assignment/data-type/type'
 import _ from 'lodash'
 import { DifficultEnum, StatusEnum } from '../modules/assignment/list/type'
+import { StatusChallengeEnum } from '../modules/challenge/list/type'
 
 export const mapNameDataTypeByValue = (dataType: DataType[], value: number) => {
   const result = _.find(dataType, { value: value })
@@ -45,4 +46,30 @@ export const mapStatusAssignment = (statusEnum: StatusEnum) => {
       break
   }
   return result
+}
+
+export const mapStatusChallenge = (statusChallengeEnum: StatusChallengeEnum) => {
+  type resultType = 'notOpenYet' | 'open' | 'close'
+  let status: resultType
+  let displayText: string
+
+  switch (statusChallengeEnum) {
+    case StatusChallengeEnum.NOT_OPEN_YET:
+      status = 'notOpenYet'
+      displayText = 'NOT OPEN YET'
+      break
+    case StatusChallengeEnum.OPEN:
+      status = 'open'
+      displayText = 'OPEN'
+      break
+    case StatusChallengeEnum.CLOSE:
+      status = 'close'
+      displayText = 'CLOSE'
+      break
+    default:
+      status = 'notOpenYet'
+      displayText = ''
+      break
+  }
+  return { status, displayText }
 }

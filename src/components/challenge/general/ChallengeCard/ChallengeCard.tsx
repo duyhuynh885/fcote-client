@@ -4,7 +4,10 @@ import useStyles from './style'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import { Link } from 'react-router-dom'
 import { IChallenge } from '../../../../modules/challenge/list/type'
-import { formatDate } from '../../../../utils/dateUtil'
+import { formatDate, formatDateType2 } from '../../../../utils/dateUtil'
+import { mapStatusChallenge } from '../../../../utils/mapper'
+import StatusChallengeChallenge from '../../../common/text/StatusChallenge'
+import DateChallenge from '../../../common/text/DateChallenge'
 /**
  * Challenge Card Component
  *
@@ -26,18 +29,6 @@ interface ChallengeCardProps {
 const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
   const classes = useStyles()
   const challenge = props.challenge
-  const handleShowStatus = () => {
-    switch (challenge.status) {
-      case 1:
-        return 'NOT OPEN YET'
-      case 2:
-        return 'OPEN'
-      case 3:
-        return 'CLOSE'
-      default:
-        return ''
-    }
-  }
   return (
     <Paper elevation={2} square className={classes.container}>
       <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
@@ -57,7 +48,9 @@ const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
             spacing={1}
           >
             <Typography className={classes.challengeCardTittle}>{challenge.title}</Typography>
-            <Typography sx={{ marginBottom: '10px' }}>{challenge.description}</Typography>
+            <Typography className={classes.challengeCardDescription}>
+              {challenge.description}
+            </Typography>
             <Stack
               sx={{
                 width: '100%',
@@ -65,12 +58,14 @@ const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
               direction='row'
               justifyContent='space-between'
             >
-              <Stack direction='row'>
-                <PersonOutlineIcon />
-                <Typography>{challenge.totalMember}</Typography>
+              <Stack direction='row' alignItems='center'>
+                <Typography className={classes.challengeTotalMember}>
+                  <PersonOutlineIcon fontSize='small' />
+                  {challenge.totalMember}
+                </Typography>
               </Stack>
-              <Typography>{formatDate(challenge.startAt)}</Typography>
-              <Typography className={classes.challengeCardStatus}>{handleShowStatus()}</Typography>
+              <DateChallenge startDate={challenge.startAt} endDate={challenge.endAt} />
+              <StatusChallengeChallenge {...mapStatusChallenge(challenge.status)} size={'large'} />
             </Stack>
           </Stack>
         </Stack>
