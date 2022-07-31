@@ -20,7 +20,7 @@ function* editMyProfileFlow({
 }: EditMyProfileRequestAction) {
   try {
     yield put(showLoaderAction())
-    const data: EditMyProfileSuccessResponse = yield call(profileApi.fetchEditMyProfileApi, {
+    const data: EditMyProfileSuccessResponse = yield call(profileApi.putEditMyProfileApi, {
       firstName,
       lastName,
       organization,

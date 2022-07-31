@@ -30,14 +30,20 @@ import {
 export default function MyProfile() {
   const dispatch = useDispatch<AppDispatch>()
   const myProfileState = useSelector((state: RootState) => state.myProfile)
+  const currentUserState = useSelector((state: RootState) => state.currentUser.user)
+  useEffect(() => {
+    if (currentUserState.username !== '') {
+      dispatch(
+        fetchUserAssignmentRequest(myProfileState.userAssignmentRequest, currentUserState.username),
+      )
+    }
+  }, [myProfileState.userAssignmentRequest, currentUserState])
 
   useEffect(() => {
-    dispatch(fetchUserAssignmentRequest(myProfileState.userAssignmentRequest))
-  }, [myProfileState.userAssignmentRequest])
-
-  useEffect(() => {
-    dispatch(fetchChallengeCompletedRequest(myProfileState.challengeCompletedRequest))
-  }, [myProfileState.challengeCompletedRequest])
+    if (currentUserState.username !== '') {
+      dispatch(fetchChallengeCompletedRequest(myProfileState.challengeCompletedRequest, currentUserState.username))
+    }
+  }, [myProfileState.challengeCompletedRequest, currentUserState])
 
   /**
    * clear state
