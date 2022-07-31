@@ -31,12 +31,10 @@ const profileApi = {
       payload,
     )
   },
-  fetchEditMyProfileApi(payload: EditMyProfileRequestPayload) {
+  putEditMyProfileApi(payload: EditMyProfileRequestPayload) {
     const url = '/account/update-profile'
     return axiosClient.put<EditMyProfileSuccessResponse, EditMyProfileErrorResponse>(url, {
-      user: {
-        payload,
-      },
+      user: payload,
     })
   },
 
