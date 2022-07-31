@@ -7,7 +7,6 @@ import Banner from '../../../components/challenge/detail/Banner'
 import TableChallenge from '../../../components/challenge/general/TableChallenge/TableChallenge'
 import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 import { viewDetailChallengeRequest } from './action'
-import useStyles from './style'
 
 /**
  * Challenge Detail
@@ -41,7 +40,7 @@ export default function ChallengeDetail() {
   return (
     <Stack>
       <InsideNavBar namePage='Challenge Detail' />
-      <Banner detail={detail} />
+      <Banner requesting={requesting} detail={detail} />
       <Stack direction='row' justifyContent='center' alignItems='center' margin={5}>
         {requesting ? (
           <Stack marginTop={5} alignItems='center'>

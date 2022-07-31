@@ -52,7 +52,7 @@ export default function Challenge() {
   const dispatch = useDispatch<AppDispatch>()
   const challengesState = useSelector((state: RootState) => state.listChallenges.challenges)
   const groupsState = useSelector((state: RootState) => state.listGroup.groups)
-  const currentSizeState = useSelector((state: RootState) => state.listChallenges.currentSize)
+  const totalChallengeState = useSelector((state: RootState) => state.listChallenges.totalChallenge)
   const filterChallengesState = useSelector(
     (state: RootState) => state.listChallenges.filterRequest,
   )
@@ -61,8 +61,8 @@ export default function Challenge() {
   const [typeData, setTypeData] = useState(1)
   const [groupID, setGroupId] = useState<number | undefined>()
 
-  const PER_PAGE = 10
-  const count = Math.ceil(currentSizeState / PER_PAGE)
+  const PER_PAGE = 4
+  const count = Math.ceil(totalChallengeState / PER_PAGE)
 
   // handle choose challenge follow Group
   const callbackSetGroupID = (value: number | undefined) => {
@@ -81,19 +81,19 @@ export default function Challenge() {
 
   const publicRequest: ViewListChallengeRequestPayload = {
     typeData: 1,
-    pageSize: 50,
+    pageSize: 4,
     pageNumber: 1,
   }
 
   const groupChallengeRequest: ViewListChallengeRequestPayload = {
     typeData: 2,
-    pageSize: 50,
+    pageSize: 4,
     pageNumber: 1,
   }
 
   const ownerRequest: ViewListChallengeRequestPayload = {
     typeData: 3,
-    pageSize: 50,
+    pageSize: 4,
     pageNumber: 1,
   }
 

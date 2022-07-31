@@ -1,6 +1,5 @@
-import { CircularProgress, Stack } from '@mui/material'
+import { CircularProgress, Container, Stack } from '@mui/material'
 import React, { useEffect } from 'react'
-import useStyles from './style'
 import PaginationCard from '../../common/pagination/PaginationCard'
 import { IChallenge } from '../../../modules/challenge/list/type'
 import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
@@ -32,7 +31,6 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
   const page = props.page
   const handleChangePage = props.handleChangePage
   const count = props.count
-  const classes = useStyles()
   const dispatch = useDispatch()
   const listChallengeRequesting = useSelector((state: RootState) => state.listChallenges.requesting)
   /**
@@ -46,21 +44,23 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
 
   return (
     <Stack>
-      <Stack className={classes.scrollBar} spacing={2} marginBottom={5}>
+      <Container fixed sx={{ minHeight: '70vh' }}>
         {listChallengeRequesting ? (
           <Stack marginTop={5} alignItems='center'>
             <CircularProgress color='success' />
           </Stack>
         ) : (
-          listChallenges.map((challenge) => (
-            <ChallengeCard
-              key={challenge.challengeId}
-              challenge={challenge}
-              url={`/challenge/${challenge.challengeId}`}
-            />
-          ))
+          <Stack direction='column' spacing={2} marginBottom={2}>
+            {listChallenges.map((challenge) => (
+              <ChallengeCard
+                key={challenge.challengeId}
+                challenge={challenge}
+                url={`/challenge/${challenge.challengeId}`}
+              />
+            ))}
+          </Stack>
         )}
-      </Stack>
+      </Container>
       <PaginationCard page={page} handleChangePage={handleChangePage} count={count} />
     </Stack>
   )
