@@ -106,7 +106,13 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
     <Paper
       square
       elevation={props.type === TypeFilterTaskBarEnum.CREATE_CHALLENGE ? 0 : 3}
-      sx={{ width: '100%', padding: '10px', display: 'flex', justifyContent: 'space-between' }}
+      sx={{
+        width: '100%',
+        height: '4rem',
+        padding: '10px',
+        display: 'flex',
+        justifyContent: 'space-between',
+      }}
     >
       <Stack direction='row' justifyContent='flex-start' alignItems='center' spacing={2}>
         <FormControl color='success' variant='standard' sx={{ m: 1, minWidth: 120 }}>

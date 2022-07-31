@@ -45,8 +45,14 @@ export default function TaskbarGroup({ queryParamValue, onQueryParamChange }: Pr
   return (
     <Paper
       square
-      elevation={5}
-      sx={{ width: '100%', padding: '5px', display: 'flex', justifyContent: 'space-between' }}
+      elevation={3}
+      sx={{
+        width: '100%',
+        padding: '10px',
+        height: '4rem',
+        display: 'flex',
+        justifyContent: 'space-between',
+      }}
     >
       <Stack direction='row' justifyContent='flex-start' alignItems='center' spacing={2}>
         <TextField

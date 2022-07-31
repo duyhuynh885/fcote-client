@@ -1,7 +1,7 @@
 import {
   EditMyProfileRequestPayload,
-  EditMyProfileSuccessReponse,
-  EditMyProfileErrorReponse,
+  EditMyProfileSuccessResponse,
+  EditMyProfileErrorResponse,
 } from '../modules/my-profile/edit/type'
 import {
   ViewUserAssignmentRequestingPayload,
@@ -15,7 +15,7 @@ import {
 import { axiosClient } from './clientApi'
 
 const profileApi = {
-  fetchUserAssignemntApi(payload: ViewUserAssignmentRequestingPayload) {
+  fetchUserAssignmentApi(payload: ViewUserAssignmentRequestingPayload) {
     const url = '/account/get-profile'
     return axiosClient.post<ViewUserAssignmentSuccessResponse, ViewUserAssignmentErrorResponse>(
       url,
@@ -24,7 +24,7 @@ const profileApi = {
   },
   fetchEditMyProfileApi(payload: EditMyProfileRequestPayload) {
     const url = '/account/update-profile'
-    return axiosClient.put<EditMyProfileSuccessReponse, EditMyProfileErrorReponse>(url, {
+    return axiosClient.put<EditMyProfileSuccessResponse, EditMyProfileErrorResponse>(url, {
       user: {
         payload,
       },

@@ -21,7 +21,7 @@ export enum ViewDetailChallengeActionType {
 }
 
 export interface ViewDetailChallengeRequestPayload {
-  id: string
+  id: number
 }
 
 export interface ViewDetailChallengeErrorResponse {
@@ -42,13 +42,21 @@ export interface Detail {
 }
 
 export interface AssignmentList {
+  score: number
   order: number
   assignmentId: number
 }
 
 export interface Submit {
+  ranking: number
+  totalResult: TotalResult
   userInfo: UserInfo
   assignmentResults: AssignmentResult[]
+}
+
+export interface TotalResult {
+  score: number
+  time: string
 }
 
 export interface UserInfo {

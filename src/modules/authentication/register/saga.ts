@@ -3,7 +3,7 @@ import { RegisterActionType, RegisterRequestAction, RegisterResponse } from './t
 import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import authApi from '../../../services/authApi'
 import { handleError } from '../../../utils/handleError'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 import history from '../../../configs/routing/history'
 
 /**

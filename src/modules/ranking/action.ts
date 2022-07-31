@@ -39,7 +39,7 @@ export const fetchRankingRequest = ({
   }
 }
 
-export const updateFillterRankingRequest = ({
+export const updateFilterRankingRequest = ({
   typeRanking,
   pageSize,
   pageNumber,

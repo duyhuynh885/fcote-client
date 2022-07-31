@@ -17,7 +17,7 @@ import { makeStyles } from '@mui/styles'
  */
 
 const useStyles = makeStyles((theme: Theme) => ({
-  containerWraper: {
+  container: {
     margin: '10px 10px',
     maxWidth: '80vw',
     maxHeight: '50%',
@@ -49,14 +49,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   textHeaderCell: {
     textAlign: 'center',
-    fontWeight: '600 !important',
+    fontWeight: '700 !important',
     color: `${theme.color.white} !important`,
-    fontSize: `${theme.textFont.large} !important`,
+    fontSize: `${theme.textFont.medium} !important`,
+    textDecoration: 'none',
   },
   tableItemCell: {
     textAlign: 'center',
     maxWidth: '3em',
     padding: '10px 0px 10px 0px',
+    borderRight: '0.5px solid lightGray',
   },
   tableItemCellOfTotal: {
     textAlign: 'center',

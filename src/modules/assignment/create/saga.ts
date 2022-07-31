@@ -5,7 +5,7 @@ import {
   CreateAssignmentResponse,
 } from './type'
 import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
 import assignmentApi from '../../../services/assignmentApi'
 import history from '../../../configs/routing/history'

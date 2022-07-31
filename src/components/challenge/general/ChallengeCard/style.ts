@@ -16,6 +16,14 @@ import { makeStyles } from '@mui/styles'
  * 29-06-2022      HuyNT2711           Create
  */
 const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    width: '100%',
+    height: 'auto',
+    '&:hover': {
+      boxShadow: '5px 5px 2px 1px rgba(0,0,0,0.5)',
+      transform: 'translateY(-5px) scale(1.005) translateZ(0)',
+    },
+  },
   challengeCardBanner: {
     width: 125,
     height: 125,

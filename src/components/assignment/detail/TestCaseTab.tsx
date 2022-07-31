@@ -108,7 +108,7 @@ export default function TestCaseTab(props: TestCaseTabProps) {
         </RegularButton>
       </Stack>
       {requesting ? (
-        <Stack alignItems='center'>
+        <Stack marginTop={5} alignItems='center'>
           <CircularProgress color='success' />
         </Stack>
       ) : (
@@ -183,8 +183,8 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
           >
             <Typography className={classes.titleTextField}>Test {testCase.order}</Typography>
             <Stack direction='row' alignItems='center' spacing={2}>
-              {handleShowPassedTestCase(testCase.isPassed)}
               {testCase.isPrivate && <LockOutlinedIcon fontSize='small' />}
+              {handleShowPassedTestCase(testCase.isPassed)}
             </Stack>
           </Stack>
         </AccordionSummary>

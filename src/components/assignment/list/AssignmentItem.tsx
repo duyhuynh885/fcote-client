@@ -37,7 +37,7 @@ const AssignmentItem = (props: AssignmentItemProps) => {
   }
 
   return (
-    <Paper elevation={8} square className={classes.container}>
+    <Paper elevation={2} square className={classes.container}>
       <Stack direction='column' spacing={0.5}>
         <Typography className={classes.name}>{assignment.title}</Typography>
         <Stack direction='row' alignItems='center' spacing={1} className={classes.wrapAvatarName}>

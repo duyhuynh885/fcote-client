@@ -1,7 +1,6 @@
 import { handleError } from './../../utils/handleError'
-import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
-import requestFailure from '../../utils/onFailure'
-import { hideLoaderAction, showLoaderAction } from '../layout/loader/action'
+import { all, call, fork, put, takeLatest } from 'redux-saga/effects'
+import requestFailure from '../../utils/requestFailure'
 import { RankingActionType, RankingRequestAction, RankingResponse } from './type'
 import rankingApi from '../../services/rankingApi'
 
@@ -36,7 +35,7 @@ function* rankingFlow({ typeRanking, pageNumber, pageSize }: RankingRequestActio
 }
 
 function* rankingWatcher() {
-  yield takeEvery(RankingActionType.RANKING_REQUESTING, rankingFlow)
+  yield takeLatest(RankingActionType.RANKING_REQUESTING, rankingFlow)
 }
 
 export default function* rankingSaga() {

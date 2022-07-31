@@ -1,7 +1,6 @@
 import { call, put, fork, takeEvery, all } from 'redux-saga/effects'
 import { ViewListGroupActionType, ViewListGroupRequestAction, ViewListGroupResponse } from './type'
-import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
 import groupApi from '../../../services/groupApi'
 
@@ -22,22 +21,20 @@ import groupApi from '../../../services/groupApi'
 
 function* viewListGroupFlow({ pageSize, pageNumber }: ViewListGroupRequestAction) {
   try {
-    yield put(showLoaderAction())
     const data: ViewListGroupResponse = yield call(groupApi.fetchListGroup, {
       pageSize,
       pageNumber,
     })
     yield put({ type: ViewListGroupActionType.VIEW_LIST_GROUP_SUCCESS, ...data })
-    yield put(hideLoaderAction())
   } catch (error) {
     yield call(requestFailure, ViewListGroupActionType.VIEW_LIST_GROUP_ERROR, handleError(error))
   }
 }
 
-function* viewListGroupWather() {
+function* viewListGroupWatcher() {
   yield takeEvery(ViewListGroupActionType.VIEW_LIST_GROUP_REQUESTING, viewListGroupFlow)
 }
 
 export default function* viewListGroupSaga() {
-  yield all([fork(viewListGroupWather)])
+  yield all([fork(viewListGroupWatcher)])
 }

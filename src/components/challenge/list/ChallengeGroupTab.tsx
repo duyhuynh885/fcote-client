@@ -1,5 +1,5 @@
 import GroupsSharpIcon from '@mui/icons-material/GroupsSharp'
-import { Grid, Paper, Stack, Typography } from '@mui/material'
+import { CircularProgress, Divider, Grid, Paper, Stack, Typography } from '@mui/material'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
@@ -7,6 +7,10 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import { Box } from '@mui/system'
 import * as React from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import { clearStateViewListChallenge } from '../../../modules/challenge/list/action'
 import { IChallenge } from '../../../modules/challenge/list/type'
 import { Group } from '../../../modules/group/list/type'
 import PaginationCard from '../../common/pagination/PaginationCard'
@@ -40,61 +44,94 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   const classes = useStyles()
   const { challenges, groups, onclick, page, handleChangePage, count } = props
   const [selectedIndex, setSelectedIndex] = React.useState(0)
-
+  const dispatch = useDispatch<AppDispatch>()
+  const listChallengeRequesting = useSelector((state: RootState) => state.listChallenges.requesting)
+  const listGroupRequesting = useSelector((state: RootState) => state.listGroup.requesting)
   // handle show challenges follow Group
   const handleClickGroup = (
     groupID: number | undefined,
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    _event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number,
   ) => {
     onclick(groupID)
     setSelectedIndex(index)
   }
 
+  /**
+   * clear state
+   */
+  useEffect(() => {
+    return () => {
+      dispatch(clearStateViewListChallenge())
+    }
+  }, [])
+
   return (
-    <Stack>
-      <Grid container xs={12}>
-        <Grid item xs={8}>
-          <Stack className={classes.scrollBar} spacing={2}>
-            {challenges.map((challenge) => (
+    <Grid container spacing={3}>
+      <Grid item xs={4}>
+        <Paper
+          elevation={4}
+          square
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            padding: 2,
+          }}
+        >
+          <Stack direction='column' spacing={2}>
+            <Box>
+              <Typography className={classes.myGroup}>My Group</Typography>
+            </Box>
+            <List className={classes.listGroupScroll}>
+              {listGroupRequesting ? (
+                <Stack marginTop={5} alignItems='center'>
+                  <CircularProgress color='success' />
+                </Stack>
+              ) : (
+                groups.map((group, index: number) => (
+                  <React.Fragment key={group.id}>
+                    <ListItem
+                      disablePadding
+                      classes={{ root: classes.root, selected: classes.selected }}
+                    >
+                      <ListItemButton
+                        key={group.id}
+                        selected={selectedIndex === index}
+                        onClick={(event) => handleClickGroup(group.id, event, index)}
+                      >
+                        <ListItemIcon>
+                          <GroupsSharpIcon color={'success'} />
+                        </ListItemIcon>
+                        <ListItemText className={classes.groupTittle} primary={group.title} />
+                      </ListItemButton>
+                    </ListItem>
+                    <Divider variant='inset' component='li' />
+                  </React.Fragment>
+                ))
+              )}
+            </List>{' '}
+          </Stack>
+        </Paper>
+      </Grid>
+      <Grid item xs={8}>
+        <Stack className={classes.scrollBar} spacing={2} marginBottom={5}>
+          {listChallengeRequesting ? (
+            <Stack marginTop={5} alignItems='center'>
+              <CircularProgress color='success' />
+            </Stack>
+          ) : (
+            challenges.map((challenge) => (
               <ChallengeCard
                 key={challenge.challengeId}
                 url={`/challenge/${challenge.challengeId}`}
                 challenge={challenge}
               />
-            ))}
-          </Stack>
-          <PaginationCard page={page} handleChangePage={handleChangePage} count={count} />
-        </Grid>
-        <Grid item xs={4} sx={{ paddingLeft: '1%' }}>
-          <Paper elevation={5} sx={{ height: '80vh', marginTop: '10px' }}>
-            <Box>
-              <Typography className={classes.myGroup}>My Group</Typography>
-            </Box>
-            <List className={classes.listGroupScroll}>
-              {groups.map((group, index: number) => (
-                <ListItem
-                  key={group.id}
-                  disablePadding
-                  classes={{ selected: classes.selectedActive }}
-                >
-                  <ListItemButton
-                    key={group.id}
-                    selected={selectedIndex === index}
-                    onClick={(event) => handleClickGroup(group.id, event, index)}
-                  >
-                    <ListItemIcon>
-                      <GroupsSharpIcon color={'success'} />
-                    </ListItemIcon>
-                    <ListItemText className={classes.groupTittle} primary={group.title} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </Paper>
-        </Grid>
+            ))
+          )}
+        </Stack>
+        <PaginationCard page={page} handleChangePage={handleChangePage} count={count} />
       </Grid>
-    </Stack>
+    </Grid>
   )
 }
 export default ChallengeGroup

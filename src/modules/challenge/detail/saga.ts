@@ -4,10 +4,8 @@ import {
   ViewDetailChallengeRequestAction,
   ViewDetailChallengeResponse,
 } from './type'
-import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
-import history from '../../../configs/routing/history'
 import challengeApi from '../../../services/challengeApi'
 
 /**
@@ -31,7 +29,6 @@ import challengeApi from '../../../services/challengeApi'
  */
 function* viewDetailChallengeFlow({ id }: ViewDetailChallengeRequestAction) {
   try {
-    yield put(showLoaderAction())
     const data: ViewDetailChallengeResponse = yield call(challengeApi.getDetailChallenge, {
       id,
     })
@@ -39,8 +36,6 @@ function* viewDetailChallengeFlow({ id }: ViewDetailChallengeRequestAction) {
       type: ViewDetailChallengeActionType.VIEW_DETAIL_CHALLENGE_SUCCESS,
       ...data,
     })
-    history.push('/challenge')
-    yield put(hideLoaderAction())
   } catch (error) {
     yield call(
       requestFailure,

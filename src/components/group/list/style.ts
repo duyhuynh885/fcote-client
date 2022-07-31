@@ -20,19 +20,22 @@ const useStyles = makeStyles((theme: Theme) => ({
   wrapper: {
     width: '100%',
     height: 'auto',
-    border: ` 1px solid ${theme.color.brown} !important`,
     padding: '12px',
+    '&:hover': {
+      boxShadow: '5px 5px 2px 1px rgba(0,0,0,0.5)',
+      transform: 'translateY(-5px) scale(1.005) translateZ(0)',
+    },
   },
   groupCardBanner: {
-    width: 140,
-    height: 140,
+    width: 120,
+    height: 120,
   },
   challengeCardContainer: {
     padding: 10,
   },
   groupCardTittle: {
-    fontSize: `${theme.textFont.supperLarge} !important`,
-    fontWeight: '600 !important',
+    fontSize: `${theme.textFont.large} !important`,
+    fontWeight: '700 !important',
     color: `${theme.color.black} !important`,
     textDecoration: 'none',
     overflow: 'hidden',
@@ -44,13 +47,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: 'uppercase',
     paddingRight: '10px',
   },
-  box: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-  },
   text: {
     marginLeft: '10px',
-    fontWeight: '500 !important',
+    fontWeight: '600 !important',
     fontSize: `${theme.textFont.medium} !important`,
   },
 }))
