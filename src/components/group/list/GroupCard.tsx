@@ -1,11 +1,12 @@
-import { Box, Paper, Stack, Typography } from '@mui/material'
+import { Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import useStyles from './style'
 import { Link } from 'react-router-dom'
-import GroupIcon from '@mui/icons-material/Group'
-import GroupAddIcon from '@mui/icons-material/GroupAdd'
-import StarBorderIcon from '@mui/icons-material/StarBorder'
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
+import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined'
+import LocalActivityOutlinedIcon from '@mui/icons-material/LocalActivityOutlined'
 import { Group } from '../../../modules/group/list/type'
+
 /**
  * Group Card
  *
@@ -30,27 +31,27 @@ export default function GroupCard(props: IProps) {
   const classes = useStyles()
   const { group } = props
   return (
-    <Paper square className={classes.wrapper}>
+    <Paper elevation={2} square className={classes.wrapper}>
       <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={'/group/' + group.id}>
-        <Stack direction='row'>
+        <Stack direction='row' alignItems='center'>
           <img
             className={classes.groupCardBanner}
             src='https://cdn.dribbble.com/users/2328253/screenshots/15014957/media/313122ac2b8ae8ad7757c4fcf7c7f81c.jpg?compress=1&resize=400x300&vertical=top'
           />
-          <Stack direction='column' className={classes.challengeCardContainer}>
+          <Stack direction='column' paddingLeft={1}>
             <Typography className={classes.groupCardTittle}>{group.title}</Typography>
-            <Box className={classes.box}>
-              <GroupIcon />
+            <Stack direction='row' alignItems='center'>
+              <GroupOutlinedIcon fontSize='small' />
               <Typography className={classes.text}>{group.totalMember}</Typography>
-            </Box>
-            <Box className={classes.box}>
-              <GroupAddIcon />
+            </Stack>
+            <Stack direction='row' alignItems='center'>
+              <SecurityOutlinedIcon fontSize='small' />
               <Typography className={classes.text}>Private</Typography>
-            </Box>
-            <Box className={classes.box}>
-              <StarBorderIcon />
+            </Stack>
+            <Stack direction='row' alignItems='center'>
+              <LocalActivityOutlinedIcon fontSize='small' />
               <Typography className={classes.text}>{group.createdBy}</Typography>
-            </Box>
+            </Stack>
           </Stack>
         </Stack>
       </Link>

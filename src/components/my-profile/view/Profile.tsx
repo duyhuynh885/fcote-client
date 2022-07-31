@@ -92,11 +92,12 @@ const Profile: React.FC<ProfileProps> = (props) => {
 
   return (
     <Paper
-      elevation={8}
+      elevation={4}
       square
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        height: 'auto',
       }}
     >
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>

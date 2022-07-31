@@ -43,6 +43,11 @@ interface IDataRow {
     numberTry: string
   }
 }
+
+function createData({ ranking, username, a, b, c, d, e, f, total }: IDataRow): IDataRow {
+  return { ranking, username, a, b, c, d, e, f, total }
+}
+
 export const FakeDataChallengDetails = [
   createData({
     ranking: 1,
@@ -741,9 +746,6 @@ export const FakeDataChallengDetails = [
     },
   }),
 ]
-function createData({ ranking, username, a, b, c, d, e, f, total }: IDataRow): IDataRow {
-  return { ranking, username, a, b, c, d, e, f, total }
-}
 
 export default function FakeDataChallengeDetail() {
   return <div>FakeDataChallengeDetail</div>

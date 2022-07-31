@@ -5,7 +5,11 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import AssignmentCompleted from '../../../components/my-profile/view/AssignmentCompleted'
 import ChallengeCompleted from '../../../components/my-profile/view/ChallengeCompleted'
 import Profile from '../../../components/my-profile/view/Profile'
-import { fetchChallengeCompletedRequest, fetchUserAssignmentRequest } from './action'
+import {
+  fetchChallengeCompletedRequest,
+  fetchUserAssignmentRequest,
+  viewDetailProfileClearStateRequest,
+} from './action'
 
 /**
  * My Profile Pages
@@ -26,14 +30,29 @@ import { fetchChallengeCompletedRequest, fetchUserAssignmentRequest } from './ac
 export default function MyProfile() {
   const dispatch = useDispatch<AppDispatch>()
   const myProfileState = useSelector((state: RootState) => state.myProfile)
+  const currentUserState = useSelector((state: RootState) => state.currentUser.user)
+  useEffect(() => {
+    if (currentUserState.username !== '') {
+      dispatch(
+        fetchUserAssignmentRequest(myProfileState.userAssignmentRequest, currentUserState.username),
+      )
+    }
+  }, [myProfileState.userAssignmentRequest, currentUserState])
 
   useEffect(() => {
-    dispatch(fetchUserAssignmentRequest(myProfileState.userAssignmentRequest))
-  }, [myProfileState.userAssignmentRequest])
+    if (currentUserState.username !== '') {
+      dispatch(fetchChallengeCompletedRequest(myProfileState.challengeCompletedRequest, currentUserState.username))
+    }
+  }, [myProfileState.challengeCompletedRequest, currentUserState])
 
+  /**
+   * clear state
+   */
   useEffect(() => {
-    dispatch(fetchChallengeCompletedRequest(myProfileState.challengeCompletedRequest))
-  }, [myProfileState.challengeCompletedRequest])
+    return () => {
+      dispatch(viewDetailProfileClearStateRequest())
+    }
+  }, [])
 
   return (
     <Stack sx={{ margin: 5 }}>
@@ -44,7 +63,7 @@ export default function MyProfile() {
         <Grid item xs={8}>
           <Stack spacing={2}>
             <ChallengeCompleted
-              listChanllengeCompleted={myProfileState.challengeCompleted.listChallengeCompleted}
+              listChallengeCompleted={myProfileState.challengeCompleted.listChallengeCompleted}
             />
             <AssignmentCompleted assCompleted={myProfileState.assignmentCompleted} />
           </Stack>

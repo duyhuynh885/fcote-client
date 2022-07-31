@@ -25,7 +25,7 @@ import {
  * @param param ViewDetailChallengeRequestPayload
  * @returns ViewDetailChallengeRequestAction
  */
-export const ViewDetailChallengeRequest = ({
+export const viewDetailChallengeRequest = ({
   id,
 }: ViewDetailChallengeRequestPayload): ViewDetailChallengeRequestAction => {
   return {
@@ -38,7 +38,7 @@ export const ViewDetailChallengeRequest = ({
  * Clear state action
  * @returns ViewDetailChallengeClearStateAction
  */
-export const ViewDetailChallengeClearStateRequest = (): ViewDetailChallengeClearStateAction => {
+export const viewDetailChallengeClearStateRequest = (): ViewDetailChallengeClearStateAction => {
   return {
     type: ViewDetailChallengeActionType.VIEW_DETAIL_CHALLENGE_CLEAR_STATE,
   }

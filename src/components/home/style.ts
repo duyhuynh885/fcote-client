@@ -17,18 +17,14 @@ import { makeStyles } from '@mui/styles'
  */
 
 const useStyles = makeStyles((theme: Theme) => ({
-  containerWraper: {
-    margin: '10px 10px',
-    maxWidth: '100%',
-    maxHeight: '50%',
-  },
-  table: {
-    minWidth: '10vw',
+  title: {
+    fontSize: theme.textFont.large,
+    fontWeight: 'bold',
+    paddingLeft: '20px',
   },
   tableContainer: {
-    margin: '10px 10px',
-    maxWidth: '100%',
-    maxHeight: '100%',
+    width: '100%',
+    height: '100%',
   },
   tableRowBody1: {
     backgroundColor: `${theme.color.lightBlue} !important`,
@@ -98,7 +94,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
   },
   textUsername: {
-    fontWeight: '600 !important',
+    fontWeight: '700 !important',
     color: `${theme.color.black} !important`,
     fontSize: `${theme.textFont.small} !important`,
     textAlign: 'left',
@@ -118,8 +114,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   ranking: {
     fontWeight: '700 !important',
-    color: `${theme.color.black} !important`,
-    fontSize: `${theme.textFont.extraLarge} !important`,
+    color: `${theme.color.darkGray} !important`,
+    fontSize: `${theme.textFont.large} !important`,
+  },
+  textHeaderCellUsername: {
+    textAlign: 'start',
+    fontWeight: '700 !important',
+    color: `${theme.color.brown} !important`,
+    fontSize: `${theme.textFont.medium} !important`,
   },
 }))
 

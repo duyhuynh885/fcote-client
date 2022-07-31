@@ -63,7 +63,7 @@ export interface Assignment {
 export interface ViewListAssignmentResponse {
   messageVi: string
   messageEn: string
-  currentSize: number
+  totalAssignment: number
   assignments: Assignment[]
 }
 export type ViewListAssignmentRequestAction = ActionWithPayload<
@@ -99,5 +99,5 @@ export interface ViewListAssignmentState {
   errors: ErrorMessage
   filterRequest: ViewListAssignmentRequestPayload
   assignments: Assignment[]
-  currentSize: number
+  totalAssignment: number
 }

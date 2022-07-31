@@ -25,6 +25,7 @@ import createChallengeReducer from '../../modules/challenge/create/reducer'
 import detailChallengeReducer from '../../modules/challenge/detail/reducer'
 import leaveGroupReducer from '../../modules/group/setting/leave/reducer'
 import kickGroupReducer from '../../modules/group/setting/kick/reducer'
+import getMyProfile from '../../modules/my-profile/get-my-profile/reducer'
 
 /**
  * Root Reducer
@@ -60,6 +61,7 @@ const rootReducer = (history: any) =>
     detailChallenge: detailChallengeReducer,
     leaveGroup: leaveGroupReducer,
     kickGroup: kickGroupReducer,
+    currentUser: getMyProfile,
   })
 
 export default rootReducer

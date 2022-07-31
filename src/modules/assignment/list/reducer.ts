@@ -31,11 +31,11 @@ const initialState: ViewListAssignmentState = {
     filterByDifficult: DifficultEnum.ALL,
     searchBy: undefined,
     filterByCurrentAccount: false,
-    pageSize: 15,
-    pageNumber: 0,
+    pageSize: 10,
+    pageNumber: 1,
   },
   assignments: [],
-  currentSize: 0,
+  totalAssignment: 0,
 }
 
 /**
@@ -56,7 +56,7 @@ const reducer = (state = initialState, action: ViewListAssignmentAction) => {
     case ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_SUCCESS:
       return {
         ...state,
-        currentSize: action.currentSize,
+        totalAssignment: action.totalAssignment,
         assignments: action.assignments,
         messages: {
           messageEn: action.messageEn,

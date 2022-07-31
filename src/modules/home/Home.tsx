@@ -62,7 +62,7 @@ const Home = () => {
         <Grid item xs={8} sx={{ padding: '0px 40px 10px 0px' }}>
           <Stack spacing={2}>
             <TopAssignment listAssignment={topAssignmentsState.assignments} />
-            <ChallengeCompleted listChanllengeCompleted={topChallengeState.challenges} />
+            <ChallengeCompleted listChallengeCompleted={topChallengeState.challenges} />
           </Stack>
         </Grid>
         <Grid item xs={4}>

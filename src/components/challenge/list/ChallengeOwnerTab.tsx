@@ -1,9 +1,12 @@
-import { Stack } from '@mui/material'
-import React from 'react'
+import { CircularProgress, Stack } from '@mui/material'
+import React, { useEffect } from 'react'
 import useStyles from './style'
 import PaginationCard from '../../common/pagination/PaginationCard'
 import { IChallenge } from '../../../modules/challenge/list/type'
 import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearStateViewListChallenge } from '../../../modules/challenge/list/action'
+import { RootState } from '../../../apps/ReduxContainer'
 /**
  * ChallengePublicOwner
  *
@@ -30,16 +33,33 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
   const handleChangePage = props.handleChangePage
   const count = props.count
   const classes = useStyles()
+  const dispatch = useDispatch()
+  const listChallengeRequesting = useSelector((state: RootState) => state.listChallenges.requesting)
+  /**
+   * clear state
+   */
+  useEffect(() => {
+    return () => {
+      dispatch(clearStateViewListChallenge())
+    }
+  }, [])
+
   return (
     <Stack>
-      <Stack className={classes.scrollBar} spacing={2}>
-        {listChallenges.map((challenge) => (
-          <ChallengeCard
-            key={challenge.challengeId}
-            challenge={challenge}
-            url={`/challenge/${challenge.challengeId}`}
-          />
-        ))}
+      <Stack className={classes.scrollBar} spacing={2} marginBottom={5}>
+        {listChallengeRequesting ? (
+          <Stack marginTop={5} alignItems='center'>
+            <CircularProgress color='success' />
+          </Stack>
+        ) : (
+          listChallenges.map((challenge) => (
+            <ChallengeCard
+              key={challenge.challengeId}
+              challenge={challenge}
+              url={`/challenge/${challenge.challengeId}`}
+            />
+          ))
+        )}
       </Stack>
       <PaginationCard page={page} handleChangePage={handleChangePage} count={count} />
     </Stack>

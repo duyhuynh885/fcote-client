@@ -1,7 +1,9 @@
 import React from 'react'
-import { Stack } from '@mui/material'
+import { CircularProgress, Stack } from '@mui/material'
 import { UserInfo } from '../../../modules/ranking/type'
-import TopMember from './Top/TopMenber'
+import TopMember from './Top/TopMember'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../apps/ReduxContainer'
 /**
  * First Rank Card component
  *
@@ -30,7 +32,9 @@ function immutablySwapItems(items: UserInfo[], firstIndex: number, secondIndex: 
 }
 
 const TopRanking: React.FC<UserInfoProps> = (props) => {
+  const rankingRequestingState = useSelector((state: RootState) => state.ranking.requesting)
   const topRanking = immutablySwapItems(props.data, 0, 1)
+
   return (
     <Stack
       direction='row'
@@ -39,18 +43,24 @@ const TopRanking: React.FC<UserInfoProps> = (props) => {
       justifyContent='space-around'
       sx={{ maxHeight: '30vh' }}
     >
-      {topRanking.map((top) => (
-        <TopMember
-          key={top.order}
-          order={top.order}
-          rank={top.order}
-          avatar={top.avatar}
-          username={top.username}
-          fullname={top.fullname}
-          score={top.total_score}
-          organization={top.organization}
-        />
-      ))}
+      {rankingRequestingState ? (
+        <Stack marginTop={5} alignItems='center'>
+          <CircularProgress color='success' />
+        </Stack>
+      ) : (
+        topRanking.map((top) => (
+          <TopMember
+            key={top.order}
+            order={top.order}
+            rank={top.order}
+            avatar={top.avatar}
+            username={top.username}
+            fullname={top.fullname}
+            score={top.total_score}
+            organization={top.organization}
+          />
+        ))
+      )}
     </Stack>
   )
 }

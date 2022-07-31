@@ -24,12 +24,14 @@ const useStyle = makeStyles((theme: Theme) => ({
   },
   tabTitle: {
     fontSize: theme.textFont.small,
+    textTransform: 'capitalize',
+    color: theme.color.black,
     fontWeight: 'bold',
   },
   tabStyle: {
     '& .MuiTabs-indicator': {
       backgroundColor: theme.color.green,
-      height: 3,
+      height: 2,
     },
     '& .MuiTab-root.Mui-selected': {
       color: theme.color.green,

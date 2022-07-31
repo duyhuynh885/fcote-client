@@ -37,7 +37,7 @@ const Toast: React.FC<ToastProps> = (props) => {
   return (
     <div>
       <Snackbar open={props.open} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
-        <Alert variant='standard' severity={props.type} sx={{ width: '100%' }}>
+        <Alert severity={props.type} sx={{ width: '100%' }}>
           {props.message}
         </Alert>
       </Snackbar>

@@ -1,4 +1,4 @@
-import { ViewMyProfileState, ViewMyProfileAcionType, ViewMyProfileAction } from './type'
+import { ViewMyProfileState, ViewMyProfileActionType, ViewMyProfileAction } from './type'
 
 /**
  * type my profile
@@ -21,7 +21,7 @@ export const initialStateMyProfile: ViewMyProfileState = {
   messages: {} as Message,
   errors: {} as ErrorMessage,
   userAssignmentRequest: {
-    username: 'duyhuynh885',
+    username: '',
     typeData: 4,
     firstName: '',
     lastName: '',
@@ -32,7 +32,7 @@ export const initialStateMyProfile: ViewMyProfileState = {
     gender: '',
   },
   challengeCompletedRequest: {
-    username: 'duyhuynh885',
+    username: '',
     typeData: 4,
   },
   user: {
@@ -63,14 +63,14 @@ export const initialStateMyProfile: ViewMyProfileState = {
 
 const reducer = (state = initialStateMyProfile, action: ViewMyProfileAction) => {
   switch (action.type) {
-    case ViewMyProfileAcionType.VIEW_USER_ASSIGNMENT_REQUESTING:
+    case ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_REQUESTING:
       return {
         ...state,
         requesting: true,
         successful: false,
       }
 
-    case ViewMyProfileAcionType.VIEW_USER_ASSIGNMENT_SUCCESS:
+    case ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_SUCCESS:
       return {
         ...state,
         user: action.user,
@@ -79,7 +79,7 @@ const reducer = (state = initialStateMyProfile, action: ViewMyProfileAction) => 
         successful: true,
       }
 
-    case ViewMyProfileAcionType.VIEW_USER_ASSIGNMENT_ERROR:
+    case ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_ERROR:
       return {
         ...state,
         errors: {
@@ -90,14 +90,14 @@ const reducer = (state = initialStateMyProfile, action: ViewMyProfileAction) => 
         successful: false,
       }
 
-    case ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_REQUESTING:
+    case ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_REQUESTING:
       return {
         ...state,
         requesting: true,
         successful: false,
       }
 
-    case ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_SUCCESS:
+    case ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_SUCCESS:
       return {
         ...state,
         challengeCompleted: {
@@ -108,7 +108,7 @@ const reducer = (state = initialStateMyProfile, action: ViewMyProfileAction) => 
         successful: true,
       }
 
-    case ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_ERROR:
+    case ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_ERROR:
       return {
         ...state,
         errors: {
@@ -119,6 +119,10 @@ const reducer = (state = initialStateMyProfile, action: ViewMyProfileAction) => 
         successful: false,
       }
 
+    case ViewMyProfileActionType.VIEW_MY_PROFILE_CLEAR_STATE:
+      return {
+        ...initialStateMyProfile,
+      }
     default:
       return state
   }

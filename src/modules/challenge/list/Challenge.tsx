@@ -5,13 +5,8 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import TaskbarFilterOfChallenge from '../../../components/challenge/general/TaskbarFilterOfChallenge'
 import ChallengeGroup from '../../../components/challenge/list/ChallengeGroupTab'
 import ChallengePublicOwner from '../../../components/challenge/list/ChallengeOwnerTab'
-import { ViewListGroupRequestPayload } from '../../group/list/type'
-import {
-  clearStateViewListChallenge,
-  fetchListChallengeGroupRequest,
-  fetchListChallengeRequest,
-  updateFilterListChallengesRequest,
-} from './action'
+import { fetchListGroupRequest } from '../../group/list/action'
+import { fetchListChallengeRequest, updateFilterListChallengesRequest } from './action'
 import useStyles from './style'
 import { ViewListChallengeRequestPayload } from './type'
 
@@ -56,12 +51,12 @@ export default function Challenge() {
   const classes = useStyles()
   const dispatch = useDispatch<AppDispatch>()
   const challengesState = useSelector((state: RootState) => state.listChallenges.challenges)
-  const groupsState = useSelector((state: RootState) => state.listChallenges.groups)
+  const groupsState = useSelector((state: RootState) => state.listGroup.groups)
   const currentSizeState = useSelector((state: RootState) => state.listChallenges.currentSize)
   const filterChallengesState = useSelector(
     (state: RootState) => state.listChallenges.filterRequest,
   )
-  const [value, setValue] = React.useState(0)
+  const [tabValue, setTabValue] = React.useState(0)
   const [page, setPage] = useState(1)
   const [typeData, setTypeData] = useState(1)
   const [groupID, setGroupId] = useState<number | undefined>()
@@ -70,25 +65,19 @@ export default function Challenge() {
   const count = Math.ceil(currentSizeState / PER_PAGE)
 
   // handle choose challenge follow Group
-  const callbackSetGroupID = (groupID: number | undefined) => {
-    setGroupId(groupID)
-    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
+  const callbackSetGroupID = (value: number | undefined) => {
+    setGroupId(value)
+    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, value))
   }
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
+  const handleChangeTabValue = (_event: React.SyntheticEvent, newValue: number) => {
+    setTabValue(newValue)
   }
 
   const handleChangePage = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
     dispatch(updateFilterListChallengesRequest({ ...filterChallengesState, pageNumber: value }))
   }
-
-  useEffect(() => {
-    return () => {
-      dispatch(clearStateViewListChallenge())
-    }
-  }, [])
 
   const publicRequest: ViewListChallengeRequestPayload = {
     typeData: 1,
@@ -98,11 +87,6 @@ export default function Challenge() {
 
   const groupChallengeRequest: ViewListChallengeRequestPayload = {
     typeData: 2,
-    pageSize: 50,
-    pageNumber: 1,
-  }
-
-  const groupGroupRequest: ViewListGroupRequestPayload = {
     pageSize: 50,
     pageNumber: 1,
   }
@@ -119,7 +103,7 @@ export default function Challenge() {
   }
 
   function handleGetChallengeGroup() {
-    dispatch(fetchListChallengeGroupRequest(groupGroupRequest))
+    dispatch(fetchListGroupRequest({}))
     setTypeData(2)
   }
 
@@ -136,18 +120,18 @@ export default function Challenge() {
     setTypeData(3)
   }
 
-  useEffect((): void => {
-    switch (value) {
+  useEffect(() => {
+    switch (tabValue) {
       case 0:
         return handleGetChallengePublic()
       case 1:
-        return handleGetChallengeGroup()
-      case 2:
         return handleGetChallengePublicOwner()
+      case 2:
+        return handleGetChallengeGroup()
       default:
         return undefined
     }
-  }, [value])
+  }, [tabValue])
 
   return (
     <Stack sx={{ margin: 5 }}>
@@ -157,12 +141,12 @@ export default function Challenge() {
             groupID={groupID}
             typeData={typeData}
             url='/challenge/create'
-            handleChangeTab={handleChange}
-            tabValue={value}
+            handleChangeTab={handleChangeTabValue}
+            tabValue={tabValue}
           />
         </Grid>
         <Grid className={classes.tabLeft} item xs={12} sx={{ height: '100%' }}>
-          <TabPanel value={value} index={0}>
+          <TabPanel value={tabValue} index={0}>
             <ChallengePublicOwner
               listChallenges={challengesState}
               count={count}
@@ -170,19 +154,19 @@ export default function Challenge() {
               page={page}
             />
           </TabPanel>
-          <TabPanel value={value} index={1}>
+          <TabPanel value={tabValue} index={1}>
+            <ChallengePublicOwner
+              listChallenges={challengesState}
+              count={count}
+              handleChangePage={handleChangePage}
+              page={page}
+            />
+          </TabPanel>
+          <TabPanel value={tabValue} index={2}>
             <ChallengeGroup
               onclick={callbackSetGroupID}
               challenges={challengesState}
               groups={groupsState}
-              count={count}
-              handleChangePage={handleChangePage}
-              page={page}
-            />
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <ChallengePublicOwner
-              listChallenges={challengesState}
               count={count}
               handleChangePage={handleChangePage}
               page={page}

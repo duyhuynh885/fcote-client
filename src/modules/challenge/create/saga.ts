@@ -5,7 +5,7 @@ import {
   CreateChallengeResponse,
 } from './type'
 import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
 import history from '../../../configs/routing/history'
 import challengeApi from '../../../services/challengeApi'
