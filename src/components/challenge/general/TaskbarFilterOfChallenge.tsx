@@ -1,14 +1,4 @@
-import {
-  IconButton,
-  MenuItem,
-  Paper,
-  Select,
-  SelectChangeEvent,
-  Stack,
-  Tab,
-  Tabs,
-  TextField,
-} from '@mui/material'
+import { IconButton, Paper, Stack, Tab, Tabs, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import Divider from '@mui/material/Divider'
 import SearchIcon from '@mui/icons-material/Search'
@@ -72,9 +62,15 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
     <Paper
       square
       elevation={3}
-      sx={{ width: '100%', padding: '10px', display: 'flex', justifyContent: 'space-between' }}
+      sx={{
+        width: '100%',
+        height: '4rem',
+        padding: '10px',
+        display: 'flex',
+        justifyContent: 'space-between',
+      }}
     >
-      <Stack direction='row' justifyContent='flex-start' alignItems='center' spacing={2}>
+      <Stack direction='row' justifyContent='flex-start' alignItems='center'>
         <Tabs
           className={classes.tabStyle}
           value={tabValue}
@@ -82,8 +78,8 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
           aria-label='basic tabs example'
         >
           <Tab className={classes.tabTitle} label='Public' {...a11yProps(0)} />
-          <Tab className={classes.tabTitle} label='Group' {...a11yProps(1)} />
-          <Tab className={classes.tabTitle} label='Owner' {...a11yProps(2)} />
+          <Tab className={classes.tabTitle} label='Owner' {...a11yProps(1)} />
+          <Tab className={classes.tabTitle} label='Group' {...a11yProps(2)} />
         </Tabs>
       </Stack>
       <Stack direction='row' alignItems='center' spacing={2}>

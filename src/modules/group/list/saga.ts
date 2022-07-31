@@ -31,10 +31,10 @@ function* viewListGroupFlow({ pageSize, pageNumber }: ViewListGroupRequestAction
   }
 }
 
-function* viewListGroupWather() {
+function* viewListGroupWatcher() {
   yield takeEvery(ViewListGroupActionType.VIEW_LIST_GROUP_REQUESTING, viewListGroupFlow)
 }
 
 export default function* viewListGroupSaga() {
-  yield all([fork(viewListGroupWather)])
+  yield all([fork(viewListGroupWatcher)])
 }

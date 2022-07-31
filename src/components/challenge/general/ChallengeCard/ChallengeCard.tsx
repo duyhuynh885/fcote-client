@@ -1,4 +1,4 @@
-import { Box, Paper, Stack, Typography } from '@mui/material'
+import { Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import useStyles from './style'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
@@ -41,7 +41,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
   return (
     <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
       <Paper
-        elevation={4}
+        elevation={2}
         square
         sx={{
           width: '100%',

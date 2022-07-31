@@ -8,7 +8,7 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { updateFillterRankingRequest } from '../../../modules/ranking/action'
 
 /**
- * Leaderboard component
+ * LeaderBoard component
  *
  * Version 1.0
  *
@@ -55,7 +55,7 @@ function ChangeValueProps(index: number) {
   }
 }
 
-export default function Leaderboard(props: any) {
+export default function LeaderBoard(props: any) {
   const [value, setValue] = React.useState(0)
   const dispatch = useDispatch<AppDispatch>()
   const filterRankingState = useSelector((state: RootState) => state.ranking.rankingTypeRequest)
@@ -65,7 +65,7 @@ export default function Leaderboard(props: any) {
   }
   return (
     <Paper
-      elevation={8}
+      elevation={2}
       square
       sx={{
         display: 'flex',
@@ -75,7 +75,7 @@ export default function Leaderboard(props: any) {
     >
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChange} aria-label='Leaderboard'>
+          <Tabs value={value} onChange={handleChange} aria-label='LeaderBoard'>
             <Tab label='Universities' {...ChangeValueProps(0)} />
             <Tab label='Organization' {...ChangeValueProps(1)} />
           </Tabs>

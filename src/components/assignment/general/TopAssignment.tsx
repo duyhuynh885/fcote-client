@@ -68,7 +68,7 @@ const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
 
   return (
     <Paper
-      elevation={8}
+      elevation={4}
       square
       sx={{
         display: 'flex',

@@ -19,7 +19,7 @@ import { useTheme } from '@mui/material/styles'
 import { UserInfo } from '../../../../modules/ranking/type'
 
 /**
- * Leaderboard component
+ * LeaderBoard component
  *
  * Version 1.0
  *
@@ -99,10 +99,6 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   )
 }
 
-function createData(rank: number, fullname: string, university: string, score: number) {
-  return { rank, fullname, university, score }
-}
-
 function createType(
   id: 'rank' | 'fullname' | 'university' | 'group' | 'organization' | 'score',
   label: string,
@@ -135,10 +131,7 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
       align: 'right',
     },
   ]
-
   const rows = props.rankingList
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
 
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
@@ -155,7 +148,7 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
   }
   return (
     <TableContainer>
-      <Table sx={{ minWidth: 500 }} aria-label='all leaderboard'>
+      <Table aria-label='all leaderboard'>
         <TableHead>
           <TableRow>
             {columns.map((column) => (
@@ -166,10 +159,7 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
+          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
             <TableRow key={row.id}>
               <TableCell component='th' scope='row' style={{ width: 10 }}>
                 {row.order}
@@ -185,11 +175,6 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
               </TableCell>
             </TableRow>
           ))}
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
         </TableBody>
         <TableFooter>
           <TableRow>

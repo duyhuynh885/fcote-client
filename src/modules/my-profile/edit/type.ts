@@ -15,12 +15,12 @@ export interface EditMyProfileRequestPayload {
   gender: string
 }
 
-export interface EditMyProfileSuccessReponse {
+export interface EditMyProfileSuccessResponse {
   messageEn: string
   messageVi: string
 }
 
-export interface EditMyProfileErrorReponse {
+export interface EditMyProfileErrorResponse {
   error: ErrorMessage
 }
 
@@ -29,14 +29,14 @@ export type EditMyProfileRequestAction = ActionWithPayload<
   EditMyProfileRequestPayload
 >
 
-export type EditMyProfileSuccesAction = ActionWithPayload<
+export type EditMyProfileSuccessAction = ActionWithPayload<
   EditMyProfileActionType.EDIT_MY_PROFILE_SUCCESS,
-  EditMyProfileSuccessReponse
+  EditMyProfileSuccessResponse
 >
 
 export type EditMyProfileErrorAction = ActionWithPayload<
   EditMyProfileActionType.EDIT_MY_PROFILE_ERROR,
-  EditMyProfileErrorReponse
+  EditMyProfileErrorResponse
 >
 
 export type EditMyProfileClearStateAction =
@@ -44,7 +44,7 @@ export type EditMyProfileClearStateAction =
 
 export type EditMyProfileAction =
   | EditMyProfileRequestAction
-  | EditMyProfileSuccesAction
+  | EditMyProfileSuccessAction
   | EditMyProfileErrorAction
   | EditMyProfileClearStateAction
 

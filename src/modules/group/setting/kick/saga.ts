@@ -6,7 +6,6 @@ import { handleError } from '../../../../utils/handleError'
 import groupApi from '../../../../services/groupApi'
 import { hideToastAction, showToastAction } from '../../../layout/toast/toastAction'
 import { swapMessage } from '../../../../utils/helper'
-import history from '../../../../configs/routing/history'
 
 /**
  * Saga for kick member in group

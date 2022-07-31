@@ -6,12 +6,7 @@ import TaskbarFilterOfChallenge from '../../../components/challenge/general/Task
 import ChallengeGroup from '../../../components/challenge/list/ChallengeGroupTab'
 import ChallengePublicOwner from '../../../components/challenge/list/ChallengeOwnerTab'
 import { fetchListGroupRequest } from '../../group/list/action'
-import { ViewListGroupRequestPayload } from '../../group/list/type'
-import {
-  clearStateViewListChallenge,
-  fetchListChallengeRequest,
-  updateFilterListChallengesRequest,
-} from './action'
+import { fetchListChallengeRequest, updateFilterListChallengesRequest } from './action'
 import useStyles from './style'
 import { ViewListChallengeRequestPayload } from './type'
 
@@ -84,12 +79,6 @@ export default function Challenge() {
     dispatch(updateFilterListChallengesRequest({ ...filterChallengesState, pageNumber: value }))
   }
 
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(clearStateViewListChallenge())
-  //   }
-  // }, [])
-
   const publicRequest: ViewListChallengeRequestPayload = {
     typeData: 1,
     pageSize: 50,
@@ -136,9 +125,9 @@ export default function Challenge() {
       case 0:
         return handleGetChallengePublic()
       case 1:
-        return handleGetChallengeGroup()
-      case 2:
         return handleGetChallengePublicOwner()
+      case 2:
+        return handleGetChallengeGroup()
       default:
         return undefined
     }
@@ -166,18 +155,18 @@ export default function Challenge() {
             />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <ChallengeGroup
-              onclick={callbackSetGroupID}
-              challenges={challengesState}
-              groups={groupsState}
+            <ChallengePublicOwner
+              listChallenges={challengesState}
               count={count}
               handleChangePage={handleChangePage}
               page={page}
             />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <ChallengePublicOwner
-              listChallenges={challengesState}
+            <ChallengeGroup
+              onclick={callbackSetGroupID}
+              challenges={challengesState}
+              groups={groupsState}
               count={count}
               handleChangePage={handleChangePage}
               page={page}

@@ -6,7 +6,7 @@ import { handleError } from '../../../utils/handleError'
 import {
   ViewChallengeCompletedRequestAction,
   ViewChallengeCompletedSuccessResponse,
-  ViewMyProfileAcionType,
+  ViewMyProfileActionType,
   ViewUserAssignmentRequestAction,
   ViewUserAssignmentSuccessResponse,
 } from './type'
@@ -40,7 +40,7 @@ function* viewUserAssignmentFlow({
 }: ViewUserAssignmentRequestAction) {
   try {
     yield put(showLoaderAction())
-    const data: ViewUserAssignmentSuccessResponse = yield call(profileApi.fetchUserAssignemntApi, {
+    const data: ViewUserAssignmentSuccessResponse = yield call(profileApi.fetchUserAssignmentApi, {
       username,
       typeData,
       firstName,
@@ -53,14 +53,14 @@ function* viewUserAssignmentFlow({
     })
 
     yield put({
-      type: ViewMyProfileAcionType.VIEW_USER_ASSIGNMENT_SUCCESS,
+      type: ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_SUCCESS,
       ...data,
     })
     yield put(hideLoaderAction())
   } catch (error) {
     yield call(
       requestFailure,
-      ViewMyProfileAcionType.VIEW_USER_ASSIGNMENT_ERROR,
+      ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_ERROR,
       handleError(error),
     )
   }
@@ -77,7 +77,7 @@ function* viewChallengeCompletedFlow({ typeData, username }: ViewChallengeComple
       },
     )
     yield put({
-      type: ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_SUCCESS,
+      type: ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_SUCCESS,
       ...data,
     })
 
@@ -85,19 +85,19 @@ function* viewChallengeCompletedFlow({ typeData, username }: ViewChallengeComple
   } catch (error) {
     yield call(
       requestFailure,
-      ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_ERROR,
+      ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_ERROR,
       handleError(error),
     )
   }
 }
 
 function* viewUserAssignmentWatcher() {
-  yield takeEvery(ViewMyProfileAcionType.VIEW_USER_ASSIGNMENT_REQUESTING, viewUserAssignmentFlow)
+  yield takeEvery(ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_REQUESTING, viewUserAssignmentFlow)
 }
 
 function* viewChallengeCompletedWatcher() {
   yield takeEvery(
-    ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
+    ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
     viewChallengeCompletedFlow,
   )
 }

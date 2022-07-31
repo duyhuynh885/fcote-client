@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Grid, Stack } from '@mui/material'
 import TopAssignment from '../../components/assignment/general/TopAssignment'
 
 import ChallengeCompleted from '../../components/my-profile/view/ChallengeCompleted'
@@ -40,6 +40,7 @@ const Home = () => {
     pageSize: 10,
     pageNumber: 1,
   }
+
   const customTopAssignmentRequest: ViewListAssignmentRequestPayload = {
     pageSize: 10,
     filterByCurrentAccount: false,
@@ -54,26 +55,18 @@ const Home = () => {
     dispatch(fetchListAssignmentRequest(customTopAssignmentRequest))
     dispatch(fetchRankingRequest(rankingState.rankingTypeRequest))
   }, [])
+
   return (
     <Stack sx={{ margin: 5 }}>
-      <Grid container>
-        <Grid item xs={8} sx={{ padding: '0px 40px 10px 0px' }}>
-          <Stack spacing={2}>
+      <Grid container spacing={5}>
+        <Grid item xs={8}>
+          <Stack direction='column' spacing={3}>
             <TopAssignment listAssignment={topAssignmentsState.assignments} />
-            <ChallengeCompleted listChanllengeCompleted={topChallengeState.challenges} />
+            <ChallengeCompleted listChallengeCompleted={topChallengeState.challenges} />
           </Stack>
         </Grid>
-        <Grid item xs={4}>
-          <Paper elevation={8} sx={{ padding: '0px 20px 0px 0px', height: '835px' }}>
-            <Typography className={classes.title}>Top User</Typography>
-            {rankingState.requesting ? (
-              <Stack alignItems='center'>
-                <CircularProgress color='success' />
-              </Stack>
-            ) : (
-              <TopUser rankingList={rankingState.rankingList} />
-            )}
-          </Paper>
+        <Grid item xs={4} sx={{ height: '100%' }}>
+          <TopUser rankingList={rankingState.rankingList} />
         </Grid>
       </Grid>
     </Stack>

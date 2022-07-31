@@ -1,8 +1,9 @@
-import { CircularProgress, Stack, Typography } from '@mui/material'
+import { CircularProgress, Stack } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams, useRouteMatch } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import Banner from '../../../components/challenge/detail/Banner'
 import TableChallenge from '../../../components/challenge/general/TableChallenge/TableChallenge'
 import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 import { viewDetailChallengeRequest } from './action'
@@ -27,7 +28,6 @@ interface RouteParams {
 }
 
 export default function ChallengeDetail() {
-  const classes = useStyles()
   const params = useParams<RouteParams>()
   const challengeId: number = +params.challengeId
   const dispatch = useDispatch<AppDispatch>()
@@ -41,37 +41,7 @@ export default function ChallengeDetail() {
   return (
     <Stack>
       <InsideNavBar namePage='Challenge Detail' />
-      <Stack
-        direction='row'
-        alignItems='center'
-        justifyContent='space-between'
-        sx={{
-          width: '90%',
-          height: '30vh',
-          margin: '0 auto',
-          marginTop: '30px',
-          backgroundColor: '#ffff',
-        }}
-      >
-        <img
-          className={classes.challengeCardBanner}
-          src='https://img.freepik.com/free-vector/joystick-game-sport-technology_138676-2045.jpg?w=2000'
-        />
-        <Stack
-          direction='column'
-          justifyContent='space-between'
-          alignItems='center'
-          sx={{ height: '100%', width: '100%' }}
-        >
-          <Typography>{detail.title}</Typography>
-          <Stack
-            sx={{ height: '25%', width: '100%', borderTop: '1px solid lightGray' }}
-            direction='row'
-          >
-            <Typography>{detail.title}</Typography>
-          </Stack>
-        </Stack>
-      </Stack>
+      <Banner detail={detail} />
       <Stack direction='row' justifyContent='center' alignItems='center' margin={5}>
         {requesting ? (
           <Stack marginTop={5} alignItems='center'>

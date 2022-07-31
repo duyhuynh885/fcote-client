@@ -50,7 +50,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   // handle show challenges follow Group
   const handleClickGroup = (
     groupID: number | undefined,
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    _event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number,
   ) => {
     onclick(groupID)
@@ -68,9 +68,9 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
 
   return (
     <Grid container spacing={3}>
-      <Grid item xs={3}>
+      <Grid item xs={4}>
         <Paper
-          elevation={8}
+          elevation={4}
           square
           sx={{
             display: 'flex',
@@ -78,40 +78,42 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
             padding: 2,
           }}
         >
-          <Box>
-            <Typography className={classes.myGroup}>My Group</Typography>
-          </Box>
-          <List className={classes.listGroupScroll}>
-            {listGroupRequesting ? (
-              <Stack marginTop={5} alignItems='center'>
-                <CircularProgress color='success' />
-              </Stack>
-            ) : (
-              groups.map((group, index: number) => (
-                <React.Fragment key={group.id}>
-                  <ListItem
-                    disablePadding
-                    classes={{ root: classes.root, selected: classes.selected }}
-                  >
-                    <ListItemButton
-                      key={group.id}
-                      selected={selectedIndex === index}
-                      onClick={(event) => handleClickGroup(group.id, event, index)}
+          <Stack direction='column' spacing={2}>
+            <Box>
+              <Typography className={classes.myGroup}>My Group</Typography>
+            </Box>
+            <List className={classes.listGroupScroll}>
+              {listGroupRequesting ? (
+                <Stack marginTop={5} alignItems='center'>
+                  <CircularProgress color='success' />
+                </Stack>
+              ) : (
+                groups.map((group, index: number) => (
+                  <React.Fragment key={group.id}>
+                    <ListItem
+                      disablePadding
+                      classes={{ root: classes.root, selected: classes.selected }}
                     >
-                      <ListItemIcon>
-                        <GroupsSharpIcon color={'success'} />
-                      </ListItemIcon>
-                      <ListItemText className={classes.groupTittle} primary={group.title} />
-                    </ListItemButton>
-                  </ListItem>
-                  <Divider variant='inset' component='li' />
-                </React.Fragment>
-              ))
-            )}
-          </List>
+                      <ListItemButton
+                        key={group.id}
+                        selected={selectedIndex === index}
+                        onClick={(event) => handleClickGroup(group.id, event, index)}
+                      >
+                        <ListItemIcon>
+                          <GroupsSharpIcon color={'success'} />
+                        </ListItemIcon>
+                        <ListItemText className={classes.groupTittle} primary={group.title} />
+                      </ListItemButton>
+                    </ListItem>
+                    <Divider variant='inset' component='li' />
+                  </React.Fragment>
+                ))
+              )}
+            </List>{' '}
+          </Stack>
         </Paper>
       </Grid>
-      <Grid item xs={9}>
+      <Grid item xs={8}>
         <Stack className={classes.scrollBar} spacing={2} marginBottom={5}>
           {listChallengeRequesting ? (
             <Stack marginTop={5} alignItems='center'>

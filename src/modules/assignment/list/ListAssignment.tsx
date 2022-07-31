@@ -75,9 +75,15 @@ export default function ListAssignment() {
             <CircularProgress color='success' />
           </Stack>
         ) : (
-          <Grid container rowSpacing={4} columnSpacing={4} sx={{ width: '80%' }}>
+          <Grid
+            container
+            direction='row'
+            justifyContent='space-evenly'
+            alignItems='flex-start'
+            rowSpacing={2}
+          >
             {assignments.map((assignment) => (
-              <Grid key={assignment.id} item xs={3}>
+              <Grid key={assignment.id} item xs={2}>
                 <AssignmentItem assignment={assignment} />
               </Grid>
             ))}

@@ -6,7 +6,6 @@ import { handleError } from '../../../utils/handleError'
 import groupApi from '../../../services/groupApi'
 import { hideToastAction, showToastAction } from '../../layout/toast/toastAction'
 import { swapMessage } from '../../../utils/helper'
-import { ViewListDataTypeActionType } from '../../assignment/data-type/type'
 
 /**
  * Saga for fetch list of Groups

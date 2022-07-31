@@ -5,11 +5,8 @@ import {
   ViewListChallengeSuccessResponse,
 } from './type'
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
-import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import challengeApi from '../../../services/challengeApi'
 import requestFailure from '../../../utils/onFailure'
-import { ViewListGroupRequestAction, ViewListGroupResponse } from '../../group/list/type'
-import groupApi from '../../../services/groupApi'
 
 /**
  * saga list challenge

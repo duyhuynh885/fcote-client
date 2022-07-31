@@ -1,10 +1,10 @@
 import { Grid, Stack } from '@mui/material'
 import React, { useEffect } from 'react'
-import Leaderboard from '../../components/ranking/detail/Leaderboard'
 import TopRanking from '../../components/ranking/detail/TopRanking'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../apps/ReduxContainer'
 import { fetchRankingRequest } from './action'
+import LeaderBoard from '../../components/ranking/detail/LeaderBoard'
 
 /**
  * ranking Pages
@@ -38,7 +38,7 @@ export default function Ranking() {
           <TopRanking data={topThreeState} />
         </Grid>
         <Grid item xs={12} sx={{ margin: '2rem 5rem' }}>
-          <Leaderboard data={rankingListState} />
+          <LeaderBoard data={rankingListState} />
         </Grid>
       </Grid>
     </Stack>

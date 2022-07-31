@@ -1,4 +1,3 @@
-import { ViewListGroupRequestPayload } from './../../group/list/type'
 import {
   ViewListChallengeRequestPayload,
   ViewListChallengeRequestAction,

@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   listGroupScroll: {
     height: '70vh',
-    paddingRight: '20px',
+    paddingRight: '10px',
     overflowX: 'hidden',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   myGroup: {
     fontSize: theme.textFont.large,
     fontWeight: 'bold',
+    paddingLeft: '20px',
   },
   root: {
     '&$selected': {

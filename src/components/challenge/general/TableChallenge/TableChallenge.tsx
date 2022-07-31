@@ -19,6 +19,7 @@ import { ReactComponent as Platinum } from '../../../../assets/Platinum.svg'
 import { ReactComponent as Bronze } from '../../../../assets/Bronze.svg'
 import { AssignmentList, Submit, UserInfo } from '../../../../modules/challenge/detail/type'
 import { Link, useRouteMatch } from 'react-router-dom'
+import _ from 'lodash'
 
 /**
  * Table Challenge
@@ -43,16 +44,12 @@ interface TableChallengeProps {
 interface AssignmentResult {
   point: string | number
   progressTime: string | number
-  compileTime: string | number
-  numberTry: string
   numberSubmit: string | number
 }
 
 interface TotalResult {
   totalPoint: number
-  totalProgressTime: number
-  totalCompileTime: number
-  totalNumberTry: number
+  totalProgressTime: string
   totalNumberSubmit: number
 }
 
@@ -87,22 +84,14 @@ export default function TableChallenge(props: TableChallengeProps) {
     return submits.map((submit) => {
       const total: TotalResult = {
         totalPoint: 0,
-        totalProgressTime: 0,
-        totalCompileTime: 0,
-        totalNumberTry: 0,
+        totalProgressTime: '-',
         totalNumberSubmit: 0,
       }
-      const result: AssignmentResult[] = submit.assignmentResults.map((_assignmentResult) => {
-        total.totalPoint +=
-          typeof _assignmentResult.highestScore === 'string' ? 0 : _assignmentResult.highestScore
-        total.totalProgressTime +=
-          typeof _assignmentResult.shortestRuntime === 'string'
-            ? 0
-            : _assignmentResult.shortestRuntime
-        total.totalCompileTime +=
-          typeof _assignmentResult.time === 'string' ? 0 : _assignmentResult.time
-        total.totalNumberTry +=
-          typeof _assignmentResult.counter === 'string' ? 0 : _assignmentResult.counter
+      const result: AssignmentResult[] = _.orderBy(
+        submit.assignmentResults,
+        ['ranking'],
+        ['desc'],
+      ).map((_assignmentResult) => {
         total.totalNumberSubmit +=
           typeof _assignmentResult.counter === 'string' ? 0 : _assignmentResult.counter
         return {
@@ -156,7 +145,7 @@ export default function TableChallenge(props: TableChallengeProps) {
   return (
     <Paper
       square
-      elevation={8}
+      elevation={2}
       sx={{ width: '100%', overflow: 'hidden' }}
       className={classes.container}
     >
@@ -223,13 +212,9 @@ export default function TableChallenge(props: TableChallengeProps) {
                             {_result.progressTime}
                           </Typography>
                           <Typography className={classes.textItemCell}>
-                            {_result.compileTime} s
-                          </Typography>
-                          <Typography className={classes.textItemCell}>
-                            {_result.numberTry} try
-                          </Typography>
-                          <Typography className={classes.textItemCell}>
-                            {_result.numberSubmit}/10 submission
+                            {_result.numberSubmit === '-'
+                              ? _result.numberSubmit
+                              : `${_result.numberSubmit}/10 submission}`}
                           </Typography>
                         </Stack>
                       </TableCell>
@@ -240,12 +225,6 @@ export default function TableChallenge(props: TableChallengeProps) {
                       </Typography>
                       <Typography className={classes.textItemCell}>
                         {row.total.totalProgressTime}
-                      </Typography>
-                      <Typography className={classes.textItemCell}>
-                        {row.total.totalCompileTime} s
-                      </Typography>
-                      <Typography className={classes.textItemCell}>
-                        {row.total.totalNumberTry} tries
                       </Typography>
                     </TableCell>
                   </TableRow>

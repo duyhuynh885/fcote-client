@@ -4,10 +4,8 @@ import {
   ViewDetailChallengeRequestAction,
   ViewDetailChallengeResponse,
 } from './type'
-import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import requestFailure from '../../../utils/onFailure'
 import { handleError } from '../../../utils/handleError'
-import history from '../../../configs/routing/history'
 import challengeApi from '../../../services/challengeApi'
 
 /**

@@ -1,4 +1,4 @@
-import { Box, Paper, Stack, Typography } from '@mui/material'
+import { Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import useStyles from './style'
 import { Link } from 'react-router-dom'
@@ -31,7 +31,7 @@ export default function GroupCard(props: IProps) {
   const classes = useStyles()
   const { group } = props
   return (
-    <Paper elevation={8} square className={classes.wrapper}>
+    <Paper elevation={2} square className={classes.wrapper}>
       <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={'/group/' + group.id}>
         <Stack direction='row' alignItems='center'>
           <img

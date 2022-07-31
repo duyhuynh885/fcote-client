@@ -1,8 +1,7 @@
-import { CircularProgress, Grid, Pagination, PaginationItem, Paper, Stack } from '@mui/material'
+import { CircularProgress, Grid, Pagination, PaginationItem, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import GroupCard from '../../../components/group/list/GroupCard'
 import TaskbarGroup from '../../../components/group/general/TaskbarGroup/TaskbarGroup'
-import useStyle from './style'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { clearStateViewListGroup, fetchListGroupRequest } from './action'
@@ -27,7 +26,6 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
  */
 
 export default function Group() {
-  const classes = useStyle()
   const dispatch = useDispatch<AppDispatch>()
   const groupsState = useSelector((state: RootState) => state.listGroup.groups)
   const groupTypeRequestState = useSelector((state: RootState) => state.listGroup.groupTypeRequest)
