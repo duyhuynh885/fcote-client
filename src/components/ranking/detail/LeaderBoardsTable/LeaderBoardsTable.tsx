@@ -148,7 +148,7 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
   }
   return (
     <TableContainer>
-      <Table aria-label='all leaderboard'>
+      <Table aria-label='all leaderBoard'>
         <TableHead>
           <TableRow>
             {columns.map((column) => (

@@ -56,7 +56,7 @@ export default function Challenge() {
   const filterChallengesState = useSelector(
     (state: RootState) => state.listChallenges.filterRequest,
   )
-  const [value, setValue] = React.useState(0)
+  const [tabValue, setTabValue] = React.useState(0)
   const [page, setPage] = useState(1)
   const [typeData, setTypeData] = useState(1)
   const [groupID, setGroupId] = useState<number | undefined>()
@@ -70,8 +70,8 @@ export default function Challenge() {
     dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, value))
   }
 
-  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
+  const handleChangeTabValue = (_event: React.SyntheticEvent, newValue: number) => {
+    setTabValue(newValue)
   }
 
   const handleChangePage = (_event: React.ChangeEvent<unknown>, value: number) => {
@@ -121,7 +121,7 @@ export default function Challenge() {
   }
 
   useEffect(() => {
-    switch (value) {
+    switch (tabValue) {
       case 0:
         return handleGetChallengePublic()
       case 1:
@@ -131,7 +131,7 @@ export default function Challenge() {
       default:
         return undefined
     }
-  }, [value])
+  }, [tabValue])
 
   return (
     <Stack sx={{ margin: 5 }}>
@@ -141,12 +141,12 @@ export default function Challenge() {
             groupID={groupID}
             typeData={typeData}
             url='/challenge/create'
-            handleChangeTab={handleChange}
-            tabValue={value}
+            handleChangeTab={handleChangeTabValue}
+            tabValue={tabValue}
           />
         </Grid>
         <Grid className={classes.tabLeft} item xs={12} sx={{ height: '100%' }}>
-          <TabPanel value={value} index={0}>
+          <TabPanel value={tabValue} index={0}>
             <ChallengePublicOwner
               listChallenges={challengesState}
               count={count}
@@ -154,7 +154,7 @@ export default function Challenge() {
               page={page}
             />
           </TabPanel>
-          <TabPanel value={value} index={1}>
+          <TabPanel value={tabValue} index={1}>
             <ChallengePublicOwner
               listChallenges={challengesState}
               count={count}
@@ -162,7 +162,7 @@ export default function Challenge() {
               page={page}
             />
           </TabPanel>
-          <TabPanel value={value} index={2}>
+          <TabPanel value={tabValue} index={2}>
             <ChallengeGroup
               onclick={callbackSetGroupID}
               challenges={challengesState}
