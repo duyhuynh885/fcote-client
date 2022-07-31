@@ -39,15 +39,8 @@ const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
     }
   }
   return (
-    <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
-      <Paper
-        elevation={2}
-        square
-        sx={{
-          width: '100%',
-          height: '125px',
-        }}
-      >
+    <Paper elevation={2} square className={classes.container}>
+      <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
         <Stack direction='row'>
           <img
             className={classes.challengeCardBanner}
@@ -81,8 +74,8 @@ const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
             </Stack>
           </Stack>
         </Stack>
-      </Paper>
-    </Link>
+      </Link>
+    </Paper>
   )
 }
 export default ChallengeCard

@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, Pagination, PaginationItem, Stack } from '@mui/material'
+import { CircularProgress, Container, Grid, Pagination, PaginationItem, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import TaskbarFilter, {
   TypeFilterTaskBarEnum,
@@ -32,11 +32,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 export default function ListAssignment() {
   const dispatch = useDispatch<AppDispatch>()
   const assignmentsState = useSelector((state: RootState) => state.listAssignment)
-  const { requesting, currentSize, assignments, filterRequest } = assignmentsState
+  const { requesting, totalAssignment, assignments, filterRequest } = assignmentsState
 
   const [page, setPage] = useState(1)
-  const PER_PAGE = 16
-  const count = Math.ceil(currentSize / PER_PAGE)
+  const PER_PAGE = 10
+  const count = Math.ceil(totalAssignment / PER_PAGE)
 
   /**
    * handle update filter by pageNumber
@@ -69,27 +69,21 @@ export default function ListAssignment() {
       <Stack marginBottom={5}>
         <TaskbarFilter url='/assignment/create' type={TypeFilterTaskBarEnum.LIST_ASSIGNMENT} />
       </Stack>
-      <Stack alignItems='center' sx={{ minHeight: '70vh', width: '100%' }}>
+      <Container fixed sx={{ minHeight: '70vh' }}>
         {requesting ? (
           <Stack alignItems='center'>
             <CircularProgress color='success' />
           </Stack>
         ) : (
-          <Grid
-            container
-            direction='row'
-            justifyContent='space-evenly'
-            alignItems='flex-start'
-            rowSpacing={2}
-          >
+          <Grid container rowSpacing={2} columnSpacing={3} direction='row'>
             {assignments.map((assignment) => (
-              <Grid key={assignment.id} item xs={2}>
+              <Grid key={assignment.id} item sm={2.4}>
                 <AssignmentItem assignment={assignment} />
               </Grid>
             ))}
           </Grid>
         )}
-      </Stack>
+      </Container>
       <Stack alignItems='center'>
         <Pagination
           page={page}

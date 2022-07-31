@@ -1,7 +1,7 @@
 import { call, put, fork, takeEvery, all, delay } from 'redux-saga/effects'
 import { KickGroupActionType, KickGroupRequestAction, KickGroupResponse } from './type'
 import { hideLoaderAction, showLoaderAction } from '../../../layout/loader/action'
-import requestFailure from '../../../../utils/onFailure'
+import requestFailure from '../../../../utils/requestFailure'
 import { handleError } from '../../../../utils/handleError'
 import groupApi from '../../../../services/groupApi'
 import { hideToastAction, showToastAction } from '../../../layout/toast/toastAction'

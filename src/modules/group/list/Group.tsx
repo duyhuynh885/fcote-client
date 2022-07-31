@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, Pagination, PaginationItem, Stack } from '@mui/material'
+import { CircularProgress, Container, Grid, Pagination, PaginationItem, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import GroupCard from '../../../components/group/list/GroupCard'
 import TaskbarGroup from '../../../components/group/general/TaskbarGroup/TaskbarGroup'
@@ -77,13 +77,13 @@ export default function Group() {
           onQueryParamChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
         />
       </Stack>
-      <Stack alignItems='center' sx={{ minHeight: '70vh', width: '100%' }}>
+      <Container fixed sx={{ minHeight: '70vh' }}>
         {groupsRequestingState ? (
           <Stack alignItems='center'>
             <CircularProgress color='success' />
           </Stack>
         ) : (
-          <Grid container rowSpacing={4} columnSpacing={4} sx={{ width: '80%' }}>
+          <Grid container rowSpacing={2} columnSpacing={2} direction='row'>
             {groupsState.map((group) => {
               if (query == '' || group.title.toLowerCase().includes(query.toLowerCase())) {
                 return (
@@ -96,7 +96,7 @@ export default function Group() {
             })}
           </Grid>
         )}
-      </Stack>
+      </Container>
       <Stack alignItems='center'>
         <Pagination
           page={page}

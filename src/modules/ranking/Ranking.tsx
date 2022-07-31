@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../apps/ReduxContainer'
 import { fetchRankingRequest } from './action'
 import LeaderBoard from '../../components/ranking/detail/LeaderBoard'
+import { Container } from '@mui/system'
 
 /**
  * ranking Pages
@@ -35,10 +36,14 @@ export default function Ranking() {
     <Stack sx={{}}>
       <Grid container spacing={5}>
         <Grid item xs={12} sx={{ marginTop: '3rem' }}>
-          <TopRanking data={topThreeState} />
+          <Container fixed>
+            <TopRanking data={topThreeState} />
+          </Container>
         </Grid>
         <Grid item xs={12} sx={{ margin: '2rem 5rem' }}>
-          <LeaderBoard data={rankingListState} />
+          <Container fixed>
+            <LeaderBoard data={rankingListState} />
+          </Container>
         </Grid>
       </Grid>
     </Stack>

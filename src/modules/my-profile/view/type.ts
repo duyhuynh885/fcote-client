@@ -1,5 +1,4 @@
 import { IChallenge } from '../../challenge/list/type'
-import { viewDetailProfileClearStateRequest } from './action'
 
 /**
  * type my profile

@@ -7,7 +7,7 @@ import {
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import profileApi from '../../../services/profileApi'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 
 function* editMyProfileFlow({
   firstName,

@@ -78,7 +78,7 @@ const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
     >
       <Stack direction='column' spacing={2}>
         <Box>
-          <Typography className={classes.title}>Top Assignment</Typography>
+          <Typography className={classes.title}>Top Assignment Last Week</Typography>
         </Box>
         <Stack spacing={2} className={classes.scrollBar}>
           {topAssignmentsState.requesting ? (

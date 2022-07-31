@@ -22,6 +22,10 @@ const AssignmentItemStyle = makeStyles((theme: Theme) => ({
     maxWidth: '15rem',
     height: 'auto',
     padding: '10px',
+    '&:hover': {
+      boxShadow: '5px 5px 2px 1px rgba(0,0,0,0.5)',
+      transform: 'translateY(-5px) scale(1.005) translateZ(0)',
+    },
   },
   wrapAvatarName: {
     borderRadius: '50px',

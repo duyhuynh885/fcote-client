@@ -1,7 +1,7 @@
 import { call, put, fork, takeEvery, all, delay } from 'redux-saga/effects'
 import { JoinGroupActionType, JoinGroupRequestAction, JoinGroupResponse } from './type'
 import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
 import groupApi from '../../../services/groupApi'
 import { hideToastAction, showToastAction } from '../../layout/toast/toastAction'
@@ -39,10 +39,10 @@ function* JoinGroupFlow({ joinCode }: JoinGroupRequestAction) {
   }
 }
 
-function* JoinGroupWather() {
+function* JoinGroupWatcher() {
   yield takeEvery(JoinGroupActionType.JOIN_GROUP_REQUESTING, JoinGroupFlow)
 }
 
 export default function* JoinGroupSaga() {
-  yield all([fork(JoinGroupWather)])
+  yield all([fork(JoinGroupWatcher)])
 }

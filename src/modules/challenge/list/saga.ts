@@ -6,7 +6,7 @@ import {
 } from './type'
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import challengeApi from '../../../services/challengeApi'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 
 /**
  * saga list challenge

@@ -1,9 +1,7 @@
 import { Grid, Stack } from '@mui/material'
 import TopAssignment from '../../components/assignment/general/TopAssignment'
-
 import ChallengeCompleted from '../../components/my-profile/view/ChallengeCompleted'
 import React, { useEffect } from 'react'
-import useStyles from './style'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../apps/ReduxContainer'
 import { ViewListChallengeRequestPayload } from '../challenge/list/type'
@@ -29,7 +27,6 @@ import TopUser from '../../components/home/TopUser'
  */
 
 const Home = () => {
-  const classes = useStyles()
   const dispatch = useDispatch<AppDispatch>()
   const topChallengeState = useSelector((state: RootState) => state.listChallenges)
   const topAssignmentsState = useSelector((state: RootState) => state.listAssignment)

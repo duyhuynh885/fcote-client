@@ -4,7 +4,7 @@ import {
   ViewDetailChallengeRequestAction,
   ViewDetailChallengeResponse,
 } from './type'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
 import challengeApi from '../../../services/challengeApi'
 

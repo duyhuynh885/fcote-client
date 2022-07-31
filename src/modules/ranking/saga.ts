@@ -1,6 +1,6 @@
 import { handleError } from './../../utils/handleError'
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects'
-import requestFailure from '../../utils/onFailure'
+import requestFailure from '../../utils/requestFailure'
 import { RankingActionType, RankingRequestAction, RankingResponse } from './type'
 import rankingApi from '../../services/rankingApi'
 
