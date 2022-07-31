@@ -36,10 +36,11 @@ const Home = () => {
   const rankingState = useSelector((state: RootState) => state.ranking)
 
   const customTopChallengeRequest: ViewListChallengeRequestPayload = {
-    typeData: 3,
+    typeData: 5,
     pageSize: 10,
     pageNumber: 1,
   }
+
   const customTopAssignmentRequest: ViewListAssignmentRequestPayload = {
     pageSize: 10,
     filterByCurrentAccount: false,
@@ -54,6 +55,7 @@ const Home = () => {
     dispatch(fetchListAssignmentRequest(customTopAssignmentRequest))
     dispatch(fetchRankingRequest(rankingState.rankingTypeRequest))
   }, [])
+
   return (
     <Stack sx={{ margin: 5 }}>
       <Grid container>
