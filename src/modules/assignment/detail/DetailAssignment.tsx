@@ -14,8 +14,11 @@ import IDETab from '../../../components/assignment/detail/IDETab'
 import TestCaseTab from '../../../components/assignment/detail/TestCaseTab'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
-import { runAssignmentDetailRequest } from '../run/action'
-import { submitAssignmentDetailRequest } from '../submit/action'
+import { runAssignmentDetailClearStateRequest, runAssignmentDetailRequest } from '../run/action'
+import {
+  submitAssignmentDetailClearStateRequest,
+  submitAssignmentDetailRequest,
+} from '../submit/action'
 
 /**
  * Detail Assignment
@@ -62,6 +65,8 @@ export default function DetailAssignment() {
   useEffect(() => {
     return () => {
       dispatch(viewAssignmentDetailClearStateRequest())
+      dispatch(runAssignmentDetailClearStateRequest())
+      dispatch(submitAssignmentDetailClearStateRequest())
     }
   }, [])
 

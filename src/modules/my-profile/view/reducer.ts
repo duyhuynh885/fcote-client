@@ -119,6 +119,10 @@ const reducer = (state = initialStateMyProfile, action: ViewMyProfileAction) => 
         successful: false,
       }
 
+    case ViewMyProfileActionType.VIEW_MY_PROFILE_CLEAR_STATE:
+      return {
+        ...initialStateMyProfile,
+      }
     default:
       return state
   }

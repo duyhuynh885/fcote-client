@@ -25,10 +25,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   myProfileFullName: {
     fontSize: theme.textFont.extraLarge,
     fontWeight: 'bold',
+    height: '30px',
   },
   myProfileUsername: {
     fontSize: theme.textFont.small,
     fontWeight: 'bold',
+    height: '30px',
   },
   myProfileContainerDescription: {
     backgroundColor: theme.color.green,

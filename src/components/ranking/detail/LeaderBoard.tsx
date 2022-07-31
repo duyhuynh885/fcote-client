@@ -5,10 +5,10 @@ import Tab from '@mui/material/Tab'
 import LeaderBoardsTable from './LeaderBoardsTable/LeaderBoardsTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import { updateFillterRankingRequest } from '../../../modules/ranking/action'
+import { updateFilterRankingRequest } from '../../../modules/ranking/action'
 
 /**
- * Leaderboard component
+ * LeaderBoard component
  *
  * Version 1.0
  *
@@ -55,17 +55,17 @@ function ChangeValueProps(index: number) {
   }
 }
 
-export default function Leaderboard(props: any) {
+export default function LeaderBoard(props: any) {
   const [value, setValue] = React.useState(0)
   const dispatch = useDispatch<AppDispatch>()
   const filterRankingState = useSelector((state: RootState) => state.ranking.rankingTypeRequest)
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
-    dispatch(updateFillterRankingRequest({ ...filterRankingState, typeRanking: newValue + 1 }))
+    dispatch(updateFilterRankingRequest({ ...filterRankingState, typeRanking: newValue + 1 }))
   }
   return (
     <Paper
-      elevation={8}
+      elevation={2}
       square
       sx={{
         display: 'flex',
@@ -75,7 +75,7 @@ export default function Leaderboard(props: any) {
     >
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChange} aria-label='Leaderboard'>
+          <Tabs value={value} onChange={handleChange} aria-label='LeaderBoard'>
             <Tab label='Universities' {...ChangeValueProps(0)} />
             <Tab label='Organization' {...ChangeValueProps(1)} />
           </Tabs>

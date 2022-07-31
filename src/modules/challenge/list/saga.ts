@@ -5,11 +5,8 @@ import {
   ViewListChallengeSuccessResponse,
 } from './type'
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
-import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import challengeApi from '../../../services/challengeApi'
-import requestFailure from '../../../utils/onFailure'
-import { ViewListGroupRequestAction, ViewListGroupResponse } from '../../group/list/type'
-import groupApi from '../../../services/groupApi'
+import requestFailure from '../../../utils/requestFailure'
 
 /**
  * saga list challenge
@@ -58,32 +55,17 @@ function* viewListChallengeFlow({
   }
 }
 
-function* viewListGroupFlow({ pageSize, pageNumber }: ViewListGroupRequestAction) {
-  try {
-    const data: ViewListGroupResponse = yield call(groupApi.fetchListGroup, {
-      pageSize,
-      pageNumber,
-    })
-    yield put({ type: ViewListChallengeActionType.VIEW_LIST_GROUP_ID_SUCCESS, ...data })
-  } catch (error) {
-    yield call(
-      requestFailure,
-      ViewListChallengeActionType.VIEW_LIST_GROUP_ID_ERROR,
-      handleError(error),
-    )
-  }
-}
-
 function* viewListChallengeWatcher() {
   yield takeEvery(ViewListChallengeActionType.VIEW_LIST_CHALLENGE_REQUESTING, viewListChallengeFlow)
-  yield takeEvery(ViewListChallengeActionType.VIEW_LIST_GROUP_ID_REQUESTING, viewListGroupFlow)
 }
+
 function* searchListChallengeWatcher() {
   yield takeEvery(
     ViewListChallengeActionType.UPDATE_FILTER_LIST_CHALLENGE_REQUEST,
     viewListChallengeFlow,
   )
 }
+
 export default function* viewListChallengeSaga() {
   yield all([fork(viewListChallengeWatcher), fork(searchListChallengeWatcher)])
 }

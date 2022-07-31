@@ -4,6 +4,7 @@ import {
   ViewUserAssignmentRequestAction,
   ViewChallengeCompletedRequestingPayload,
   ViewChallengeCompletedRequestAction,
+  ViewDetailProfileClearStateAction,
 } from './type'
 
 /**
@@ -56,5 +57,15 @@ export const fetchChallengeCompletedRequest = (
     type: ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
     username: usernameRequest,
     typeData,
+  }
+}
+
+/**
+ * Clear state action
+ * @returns viewDetailProfileClearStateRequest
+ */
+export const viewDetailProfileClearStateRequest = (): ViewDetailProfileClearStateAction => {
+  return {
+    type: ViewMyProfileActionType.VIEW_MY_PROFILE_CLEAR_STATE,
   }
 }

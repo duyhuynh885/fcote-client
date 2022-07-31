@@ -40,8 +40,7 @@ const style = {
   borderRadius: 3,
   p: 4,
 }
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
 const editProfileSchema = object({
   firstName: string().max(32, 'First name must be less than 100 characters'),
   lastName: string().max(32, 'Last name must be less than 100 characters'),

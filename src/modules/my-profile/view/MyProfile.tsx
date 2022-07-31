@@ -5,7 +5,11 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import AssignmentCompleted from '../../../components/my-profile/view/AssignmentCompleted'
 import ChallengeCompleted from '../../../components/my-profile/view/ChallengeCompleted'
 import Profile from '../../../components/my-profile/view/Profile'
-import { fetchChallengeCompletedRequest, fetchUserAssignmentRequest } from './action'
+import {
+  fetchChallengeCompletedRequest,
+  fetchUserAssignmentRequest,
+  viewDetailProfileClearStateRequest,
+} from './action'
 
 /**
  * My Profile Pages
@@ -40,6 +44,15 @@ export default function MyProfile() {
       dispatch(fetchChallengeCompletedRequest(myProfileState.challengeCompletedRequest, currentUserState.username))
     }
   }, [myProfileState.challengeCompletedRequest, currentUserState])
+
+  /**
+   * clear state
+   */
+  useEffect(() => {
+    return () => {
+      dispatch(viewDetailProfileClearStateRequest())
+    }
+  }, [])
 
   return (
     <Stack sx={{ margin: 5 }}>

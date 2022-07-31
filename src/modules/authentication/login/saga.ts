@@ -6,7 +6,7 @@ import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import { authenticate, getCookie, signOut } from '../../../utils/auth'
 import authApi from '../../../services/authApi'
 import history from '../../../configs/routing/history'
-import requestFailure from '../../../utils/onFailure'
+import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
 
 /**

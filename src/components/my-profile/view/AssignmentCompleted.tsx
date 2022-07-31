@@ -28,7 +28,7 @@ const AssignmentCompleted: React.FC<AssignmentCompletedProps> = (props) => {
   const classes = useStyles()
   return (
     <Paper
-      elevation={8}
+      elevation={4}
       square
       sx={{
         display: 'flex',

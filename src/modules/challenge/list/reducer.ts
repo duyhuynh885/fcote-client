@@ -35,7 +35,6 @@ const initialState: ViewListChallengeState = {
   },
   challenges: [],
   currentSize: 1,
-  groups: [],
 }
 
 const reducer = (state = initialState, action: ViewListChallengeAction) => {
@@ -63,29 +62,7 @@ const reducer = (state = initialState, action: ViewListChallengeAction) => {
         requesting: false,
         successful: false,
       }
-    case ViewListChallengeActionType.VIEW_LIST_GROUP_ID_REQUESTING:
-      return {
-        ...state,
-        requesting: true,
-        successful: false,
-      }
-    case ViewListChallengeActionType.VIEW_LIST_GROUP_ID_SUCCESS:
-      return {
-        ...state,
-        groups: action.groups,
-        requesting: false,
-        successful: true,
-      }
-    case ViewListChallengeActionType.VIEW_LIST_GROUP_ID_ERROR:
-      return {
-        ...state,
-        errors: {
-          errorMessageEn: action.error.errorMessageEn,
-          errorMessageVi: action.error.errorMessageVi,
-        },
-        requesting: false,
-        successful: false,
-      }
+
     case ViewListChallengeActionType.VIEW_LIST_CHALLENGE_CLEAR_STATE:
       return {
         ...initialState,

@@ -30,7 +30,7 @@ const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
   const topChallengeState = useSelector((state: RootState) => state.listChallenges)
   return (
     <Paper
-      elevation={8}
+      elevation={4}
       square
       sx={{
         display: 'flex',

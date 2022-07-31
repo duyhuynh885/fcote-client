@@ -1,4 +1,4 @@
-import { Box, Paper, Stack, Typography } from '@mui/material'
+import { Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import useStyles from './style'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
@@ -39,21 +39,13 @@ const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
     }
   }
   return (
-    <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
-      <Paper
-        elevation={4}
-        square
-        sx={{
-          width: '100%',
-          height: '125px',
-        }}
-      >
+    <Paper elevation={2} square className={classes.container}>
+      <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={props.url}>
         <Stack direction='row'>
           <img
             className={classes.challengeCardBanner}
             src='https://img.freepik.com/free-vector/joystick-game-sport-technology_138676-2045.jpg?w=2000'
           />
-
           <Stack
             sx={{
               width: '100%',
@@ -82,8 +74,8 @@ const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
             </Stack>
           </Stack>
         </Stack>
-      </Paper>
-    </Link>
+      </Link>
+    </Paper>
   )
 }
 export default ChallengeCard
