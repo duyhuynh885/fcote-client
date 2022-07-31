@@ -20,6 +20,41 @@ const useStyles = makeStyles((theme: Theme) => ({
   notSolved: { color: '#605e5e', backgroundColor: '#C8C3C250' },
   inProgress: { color: '#3366FF', backgroundColor: '#ADC8FF50' },
   solved: { color: '#605e5e', backgroundColor: '#C8C3C250' },
+  notOpenYet: {
+    color: '#605e5e',
+  },
+  statusChallengeStyle: {
+    fontWeight: '800',
+  },
+  open: {
+    color: '#3366FF',
+  },
+  close: {
+    color: '#605e5e',
+  },
+  small: {
+    fontSize: `${theme.textFont.superSmall} `,
+  },
+  large: {
+    fontSize: `${theme.textFont.small} `,
+  },
+  bannerTextStartDate: {
+    fontWeight: '700',
+    color: theme.color.green,
+
+    fontSize: theme.textFont.extraSmall,
+  },
+  bannerTextEndDate: {
+    fontWeight: '700',
+    color: theme.color.red,
+
+    fontSize: theme.textFont.extraSmall,
+  },
+  bannerTextDate: {
+    fontWeight: '600',
+    color: theme.color.darkGray,
+    fontSize: theme.textFont.extraSmall,
+  },
 }))
 
 export default useStyles

@@ -28,14 +28,15 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 export default function Group() {
   const dispatch = useDispatch<AppDispatch>()
   const groupsState = useSelector((state: RootState) => state.listGroup.groups)
+  const totalGroupState = useSelector((state: RootState) => state.listGroup.totalGroup)
   const groupTypeRequestState = useSelector((state: RootState) => state.listGroup.groupTypeRequest)
   const groupsRequestingState = useSelector((state: RootState) => state.listGroup.requesting)
   const createGroupSuccessfulState = useSelector((state: RootState) => state.createGroup.successful)
   const joinGroupSuccessfulState = useSelector((state: RootState) => state.joinGroup.successful)
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(1)
-  const PER_PAGE = 16
-  const count = Math.ceil(16 / PER_PAGE)
+  const PER_PAGE = 9
+  const count = Math.ceil(totalGroupState / PER_PAGE)
 
   useEffect(() => {
     dispatch(fetchListGroupRequest(groupTypeRequestState))
@@ -67,6 +68,7 @@ export default function Group() {
    */
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
+    dispatch(fetchListGroupRequest({ pageSize: PER_PAGE, pageNumber: value }))
   }
 
   return (

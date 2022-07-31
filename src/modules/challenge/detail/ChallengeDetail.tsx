@@ -41,7 +41,7 @@ export default function ChallengeDetail() {
   return (
     <Stack>
       <InsideNavBar namePage='Challenge Detail' />
-      <Banner detail={detail} />
+      <Banner requesting={requesting} detail={detail} />
       <Stack direction='row' justifyContent='center' alignItems='center' margin={5}>
         {requesting ? (
           <Stack marginTop={5} alignItems='center'>

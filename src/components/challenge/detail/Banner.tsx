@@ -1,72 +1,105 @@
-import { Stack, Typography } from '@mui/material'
+import { CircularProgress, Divider, Grid, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { Detail } from '../../../modules/challenge/detail/type'
 import useStyles from './style'
+import StatusChallengeChallenge from '../../common/text/StatusChallenge'
+import { mapStatusChallenge } from '../../../utils/mapper'
+import DateChallenge from '../../common/text/DateChallenge'
 
 interface BannerProps {
   detail: Detail
+  requesting: boolean
 }
 
 export default function Banner(props: BannerProps) {
-  const { detail } = props
+  const { detail, requesting } = props
   const classes = useStyles()
+
   return (
-    <Stack
-      direction='row'
-      alignItems='center'
-      justifyContent='space-between'
-      sx={{
-        width: '90%',
-        height: '30vh',
-        margin: '0 auto',
-        marginTop: '30px',
-        backgroundColor: '#ffff',
-      }}
-    >
-      <img
-        className={classes.challengeCardBanner}
-        src='https://img.freepik.com/free-vector/joystick-game-sport-technology_138676-2045.jpg?w=2000'
-      />
-      <Stack
-        direction='column'
-        justifyContent='space-between'
-        alignItems='center'
-        sx={{ height: '100%', width: '100%', padding: '20px 50px' }}
-      >
-        <Stack direction='column' sx={{ height: '75%', width: '100%' }}>
-          <Stack direction='column' alignItems='center' sx={{ height: '60%', width: '100%' }}>
-            <Typography>{detail.title}</Typography>
-            <Typography>{detail.description}</Typography>
-          </Stack>
-          <Stack
-            direction='row'
-            justifyContent='space-between'
-            sx={{ height: '40%', width: '100%' }}
-          >
-            <Stack direction='column' alignItems='center'>
-              <Typography>{detail.title}</Typography>
-              <Typography>{detail.description}</Typography>
-            </Stack>
-            <Stack direction='column' alignItems='center'>
-              <Typography>{detail.title}</Typography>
-              <Typography>{detail.description}</Typography>
-            </Stack>
-          </Stack>
-        </Stack>
+    <Paper square elevation={2} className={classes.container}>
+      {requesting ? (
         <Stack
-          sx={{ height: '25%', width: '100%', borderTop: '1px solid gray', padding: 3 }}
-          direction='row'
-          justifyContent='space-around'
-          spacing={2}
+          marginTop={5}
+          sx={{
+            width: '100%',
+          }}
+          alignItems='center'
         >
-          <Stack direction='row' spacing={1}>
-            <Typography>Total participants: </Typography>
-            <Typography>3</Typography>
-            <Typography>members</Typography>
-          </Stack>
-          <Typography>IN PROGRESS</Typography>
+          <CircularProgress color='success' />
         </Stack>
-      </Stack>
-    </Stack>
+      ) : (
+        <Stack
+          sx={{ height: '100%' }}
+          direction='row'
+          alignItems='center'
+          justifyContent='space-between'
+        >
+          <img
+            className={classes.challengeCardBanner}
+            src='https://img.freepik.com/free-vector/joystick-game-sport-technology_138676-2045.jpg?w=2000'
+          />
+          <Stack direction='column' sx={{ height: '100%', width: '100%', padding: '0 50px' }}>
+            <Stack direction='column' sx={{ height: '75%', width: '100%' }}>
+              <Stack direction='column' alignItems='center' sx={{ height: '60%', width: '100%' }}>
+                <Typography className={classes.bannerTitle}>{detail.title}</Typography>
+                <Typography className={classes.bannerDescription}>{detail.description}</Typography>
+              </Stack>
+              <Grid container sx={{ height: '40%', width: '100%' }}>
+                <Grid item xs={6} direction='column'>
+                  <Stack direction='row'>
+                    <Typography className={classes.bannerTextTitle}>Duration:</Typography>
+                    <DateChallenge startDate={detail.startAt} endDate={detail.endAt} />
+                  </Stack>
+                  <Stack direction='row'>
+                    <Typography className={classes.bannerTextTitle}>Total Assignment:</Typography>
+                    <Typography className={classes.bannerTextDescription}>
+                      {detail.totalAssignment}
+                    </Typography>
+                  </Stack>
+                </Grid>
+                <Grid item xs={6} direction='column' justifyContent='flex-start'>
+                  <Stack direction='row'>
+                    <Typography className={classes.bannerTextTitle}>Group:</Typography>
+                    <Typography className={classes.bannerTextDescription}>
+                      {detail.group}
+                    </Typography>
+                  </Stack>
+                  <Stack direction='row'>
+                    <Typography className={classes.bannerTextTitle}>Author:</Typography>
+                    <Typography className={classes.bannerTextDescription}>
+                      {detail.createdBy}
+                    </Typography>
+                  </Stack>
+                </Grid>
+              </Grid>
+            </Stack>
+            <Divider variant='fullWidth' />
+            <Grid
+              sx={{ height: '25%', width: '100%' }}
+              direction='row'
+              justifyContent='center'
+              alignItems='center'
+              columnSpacing={20}
+              container
+            >
+              <Grid item xs={6}>
+                <Stack direction='row' justifyContent='center' alignItems='center' spacing={0.5}>
+                  <Typography className={classes.bannerFooterTextTitle}>
+                    Total participants:
+                  </Typography>
+                  <Typography className={classes.bannerFooterTotalParticipial}>3</Typography>
+                  <Typography className={classes.bannerFooterTextTitle}>members</Typography>
+                </Stack>
+              </Grid>
+              <Grid item xs={6}>
+                <Stack direction='row' justifyContent='center' alignItems='center' spacing={0.5}>
+                  <StatusChallengeChallenge {...mapStatusChallenge(detail.status)} size={'large'} />
+                </Stack>
+              </Grid>
+            </Grid>
+          </Stack>
+        </Stack>
+      )}
+    </Paper>
   )
 }

@@ -67,13 +67,30 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   root: {
     '&$selected': {
-      backgroundColor: 'red',
-      '&:hover': {
-        backgroundColor: 'yellow',
-      },
+      backgroundColor: `${theme.color.green}70 !important`,
     },
+    padding: '5px',
   },
   selected: {},
+  cardGroup: {
+    width: '100% !important',
+    height: 'auto',
+    border: '1px solid black',
+    padding: '10px 10px',
+  },
+  cardGroupTitle: {
+    fontWeight: '800',
+    fontSize: theme.textFont.small,
+  },
+  cardGroupTotalMember: {
+    fontWeight: '800',
+    fontSize: theme.textFont.small,
+    color: theme.color.darkRed,
+  },
+  cardGroupTitleMember: {
+    fontWeight: '800',
+    fontSize: theme.textFont.extraSmall,
+  },
 }))
 
 export default useStyles
