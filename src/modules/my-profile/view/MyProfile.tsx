@@ -26,14 +26,20 @@ import { fetchChallengeCompletedRequest, fetchUserAssignmentRequest } from './ac
 export default function MyProfile() {
   const dispatch = useDispatch<AppDispatch>()
   const myProfileState = useSelector((state: RootState) => state.myProfile)
+  const currentUserState = useSelector((state: RootState) => state.currentUser.user)
+  useEffect(() => {
+    if (currentUserState.username !== '') {
+      dispatch(
+        fetchUserAssignmentRequest(myProfileState.userAssignmentRequest, currentUserState.username),
+      )
+    }
+  }, [myProfileState.userAssignmentRequest, currentUserState])
 
   useEffect(() => {
-    dispatch(fetchUserAssignmentRequest(myProfileState.userAssignmentRequest))
-  }, [myProfileState.userAssignmentRequest])
-
-  useEffect(() => {
-    dispatch(fetchChallengeCompletedRequest(myProfileState.challengeCompletedRequest))
-  }, [myProfileState.challengeCompletedRequest])
+    if (currentUserState.username !== '') {
+      dispatch(fetchChallengeCompletedRequest(myProfileState.challengeCompletedRequest, currentUserState.username))
+    }
+  }, [myProfileState.challengeCompletedRequest, currentUserState])
 
   return (
     <Stack sx={{ margin: 5 }}>
@@ -44,7 +50,7 @@ export default function MyProfile() {
         <Grid item xs={8}>
           <Stack spacing={2}>
             <ChallengeCompleted
-              listChanllengeCompleted={myProfileState.challengeCompleted.listChallengeCompleted}
+              listChallengeCompleted={myProfileState.challengeCompleted.listChallengeCompleted}
             />
             <AssignmentCompleted assCompleted={myProfileState.assignmentCompleted} />
           </Stack>

@@ -23,6 +23,8 @@ import createChallengeSaga from '../../modules/challenge/create/saga'
 import detailChallengeSaga from '../../modules/challenge/detail/saga'
 import leaveGroupSaga from '../../modules/group/setting/leave/saga'
 import kickMemberGroupSaga from '../../modules/group/setting/kick/saga'
+import getMyProfileSaga from '../../modules/my-profile/get-my-profile/saga'
+
 /**
  * Root Saga
  */
@@ -52,5 +54,6 @@ export default function* rootSaga() {
     fork(detailChallengeSaga),
     fork(leaveGroupSaga),
     fork(kickMemberGroupSaga),
+    fork(getMyProfileSaga),
   ])
 }

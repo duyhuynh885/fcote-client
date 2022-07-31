@@ -1,5 +1,5 @@
 import {
-  ViewMyProfileAcionType,
+  ViewMyProfileActionType,
   ViewUserAssignmentRequestingPayload,
   ViewUserAssignmentRequestAction,
   ViewChallengeCompletedRequestingPayload,
@@ -21,20 +21,22 @@ import {
  * 10-07-2022      HuyNT2711           Create
  */
 
-export const fetchUserAssignmentRequest = ({
-  username,
-  typeData,
-  firstName,
-  lastName,
-  organization,
-  city,
-  country,
-  phone,
-  gender,
-}: ViewUserAssignmentRequestingPayload): ViewUserAssignmentRequestAction => {
+export const fetchUserAssignmentRequest = (
+  {
+    typeData,
+    firstName,
+    lastName,
+    organization,
+    city,
+    country,
+    phone,
+    gender,
+  }: ViewUserAssignmentRequestingPayload,
+  usernameRequest: string,
+): ViewUserAssignmentRequestAction => {
   return {
-    type: ViewMyProfileAcionType.VIEW_USER_ASSIGNMENT_REQUESTING,
-    username,
+    type: ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_REQUESTING,
+    username: usernameRequest,
     typeData,
     firstName,
     lastName,
@@ -46,13 +48,13 @@ export const fetchUserAssignmentRequest = ({
   }
 }
 
-export const fetchChallengeCompletedRequest = ({
-  username,
-  typeData,
-}: ViewChallengeCompletedRequestingPayload): ViewChallengeCompletedRequestAction => {
+export const fetchChallengeCompletedRequest = (
+  { typeData }: ViewChallengeCompletedRequestingPayload,
+  usernameRequest: string,
+): ViewChallengeCompletedRequestAction => {
   return {
-    type: ViewMyProfileAcionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
-    username,
+    type: ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
+    username: usernameRequest,
     typeData,
   }
 }

@@ -22,11 +22,11 @@ import useStyles from '../style'
  */
 
 interface ChallengeCompletedProps {
-  listChanllengeCompleted: IChallenge[]
+  listChallengeCompleted: IChallenge[]
 }
 const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
   const classes = useStyles()
-  const { listChanllengeCompleted } = props
+  const { listChallengeCompleted } = props
   const topChallengeState = useSelector((state: RootState) => state.listChallenges)
   return (
     <Paper
@@ -49,8 +49,8 @@ const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
             </Stack>
           ) : (
             <>
-              {listChanllengeCompleted &&
-                listChanllengeCompleted.map((challenge, index) => (
+              {listChallengeCompleted &&
+                listChallengeCompleted.map((challenge, index) => (
                   <ChallengeCard key={index} url='/challenge/detail' challenge={challenge} />
                 ))}
             </>
