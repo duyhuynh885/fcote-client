@@ -1,3 +1,4 @@
+import { ResetPasswordRequestPayload } from './../modules/authentication/reset-password/type'
 import { LoginRequestPayload, LoginResponse } from '../modules/authentication/login/type'
 import { RegisterRequestPayload, RegisterResponse } from '../modules/authentication/register/type'
 import { axiosClient } from './clientApi'
@@ -40,23 +41,23 @@ const authApi = {
   },
 
   /**
-   * Api for forget password request
+   * Api for reset password request
    * @param payload RegisterRequestPayload
    * @returns
    */
-  forgetPassword(payload: RegisterRequestPayload) {
-    const url = '/auth/post-reset'
+  resetPassword(payload: ResetPasswordRequestPayload) {
+    const url = '/account/post-reset'
     return axiosClient.post(url, payload)
   },
 
   /**
-   * Api for logout
+   * Api for logout account
    * @param payload RegisterRequestPayload
    * @returns
    */
-  logout(payload: RegisterRequestPayload) {
-    const url = '/auth/post-reset'
-    return axiosClient.post(url, payload)
+  logoutAccount() {
+    const url = '/account/get-signout'
+    return axiosClient.get(url)
   },
 }
 

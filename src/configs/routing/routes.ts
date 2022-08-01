@@ -1,5 +1,5 @@
 import AboutUs from '../../modules/statics/about-us/AboutUs'
-import ForgetPassword from '../../modules/authentication/forget-password/ForgetPassword'
+import ForgetPassword from '../../modules/authentication/reset-password/ResetPassword'
 import Login from '../../modules/authentication/login/Login'
 import Register from '../../modules/authentication/register/Register'
 import Challenge from '../../modules/challenge/list/Challenge'

@@ -2,7 +2,6 @@ import React from 'react'
 import {
   Checkbox,
   FormControlLabel,
-  FormGroup,
   Modal,
   Paper,
   Stack,
@@ -20,7 +19,7 @@ import {
 import { mapNameDataTypeByValue } from '../../../utils/mapper'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import _ from 'lodash'
 
 /**
@@ -61,7 +60,7 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
   const classes = useStyles()
   const { open, onClose, inputList, output, onSave, currentSize } = props
   const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
-  const { handleSubmit, register, reset } = useForm()
+  const { handleSubmit, register, reset, control } = useForm()
   const rest = {
     type: 'submit',
   }
@@ -70,7 +69,7 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
    * Handle create new a test case
    */
   const onSubmit = handleSubmit((values) => {
-    const { inputTestCaseValue, outputTestCaseValue } = values
+    const { inputTestCaseValue, outputTestCaseValue, isHide } = values
     const inputTestCase: TestCaseInputCreateAssignment[] = inputTestCaseValue.map(
       (data: string, index: number) => {
         const inputData = _.find(inputList, { order: index })
@@ -85,7 +84,7 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
       },
     )
     onSave({
-      isPrivate: false,
+      isPrivate: isHide,
       order: currentSize + 1,
       input: inputTestCase,
       output: {
@@ -141,12 +140,19 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
                 variant='outlined'
                 required
               />{' '}
-              <FormGroup>
-                <FormControlLabel
-                  control={<Checkbox defaultChecked color='success' />}
-                  label={<Typography className={classes.titleTextField}>Hide test case</Typography>}
-                />
-              </FormGroup>
+              <Controller
+                name='isHide'
+                control={control}
+                defaultValue={false}
+                render={({ field }) => (
+                  <FormControlLabel
+                    control={<Checkbox {...field} color='success' />}
+                    label={
+                      <Typography className={classes.titleTextField}>Hide test case</Typography>
+                    }
+                  />
+                )}
+              />
             </Stack>
             <Stack direction='row' justifyContent='space-around' alignItems='center' spacing={8}>
               <RegularButton
