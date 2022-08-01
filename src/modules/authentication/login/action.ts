@@ -3,7 +3,6 @@ import {
   LoginClearStateAction,
   LoginRequestAction,
   LoginRequestPayload,
-  LogoutAction,
 } from './type'
 
 /**
@@ -31,16 +30,6 @@ export const loginRequest = ({ email, password }: LoginRequestPayload): LoginReq
     type: LoginActionType.LOGIN_REQUESTING,
     email,
     password,
-  }
-}
-
-/**
- * Logout request action
- * @returns LogoutAction
- */
-export const logoutRequest = (): LogoutAction => {
-  return {
-    type: LoginActionType.LOGOUT_REQUEST,
   }
 }
 

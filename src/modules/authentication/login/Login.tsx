@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   Box,
   Checkbox,
   Container,
   FormControlLabel,
   Grid,
+  Stack,
   TextField,
   Typography,
 } from '@mui/material'
@@ -19,7 +20,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import history from '../../../configs/routing/history'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import { loginClearStateRequest, loginRequest } from './action'
+import { loginRequest } from './action'
 import ErrorMessage from '../../../components/common/text/ErrorMessage'
 
 /**
@@ -37,19 +38,17 @@ import ErrorMessage from '../../../components/common/text/ErrorMessage'
  * 22-06-2022         DuyHV           Create
  */
 
-const registerSchema = object({
-  email: string().email('Email is invalid'),
-  password: string()
-    .min(8, 'Password must be more than 8 characters')
-    .max(32, 'Password must be less than 32 characters'),
-})
-
 export default function Login() {
+  const registerSchema = object({
+    email: string().email('Email is invalid'),
+    password: string()
+      .min(8, 'Password must be more than 8 characters')
+      .max(32, 'Password must be less than 32 characters'),
+  })
   type LoginInput = TypeOf<typeof registerSchema>
   const { t } = useTranslation()
   const classes = useStyles()
   const {
-    reset,
     register,
     formState: { errors },
     handleSubmit,
@@ -61,19 +60,6 @@ export default function Login() {
   }
   const loginState = useSelector((state: RootState) => state.login)
   const dispatch = useDispatch<AppDispatch>()
-
-  useEffect(() => {
-    return () => {
-      dispatch(loginClearStateRequest())
-    }
-  }, [])
-
-  /**
-   * Load error or success message if exist
-   */
-  useEffect(() => {
-    reset()
-  }, [loginState.successful, loginState.errors])
 
   /**
    * Handle login
@@ -130,28 +116,15 @@ export default function Login() {
                 helperText={errors['password'] ? errors['password'].message : ''}
                 {...register('password')}
               />
-              <Grid container>
-                <Grid item xs={6}>
-                  <FormControlLabel
-                    className={classes.link}
-                    control={<Checkbox defaultChecked />}
-                    label='Remember me'
-                    sx={{ marginBottom: '1.5rem' }}
-                  />
-                </Grid>
-                <Grid
-                  item
-                  xs={6}
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                  }}
-                >
-                  <Link to='/forget-password' className={classes.link}>
-                    <Typography noWrap> {t('ForgetPassword')}</Typography>
-                  </Link>
-                </Grid>
-              </Grid>
+              <Stack direction='row' justifyContent='space-between' alignItems='center'>
+                <FormControlLabel
+                  control={<Checkbox color='success' defaultChecked />}
+                  label='Remember me'
+                />
+                <Link to='/forget-password' className={classes.link}>
+                  <Typography noWrap> {t('ForgetPassword')}</Typography>
+                </Link>
+              </Stack>
               <RegularButton
                 color={'primary'}
                 size={'lg'}

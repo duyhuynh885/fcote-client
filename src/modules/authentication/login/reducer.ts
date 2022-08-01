@@ -59,14 +59,9 @@ const reducer = (state = initialState, action: LoginAction) => {
         successful: false,
       }
 
-    case LoginActionType.LOGOUT_REQUEST:
-      return {
-        ...initialState,
-      }
-
     case LoginActionType.LOGIN_CLEAR_STATE:
       return {
-        ...state,
+        ...initialState,
       }
 
     default:

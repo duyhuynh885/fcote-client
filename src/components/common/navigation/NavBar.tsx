@@ -17,7 +17,6 @@ import { useTranslation } from 'react-i18next'
 import ChangLanguage from '../button/ChangeLanguage'
 import { isAuth } from '../../../utils/auth'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import { logoutRequest } from '../../../modules/authentication/login/action'
 import { useDispatch, useSelector } from 'react-redux'
 import MilitaryTechOutlinedIcon from '@mui/icons-material/MilitaryTechOutlined'
 import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined'
@@ -25,6 +24,7 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined'
 import { getUserProfileRequest } from '../../../modules/my-profile/get-my-profile/action'
+import { logoutRequest } from '../../../modules/authentication/logout/action'
 
 /**
  * Navbar components

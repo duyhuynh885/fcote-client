@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   code: {
     textAlign: 'center',
-    fontWeight: '600',
+    fontWeight: '700',
+    fontSize: theme.textFont.small,
     color: `${theme.color.black} !important`,
   },
 }))
