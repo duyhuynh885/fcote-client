@@ -8,12 +8,9 @@ import {
   GetUserProfileSuccessResponse,
 } from '../modules/my-profile/get-my-profile/type'
 import {
-  ViewUserAssignmentRequestingPayload,
-  ViewUserAssignmentSuccessResponse,
-  ViewUserAssignmentErrorResponse,
-  ViewChallengeCompletedRequestingPayload,
-  ViewChallengeCompletedSuccessResponse,
-  ViewChallengeCompletedErrorResponse,
+  ViewMyProfileRequestingPayload,
+  ViewMyProfileSuccessResponse,
+  ViewMyProfileErrorResponse,
 } from './../modules/my-profile/view/type'
 
 import { axiosClient } from './clientApi'
@@ -24,26 +21,15 @@ const profileApi = {
     return axiosClient.post<GetUserProfileSuccessResponse, GetUserProfileErrorResponse>(url)
   },
 
-  fetchUserAssignmentApi(payload: ViewUserAssignmentRequestingPayload) {
+  fetchUserAssignmentApi(payload: ViewMyProfileRequestingPayload) {
     const url = '/account/get-profile'
-    return axiosClient.post<ViewUserAssignmentSuccessResponse, ViewUserAssignmentErrorResponse>(
-      url,
-      payload,
-    )
+    return axiosClient.post<ViewMyProfileSuccessResponse, ViewMyProfileErrorResponse>(url, payload)
   },
   putEditMyProfileApi(payload: EditMyProfileRequestPayload) {
     const url = '/account/update-profile'
     return axiosClient.put<EditMyProfileSuccessResponse, EditMyProfileErrorResponse>(url, {
       user: payload,
     })
-  },
-
-  fetchChallengeCompletedApi(payload: ViewChallengeCompletedRequestingPayload) {
-    const url = '/challenge/get-list-challenge'
-    return axiosClient.post<
-      ViewChallengeCompletedSuccessResponse,
-      ViewChallengeCompletedErrorResponse
-    >(url, payload)
   },
 }
 export default profileApi
