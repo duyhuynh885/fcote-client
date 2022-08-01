@@ -3,13 +3,11 @@ import profileApi from '../../../services/profileApi'
 import { handleError } from '../../../utils/handleError'
 import requestFailure from '../../../utils/requestFailure'
 import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
-import {
-  ViewListChallengeActionType
-} from './../../challenge/list/type'
+import { ViewListChallengeActionType } from './../../challenge/list/type'
 import {
   ViewMyProfileActionType,
   ViewMyProfileRequestAction,
-  ViewMyProfileSuccessResponse
+  ViewMyProfileSuccessResponse,
 } from './type'
 
 /**

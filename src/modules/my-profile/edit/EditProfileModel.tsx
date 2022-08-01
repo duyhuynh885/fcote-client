@@ -58,7 +58,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
   const dispatch = useDispatch<AppDispatch>()
   const profile = useSelector((state: RootState) => state.myProfile)
   const editMyProfileState = useSelector((state: RootState) => state.editMyProfile)
-  // const [gender, setGender] = useState(profile.user.gender)
+
   const {
     reset,
     register,
@@ -96,10 +96,6 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
     )
     onClose()
   }
-
-  // const handleChangeGender = (event: SelectChangeEvent) => {
-  //   setGender(event.target.value)
-  // }
 
   return (
     <React.Fragment>
@@ -187,7 +183,6 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 id='demo-simple-select'
                 defaultValue={profile.user.gender}
                 label='Gender'
-                // onChange={handleChangeGender}
               >
                 <MenuItem value={'1'}>Female</MenuItem>
                 <MenuItem value={'2'}>Male</MenuItem>
