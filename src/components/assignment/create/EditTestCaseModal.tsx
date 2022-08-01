@@ -65,7 +65,7 @@ export default function EditTestCaseModal(props: EditTestCaseModalProps) {
   const rest = {
     type: 'submit',
   }
-  console.log(testCase)
+
   /**
    * Handle save data to edit a test case
    */
