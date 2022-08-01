@@ -18,6 +18,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import _ from 'lodash'
 import { styled } from '@mui/material/styles'
 import EditTestCaseModal from './EditTestCaseModal'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
 /**
  * TestCaseTab component
@@ -195,7 +196,12 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
             spacing={2}
           >
             <Typography className={classes.titleTextField}>TEST {testCase.order}</Typography>
-            <Box>
+            <Box alignItems='center'>
+              {testCase.isPrivate ? (
+                <IconButton aria-label='lock'>
+                  <LockOutlinedIcon fontSize='small' />
+                </IconButton>
+              ) : null}
               <IconButton
                 onClick={() => {
                   handleEdit(testCase)

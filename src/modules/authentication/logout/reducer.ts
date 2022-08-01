@@ -1,7 +1,7 @@
-import { RegisterAction, RegisterActionType, RegisterState } from './type'
+import { LogoutAction, LogoutActionType, LogoutState } from './type'
 
 /**
- * Reducer for register
+ * Reducer for logout
  *
  * Version 1.0
  *
@@ -15,7 +15,7 @@ import { RegisterAction, RegisterActionType, RegisterState } from './type'
  * 22-06-2022         DuyHV           Create
  */
 
-const initialState: RegisterState = {
+const initialState: LogoutState = {
   requesting: false,
   successful: false,
   messages: {} as Message,
@@ -24,20 +24,20 @@ const initialState: RegisterState = {
 
 /**
  * Reducer Authentication
- * @param state RegisterState
- * @param action AuthAction
+ * @param state LogoutState
+ * @param action LogoutAction
  * @returns
  */
-const reducer = (state = initialState, action: RegisterAction) => {
+const reducer = (state = initialState, action: LogoutAction) => {
   switch (action.type) {
-    case RegisterActionType.REGISTER_REQUESTING:
+    case LogoutActionType.LOGOUT_REQUESTING:
       return {
         ...state,
         requesting: true,
         successful: false,
       }
 
-    case RegisterActionType.REGISTER_SUCCESS:
+    case LogoutActionType.LOGOUT_SUCCESS:
       return {
         ...state,
         messages: {
@@ -48,19 +48,22 @@ const reducer = (state = initialState, action: RegisterAction) => {
         successful: true,
       }
 
-    case RegisterActionType.REGISTER_ERROR:
+    case LogoutActionType.LOGOUT_ERROR:
       return {
         ...state,
         errors: {
           errorMessageEn: action.error.errorMessageEn,
           errorMessageVi: action.error.errorMessageVi,
         },
+        requesting: false,
+        successful: false,
       }
 
-    case RegisterActionType.REGISTER_CLEAR_STATE:
+    case LogoutActionType.LOGOUT_CLEAR_STATE:
       return {
         ...initialState,
       }
+
     default:
       return state
   }

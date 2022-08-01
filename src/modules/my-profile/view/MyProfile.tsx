@@ -41,7 +41,12 @@ export default function MyProfile() {
 
   useEffect(() => {
     if (currentUserState.username !== '') {
-      dispatch(fetchChallengeCompletedRequest(myProfileState.challengeCompletedRequest, currentUserState.username))
+      dispatch(
+        fetchChallengeCompletedRequest(
+          myProfileState.challengeCompletedRequest,
+          currentUserState.username,
+        ),
+      )
     }
   }, [myProfileState.challengeCompletedRequest, currentUserState])
 

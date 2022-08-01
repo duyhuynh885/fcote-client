@@ -62,17 +62,20 @@ export default function Member(props: DetailGroupProps) {
       }
     }
   }
-  function renderKickMemberButton(isOwner: boolean, idMember: number) {
-    if (isOwner) {
+  function renderKickMemberButton(_isOwner: boolean, idMember: number) {
+    if (_isOwner) {
       return (
         <IconButton
-          color='primary'
+          color='error'
+          sx={{
+            width: '40px',
+          }}
           aria-label='logout'
           onClick={() => {
             dispatch(kickGroupRequest(groupIdState, idMember))
           }}
         >
-          <LogoutIcon />
+          <LogoutIcon fontSize='small' />
         </IconButton>
       )
     }
@@ -83,26 +86,26 @@ export default function Member(props: DetailGroupProps) {
       square
       elevation={4}
       sx={{ width: '100%', overflow: 'hidden' }}
-      className={classes.containerWraper}
+      className={classes.containerWarper}
     >
       <TableContainer sx={{ maxHeight: 440 }} className={classes.tableContainer}>
         <Table stickyHeader aria-label='sticky table' className={classes.table}>
           <TableHead>
             <TableRow>
               <TableCell className={classes.tableHeaderCellRanking}>
-                <Typography className={classes.textHeaderCell}>RANK</Typography>
+                <Typography className={classes.textHeaderCell}>Rank</Typography>
               </TableCell>
               <TableCell className={classes.tableHeaderCellUsername}>
-                <Typography className={classes.textHeaderCell}>USER NAME</Typography>
+                <Typography className={classes.textHeaderCell}>Username</Typography>
               </TableCell>
               <TableCell className={classes.tableHeaderCell}>
-                <Typography className={classes.textHeaderCell}>TOTAL COMPLETED</Typography>
+                <Typography className={classes.textHeaderCell}>Total Completed</Typography>
               </TableCell>
               <TableCell className={classes.tableHeaderCell} sx={{ maxWidth: '4em' }}>
-                <Typography className={classes.textHeaderCell}>TOTAL MISSING</Typography>
+                <Typography className={classes.textHeaderCell}>Total Missing</Typography>
               </TableCell>
               <TableCell className={classes.tableHeaderCell} sx={{ maxWidth: '4em' }}>
-                <Typography className={classes.textHeaderCell}>TOTAL SCORE</Typography>
+                <Typography className={classes.textHeaderCell}>Total Score</Typography>
               </TableCell>
               <TableCell className={classes.tableHeaderCellFinal} sx={{ maxWidth: '4em' }}>
                 <Typography className={classes.textHeaderCell}></Typography>
@@ -124,7 +127,7 @@ export default function Member(props: DetailGroupProps) {
                     {renderRanking(index + 1)}
                   </TableCell>
                   <TableCell className={classes.tableItemCell}>
-                    <Grid container>
+                    <Grid container alignItems='center'>
                       <Grid item xs={3} lg={3} className={classes.avatarWrapper}>
                         <Avatar className={classes.avatar} alt={row.avatar} src={row.avatar} />
                       </Grid>

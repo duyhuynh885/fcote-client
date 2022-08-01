@@ -1,7 +1,7 @@
-import { RegisterAction, RegisterActionType, RegisterState } from './type'
+import { GetImageAction, GetImageActionType, GetImageState } from './type'
 
 /**
- * Reducer for register
+ * Reducer for getImage
  *
  * Version 1.0
  *
@@ -15,7 +15,7 @@ import { RegisterAction, RegisterActionType, RegisterState } from './type'
  * 22-06-2022         DuyHV           Create
  */
 
-const initialState: RegisterState = {
+const initialState: GetImageState = {
   requesting: false,
   successful: false,
   messages: {} as Message,
@@ -24,20 +24,20 @@ const initialState: RegisterState = {
 
 /**
  * Reducer Authentication
- * @param state RegisterState
- * @param action AuthAction
+ * @param state GetImageState
+ * @param action GetImageAction
  * @returns
  */
-const reducer = (state = initialState, action: RegisterAction) => {
+const reducer = (state = initialState, action: GetImageAction) => {
   switch (action.type) {
-    case RegisterActionType.REGISTER_REQUESTING:
+    case GetImageActionType.GET_IMAGE_REQUESTING:
       return {
         ...state,
         requesting: true,
         successful: false,
       }
 
-    case RegisterActionType.REGISTER_SUCCESS:
+    case GetImageActionType.GET_IMAGE_SUCCESS:
       return {
         ...state,
         messages: {
@@ -48,19 +48,22 @@ const reducer = (state = initialState, action: RegisterAction) => {
         successful: true,
       }
 
-    case RegisterActionType.REGISTER_ERROR:
+    case GetImageActionType.GET_IMAGE_ERROR:
       return {
         ...state,
         errors: {
           errorMessageEn: action.error.errorMessageEn,
           errorMessageVi: action.error.errorMessageVi,
         },
+        requesting: false,
+        successful: false,
       }
 
-    case RegisterActionType.REGISTER_CLEAR_STATE:
+    case GetImageActionType.GET_IMAGE_CLEAR_STATE:
       return {
         ...initialState,
       }
+
     default:
       return state
   }

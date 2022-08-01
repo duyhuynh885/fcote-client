@@ -24,6 +24,8 @@ import detailChallengeSaga from '../../modules/challenge/detail/saga'
 import leaveGroupSaga from '../../modules/group/setting/leave/saga'
 import kickMemberGroupSaga from '../../modules/group/setting/kick/saga'
 import getMyProfileSaga from '../../modules/my-profile/get-my-profile/saga'
+import logoutSaga from '../../modules/authentication/logout/saga'
+import resetPasswordSaga from '../../modules/authentication/reset-password/saga'
 
 /**
  * Root Saga
@@ -55,5 +57,7 @@ export default function* rootSaga() {
     fork(leaveGroupSaga),
     fork(kickMemberGroupSaga),
     fork(getMyProfileSaga),
+    fork(logoutSaga),
+    fork(resetPasswordSaga),
   ])
 }

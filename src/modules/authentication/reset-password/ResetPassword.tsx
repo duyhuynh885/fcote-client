@@ -3,6 +3,12 @@ import { Box, Container, Grid, TextField, Typography } from '@mui/material'
 import RegularButton from '../../../components/common/button/RegularButton'
 import { useTranslation } from 'react-i18next'
 import useStyles from '../style'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { object, string, TypeOf } from 'zod'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '../../../apps/ReduxContainer'
+import { resetPasswordRequest } from './action'
 
 /**
  * Forget Password Pages
@@ -19,9 +25,33 @@ import useStyles from '../style'
  * 22-06-2022         DuyHV           Create
  */
 
-export default function ForgetPassword() {
+export default function ResetPassword() {
   const { t } = useTranslation()
+  const registerSchema = object({
+    email: string().email('Email is invalid'),
+  })
+  type ResetPasswordInput = TypeOf<typeof registerSchema>
   const classes = useStyles()
+  const dispatch = useDispatch<AppDispatch>()
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<ResetPasswordInput>({
+    resolver: zodResolver(registerSchema),
+  })
+  const rest = {
+    type: 'submit',
+  }
+
+  /**
+   * Handle reset password submit
+   * @param data ResetPasswordInput
+   */
+  const onSubmit: SubmitHandler<ResetPasswordInput> = (data) => {
+    const { email } = data
+    dispatch(resetPasswordRequest({ email }))
+  }
 
   return (
     <React.Fragment>
@@ -41,21 +71,25 @@ export default function ForgetPassword() {
             }}
           >
             <Typography variant='h1' marginBottom='1.5rem'>
-              Forget Password
+              Reset Password
             </Typography>
-            <form className='form'>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 required
                 color='success'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-email-input'
                 label='Email'
+                error={!!errors['email']}
+                helperText={errors['email'] ? errors['email'].message : ''}
+                {...register('email')}
               />
               <RegularButton
+                {...rest}
                 color={'primary'}
                 size={'lg'}
                 round={false}
-                fullWidth={false}
+                fullWidth={true}
                 disabled={false}
                 simple={false}
                 block={false}
@@ -63,7 +97,7 @@ export default function ForgetPassword() {
                 justIcon={false}
                 className={''}
               >
-                {t('Login')}
+                {t('Send')}
               </RegularButton>
             </form>
           </Container>
