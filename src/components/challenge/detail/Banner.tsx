@@ -57,7 +57,7 @@ export default function Banner(props: BannerProps) {
                     </Typography>
                   </Stack>
                 </Grid>
-                <Grid item xs={6}  justifyContent='flex-start'>
+                <Grid item xs={6} justifyContent='flex-start'>
                   <Stack direction='row'>
                     <Typography className={classes.bannerTextTitle}>Group:</Typography>
                     <Typography className={classes.bannerTextDescription}>
@@ -76,7 +76,6 @@ export default function Banner(props: BannerProps) {
             <Divider variant='fullWidth' />
             <Grid
               sx={{ height: '25%', width: '100%' }}
-             
               justifyContent='center'
               alignItems='center'
               columnSpacing={20}
@@ -87,7 +86,9 @@ export default function Banner(props: BannerProps) {
                   <Typography className={classes.bannerFooterTextTitle}>
                     Total participants:
                   </Typography>
-                  <Typography className={classes.bannerFooterTotalParticipial}>{detail.totalParticipial}</Typography>
+                  <Typography className={classes.bannerFooterTotalParticipial}>
+                    {detail.totalParticipial}
+                  </Typography>
                   <Typography className={classes.bannerFooterTextTitle}>members</Typography>
                 </Stack>
               </Grid>
