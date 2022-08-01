@@ -17,7 +17,7 @@ import { makeStyles } from '@mui/styles'
  */
 
 const useStyles = makeStyles((theme: Theme) => ({
-  containerWraper: {
+  containerWarper: {
     marginLeft: '6%',
     marginTop: '10px',
     maxWidth: '80vw',
@@ -56,7 +56,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     fontWeight: '600 !important',
     color: `${theme.color.white} !important`,
-    fontSize: `${theme.textFont.large} !important`,
+    textDecoration: 'capitalize',
+    fontSize: `${theme.textFont.medium} !important`,
   },
   tableItemCell: {
     textAlign: 'center',

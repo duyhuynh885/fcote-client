@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   tabTitle: {
     fontSize: theme.textFont.extraSmall,
     fontWeight: '800',
-    textTransform: 'capitalize',
   },
   tabEditor: {
     '& .MuiTabs-indicator': {
