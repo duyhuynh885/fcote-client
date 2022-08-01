@@ -33,6 +33,7 @@ const initialState: ViewListAssignmentState = {
     filterByCurrentAccount: false,
     pageSize: 10,
     pageNumber: 1,
+    filterByTop: false,
   },
   assignments: [],
   totalAssignment: 0,
@@ -92,6 +93,7 @@ const reducer = (state = initialState, action: ViewListAssignmentAction) => {
           filterByCurrentAccount: action.filterByCurrentAccount,
           pageSize: action.pageSize,
           pageNumber: action.pageNumber,
+          filterByTop: action.filterByTop,
         },
       }
 

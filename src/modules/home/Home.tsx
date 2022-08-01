@@ -48,6 +48,7 @@ const Home = () => {
     filterByDifficult: 0,
     filterByStatus: 0,
     searchBy: '',
+    filterByTop: true,
   }
 
   useEffect(() => {
@@ -66,16 +67,13 @@ const Home = () => {
           </Stack>
         </Grid>
         <Grid item xs={4}>
-          <Paper elevation={8} sx={{ padding: '0px 20px 0px 0px', height: '835px' }}>
-            <Typography className={classes.title}>Top User</Typography>
-            {rankingState.requesting ? (
-              <Stack alignItems='center'>
-                <CircularProgress color='success' />
-              </Stack>
-            ) : (
-              <TopUser rankingList={rankingState.rankingList} />
-            )}
-          </Paper>
+          {rankingState.requesting ? (
+            <Stack alignItems='center'>
+              <CircularProgress color='success' />
+            </Stack>
+          ) : (
+            <TopUser rankingList={rankingState.rankingList} />
+          )}
         </Grid>
       </Grid>
     </Stack>

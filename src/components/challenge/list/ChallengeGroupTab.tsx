@@ -1,5 +1,16 @@
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import GroupsSharpIcon from '@mui/icons-material/GroupsSharp'
-import { CircularProgress, Divider, Grid, Paper, Stack, Typography } from '@mui/material'
+import {
+  CircularProgress,
+  Divider,
+  Grid,
+  Pagination,
+  PaginationItem,
+  Paper,
+  Stack,
+  Typography,
+} from '@mui/material'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
@@ -10,10 +21,14 @@ import * as React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import { clearStateViewListChallenge } from '../../../modules/challenge/list/action'
-import { IChallenge } from '../../../modules/challenge/list/type'
+import {
+  clearStateViewListChallenge,
+  fetchListChallengeRequest,
+  updateFilterListChallengesRequest,
+} from '../../../modules/challenge/list/action'
+import { ViewListChallengeRequestPayload } from '../../../modules/challenge/list/type'
+import { fetchListGroupRequest } from '../../../modules/group/list/action'
 import { Group } from '../../../modules/group/list/type'
-import PaginationCard from '../../common/pagination/PaginationCard'
 import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
 import useStyles from './style'
 
@@ -33,29 +48,55 @@ import useStyles from './style'
  */
 
 interface ChallengeGroupProps {
-  challenges: IChallenge[]
   groups: Group[]
-  onclick: (groupID: number | undefined) => void
-  page: number
-  handleChangePage: (_event: React.ChangeEvent<unknown>, value: number) => void
-  count: number
+  typeData: number
+  handleGetGroupID: (groupID: number | undefined) => void
 }
 const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   const classes = useStyles()
-  const { challenges, groups, onclick, page, handleChangePage, count } = props
-  const [selectedIndex, setSelectedIndex] = React.useState(0)
   const dispatch = useDispatch<AppDispatch>()
-  const listChallengeRequesting = useSelector((state: RootState) => state.listChallenges.requesting)
+  const { groups, typeData, handleGetGroupID } = props
+  const [groupID, setGroupId] = React.useState<number | undefined>(0)
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
   const listGroupRequesting = useSelector((state: RootState) => state.listGroup.requesting)
-  // handle show challenges follow Group
+  const listChallengeState = useSelector((state: RootState) => state.listChallenges)
+  const groupsState = useSelector((state: RootState) => state.listGroup.groups)
+  const { filterRequest, totalChallenge, requesting, challenges } = listChallengeState
+  const [page, setPage] = React.useState(1)
+  const PER_PAGE = 2
+  const count = Math.ceil(totalChallenge / PER_PAGE)
+
   const handleClickGroup = (
     groupID: number | undefined,
     _event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number,
   ) => {
-    onclick(groupID)
+    console.log(' before  group', groupID)
+    handleGetGroupID(groupID)
+    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
+    setGroupId(groupID)
     setSelectedIndex(index)
   }
+
+  // get all Groups current user joined
+  useEffect(() => {
+    dispatch(fetchListGroupRequest({}))
+  }, [])
+
+  const groupChallengeRequest: ViewListChallengeRequestPayload = {
+    typeData: 2,
+    pageSize: 4,
+    pageNumber: 1,
+  }
+  // After getting the group, call api challenge
+  useEffect(() => {
+    if (groupsState.length > 0) {
+      dispatch(
+        fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupsState[0].id),
+      )
+      setGroupId(groupsState[0].id)
+    }
+  }, [groupsState])
 
   /**
    * clear state
@@ -66,6 +107,18 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
     }
   }, [])
 
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value)
+    dispatch(
+      updateFilterListChallengesRequest({
+        ...filterRequest,
+        pageNumber: value,
+        typeData: typeData,
+        groupID: groupID,
+      }),
+    )
+    console.log('after group', groupID)
+  }
   return (
     <Grid container spacing={3}>
       <Grid item xs={4}>
@@ -115,7 +168,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
       </Grid>
       <Grid item xs={8}>
         <Stack className={classes.scrollBar} spacing={2} marginBottom={5}>
-          {listChallengeRequesting ? (
+          {requesting ? (
             <Stack marginTop={5} alignItems='center'>
               <CircularProgress color='success' />
             </Stack>
@@ -129,7 +182,22 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
             ))
           )}
         </Stack>
-        <PaginationCard page={page} handleChangePage={handleChangePage} count={count} />
+        <Stack alignItems='center'>
+          <Pagination
+            page={page}
+            onChange={handleChange}
+            count={count}
+            renderItem={(item) => (
+              <PaginationItem
+                components={{
+                  previous: ArrowBackIcon,
+                  next: ArrowForwardIcon,
+                }}
+                {...item}
+              />
+            )}
+          />
+        </Stack>
       </Grid>
     </Grid>
   )

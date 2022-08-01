@@ -3,7 +3,7 @@ import { Avatar, IconButton, MenuItem, Modal, Paper, Select, Stack, TextField } 
 import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { object, string, TypeOf } from 'zod'
+import { number, object, string, TypeOf } from 'zod'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyles from '../../../components/my-profile/style'
@@ -40,13 +40,14 @@ const style = {
   borderRadius: 3,
   p: 4,
 }
+const regexPhoneNumber = '^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$'
 
 const editProfileSchema = object({
-  firstName: string().max(32, 'First name must be less than 100 characters'),
-  lastName: string().max(32, 'Last name must be less than 100 characters'),
-  organization: string().max(32, 'Organization must be less than 100 characters'),
-  city: string().max(32, 'City must be less than 100 characters'),
-  country: string().max(32, 'Country must be less than 100 characters'),
+  firstName: string().max(50, 'First name must be less than 50 characters'),
+  lastName: string().max(50, 'Last name must be less than 50 characters'),
+  organization: string().max(100, 'Organization must be less than 100 characters'),
+  city: string().max(100, 'City must be less than 100 characters'),
+  country: string().max(100, 'Country must be less than 100 characters'),
   phone: string(),
   gender: string(),
 })

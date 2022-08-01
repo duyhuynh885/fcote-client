@@ -1,5 +1,6 @@
 import { Avatar, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
+import { boolean, custom } from 'zod'
 import { Assignment, DifficultEnum } from '../../../modules/assignment/list/type'
 import { mapDifficultyAssignment } from '../../../utils/mapper'
 import Difficultly from '../../common/text/Difficultly'
@@ -26,20 +27,38 @@ export enum TypeAssignmentItemRectangleEnum {
   LIST_ASSIGNMENT,
   SELECTED_ASSIGNMENT,
 }
+export enum CustomAssignmentItemRectangleEnum {
+  CUSTOM_FOR_HOME,
+}
 
 interface AssignmentItemRectangleProps {
   assignment: Assignment
   type?: TypeAssignmentItemRectangleEnum
+  custom?: CustomAssignmentItemRectangleEnum
 }
 
 export default function AssignmentItemRectangle(props: AssignmentItemRectangleProps) {
-  const { assignment, type } = props
+  const { assignment, type, custom } = props
   const classes = useStyles()
   return (
     <div>
       <Paper square className={classes.paperWrap} elevation={0}>
-        <Stack direction='row' justifyContent='space-between' alignItems='center'>
-          <Typography className={classes.name}>{assignment.title}</Typography>
+        <Stack
+          direction='row'
+          justifyContent={
+            custom === CustomAssignmentItemRectangleEnum.CUSTOM_FOR_HOME ? 'start' : 'space-between'
+          }
+          alignItems='center'
+        >
+          <Typography
+            className={
+              custom === CustomAssignmentItemRectangleEnum.CUSTOM_FOR_HOME
+                ? classes.nameCustom
+                : classes.name
+            }
+          >
+            {assignment.title}
+          </Typography>
           {type === TypeAssignmentItemRectangleEnum.LIST_ASSIGNMENT ? (
             <React.Fragment>
               <Avatar alt='Avatar' src={'https://picsum.photos/200'} className={classes.avatar} />
@@ -52,7 +71,15 @@ export default function AssignmentItemRectangle(props: AssignmentItemRectanglePr
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <Typography className={classes.score}>{assignment.score}</Typography>
+              <Typography
+                className={
+                  custom === CustomAssignmentItemRectangleEnum.CUSTOM_FOR_HOME
+                    ? classes.scoreCustom
+                    : classes.score
+                }
+              >
+                {assignment.score}
+              </Typography>
               <Difficultly
                 difficult={mapDifficultyAssignment(assignment.difficulty)}
                 displayText={DifficultEnum[assignment.difficulty]}

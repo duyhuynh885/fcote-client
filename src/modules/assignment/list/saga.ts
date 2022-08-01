@@ -34,6 +34,7 @@ function* viewListAssignmentFlow({
   filterByCurrentAccount,
   pageSize,
   pageNumber,
+  filterByTop
 }: ViewListAssignmentRequestAction) {
   try {
     const data: ViewListAssignmentResponse = yield call(assignmentApi.fetchListAssignment, {
@@ -43,6 +44,7 @@ function* viewListAssignmentFlow({
       filterByCurrentAccount,
       pageSize,
       pageNumber,
+      filterByTop
     })
     yield put({
       type: ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_SUCCESS,

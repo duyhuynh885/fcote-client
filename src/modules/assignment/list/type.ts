@@ -42,6 +42,7 @@ export interface ViewListAssignmentRequestPayload {
   filterByCurrentAccount: boolean
   pageSize?: number
   pageNumber?: number
+  filterByTop: boolean
 }
 
 export interface ViewListAssignmentErrorResponse {

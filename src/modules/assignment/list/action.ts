@@ -33,6 +33,7 @@ export const fetchListAssignmentRequest = ({
   filterByCurrentAccount,
   pageSize,
   pageNumber,
+  filterByTop,
 }: ViewListAssignmentRequestPayload): ViewListAssignmentRequestAction => {
   return {
     type: ViewListAssignmentActionType.VIEW_LIST_ASSIGNMENT_REQUESTING,
@@ -42,6 +43,7 @@ export const fetchListAssignmentRequest = ({
     filterByCurrentAccount,
     pageSize,
     pageNumber,
+    filterByTop,
   }
 }
 
@@ -57,6 +59,7 @@ export const updateFilterListAssignmentRequest = ({
   filterByCurrentAccount,
   pageSize,
   pageNumber,
+  filterByTop,
 }: ViewListAssignmentRequestPayload): UpdateFilterListAssignmentAction => {
   return {
     type: ViewListAssignmentActionType.UPDATE_FILTER_LIST_ASSIGNMENT_REQUEST,
@@ -66,6 +69,7 @@ export const updateFilterListAssignmentRequest = ({
     filterByCurrentAccount,
     pageSize,
     pageNumber,
+    filterByTop,
   }
 }
 
