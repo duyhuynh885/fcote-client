@@ -1,9 +1,10 @@
 import {
   CreateChallengeErrorResponse,
-  CreateChallengeResponse
+  CreateChallengeResponse,
 } from './../modules/challenge/create/type'
 import {
-  ViewListChallengeErrorResponse, ViewListChallengeSuccessResponse
+  ViewListChallengeErrorResponse,
+  ViewListChallengeSuccessResponse,
 } from './../modules/challenge/list/type'
 import { GetImageRequestPayload } from './../modules/image/get/type'
 import { UploadImageRequestPayload } from './../modules/image/upload/type'

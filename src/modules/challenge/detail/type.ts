@@ -40,6 +40,7 @@ export interface Detail {
   startAt: string
   endAt: string
   status: StatusChallengeEnum
+  totalParticipial: number
 }
 
 export interface AssignmentList {
