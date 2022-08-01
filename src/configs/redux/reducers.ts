@@ -25,7 +25,6 @@ import createChallengeReducer from '../../modules/challenge/create/reducer'
 import detailChallengeReducer from '../../modules/challenge/detail/reducer'
 import leaveGroupReducer from '../../modules/group/setting/leave/reducer'
 import kickGroupReducer from '../../modules/group/setting/kick/reducer'
-import getMyProfile from '../../modules/my-profile/get-my-profile/reducer'
 import logoutReducer from '../../modules/authentication/logout/reducer'
 import resetPasswordReducer from '../../modules/authentication/reset-password/reducer'
 
@@ -63,7 +62,6 @@ const rootReducer = (history: any) =>
     detailChallenge: detailChallengeReducer,
     leaveGroup: leaveGroupReducer,
     kickGroup: kickGroupReducer,
-    currentUser: getMyProfile,
     logout: logoutReducer,
     resetPassword: resetPasswordReducer,
   })

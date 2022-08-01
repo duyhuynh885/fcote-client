@@ -5,11 +5,8 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import AssignmentCompleted from '../../../components/my-profile/view/AssignmentCompleted'
 import ChallengeCompleted from '../../../components/my-profile/view/ChallengeCompleted'
 import Profile from '../../../components/my-profile/view/Profile'
-import {
-  fetchChallengeCompletedRequest,
-  fetchUserAssignmentRequest,
-  viewDetailProfileClearStateRequest,
-} from './action'
+import { clearStateViewListChallenge } from '../../challenge/list/action'
+import { viewDetailProfileRequest, viewDetailProfileClearStateRequest } from './action'
 
 /**
  * My Profile Pages
@@ -30,25 +27,17 @@ import {
 export default function MyProfile() {
   const dispatch = useDispatch<AppDispatch>()
   const myProfileState = useSelector((state: RootState) => state.myProfile)
-  const currentUserState = useSelector((state: RootState) => state.currentUser.user)
-  useEffect(() => {
-    if (currentUserState.username !== '') {
-      dispatch(
-        fetchUserAssignmentRequest(myProfileState.userAssignmentRequest, currentUserState.username),
-      )
-    }
-  }, [myProfileState.userAssignmentRequest, currentUserState])
+  const userInfo = useSelector((state: RootState) => state.login.userInfo)
+  const challengeState = useSelector((state: RootState) => state.listChallenges)
 
   useEffect(() => {
-    if (currentUserState.username !== '') {
-      dispatch(
-        fetchChallengeCompletedRequest(
-          myProfileState.challengeCompletedRequest,
-          currentUserState.username,
-        ),
-      )
-    }
-  }, [myProfileState.challengeCompletedRequest, currentUserState])
+    dispatch(
+      viewDetailProfileRequest({
+        typeData: 4,
+        username: userInfo.userName,
+      }),
+    )
+  }, [])
 
   /**
    * clear state
@@ -56,6 +45,7 @@ export default function MyProfile() {
   useEffect(() => {
     return () => {
       dispatch(viewDetailProfileClearStateRequest())
+      dispatch(clearStateViewListChallenge())
     }
   }, [])
 
@@ -67,9 +57,7 @@ export default function MyProfile() {
         </Grid>
         <Grid item xs={8}>
           <Stack spacing={2}>
-            <ChallengeCompleted
-              listChallengeCompleted={myProfileState.challengeCompleted.listChallengeCompleted}
-            />
+            <ChallengeCompleted listChallengeCompleted={challengeState.challenges} />
             <AssignmentCompleted assCompleted={myProfileState.assignmentCompleted} />
           </Stack>
         </Grid>

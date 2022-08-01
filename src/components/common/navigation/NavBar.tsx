@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useStyles from './style'
 import {
   AppBar,
@@ -23,7 +23,6 @@ import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined'
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined'
-import { getUserProfileRequest } from '../../../modules/my-profile/get-my-profile/action'
 import { logoutRequest } from '../../../modules/authentication/logout/action'
 
 /**
@@ -75,15 +74,6 @@ function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
   const dispatch = useDispatch<AppDispatch>()
   const loginIsSuccess = useSelector((state: RootState) => state.login.successful)
-  const editMyProfileSuccessState = useSelector(
-    (state: RootState) => state.editMyProfile.successful,
-  )
-
-  useEffect(() => {
-    if (loginIsSuccess || editMyProfileSuccessState) {
-      dispatch(getUserProfileRequest())
-    }
-  }, [loginIsSuccess, editMyProfileSuccessState])
 
   /**
    * Handle open user menu

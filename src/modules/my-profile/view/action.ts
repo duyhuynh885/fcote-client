@@ -1,9 +1,7 @@
 import {
   ViewMyProfileActionType,
-  ViewUserAssignmentRequestingPayload,
-  ViewUserAssignmentRequestAction,
-  ViewChallengeCompletedRequestingPayload,
-  ViewChallengeCompletedRequestAction,
+  ViewMyProfileRequestingPayload,
+  ViewMyProfileRequestAction,
   ViewDetailProfileClearStateAction,
 } from './type'
 
@@ -22,41 +20,14 @@ import {
  * 10-07-2022      HuyNT2711           Create
  */
 
-export const fetchUserAssignmentRequest = (
-  {
-    typeData,
-    firstName,
-    lastName,
-    organization,
-    city,
-    country,
-    phone,
-    gender,
-  }: ViewUserAssignmentRequestingPayload,
-  usernameRequest: string,
-): ViewUserAssignmentRequestAction => {
+export const viewDetailProfileRequest = ({
+  typeData,
+  username,
+}: ViewMyProfileRequestingPayload): ViewMyProfileRequestAction => {
   return {
-    type: ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_REQUESTING,
-    username: usernameRequest,
+    type: ViewMyProfileActionType.VIEW_MY_PROFILE_REQUESTING,
     typeData,
-    firstName,
-    lastName,
-    organization,
-    city,
-    country,
-    phone,
-    gender,
-  }
-}
-
-export const fetchChallengeCompletedRequest = (
-  { typeData }: ViewChallengeCompletedRequestingPayload,
-  usernameRequest: string,
-): ViewChallengeCompletedRequestAction => {
-  return {
-    type: ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
-    username: usernameRequest,
-    typeData,
+    username,
   }
 }
 
