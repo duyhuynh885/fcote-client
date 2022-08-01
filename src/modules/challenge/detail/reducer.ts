@@ -35,6 +35,7 @@ const initialState: ViewDetailChallengeState = {
     startAt: '',
     endAt: '',
     status: 0,
+    totalParticipial: 0,
   },
   assignmentList: [],
   submits: [],
