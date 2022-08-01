@@ -48,6 +48,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
+  challengeTotalMember: {
+    fontWeight: '700',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  challengeCardDescription: {
+    maxWidth: 700,
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+  },
 }))
 
 export default useStyles

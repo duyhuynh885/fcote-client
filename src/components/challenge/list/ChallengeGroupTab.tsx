@@ -14,8 +14,6 @@ import {
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
 import { Box } from '@mui/system'
 import * as React from 'react'
 import { useEffect } from 'react'
@@ -143,22 +141,30 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
               ) : (
                 groups.map((group, index: number) => (
                   <React.Fragment key={group.id}>
-                    <ListItem
-                      disablePadding
-                      classes={{ root: classes.root, selected: classes.selected }}
-                    >
+                    <ListItem disablePadding button>
                       <ListItemButton
                         key={group.id}
                         selected={selectedIndex === index}
+                        classes={{ root: classes.root, selected: classes.selected }}
                         onClick={(event) => handleClickGroup(group.id, event, index)}
                       >
-                        <ListItemIcon>
-                          <GroupsSharpIcon color={'success'} />
-                        </ListItemIcon>
-                        <ListItemText className={classes.groupTittle} primary={group.title} />
+                        <Paper square className={classes.cardGroup} elevation={0}>
+                          <Stack direction='row' justifyContent='space-between' alignItems='center'>
+                            <Typography className={classes.cardGroupTitle}>
+                              {group.title}
+                            </Typography>
+                            <Stack direction='row' alignItems='center' spacing={0.5}>
+                              <Typography className={classes.cardGroupTotalMember}>
+                                {group.totalMember}
+                              </Typography>
+                              <Typography className={classes.cardGroupTitleMember}>
+                                Member
+                              </Typography>
+                            </Stack>
+                          </Stack>
+                        </Paper>
                       </ListItemButton>
                     </ListItem>
-                    <Divider variant='inset' component='li' />
                   </React.Fragment>
                 ))
               )}

@@ -52,8 +52,7 @@ export interface ViewListChallengeRequestPayload {
 export interface ViewListChallengeSuccessResponse {
   challenges: IChallenge[]
   currentSize: number
-  totalChallenge:number
-
+  totalChallenge: number
 }
 
 export interface ViewListChallengeErrorResponse {

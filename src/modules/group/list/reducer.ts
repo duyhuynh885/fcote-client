@@ -22,10 +22,10 @@ const initialState: ViewListGroupState = {
   errors: {} as ErrorMessage,
   groupTypeRequest: {
     pageNumber: 0,
-    pageSize: 15,
+    pageSize: 9,
   },
   groups: [],
-  currentSize: 0,
+  totalGroup: 0,
 }
 
 /**
@@ -46,7 +46,7 @@ const reducer = (state = initialState, action: ViewListGroupAction) => {
     case ViewListGroupActionType.VIEW_LIST_GROUP_SUCCESS:
       return {
         ...state,
-        currentSize: action.currentSize,
+        totalGroup: action.totalGroup,
         groups: action.groups,
         messages: {
           messageEn: action.messageEn,

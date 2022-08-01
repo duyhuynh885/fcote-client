@@ -99,7 +99,11 @@ export default function Challenge() {
             <ChallengePublicOwner typeData={typeData} />
           </TabPanel>
           <TabPanel value={tabValue} index={2}>
-            <ChallengeGroup handleGetGroupID={callbackSetGroupID} groups={groupsState} typeData={typeData} />
+            <ChallengeGroup
+              handleGetGroupID={callbackSetGroupID}
+              groups={groupsState}
+              typeData={typeData}
+            />
           </TabPanel>
         </Grid>
       </Grid>

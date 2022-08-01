@@ -1,3 +1,4 @@
+import { StatusChallengeEnum } from './../list/type'
 /**
  * Type for get detail challenge
  *
@@ -38,7 +39,7 @@ export interface Detail {
   totalAssignment: number
   startAt: string
   endAt: string
-  status: number
+  status: StatusChallengeEnum
 }
 
 export interface AssignmentList {
