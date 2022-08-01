@@ -49,7 +49,6 @@ export const updateFilterListChallengesRequest = ({
   username,
   status,
 }: ViewListChallengeRequestPayload): UpdateFilterListChallengeAction => {
-
   return {
     type: ViewListChallengeActionType.UPDATE_FILTER_LIST_CHALLENGE_REQUEST,
     typeData,

@@ -75,7 +75,9 @@ function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
   const dispatch = useDispatch<AppDispatch>()
   const loginIsSuccess = useSelector((state: RootState) => state.login.successful)
-  const editMyProfileSuccessState = useSelector((state: RootState) => state.editMyProfile.successful)
+  const editMyProfileSuccessState = useSelector(
+    (state: RootState) => state.editMyProfile.successful,
+  )
 
   useEffect(() => {
     if (loginIsSuccess || editMyProfileSuccessState) {

@@ -1,7 +1,4 @@
-import {
-  GetMyProfileActionType,
-  GetUserProfileRequestAction,
-} from './type'
+import { GetMyProfileActionType, GetUserProfileRequestAction } from './type'
 
 /**
  * actions my profile
