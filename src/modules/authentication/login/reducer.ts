@@ -1,4 +1,4 @@
-import { LoginAction, LoginActionType, LoginState } from './type'
+import { LoginAction, LoginActionType, LoginState, User } from './type'
 
 /**
  * Reducer for login
@@ -20,6 +20,7 @@ const initialState: LoginState = {
   successful: false,
   messages: {} as Message,
   errors: {} as ErrorMessage,
+  userInfo: {} as User,
 }
 
 /**
@@ -46,6 +47,7 @@ const reducer = (state = initialState, action: LoginAction) => {
         },
         requesting: false,
         successful: true,
+        userInfo: action.user,
       }
 
     case LoginActionType.LOGIN_ERROR:

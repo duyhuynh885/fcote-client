@@ -29,8 +29,15 @@ export interface LoginErrorResponse {
   error: ErrorMessage
 }
 
+export interface User {
+  userId: number
+  fullName: string
+  avatar: string
+  userName: string
+}
 export interface LoginResponse {
   accessToken: string
+  user: User
   messageVi: string
   messageEn: string
 }
@@ -54,4 +61,5 @@ export interface LoginState {
   successful: boolean
   messages: Message
   errors: ErrorMessage
+  userInfo: User
 }

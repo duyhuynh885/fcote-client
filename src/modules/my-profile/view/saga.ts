@@ -1,14 +1,13 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import profileApi from '../../../services/profileApi'
-import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
-import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
+import requestFailure from '../../../utils/requestFailure'
+import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
+import { ViewListChallengeActionType } from './../../challenge/list/type'
 import {
-  ViewChallengeCompletedRequestAction,
-  ViewChallengeCompletedSuccessResponse,
   ViewMyProfileActionType,
-  ViewUserAssignmentRequestAction,
-  ViewUserAssignmentSuccessResponse,
+  ViewMyProfileRequestAction,
+  ViewMyProfileSuccessResponse,
 } from './type'
 
 /**
@@ -27,81 +26,36 @@ import {
  */
 
 // ---------------------------- View User Assignment Flow ----------------------------------
-function* viewUserAssignmentFlow({
-  username,
-  typeData,
-  firstName,
-  lastName,
-  organization,
-  city,
-  country,
-  phone,
-  gender,
-}: ViewUserAssignmentRequestAction) {
+function* viewUserAssignmentFlow({ username, typeData }: ViewMyProfileRequestAction) {
   try {
     yield put(showLoaderAction())
-    const data: ViewUserAssignmentSuccessResponse = yield call(profileApi.fetchUserAssignmentApi, {
-      username,
-      typeData,
-      firstName,
-      lastName,
-      organization,
-      city,
-      country,
-      phone,
-      gender,
-    })
-
-    yield put({
-      type: ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_SUCCESS,
-      ...data,
-    })
-    yield put(hideLoaderAction())
-  } catch (error) {
-    yield call(
-      requestFailure,
-      ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_ERROR,
-      handleError(error),
-    )
-  }
-}
-// ---------------------------- View Challenge Completed Flow ----------------------------------
-function* viewChallengeCompletedFlow({ typeData, username }: ViewChallengeCompletedRequestAction) {
-  try {
-    yield put(showLoaderAction())
-    const data: ViewChallengeCompletedSuccessResponse = yield call(
-      profileApi.fetchChallengeCompletedApi,
+    const dataDetailProfile: ViewMyProfileSuccessResponse = yield call(
+      profileApi.fetchUserAssignmentApi,
       {
-        typeData,
         username,
+        typeData,
       },
     )
-    yield put({
-      type: ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_SUCCESS,
-      ...data,
-    })
 
+    yield put({
+      type: ViewListChallengeActionType.VIEW_LIST_CHALLENGE_REQUESTING,
+      username,
+      typeData,
+    })
+    yield put({
+      type: ViewMyProfileActionType.VIEW_MY_PROFILE_SUCCESS,
+      ...dataDetailProfile,
+    })
     yield put(hideLoaderAction())
   } catch (error) {
-    yield call(
-      requestFailure,
-      ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_ERROR,
-      handleError(error),
-    )
+    yield call(requestFailure, ViewMyProfileActionType.VIEW_MY_PROFILE_ERROR, handleError(error))
   }
 }
 
 function* viewUserAssignmentWatcher() {
-  yield takeEvery(ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_REQUESTING, viewUserAssignmentFlow)
-}
-
-function* viewChallengeCompletedWatcher() {
-  yield takeEvery(
-    ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
-    viewChallengeCompletedFlow,
-  )
+  yield takeEvery(ViewMyProfileActionType.VIEW_MY_PROFILE_REQUESTING, viewUserAssignmentFlow)
 }
 
 export default function* viewMyProfileSaga() {
-  yield all([fork(viewUserAssignmentWatcher), fork(viewChallengeCompletedWatcher)])
+  yield all([fork(viewUserAssignmentWatcher)])
 }
