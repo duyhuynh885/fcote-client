@@ -1,3 +1,4 @@
+import { LoginActionType } from './../login/type'
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import history from '../../../configs/routing/history'
 import authApi from '../../../services/authApi'
@@ -31,6 +32,7 @@ function* logoutFlow() {
     const data: LogoutResponse = yield call(authApi.logoutAccount)
     yield call(signOut)
     yield put({ type: LogoutActionType.LOGOUT_SUCCESS, ...data })
+    yield put({ type: LoginActionType.LOGIN_CLEAR_STATE })
     history.push('/login')
     yield put(hideLoaderAction())
   } catch (error) {

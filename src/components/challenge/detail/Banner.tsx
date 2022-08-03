@@ -36,7 +36,7 @@ export default function Banner(props: BannerProps) {
         >
           <img
             className={classes.challengeCardBanner}
-            src='https://img.freepik.com/free-vector/joystick-game-sport-technology_138676-2045.jpg?w=2000'
+            src='https://img.freepik.com/premium-vector/programming-web-banner-with-engineer-work_88188-640.jpg?w=826'
           />
           <Stack direction='column' sx={{ height: '100%', width: '100%', padding: '0 50px' }}>
             <Stack direction='column' sx={{ height: '75%', width: '100%' }}>
@@ -45,7 +45,7 @@ export default function Banner(props: BannerProps) {
                 <Typography className={classes.bannerDescription}>{detail.description}</Typography>
               </Stack>
               <Grid container sx={{ height: '40%', width: '100%' }}>
-                <Grid item xs={6} direction='column'>
+                <Grid item xs={6}>
                   <Stack direction='row'>
                     <Typography className={classes.bannerTextTitle}>Duration:</Typography>
                     <DateChallenge startDate={detail.startAt} endDate={detail.endAt} />
@@ -57,7 +57,7 @@ export default function Banner(props: BannerProps) {
                     </Typography>
                   </Stack>
                 </Grid>
-                <Grid item xs={6} direction='column' justifyContent='flex-start'>
+                <Grid item xs={6} justifyContent='flex-start'>
                   <Stack direction='row'>
                     <Typography className={classes.bannerTextTitle}>Group:</Typography>
                     <Typography className={classes.bannerTextDescription}>
@@ -76,7 +76,6 @@ export default function Banner(props: BannerProps) {
             <Divider variant='fullWidth' />
             <Grid
               sx={{ height: '25%', width: '100%' }}
-              direction='row'
               justifyContent='center'
               alignItems='center'
               columnSpacing={20}
@@ -87,7 +86,9 @@ export default function Banner(props: BannerProps) {
                   <Typography className={classes.bannerFooterTextTitle}>
                     Total participants:
                   </Typography>
-                  <Typography className={classes.bannerFooterTotalParticipial}>3</Typography>
+                  <Typography className={classes.bannerFooterTotalParticipial}>
+                    {detail.totalParticipial}
+                  </Typography>
                   <Typography className={classes.bannerFooterTextTitle}>members</Typography>
                 </Stack>
               </Grid>

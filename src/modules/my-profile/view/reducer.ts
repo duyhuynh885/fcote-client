@@ -20,21 +20,6 @@ export const initialStateMyProfile: ViewMyProfileState = {
   successful: false,
   messages: {} as Message,
   errors: {} as ErrorMessage,
-  userAssignmentRequest: {
-    username: '',
-    typeData: 4,
-    firstName: '',
-    lastName: '',
-    organization: '',
-    city: '',
-    country: '',
-    phone: '',
-    gender: '',
-  },
-  challengeCompletedRequest: {
-    username: '',
-    typeData: 4,
-  },
   user: {
     userId: '',
     avatar: '',
@@ -55,22 +40,18 @@ export const initialStateMyProfile: ViewMyProfileState = {
     numberAssignmentCompletedFollowEasy: 0,
     totalScore: 0,
   },
-  challengeCompleted: {
-    listChallengeCompleted: [],
-    currentSize: 0,
-  },
 }
 
 const reducer = (state = initialStateMyProfile, action: ViewMyProfileAction) => {
   switch (action.type) {
-    case ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_REQUESTING:
+    case ViewMyProfileActionType.VIEW_MY_PROFILE_REQUESTING:
       return {
         ...state,
         requesting: true,
         successful: false,
       }
 
-    case ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_SUCCESS:
+    case ViewMyProfileActionType.VIEW_MY_PROFILE_SUCCESS:
       return {
         ...state,
         user: action.user,
@@ -79,36 +60,7 @@ const reducer = (state = initialStateMyProfile, action: ViewMyProfileAction) => 
         successful: true,
       }
 
-    case ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_ERROR:
-      return {
-        ...state,
-        errors: {
-          errorMessageEn: action.error.errorMessageEn,
-          errorMessageVi: action.error.errorMessageVi,
-        },
-        requesting: false,
-        successful: false,
-      }
-
-    case ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_REQUESTING:
-      return {
-        ...state,
-        requesting: true,
-        successful: false,
-      }
-
-    case ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_SUCCESS:
-      return {
-        ...state,
-        challengeCompleted: {
-          listChallengeCompleted: action.challenges,
-          currentSize: action.currentSize,
-        },
-        requesting: false,
-        successful: true,
-      }
-
-    case ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_ERROR:
+    case ViewMyProfileActionType.VIEW_MY_PROFILE_ERROR:
       return {
         ...state,
         errors: {

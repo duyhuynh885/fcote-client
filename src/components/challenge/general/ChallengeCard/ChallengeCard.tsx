@@ -34,7 +34,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
         <Stack direction='row'>
           <img
             className={classes.challengeCardBanner}
-            src='https://img.freepik.com/free-vector/joystick-game-sport-technology_138676-2045.jpg?w=2000'
+            src='https://img.freepik.com/premium-vector/programming-web-banner-with-engineer-work_88188-640.jpg?w=826'
           />
           <Stack
             sx={{

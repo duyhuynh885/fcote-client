@@ -1,5 +1,3 @@
-import { IChallenge } from '../../challenge/list/type'
-
 /**
  * type my profile
  *
@@ -16,12 +14,9 @@ import { IChallenge } from '../../challenge/list/type'
  */
 
 export enum ViewMyProfileActionType {
-  VIEW_USER_ASSIGNMENT_REQUESTING = 'VIEW_USER_ASSIGNMENT_REQUESTING',
-  VIEW_USER_ASSIGNMENT_SUCCESS = 'VIEW_USER_ASSIGNMENT_SUCCESS',
-  VIEW_USER_ASSIGNMENT_ERROR = 'VIEW_USER_ASSIGNMENT_ERROR',
-  VIEW_CHALLENGE_COMPLETED_REQUESTING = 'VIEW_CHALLENGE_COMPLETED_REQUESTING',
-  VIEW_CHALLENGE_COMPLETED_SUCCESS = 'VIEW_CHALLENGE_COMPLETED_SUCCESS',
-  VIEW_CHALLENGE_COMPLETED_ERROR = 'VIEW_CHALLENGE_COMPLETED_ERROR ',
+  VIEW_MY_PROFILE_REQUESTING = 'VIEW_MY_PROFILE_REQUESTING',
+  VIEW_MY_PROFILE_SUCCESS = 'VIEW_MY_PROFILE_SUCCESS',
+  VIEW_MY_PROFILE_ERROR = 'VIEW_MY_PROFILE_ERROR',
   VIEW_MY_PROFILE_CLEAR_STATE = 'VIEW_MY_PROFILE_CLEAR_STATE',
 }
 
@@ -47,77 +42,40 @@ export interface IAssignmentCompleted {
   totalScore: number
 }
 
-export interface ViewUserAssignmentRequestingPayload {
+export interface ViewMyProfileRequestingPayload {
   typeData: number
   username: string
-  firstName: string
-  lastName: string
-  organization: string
-  city: string
-  country: string
-  phone: string
-  gender: string
 }
 
-export interface ViewUserAssignmentSuccessResponse {
+export interface ViewMyProfileSuccessResponse {
   user: IUser
   assignmentCompleted: IAssignmentCompleted
 }
 
-export interface ViewUserAssignmentErrorResponse {
+export interface ViewMyProfileErrorResponse {
   error: ErrorMessage
 }
 
-export interface ViewChallengeCompletedRequestingPayload {
-  typeData: number
-  username: string
-}
-
-export interface ViewChallengeCompletedSuccessResponse {
-  challenges: IChallenge[]
-  currentSize: number
-}
-export interface ViewChallengeCompletedErrorResponse {
-  error: ErrorMessage
-}
-
-export type ViewUserAssignmentRequestAction = ActionWithPayload<
-  ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_REQUESTING,
-  ViewUserAssignmentRequestingPayload
+export type ViewMyProfileRequestAction = ActionWithPayload<
+  ViewMyProfileActionType.VIEW_MY_PROFILE_REQUESTING,
+  ViewMyProfileRequestingPayload
 >
 
-export type ViewUserAssignmentSuccessAction = ActionWithPayload<
-  ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_SUCCESS,
-  ViewUserAssignmentSuccessResponse
+export type ViewMyProfileSuccessAction = ActionWithPayload<
+  ViewMyProfileActionType.VIEW_MY_PROFILE_SUCCESS,
+  ViewMyProfileSuccessResponse
 >
-export type ViewUserAssignmentErrorAction = ActionWithPayload<
-  ViewMyProfileActionType.VIEW_USER_ASSIGNMENT_ERROR,
-  ViewUserAssignmentErrorResponse
->
-
-export type ViewChallengeCompletedRequestAction = ActionWithPayload<
-  ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_REQUESTING,
-  ViewChallengeCompletedRequestingPayload
->
-
-export type ViewChallengeCompletedSuccessAction = ActionWithPayload<
-  ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_SUCCESS,
-  ViewChallengeCompletedSuccessResponse
->
-export type ViewChallengeCompletedErrorAction = ActionWithPayload<
-  ViewMyProfileActionType.VIEW_CHALLENGE_COMPLETED_ERROR,
-  ViewChallengeCompletedErrorResponse
+export type ViewMyProfileErrorAction = ActionWithPayload<
+  ViewMyProfileActionType.VIEW_MY_PROFILE_ERROR,
+  ViewMyProfileErrorResponse
 >
 export type ViewDetailProfileClearStateAction =
   Action<ViewMyProfileActionType.VIEW_MY_PROFILE_CLEAR_STATE>
 
 export type ViewMyProfileAction =
-  | ViewUserAssignmentRequestAction
-  | ViewUserAssignmentSuccessAction
-  | ViewUserAssignmentErrorAction
-  | ViewChallengeCompletedRequestAction
-  | ViewChallengeCompletedSuccessAction
-  | ViewChallengeCompletedErrorAction
+  | ViewMyProfileRequestAction
+  | ViewMyProfileSuccessAction
+  | ViewMyProfileErrorAction
   | ViewDetailProfileClearStateAction
 
 export interface ViewMyProfileState {
@@ -125,12 +83,6 @@ export interface ViewMyProfileState {
   successful: boolean
   messages: Message
   errors: ErrorMessage
-  userAssignmentRequest: ViewUserAssignmentRequestingPayload
-  challengeCompletedRequest: ViewChallengeCompletedRequestingPayload
   user: IUser
   assignmentCompleted: IAssignmentCompleted
-  challengeCompleted: {
-    listChallengeCompleted: IChallenge[]
-    currentSize: number
-  }
 }

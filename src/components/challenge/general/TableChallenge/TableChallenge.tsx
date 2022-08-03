@@ -135,7 +135,7 @@ export default function TableChallenge(props: TableChallengeProps) {
             style={{ color: 'inherit', textDecoration: 'inherit' }}
             to={`${match.url}/assignment/${assignment.assignmentId}`}
           >
-            {nameAssignment[assignment.order - 1]}(100)
+            {nameAssignment[assignment.order - 1]}({assignment.score})
           </Link>
         </Typography>
       </TableCell>
@@ -168,13 +168,13 @@ export default function TableChallenge(props: TableChallengeProps) {
           <TableBody>
             {handleShowResultSubmit()
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row, index) => {
                 return (
                   <TableRow
                     hover
                     role='checkbox'
                     tabIndex={-1}
-                    key={row.ranking}
+                    key={index}
                     className={
                       row.ranking % 2 === 0 ? classes.tableRowBody1 : classes.tableRowBody2
                     }
@@ -214,7 +214,7 @@ export default function TableChallenge(props: TableChallengeProps) {
                           <Typography className={classes.textItemCell}>
                             {_result.numberSubmit === '-'
                               ? _result.numberSubmit
-                              : `${_result.numberSubmit}/10 submission}`}
+                              : `${_result.numberSubmit}/10 submission`}
                           </Typography>
                         </Stack>
                       </TableCell>
