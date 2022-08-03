@@ -77,6 +77,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
     dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
     setGroupId(groupID)
     setSelectedIndex(index)
+    setPage(1)
   }
 
   // get all Groups current user joined

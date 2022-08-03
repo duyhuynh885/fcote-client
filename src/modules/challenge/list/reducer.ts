@@ -28,7 +28,7 @@ const initialState: ViewListChallengeState = {
     typeData: 0,
     searchBy: '',
     groupID: 0,
-    pageSize: 100,
+    pageSize: 4,
     pageNumber: 0,
     username: '',
     status: 0,
