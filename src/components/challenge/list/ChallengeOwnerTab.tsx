@@ -1,17 +1,17 @@
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { CircularProgress, Pagination, PaginationItem, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import useStyles from './style'
-import { IChallenge, ViewListChallengeRequestPayload } from '../../../modules/challenge/list/type'
-import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
 import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../../apps/ReduxContainer'
 import {
   clearStateViewListChallenge,
   fetchListChallengeRequest,
   updateFilterListChallengesRequest,
 } from '../../../modules/challenge/list/action'
-import { RootState } from '../../../apps/ReduxContainer'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { ViewListChallengeRequestPayload } from '../../../modules/challenge/list/type'
+import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
+import useStyles from './style'
 /**
  * ChallengePublicOwner
  *

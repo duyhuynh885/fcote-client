@@ -29,7 +29,7 @@ const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
   const classes = useStyles()
   const { listChallengeCompleted, title } = props
   const listChallengesState = useSelector((state: RootState) => state.listChallenges)
-  const {requesting: challengesRequesting} = listChallengesState
+  const { requesting: challengesRequesting } = listChallengesState
   return (
     <Paper
       elevation={4}

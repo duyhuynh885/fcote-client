@@ -48,7 +48,6 @@ export default function Challenge() {
   const [typeData, setTypeData] = useState(1)
   const [groupID, setGroupId] = useState<number | undefined>()
   const [pageNumber, setPageNumber] = useState<number | undefined>()
-  console.log('pageNumber', pageNumber)
   const handleChangeTabValue = (_event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue)
     switch (newValue) {

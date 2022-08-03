@@ -68,7 +68,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
   } = useForm<EditProfileInput>({
     resolver: zodResolver(editProfileSchema),
   })
-  
+
   const rest = {
     type: 'submit',
   }

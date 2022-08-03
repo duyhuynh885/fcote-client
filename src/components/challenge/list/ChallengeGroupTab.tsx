@@ -24,7 +24,6 @@ import {
 } from '../../../modules/challenge/list/action'
 import { ViewListChallengeRequestPayload } from '../../../modules/challenge/list/type'
 import { fetchListGroupRequest } from '../../../modules/group/list/action'
-import { Group } from '../../../modules/group/list/type'
 import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
 import useStyles from './style'
 
