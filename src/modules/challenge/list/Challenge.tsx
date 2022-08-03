@@ -47,7 +47,7 @@ export default function Challenge() {
   const [tabValue, setTabValue] = React.useState(0)
   const [typeData, setTypeData] = useState(1)
   const [groupID, setGroupId] = useState<number | undefined>()
-
+  const [pageNumber, setPageNumber] = useState<number | undefined>()
   const handleChangeTabValue = (_event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue)
     switch (newValue) {
@@ -65,6 +65,9 @@ export default function Challenge() {
   const callbackSetGroupID = (value: number | undefined) => {
     setGroupId(value)
   }
+  const callbackSetPageNumber = (value: number | undefined) => {
+    setPageNumber(value)
+  }
 
   return (
     <Stack sx={{ margin: 5 }}>
@@ -72,6 +75,7 @@ export default function Challenge() {
         <Grid item xs={12} marginBottom={2}>
           <TaskbarFilterOfChallenge
             groupID={groupID}
+            pageNumer = {pageNumber}
             typeData={typeData}
             url='/challenge/create'
             handleChangeTab={handleChangeTabValue}
@@ -87,6 +91,7 @@ export default function Challenge() {
           </TabPanel>
           <TabPanel value={tabValue} index={2}>
             <ChallengeGroup
+            handleGetPageNumber={callbackSetPageNumber}
               handleGetGroupID={callbackSetGroupID}
               typeData={typeData}
             />

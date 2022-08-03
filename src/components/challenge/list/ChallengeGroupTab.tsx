@@ -46,6 +46,7 @@ import useStyles from './style'
 interface ChallengeGroupProps {
   typeData: number
   handleGetGroupID: (valueGroupID: number | undefined) => void
+  handleGetPageNumber: (valuePageNumber: number | undefined) => void
 }
 const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   const classes = useStyles()
@@ -54,7 +55,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   const listChallengeState = useSelector((state: RootState) => state.listChallenges)
   const { requesting: listGroupRequesting, groups: groups } = listGroupState
   const { filterRequest, totalChallenge, requesting, challenges } = listChallengeState
-  const { typeData, handleGetGroupID } = props
+  const { typeData, handleGetGroupID, handleGetPageNumber } = props
   const [groupID, setGroupId] = React.useState<number | undefined>(0)
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const [page, setPage] = React.useState(1)
@@ -103,6 +104,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
 
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
+    handleGetPageNumber(value)
     dispatch(
       updateFilterListChallengesRequest({
         ...filterRequest,

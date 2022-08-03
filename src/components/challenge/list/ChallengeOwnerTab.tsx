@@ -36,7 +36,7 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
   const listChallengeState = useSelector((state: RootState) => state.listChallenges)
   const { filterRequest, totalChallenge, requesting, challenges } = listChallengeState
   const [page, setPage] = useState(1)
-  const PER_PAGE = 2
+  const PER_PAGE = 4
   const count = Math.ceil(totalChallenge / PER_PAGE)
 
   /**
@@ -64,6 +64,7 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
       updateFilterListChallengesRequest({
         ...filterRequest,
         pageNumber: value,
+        pageSize: 4,
         typeData: typeData,
       }),
     )
