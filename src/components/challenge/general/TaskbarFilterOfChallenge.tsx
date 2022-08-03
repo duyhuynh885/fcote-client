@@ -54,6 +54,7 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
         typeData: typeData,
         searchBy: search,
         groupID: groupID,
+        pageSize: 4,
       }),
     )
   }

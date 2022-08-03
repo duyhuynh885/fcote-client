@@ -36,6 +36,21 @@ export default function MyProfile() {
       dispatch(
         fetchUserAssignmentRequest(myProfileState.userAssignmentRequest, currentUserState.username),
       )
+      dispatch(
+        fetchChallengeCompletedRequest(
+          myProfileState.challengeCompletedRequest,
+          currentUserState.username,
+        ),
+      )
+    }
+    dispatch(viewDetailProfileClearStateRequest())
+  }, [myProfileState.userAssignmentRequest, currentUserState])
+
+  useEffect(() => {
+    if (currentUserState.username !== '') {
+      dispatch(
+        fetchUserAssignmentRequest(myProfileState.userAssignmentRequest, currentUserState.username),
+      )
     }
   }, [myProfileState.userAssignmentRequest, currentUserState])
 

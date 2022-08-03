@@ -3,7 +3,7 @@ import { Avatar, IconButton, MenuItem, Modal, Paper, Select, Stack, TextField } 
 import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { number, object, string, TypeOf } from 'zod'
+import { object, string, TypeOf } from 'zod'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyles from '../../../components/my-profile/style'
@@ -97,10 +97,6 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
     )
     onClose()
   }
-
-  // const handleChangeGender = (event: SelectChangeEvent) => {
-  //   setGender(event.target.value)
-  // }
 
   return (
     <React.Fragment>

@@ -23,11 +23,13 @@ import useStyles from '../style'
 
 interface ChallengeCompletedProps {
   listChallengeCompleted: IChallenge[]
+  title?: string
 }
 const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
   const classes = useStyles()
-  const { listChallengeCompleted } = props
-  const topChallengeState = useSelector((state: RootState) => state.listChallenges)
+  const { listChallengeCompleted, title } = props
+  const listChallengesState = useSelector((state: RootState) => state.listChallenges)
+  const {requesting: challengesRequesting} = listChallengesState
   return (
     <Paper
       elevation={4}
@@ -40,10 +42,10 @@ const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
     >
       <Stack direction='column' spacing={2}>
         <Box>
-          <Typography className={classes.title}>Challenge Completed</Typography>
+          <Typography className={classes.title}>{title ? title : 'Challenge Completed'}</Typography>
         </Box>
         <Stack spacing={2} className={classes.scrollBar}>
-          {topChallengeState.requesting ? (
+          {challengesRequesting ? (
             <Stack alignItems='center' justifyContent='center'>
               <CircularProgress color='success' />
             </Stack>

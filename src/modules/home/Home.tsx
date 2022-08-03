@@ -1,17 +1,16 @@
-import { Box, CircularProgress, Grid, Paper, Stack, Typography } from '@mui/material'
+import { CircularProgress, Grid, Stack } from '@mui/material'
 import TopAssignment from '../../components/assignment/general/TopAssignment'
 
-import ChallengeCompleted from '../../components/my-profile/view/ChallengeCompleted'
-import React, { useEffect } from 'react'
-import useStyles from './style'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../apps/ReduxContainer'
-import { ViewListChallengeRequestPayload } from '../challenge/list/type'
-import { fetchListChallengeRequest } from '../challenge/list/action'
+import TopUser from '../../components/home/TopUser'
+import ChallengeCompleted from '../../components/my-profile/view/ChallengeCompleted'
 import { fetchListAssignmentRequest } from '../assignment/list/action'
 import { ViewListAssignmentRequestPayload } from '../assignment/list/type'
+import { fetchListChallengeRequest } from '../challenge/list/action'
+import { ViewListChallengeRequestPayload } from '../challenge/list/type'
 import { fetchRankingRequest } from '../ranking/action'
-import TopUser from '../../components/home/TopUser'
 
 /**
  * Home Pages
@@ -29,7 +28,6 @@ import TopUser from '../../components/home/TopUser'
  */
 
 const Home = () => {
-  const classes = useStyles()
   const dispatch = useDispatch<AppDispatch>()
   const topChallengeState = useSelector((state: RootState) => state.listChallenges)
   const topAssignmentsState = useSelector((state: RootState) => state.listAssignment)
@@ -37,7 +35,7 @@ const Home = () => {
 
   const customTopChallengeRequest: ViewListChallengeRequestPayload = {
     typeData: 5,
-    pageSize: 10,
+    pageSize: 5,
     pageNumber: 1,
   }
 
@@ -61,9 +59,12 @@ const Home = () => {
     <Stack sx={{ margin: 5 }}>
       <Grid container>
         <Grid item xs={8} sx={{ padding: '0px 40px 10px 0px' }}>
-          <Stack spacing={2}>
+          <Stack spacing={3}>
             <TopAssignment listAssignment={topAssignmentsState.assignments} />
-            <ChallengeCompleted listChallengeCompleted={topChallengeState.challenges} />
+            <ChallengeCompleted
+              title='Top 5 Challenge'
+              listChallengeCompleted={topChallengeState.challenges}
+            />
           </Stack>
         </Grid>
         <Grid item xs={4}>

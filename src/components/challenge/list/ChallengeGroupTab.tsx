@@ -1,9 +1,7 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import GroupsSharpIcon from '@mui/icons-material/GroupsSharp'
 import {
   CircularProgress,
-  Divider,
   Grid,
   Pagination,
   PaginationItem,
@@ -46,30 +44,34 @@ import useStyles from './style'
  */
 
 interface ChallengeGroupProps {
-  groups: Group[]
   typeData: number
-  handleGetGroupID: (groupID: number | undefined) => void
+  handleGetGroupID: (valueGroupID: number | undefined) => void
 }
 const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   const classes = useStyles()
   const dispatch = useDispatch<AppDispatch>()
-  const { groups, typeData, handleGetGroupID } = props
+  const listGroupState = useSelector((state: RootState) => state.listGroup)
+  const listChallengeState = useSelector((state: RootState) => state.listChallenges)
+  const { requesting: listGroupRequesting, groups: groups } = listGroupState
+  const { filterRequest, totalChallenge, requesting, challenges } = listChallengeState
+  const { typeData, handleGetGroupID } = props
   const [groupID, setGroupId] = React.useState<number | undefined>(0)
   const [selectedIndex, setSelectedIndex] = React.useState(0)
-  const listGroupRequesting = useSelector((state: RootState) => state.listGroup.requesting)
-  const listChallengeState = useSelector((state: RootState) => state.listChallenges)
-  const groupsState = useSelector((state: RootState) => state.listGroup.groups)
-  const { filterRequest, totalChallenge, requesting, challenges } = listChallengeState
   const [page, setPage] = React.useState(1)
-  const PER_PAGE = 2
+  const PER_PAGE = 4
   const count = Math.ceil(totalChallenge / PER_PAGE)
+
+  const groupChallengeRequest: ViewListChallengeRequestPayload = {
+    typeData: 2,
+    pageSize: 4,
+    pageNumber: 1,
+  }
 
   const handleClickGroup = (
     groupID: number | undefined,
     _event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number,
   ) => {
-    console.log(' before  group', groupID)
     handleGetGroupID(groupID)
     dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
     setGroupId(groupID)
@@ -81,20 +83,14 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
     dispatch(fetchListGroupRequest({}))
   }, [])
 
-  const groupChallengeRequest: ViewListChallengeRequestPayload = {
-    typeData: 2,
-    pageSize: 4,
-    pageNumber: 1,
-  }
   // After getting the group, call api challenge
   useEffect(() => {
-    if (groupsState.length > 0) {
-      dispatch(
-        fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupsState[0].id),
-      )
-      setGroupId(groupsState[0].id)
+    if (groups.length > 0) {
+      dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groups[0].id))
+      handleGetGroupID(groups[0].id)
+      setGroupId(groups[0].id)
     }
-  }, [groupsState])
+  }, [groups])
 
   /**
    * clear state
@@ -115,7 +111,6 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
         groupID: groupID,
       }),
     )
-    console.log('after group', groupID)
   }
   return (
     <Grid container spacing={3}>

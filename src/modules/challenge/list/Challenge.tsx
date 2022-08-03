@@ -1,11 +1,8 @@
 import { Box, Grid, Stack } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import React, { useState } from 'react'
 import TaskbarFilterOfChallenge from '../../../components/challenge/general/TaskbarFilterOfChallenge'
 import ChallengeGroup from '../../../components/challenge/list/ChallengeGroupTab'
 import ChallengePublicOwner from '../../../components/challenge/list/ChallengeOwnerTab'
-import { fetchListGroupRequest } from '../../group/list/action'
 import useStyles from './style'
 
 /**
@@ -47,37 +44,27 @@ function TabPanel(props: TabPanelProps) {
 
 export default function Challenge() {
   const classes = useStyles()
-  const dispatch = useDispatch<AppDispatch>()
-  const groupsState = useSelector((state: RootState) => state.listGroup.groups)
   const [tabValue, setTabValue] = React.useState(0)
   const [typeData, setTypeData] = useState(1)
   const [groupID, setGroupId] = useState<number | undefined>()
+
   const handleChangeTabValue = (_event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue)
-  }
-
-  function handleGetChallengeGroup() {
-    dispatch(fetchListGroupRequest({}))
-    setTypeData(2)
-  }
-
-  useEffect(() => {
-    switch (tabValue) {
+    switch (newValue) {
       case 0:
         return setTypeData(1)
       case 1:
         return setTypeData(3)
       case 2:
-        return handleGetChallengeGroup()
+        return setTypeData(2)
       default:
         return undefined
     }
-  }, [tabValue])
+  }
 
   const callbackSetGroupID = (value: number | undefined) => {
     setGroupId(value)
   }
-  console.log('value', groupID)
 
   return (
     <Stack sx={{ margin: 5 }}>
@@ -101,7 +88,6 @@ export default function Challenge() {
           <TabPanel value={tabValue} index={2}>
             <ChallengeGroup
               handleGetGroupID={callbackSetGroupID}
-              groups={groupsState}
               typeData={typeData}
             />
           </TabPanel>
