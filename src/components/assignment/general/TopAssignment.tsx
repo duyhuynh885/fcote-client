@@ -3,7 +3,9 @@ import { Box } from '@mui/system'
 import React from 'react'
 import { Assignment } from '../../../modules/assignment/list/type'
 import { makeStyles } from '@mui/styles'
-import AssignmentItemRectangle from './AssignmentItemRectangle'
+import AssignmentItemRectangle, {
+  CustomAssignmentItemRectangleEnum,
+} from './AssignmentItemRectangle'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
 
@@ -45,27 +47,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingLeft: '20px',
   },
 }))
-
 interface TopAssignmentProps {
   listAssignment: Assignment[]
-}
-
-const List: React.FC<TopAssignmentProps> = (props) => {
-  const listAssignment = props.listAssignment
-  return (
-    <>
-      {listAssignment.map((assignment) => (
-        <AssignmentItemRectangle key={assignment.id} assignment={assignment} />
-      ))}
-    </>
-  )
 }
 
 const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
   const topAssignmentsState = useSelector((state: RootState) => state.listAssignment)
   const classes = useStyles()
   const { listAssignment } = props
-
+  const custom = CustomAssignmentItemRectangleEnum.CUSTOM_FOR_HOME
   return (
     <Paper
       elevation={4}
@@ -86,7 +76,15 @@ const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
               <CircularProgress color='success' />
             </Stack>
           ) : (
-            <List listAssignment={listAssignment} />
+            <>
+              {listAssignment.map((assignment) => (
+                <AssignmentItemRectangle
+                  key={assignment.id}
+                  assignment={assignment}
+                  custom={custom}
+                />
+              ))}
+            </>
           )}
         </Stack>
       </Stack>

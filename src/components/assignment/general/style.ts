@@ -37,17 +37,36 @@ const useStyles = makeStyles((theme: Theme) => ({
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
+  nameCustom: {
+    fontWeight: '700',
+    width: '600px',
+    fontSize: `${theme.textFont.small}`,
+    textTransform: 'capitalize',
+    color: `${theme.color.black}`,
+    textAlign: 'start',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+  },
   userName: {
     fontWeight: '700',
     fontSize: `${theme.textFont.extraSmall}`,
     color: `${theme.color.darkGray}`,
     textAlign: 'start',
   },
+
   score: {
     fontWeight: '800',
     fontSize: `${theme.textFont.extraSmall}`,
     color: `${theme.color.darkRed}`,
     textAlign: 'start',
+  },
+  scoreCustom: {
+    fontWeight: '800',
+    fontSize: `${theme.textFont.extraSmall}`,
+    color: `${theme.color.darkRed}`,
+    textAlign: 'center',
+    width: '150px',
   },
   scrollBar: {
     height: '730px',

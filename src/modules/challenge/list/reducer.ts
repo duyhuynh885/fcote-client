@@ -29,11 +29,12 @@ const initialState: ViewListChallengeState = {
     searchBy: '',
     groupID: 0,
     pageSize: 4,
-    pageNumber: 1,
+    pageNumber: 0,
     username: '',
-    status: 3,
+    status: 0,
   },
   challenges: [],
+  currentSize: 1,
   totalChallenge: 0,
 }
 
