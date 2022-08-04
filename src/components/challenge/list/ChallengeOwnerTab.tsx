@@ -1,11 +1,17 @@
-import { CircularProgress, Container, Stack } from '@mui/material'
-import React, { useEffect } from 'react'
-import PaginationCard from '../../common/pagination/PaginationCard'
-import { IChallenge } from '../../../modules/challenge/list/type'
-import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { CircularProgress, Pagination, PaginationItem, Stack } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearStateViewListChallenge } from '../../../modules/challenge/list/action'
 import { RootState } from '../../../apps/ReduxContainer'
+import {
+  clearStateViewListChallenge,
+  fetchListChallengeRequest,
+  updateFilterListChallengesRequest,
+} from '../../../modules/challenge/list/action'
+import { ViewListChallengeRequestPayload } from '../../../modules/challenge/list/type'
+import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
+import useStyles from './style'
 /**
  * ChallengePublicOwner
  *
@@ -21,18 +27,18 @@ import { RootState } from '../../../apps/ReduxContainer'
  * 29-06-2022      HuyNT2711           Create
  */
 interface ChallengePublicOwnerProps {
-  listChallenges: IChallenge[]
-  page?: number
-  handleChangePage?: (_event: React.ChangeEvent<unknown>, value: number) => void
-  count?: number
+  typeData: number
 }
 const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
-  const listChallenges = props.listChallenges
-  const page = props.page
-  const handleChangePage = props.handleChangePage
-  const count = props.count
+  const classes = useStyles()
+  const { typeData } = props
   const dispatch = useDispatch()
-  const listChallengeRequesting = useSelector((state: RootState) => state.listChallenges.requesting)
+  const listChallengeState = useSelector((state: RootState) => state.listChallenges)
+  const { filterRequest, totalChallenge, requesting, challenges } = listChallengeState
+  const [page, setPage] = useState(1)
+  const PER_PAGE = 4
+  const count = Math.ceil(totalChallenge / PER_PAGE)
+
   /**
    * clear state
    */
@@ -42,26 +48,61 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
     }
   }, [])
 
+  const customChallengeRequest: ViewListChallengeRequestPayload = {
+    typeData: typeData,
+    pageSize: 4,
+    pageNumber: 1,
+  }
+
+  useEffect(() => {
+    dispatch(fetchListChallengeRequest(customChallengeRequest, undefined, undefined, undefined))
+  }, [typeData])
+
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value)
+    dispatch(
+      updateFilterListChallengesRequest({
+        ...filterRequest,
+        pageNumber: value,
+        pageSize: 4,
+        typeData: typeData,
+      }),
+    )
+  }
+
   return (
     <Stack>
-      <Container fixed sx={{ minHeight: '70vh' }}>
-        {listChallengeRequesting ? (
+      <Stack className={classes.scrollBar} spacing={2} marginBottom={5}>
+        {requesting ? (
           <Stack marginTop={5} alignItems='center'>
             <CircularProgress color='success' />
           </Stack>
         ) : (
-          <Stack direction='column' spacing={2} marginBottom={2}>
-            {listChallenges.map((challenge) => (
-              <ChallengeCard
-                key={challenge.challengeId}
-                challenge={challenge}
-                url={`/challenge/${challenge.challengeId}`}
-              />
-            ))}
-          </Stack>
+          challenges.map((challenge) => (
+            <ChallengeCard
+              key={challenge.challengeId}
+              challenge={challenge}
+              url={`/challenge/${challenge.challengeId}`}
+            />
+          ))
         )}
-      </Container>
-      <PaginationCard page={page} handleChangePage={handleChangePage} count={count} />
+      </Stack>
+      <Stack alignItems='center'>
+        <Pagination
+          page={page}
+          onChange={handleChange}
+          count={count}
+          renderItem={(item) => (
+            <PaginationItem
+              components={{
+                previous: ArrowBackIcon,
+                next: ArrowForwardIcon,
+              }}
+              {...item}
+            />
+          )}
+        />
+      </Stack>
     </Stack>
   )
 }

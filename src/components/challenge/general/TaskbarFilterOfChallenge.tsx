@@ -1,5 +1,5 @@
 import { IconButton, Paper, Stack, Tab, Tabs, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Divider from '@mui/material/Divider'
 import SearchIcon from '@mui/icons-material/Search'
 import { Link } from 'react-router-dom'
@@ -35,6 +35,7 @@ function a11yProps(index: number) {
 interface IProps {
   url: string
   groupID: number | undefined
+  pageNumber: number | undefined
   typeData: number
   handleChangeTab: (event: React.SyntheticEvent, newValue: number) => void
   tabValue: number
@@ -45,7 +46,7 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
   const dispatch = useDispatch<AppDispatch>()
   const filterChallengeState = useSelector((state: RootState) => state.listChallenges.filterRequest)
   const [search, setSearch] = useState('')
-  const { url, groupID, typeData, handleChangeTab, tabValue } = props
+  const { url, groupID, pageNumber, typeData, handleChangeTab, tabValue } = props
 
   const handleSearch = () => {
     dispatch(
@@ -54,10 +55,34 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
         typeData: typeData,
         searchBy: search,
         groupID: groupID,
+        pageSize: 100,
+        pageNumber: 0,
       }),
     )
   }
-
+  useEffect(() => {
+    search === '' || search === undefined
+      ? dispatch(
+          updateFilterListChallengesRequest({
+            ...filterChallengeState,
+            typeData: typeData,
+            searchBy: search,
+            groupID: groupID,
+            pageSize: 4,
+            pageNumber: pageNumber === undefined ? undefined : pageNumber,
+          }),
+        )
+      : dispatch(
+          updateFilterListChallengesRequest({
+            ...filterChallengeState,
+            typeData: typeData,
+            searchBy: search,
+            groupID: groupID,
+            pageSize: 100,
+            pageNumber: pageNumber === undefined ? undefined : pageNumber,
+          }),
+        )
+  }, [search])
   return (
     <Paper
       square

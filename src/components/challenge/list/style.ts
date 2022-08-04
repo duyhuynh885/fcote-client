@@ -81,6 +81,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   cardGroupTitle: {
     fontWeight: '800',
     fontSize: theme.textFont.small,
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   cardGroupTotalMember: {
     fontWeight: '800',
