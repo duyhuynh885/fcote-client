@@ -1,15 +1,16 @@
-import { Grid, Stack } from '@mui/material'
+import { CircularProgress, Grid, Stack } from '@mui/material'
 import TopAssignment from '../../components/assignment/general/TopAssignment'
-import ChallengeCompleted from '../../components/my-profile/view/ChallengeCompleted'
-import React, { useEffect } from 'react'
+
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../apps/ReduxContainer'
-import { ViewListChallengeRequestPayload } from '../challenge/list/type'
-import { fetchListChallengeRequest } from '../challenge/list/action'
+import TopUser from '../../components/home/TopUser'
+import ChallengeCompleted from '../../components/my-profile/view/ChallengeCompleted'
 import { fetchListAssignmentRequest } from '../assignment/list/action'
 import { ViewListAssignmentRequestPayload } from '../assignment/list/type'
+import { fetchListChallengeRequest } from '../challenge/list/action'
+import { ViewListChallengeRequestPayload } from '../challenge/list/type'
 import { fetchRankingRequest } from '../ranking/action'
-import TopUser from '../../components/home/TopUser'
 
 /**
  * Home Pages
@@ -33,8 +34,8 @@ const Home = () => {
   const rankingState = useSelector((state: RootState) => state.ranking)
 
   const customTopChallengeRequest: ViewListChallengeRequestPayload = {
-    typeData: 3,
-    pageSize: 10,
+    typeData: 5,
+    pageSize: 5,
     pageNumber: 1,
   }
 
@@ -45,6 +46,7 @@ const Home = () => {
     filterByDifficult: 0,
     filterByStatus: 0,
     searchBy: '',
+    filterByTop: true,
   }
 
   useEffect(() => {
@@ -55,15 +57,24 @@ const Home = () => {
 
   return (
     <Stack sx={{ margin: 5 }}>
-      <Grid container spacing={5}>
-        <Grid item xs={8}>
-          <Stack direction='column' spacing={3}>
+      <Grid container>
+        <Grid item xs={8} sx={{ padding: '0px 40px 10px 0px' }}>
+          <Stack spacing={3}>
             <TopAssignment listAssignment={topAssignmentsState.assignments} />
-            <ChallengeCompleted listChallengeCompleted={topChallengeState.challenges} />
+            <ChallengeCompleted
+              title='Top 5 Challenge'
+              listChallengeCompleted={topChallengeState.challenges}
+            />
           </Stack>
         </Grid>
-        <Grid item xs={4} sx={{ height: '100%' }}>
-          <TopUser rankingList={rankingState.rankingList} />
+        <Grid item xs={4}>
+          {rankingState.requesting ? (
+            <Stack alignItems='center'>
+              <CircularProgress color='success' />
+            </Stack>
+          ) : (
+            <TopUser rankingList={rankingState.rankingList} />
+          )}
         </Grid>
       </Grid>
     </Stack>

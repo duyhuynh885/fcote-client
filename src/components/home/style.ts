@@ -102,6 +102,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
+  textAddressOrganization: {
+    fontWeight: '600 !important',
+    color: `${theme.color.brown} !important`,
+    fontSize: `${theme.textFont.extraSmall} !important`,
+    textAlign: 'left',
+  },
   assignmentWardIcon: {
     width: 50,
     height: 50,
