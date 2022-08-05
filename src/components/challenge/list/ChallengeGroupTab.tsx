@@ -67,18 +67,6 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
     pageNumber: 1,
   }
 
-  const handleClickGroup = (
-    groupID: number | undefined,
-    _event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: number,
-  ) => {
-    handleGetGroupID(groupID)
-    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
-    setGroupId(groupID)
-    setSelectedIndex(index)
-    setPage(1)
-  }
-
   // get all Groups current user joined
   useEffect(() => {
     dispatch(fetchListGroupRequest({}))
@@ -93,14 +81,17 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
     }
   }, [groups])
 
-  /**
-   * clear state
-   */
-  useEffect(() => {
-    return () => {
-      dispatch(clearStateViewListChallenge())
-    }
-  }, [])
+  const handleClickGroup = (
+    groupID: number | undefined,
+    _event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    index: number,
+  ) => {
+    handleGetGroupID(groupID)
+    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
+    setGroupId(groupID)
+    setSelectedIndex(index)
+    setPage(1)
+  }
 
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
@@ -114,6 +105,16 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
       }),
     )
   }
+
+  /**
+   * clear state
+   */
+  useEffect(() => {
+    return () => {
+      dispatch(clearStateViewListChallenge())
+    }
+  }, [])
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={4}>

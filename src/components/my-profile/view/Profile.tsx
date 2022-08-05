@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import {
   Avatar,
+  CircularProgress,
   IconButton,
   Paper,
+  Stack,
   Table,
   TableCell,
   TableContainer,
@@ -15,6 +17,8 @@ import useStyles from '../style'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import EditProfileModel from '../../../modules/my-profile/edit/EditProfileModel'
 import { formatDate } from '../../../utils/dateUtil'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../apps/ReduxContainer'
 
 /**
  * Profile component
@@ -36,6 +40,8 @@ interface ProfileProps {
 }
 const Profile: React.FC<ProfileProps> = (props) => {
   const classes = useStyles()
+  const myProfileState = useSelector((state: RootState) => state.myProfile)
+
   const handleGender = (): string => {
     switch (`${props.user.gender}`) {
       case '1':
@@ -97,7 +103,7 @@ const Profile: React.FC<ProfileProps> = (props) => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        height: 'auto',
+        height: '47.5rem',
       }}
     >
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -106,34 +112,50 @@ const Profile: React.FC<ProfileProps> = (props) => {
         </IconButton>
         <EditProfileModel open={open} onClose={handleClose} />
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Avatar alt='Profile Image' src={props.user.avatar} className={classes.myProfileAvatar} />
-      </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
-        <Typography className={classes.myProfileFullName}>
-          {props.user.firstName} {props.user.lastName}
-        </Typography>
-        <Typography className={classes.myProfileUsername}>{props.user.username}</Typography>
-      </Box>
-      <Box sx={{ padding: 5 }}>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 300 }}>
-            {rows.map((row) => (
-              <TableRow key={row.name}>
-                <TableCell style={{ width: 100, fontWeight: 'bold' }} component='th' scope='row'>
-                  {row.name}
-                </TableCell>
-                <TableCell style={{ width: 200 }} align='left'>
-                  {row.data}
-                </TableCell>
-              </TableRow>
-            ))}
-          </Table>
-        </TableContainer>
-      </Box>
-      <Box className={classes.myProfileContainerDescription}>
-        <Typography>Description</Typography>
-      </Box>
+      {myProfileState.requesting ? (
+        <Stack alignItems='center' justifyContent='center'>
+          <CircularProgress color='success' />
+        </Stack>
+      ) : (
+        <>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Avatar
+              alt='Profile Image'
+              src={props.user.avatar}
+              className={classes.myProfileAvatar}
+            />
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+            <Typography className={classes.myProfileFullName}>
+              {props.user.firstName} {props.user.lastName}
+            </Typography>
+            <Typography className={classes.myProfileUsername}>{props.user.username}</Typography>
+          </Box>
+          <Box sx={{ padding: 5 }}>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 300 }}>
+                {rows.map((row) => (
+                  <TableRow key={row.name}>
+                    <TableCell
+                      style={{ width: 100, fontWeight: 'bold' }}
+                      component='th'
+                      scope='row'
+                    >
+                      {row.name}
+                    </TableCell>
+                    <TableCell style={{ width: 200 }} align='left'>
+                      {row.data}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </Table>
+            </TableContainer>
+          </Box>
+          <Box className={classes.myProfileContainerDescription}>
+            <Typography className={classes.description}>Description</Typography>
+          </Box>
+        </>
+      )}
     </Paper>
   )
 }

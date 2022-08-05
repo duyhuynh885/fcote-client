@@ -2,7 +2,6 @@ import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import profileApi from '../../../services/profileApi'
 import { handleError } from '../../../utils/handleError'
 import requestFailure from '../../../utils/requestFailure'
-import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import { ViewListChallengeActionType } from './../../challenge/list/type'
 import {
   ViewMyProfileActionType,
@@ -28,7 +27,6 @@ import {
 // ---------------------------- View User Assignment Flow ----------------------------------
 function* viewUserAssignmentFlow({ username, typeData }: ViewMyProfileRequestAction) {
   try {
-    yield put(showLoaderAction())
     const dataDetailProfile: ViewMyProfileSuccessResponse = yield call(
       profileApi.fetchUserAssignmentApi,
       {
@@ -46,7 +44,6 @@ function* viewUserAssignmentFlow({ username, typeData }: ViewMyProfileRequestAct
       type: ViewMyProfileActionType.VIEW_MY_PROFILE_SUCCESS,
       ...dataDetailProfile,
     })
-    yield put(hideLoaderAction())
   } catch (error) {
     yield call(requestFailure, ViewMyProfileActionType.VIEW_MY_PROFILE_ERROR, handleError(error))
   }

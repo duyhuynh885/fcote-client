@@ -33,10 +33,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '30px',
   },
   myProfileContainerDescription: {
+    display: 'flex',
     backgroundColor: theme.color.green,
-    padding: '20px 40px',
-    marginBottom: '40px',
-    textAlign: 'center',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+  },
+  description: {
+    paddingTop: '34px',
+    display: 'flex',
+    fontSize: theme.textFont.large,
+    fontWeight: 'bold',
   },
   title: {
     fontSize: theme.textFont.large,

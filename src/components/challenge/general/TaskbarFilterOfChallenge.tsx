@@ -69,7 +69,7 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
             searchBy: search,
             groupID: groupID,
             pageSize: 4,
-            pageNumber: pageNumber === undefined ? undefined : pageNumber,
+            pageNumber: pageNumber === undefined ? 1 : pageNumber,
           }),
         )
       : dispatch(
@@ -79,7 +79,7 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
             searchBy: search,
             groupID: groupID,
             pageSize: 100,
-            pageNumber: pageNumber === undefined ? undefined : pageNumber,
+            pageNumber: 0,
           }),
         )
   }, [search])
