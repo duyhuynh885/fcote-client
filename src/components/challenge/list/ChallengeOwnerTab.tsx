@@ -50,9 +50,7 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
   }, [typeData])
 
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
- 
     setPage(value)
-
     handleGetPageNumber(value)
     dispatch(
       updateFilterListChallengesRequest({
@@ -76,7 +74,7 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
   return (
     <Stack>
       <Stack className={classes.scrollBar} spacing={2} marginBottom={5}>
-        {requesting? (
+        {requesting ? (
           <Stack marginTop={5} alignItems='center'>
             <CircularProgress color='success' />
           </Stack>
