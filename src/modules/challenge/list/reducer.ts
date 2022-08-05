@@ -29,8 +29,8 @@ const initialState: ViewListChallengeState = {
     searchBy: '',
     groupID: 0,
     pageSize: 4,
-    pageNumber: 0,
-    username: '',
+    pageNumber: 1,
+    username: 'undefined',
     status: 0,
   },
   challenges: [],
@@ -73,6 +73,8 @@ const reducer = (state = initialState, action: ViewListChallengeAction) => {
     case ViewListChallengeActionType.UPDATE_FILTER_LIST_CHALLENGE_REQUEST:
       return {
         ...state,
+        requesting: true,
+        successful: false,
         filterRequest: {
           typeData: action.typeData,
           searchBy: action.searchBy,

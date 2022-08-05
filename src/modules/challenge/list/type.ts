@@ -40,13 +40,13 @@ export interface IChallenge {
 }
 
 export interface ViewListChallengeRequestPayload {
-  typeData: number
+  typeData: number | undefined
   searchBy?: string
-  groupID?: number
+  groupID?: number | undefined
   pageSize?: number
-  pageNumber?: number
-  username?: string
-  status?: StatusChallengeEnum
+  pageNumber?: number | undefined
+  username?: string | undefined
+  status?: StatusChallengeEnum | undefined
 }
 
 export interface ViewListChallengeSuccessResponse {
