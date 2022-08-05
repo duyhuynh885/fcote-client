@@ -28,30 +28,21 @@ import useStyles from './style'
  */
 interface ChallengePublicOwnerProps {
   typeData: number
+  handleGetPageNumber: (valuePageNumber: number | undefined) => void
 }
 const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
   const classes = useStyles()
-  const { typeData } = props
+  const { typeData, handleGetPageNumber } = props
   const dispatch = useDispatch()
   const listChallengeState = useSelector((state: RootState) => state.listChallenges)
   const { filterRequest, totalChallenge, requesting, challenges } = listChallengeState
   const [page, setPage] = useState(1)
   const PER_PAGE = 4
   const count = Math.ceil(totalChallenge / PER_PAGE)
-
-  /**
-   * clear state
-   */
-  useEffect(() => {
-    return () => {
-      dispatch(clearStateViewListChallenge())
-    }
-  }, [])
+  // const [newPage,setNewPage] = useState()
 
   const customChallengeRequest: ViewListChallengeRequestPayload = {
     typeData: typeData,
-    pageSize: 4,
-    pageNumber: 1,
   }
 
   useEffect(() => {
@@ -60,6 +51,7 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
 
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
+    handleGetPageNumber(value)
     dispatch(
       updateFilterListChallengesRequest({
         ...filterRequest,
@@ -69,6 +61,15 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
       }),
     )
   }
+
+  /**
+   * clear state
+   */
+  useEffect(() => {
+    return () => {
+      dispatch(clearStateViewListChallenge())
+    }
+  }, [])
 
   return (
     <Stack>
