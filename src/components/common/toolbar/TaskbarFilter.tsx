@@ -57,7 +57,13 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
   const [search, setSearch] = useState('')
 
   const handleSearch = () => {
-    dispatch(updateFilterListAssignmentRequest({ ...filterAssignmentState, searchBy: search }))
+    dispatch(
+      updateFilterListAssignmentRequest({
+        ...filterAssignmentState,
+        searchBy: search,
+        pageNumber: 1,
+      }),
+    )
   }
 
   const handleChangeFilterByStatus = (event: SelectChangeEvent) => {

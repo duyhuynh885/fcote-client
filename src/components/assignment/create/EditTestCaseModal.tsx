@@ -15,12 +15,15 @@ import {
   OutputCreateAssignment,
   TestCaseCreateAssignment,
   TestCaseInputCreateAssignment,
+  TestCaseOutputCreateAssignment,
 } from '../../../modules/assignment/create/type'
 import { mapNameDataTypeByValue } from '../../../utils/mapper'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../apps/ReduxContainer'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { Controller, useForm } from 'react-hook-form'
 import _ from 'lodash'
+import { showToastAction } from '../../../modules/layout/toast/toastAction'
+import { validationInputOutputTestCase } from '../../../utils/helper'
 
 /**
  * Create test case model component
@@ -62,8 +65,22 @@ export default function EditTestCaseModal(props: EditTestCaseModalProps) {
   const { open, onClose, inputList, output, onSave, testCase } = props
   const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
   const { handleSubmit, register, reset, control, watch } = useForm()
+  const dispatch = useDispatch<AppDispatch>()
   const rest = {
     type: 'submit',
+  }
+
+  const validationInput = (
+    inputTestCase: TestCaseInputCreateAssignment[],
+    outputTestCase: TestCaseOutputCreateAssignment,
+  ) => {
+    const { result } = validationInputOutputTestCase(inputTestCase, outputTestCase)
+    if (result.isValid) {
+      return true
+    } else {
+      dispatch(showToastAction('error', result.message))
+      return false
+    }
   }
 
   /**
@@ -85,20 +102,26 @@ export default function EditTestCaseModal(props: EditTestCaseModalProps) {
           else return null
         },
       )
-      onSave({
-        isPrivate: isHide,
-        order: testCase.order,
-        input: inputTestCase,
-        output: {
-          order: testCase.output.order,
-          name: testCase.output.name,
-          type: output.type,
-          value: outputTestCaseValue,
-        },
-      })
+
+      const outputTestCase: TestCaseOutputCreateAssignment = {
+        order: testCase.output.order,
+        name: testCase.output.name,
+        type: output.type,
+        value: outputTestCaseValue,
+      }
+
+      if (validationInput(inputTestCase, outputTestCase)) {
+        onSave({
+          isPrivate: isHide,
+          order: testCase.order,
+          input: inputTestCase,
+          output: outputTestCase,
+        })
+
+        onClose()
+        reset()
+      }
     }
-    onClose()
-    reset()
   })
 
   return (

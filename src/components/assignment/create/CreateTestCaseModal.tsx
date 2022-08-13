@@ -15,6 +15,7 @@ import {
   OutputCreateAssignment,
   TestCaseCreateAssignment,
   TestCaseInputCreateAssignment,
+  TestCaseOutputCreateAssignment,
 } from '../../../modules/assignment/create/type'
 import { mapNameDataTypeByValue } from '../../../utils/mapper'
 import { useDispatch, useSelector } from 'react-redux'
@@ -66,13 +67,19 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
   const rest = {
     type: 'submit',
   }
-  const dateTypeState = useSelector((state: RootState) => state.dataType.dataType)
   const dispatch = useDispatch<AppDispatch>()
 
-  const validationInput = () => {
-    const { message } = validationInputOutputTestCase()
-    dispatch(showToastAction('error', message))
-    return false
+  const validationInput = (
+    inputTestCase: TestCaseInputCreateAssignment[],
+    outputTestCase: TestCaseOutputCreateAssignment,
+  ) => {
+    const { result } = validationInputOutputTestCase(inputTestCase, outputTestCase)
+    if (result.isValid) {
+      return true
+    } else {
+      dispatch(showToastAction('error', result.message))
+      return false
+    }
   }
 
   /**
@@ -80,6 +87,7 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
    */
   const onSubmit = handleSubmit((values) => {
     const { inputTestCaseValue, outputTestCaseValue, isHide } = values
+
     const inputTestCase: TestCaseInputCreateAssignment[] = inputTestCaseValue.map(
       (data: string, index: number) => {
         const inputData = _.find(inputList, { order: index })
@@ -93,18 +101,22 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
         else return null
       },
     )
-    if (validationInput()) {
+
+    const outputTestCase: TestCaseOutputCreateAssignment = {
+      order: 1,
+      name: 'OUTPUT',
+      type: output.type,
+      value: outputTestCaseValue,
+    }
+
+    if (validationInput(inputTestCase, outputTestCase)) {
       onSave({
         isPrivate: isHide,
         order: currentSize + 1,
         input: inputTestCase,
-        output: {
-          order: 1,
-          name: 'OUTPUT',
-          type: output.type,
-          value: outputTestCaseValue,
-        },
+        output: outputTestCase,
       })
+
       onClose()
       reset()
     }
