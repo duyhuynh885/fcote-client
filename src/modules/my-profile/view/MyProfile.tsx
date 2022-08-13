@@ -5,7 +5,8 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import AssignmentCompleted from '../../../components/my-profile/view/AssignmentCompleted'
 import ChallengeCompleted from '../../../components/my-profile/view/ChallengeCompleted'
 import Profile from '../../../components/my-profile/view/Profile'
-import { clearStateViewListChallenge } from '../../challenge/list/action'
+import { clearStateViewListChallenge, fetchListChallengeRequest } from '../../challenge/list/action'
+import { ViewListChallengeRequestPayload } from '../../challenge/list/type'
 import { viewDetailProfileRequest, viewDetailProfileClearStateRequest } from './action'
 
 /**
@@ -29,6 +30,7 @@ export default function MyProfile() {
   const myProfileState = useSelector((state: RootState) => state.myProfile)
   const userInfo = useSelector((state: RootState) => state.login.userInfo)
   const challengeState = useSelector((state: RootState) => state.listChallenges)
+  const { challenges } = challengeState
 
   useEffect(() => {
     dispatch(
@@ -57,7 +59,7 @@ export default function MyProfile() {
         </Grid>
         <Grid item xs={8}>
           <Stack spacing={2}>
-            <ChallengeCompleted listChallengeCompleted={challengeState.challenges} />
+            <ChallengeCompleted listChallengeCompleted={challenges} />
             <AssignmentCompleted assCompleted={myProfileState.assignmentCompleted} />
           </Stack>
         </Grid>
