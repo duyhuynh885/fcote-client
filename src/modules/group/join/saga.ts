@@ -4,7 +4,7 @@ import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
 import groupApi from '../../../services/groupApi'
-import { hideToastAction, showToastAction } from '../../layout/toast/toastAction'
+import { showToastAction } from '../../layout/toast/toastAction'
 import { swapMessage } from '../../../utils/helper'
 
 /**
@@ -31,8 +31,6 @@ function* JoinGroupFlow({ joinCode }: JoinGroupRequestAction) {
     yield put({ type: JoinGroupActionType.JOIN_GROUP_SUCCESS, ...data })
     yield put(hideLoaderAction())
     yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))
-    yield delay(5000)
-    yield put(hideToastAction())
     yield put({ type: JoinGroupActionType.JOIN_GROUP_CLEAR_STATE })
   } catch (error) {
     yield call(requestFailure, JoinGroupActionType.JOIN_GROUP_ERROR, handleError(error))

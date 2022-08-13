@@ -17,10 +17,12 @@ import {
   TestCaseInputCreateAssignment,
 } from '../../../modules/assignment/create/type'
 import { mapNameDataTypeByValue } from '../../../utils/mapper'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../apps/ReduxContainer'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { Controller, useForm } from 'react-hook-form'
 import _ from 'lodash'
+import { showToastAction } from '../../../modules/layout/toast/toastAction'
+import { validationInputOutputTestCase } from '../../../utils/helper'
 
 /**
  * Create test case model component
@@ -64,6 +66,14 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
   const rest = {
     type: 'submit',
   }
+  const dateTypeState = useSelector((state: RootState) => state.dataType.dataType)
+  const dispatch = useDispatch<AppDispatch>()
+
+  const validationInput = () => {
+    const { message } = validationInputOutputTestCase()
+    dispatch(showToastAction('error', message))
+    return false
+  }
 
   /**
    * Handle create new a test case
@@ -83,19 +93,21 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
         else return null
       },
     )
-    onSave({
-      isPrivate: isHide,
-      order: currentSize + 1,
-      input: inputTestCase,
-      output: {
-        order: 1,
-        name: 'OUTPUT',
-        type: output.type,
-        value: outputTestCaseValue,
-      },
-    })
-    onClose()
-    reset()
+    if (validationInput()) {
+      onSave({
+        isPrivate: isHide,
+        order: currentSize + 1,
+        input: inputTestCase,
+        output: {
+          order: 1,
+          name: 'OUTPUT',
+          type: output.type,
+          value: outputTestCaseValue,
+        },
+      })
+      onClose()
+      reset()
+    }
   })
 
   return (
@@ -183,7 +195,7 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
                 justIcon={false}
                 className={''}
               >
-                Save
+                Done
               </RegularButton>
             </Stack>
           </form>
