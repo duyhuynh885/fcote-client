@@ -60,6 +60,12 @@ function AppContainer() {
     strict: false,
   })
 
+  const matchWithAssignmentIdUpdate = matchPath(location.pathname, {
+    path: '/assignment/:assignmentId/update',
+    exact: true,
+    strict: false,
+  })
+
   const matchWithChallengeId = matchPath(location.pathname, {
     path: '/challenge/:challengeId',
     exact: true,
@@ -87,7 +93,8 @@ function AppContainer() {
         {_.includes(hideNavbarPath, location.pathname) ||
         matchWithChallengeIdAndAssignmentId ||
         matchWithAssignmentId ||
-        matchWithChallengeId ? null : (
+        matchWithChallengeId ||
+        matchWithAssignmentIdUpdate ? null : (
           <Navbar />
         )}
         <RoutesContainer />

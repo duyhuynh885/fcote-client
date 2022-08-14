@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { Box, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import useStyles from './style'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
@@ -23,7 +23,7 @@ export default function LanguageTab() {
   const classes = useStyles()
   const languageState = useSelector((state: RootState) => state.language.languages)
   return (
-    <Stack>
+    <Box className={classes.scrollBar}>
       <Typography textAlign='center' className={classes.tabTitle}>
         Set timeout for languages (default 10second)
       </Typography>
@@ -47,6 +47,6 @@ export default function LanguageTab() {
           ))}
         </TableBody>
       </Table>
-    </Stack>
+    </Box>
   )
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Checkbox,
   FormControlLabel,
@@ -8,7 +7,11 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import useStyles from './style'
+import _ from 'lodash'
+import React from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import RegularButton from '../../../components/common/button/RegularButton'
 import {
   InputCreateAssignment,
@@ -17,13 +20,10 @@ import {
   TestCaseInputCreateAssignment,
   TestCaseOutputCreateAssignment,
 } from '../../../modules/assignment/create/type'
-import { mapNameDataTypeByValue } from '../../../utils/mapper'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import { Controller, useForm } from 'react-hook-form'
-import _ from 'lodash'
 import { showToastAction } from '../../../modules/layout/toast/toastAction'
 import { validationInputOutputTestCase } from '../../../utils/helper'
+import { mapNameDataTypeByValue } from '../../../utils/mapper'
+import useStyles from './style'
 
 /**
  * Create test case model component

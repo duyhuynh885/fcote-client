@@ -17,6 +17,7 @@ import MyProfile from '../../modules/my-profile/view/MyProfile'
 import Ranking from '../../modules/ranking/Ranking'
 import DetailGroup from '../../modules/group/detail/DetailGroup'
 import Group from '../../modules/group/list/Group'
+import EditAssignment from '../../modules/assignment/edit/EditAssignment'
 
 /**
  * Setup routing for project
@@ -88,6 +89,13 @@ const routes = [
     title: 'CREATE ASSIGNMENT',
     path: '/assignment/create',
     Component: CreateAssignment,
+    exact: true,
+  },
+  {
+    auth: true,
+    title: 'UPDATE ASSIGNMENT',
+    path: '/assignment/:assignmentId/update',
+    Component: EditAssignment,
     exact: true,
   },
   {

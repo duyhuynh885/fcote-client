@@ -101,9 +101,9 @@ export default function JoinGroup({ open, onClose }: ButtonProps) {
               <TextField
                 required
                 size='small'
+                color='success'
                 id='outlined-password-input'
-                sx={{ width: '100%', marginBottom: '1.5rem' }}
-                label='Join Code'
+                sx={{ width: '100%', marginBottom: '1rem' }}
                 type='join_code'
                 autoComplete='current-code'
                 error={!!errors['joinCode']}

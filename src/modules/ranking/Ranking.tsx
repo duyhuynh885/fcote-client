@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import TopRanking from '../../components/ranking/detail/TopRanking'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../apps/ReduxContainer'
-import { fetchRankingRequest } from './action'
+import { fetchRankingRequest, rankingClearState } from './action'
 import LeaderBoard from '../../components/ranking/detail/LeaderBoard'
 import { Container } from '@mui/system'
 
@@ -31,6 +31,15 @@ export default function Ranking() {
   useEffect(() => {
     dispatch(fetchRankingRequest(rankingState.rankingTypeRequest))
   }, [rankingState.rankingTypeRequest])
+
+  /**
+   * clear state
+   */
+  useEffect(() => {
+    return () => {
+      dispatch(rankingClearState())
+    }
+  }, [])
 
   return (
     <Stack sx={{}}>

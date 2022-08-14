@@ -2,8 +2,10 @@ import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import history from '../../../configs/routing/history'
 import authApi from '../../../services/authApi'
 import { handleError } from '../../../utils/handleError'
+import { swapMessage } from '../../../utils/helper'
 import requestFailure from '../../../utils/requestFailure'
 import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
+import { showToastAction } from '../../layout/toast/toastAction'
 import { ResetPasswordActionType, ResetPasswordRequestAction, ResetPasswordResponse } from './type'
 
 /**
@@ -32,6 +34,7 @@ function* resetPasswordFlow({ email }: ResetPasswordRequestAction) {
     yield put({ type: ResetPasswordActionType.RESET_PASSWORD_SUCCESS, ...data })
     history.push('/login')
     yield put(hideLoaderAction())
+    yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))
   } catch (error) {
     yield call(requestFailure, ResetPasswordActionType.RESET_PASSWORD_ERROR, handleError(error))
   }

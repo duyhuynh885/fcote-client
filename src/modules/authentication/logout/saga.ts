@@ -7,6 +7,8 @@ import { handleError } from '../../../utils/handleError'
 import requestFailure from '../../../utils/requestFailure'
 import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import { LogoutActionType, LogoutResponse } from './type'
+import { swapMessage } from '../../../utils/helper'
+import { showToastAction } from '../../layout/toast/toastAction'
 
 /**
  * Saga for logout
@@ -35,6 +37,7 @@ function* logoutFlow() {
     yield put({ type: LoginActionType.LOGIN_CLEAR_STATE })
     history.push('/login')
     yield put(hideLoaderAction())
+    yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))
   } catch (error) {
     yield call(requestFailure, LogoutActionType.LOGOUT_ERROR, handleError(error))
   }

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import Grid from '@mui/material/Grid'
-import { Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import useStyles from './style'
 import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
 import RegularButton from '../../../components/common/button/RegularButton'
-import { useParams } from 'react-router-dom'
+import { Link, useParams, useRouteMatch } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { fetchDataAssignmentDetailRequest, viewAssignmentDetailClearStateRequest } from './action'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,6 +19,8 @@ import {
   submitAssignmentDetailClearStateRequest,
   submitAssignmentDetailRequest,
 } from '../submit/action'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import Congratulation from '../../../components/common/modal/Congratulation'
 
 /**
  * Detail Assignment
@@ -52,12 +54,30 @@ export default function DetailAssignment() {
   const challengeId: number = params.challengeId ? +params.challengeId : 1
   const [sourceCode, setSourceCode] = useState<string>('def compare(a,b):')
   const [language, setLanguage] = useState<number>(1)
+  const match = useRouteMatch()
+  const [openCongratulationModal, setOpenCongratulationModal] = React.useState(false)
+  const submitAssignmentState = useSelector((state: RootState) => state.submitAssignment)
 
   /**
    * Fetch assignment detail for preview data
-   */ useEffect(() => {
+   */
+  useEffect(() => {
     dispatch(fetchDataAssignmentDetailRequest({ id: assignmentId }))
   }, [])
+
+  /**
+   * Fetch assignment detail for preview data
+   */
+  useEffect(() => {
+    if (
+      submitAssignmentState.successful &&
+      summarize.passAll &&
+      summarize.score === detail.score
+      //  && challengeId !== 1
+    ) {
+      handleClickOpenCongratulationModal()
+    }
+  }, [submitAssignmentState])
 
   /**
    * Clear state
@@ -84,9 +104,18 @@ export default function DetailAssignment() {
     dispatch(submitAssignmentDetailRequest({ assignmentId, challengeId, sourceCode, language }))
   }
 
+  const handleClickOpenCongratulationModal = () => {
+    setOpenCongratulationModal(true)
+  }
+
+  const handleCloseCongratulationModal = () => {
+    setOpenCongratulationModal(false)
+  }
+
   return (
     <Stack className={classes.container}>
       <InsideNavBar namePage={detail.title} />
+      <Congratulation open={openCongratulationModal} onClose={handleCloseCongratulationModal} />
       <Grid sx={{ height: '100% !important' }} container>
         <Grid className={classes.tabLeft} item xs={6} sx={{ height: '100%' }} padding={3}>
           <DescriptionTab detail={detail} parameters={parameters} />
@@ -112,6 +141,29 @@ export default function DetailAssignment() {
         justifyContent='space-between'
       >
         <Stack direction='row' alignItems='center'>
+          {detail.isUpdate && challengeId === 1 ? (
+            <Box marginRight={2}>
+              <Link
+                style={{ color: 'inherit', textDecoration: 'inherit' }}
+                to={`${match.url}/update`}
+              >
+                <RegularButton
+                  color={'dotted'}
+                  size={'sm'}
+                  round={false}
+                  fullWidth={false}
+                  disabled={false}
+                  simple={false}
+                  block={false}
+                  link={false}
+                  justIcon={false}
+                  className={''}
+                >
+                  <EditOutlinedIcon fontSize='small' /> Edit
+                </RegularButton>
+              </Link>
+            </Box>
+          ) : null}
           <PersonOutlineIcon fontSize='small' />
           <Typography className={classes.totalParticipant}>{detail.totalParticipant}</Typography>
         </Stack>

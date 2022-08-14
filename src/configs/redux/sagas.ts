@@ -25,6 +25,8 @@ import leaveGroupSaga from '../../modules/group/setting/leave/saga'
 import kickMemberGroupSaga from '../../modules/group/setting/kick/saga'
 import logoutSaga from '../../modules/authentication/logout/saga'
 import resetPasswordSaga from '../../modules/authentication/reset-password/saga'
+import editAssignmentSaga from '../../modules/assignment/edit/saga'
+import previewEditAssignmentSaga from '../../modules/assignment/preview-edit/saga'
 
 /**
  * Root Saga
@@ -57,5 +59,7 @@ export default function* rootSaga() {
     fork(kickMemberGroupSaga),
     fork(logoutSaga),
     fork(resetPasswordSaga),
+    fork(editAssignmentSaga),
+    fork(previewEditAssignmentSaga),
   ])
 }

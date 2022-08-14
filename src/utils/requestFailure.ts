@@ -1,4 +1,4 @@
-import { delay, put } from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
 import history from '../configs/routing/history'
 import { hideLoaderAction } from '../modules/layout/loader/action'
 import { showToastAction } from '../modules/layout/toast/toastAction'

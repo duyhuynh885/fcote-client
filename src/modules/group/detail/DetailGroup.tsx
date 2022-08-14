@@ -69,20 +69,23 @@ export default function DetailGroup() {
   const dispatch = useDispatch<AppDispatch>()
   const groupDetailState = useSelector((state: RootState) => state.detailGroup.groupDetail)
   const groupMemberState = useSelector((state: RootState) => state.detailGroup.member)
+  const groupMemberRequestingState = useSelector((state: RootState) => state.detailGroup.requesting)
+
   const groupDetailRequestState = useSelector(
     (state: RootState) => state.detailGroup.groupDetailRequest,
   )
   const editGroupSuccessfulState = useSelector((state: RootState) => state.editGroup.successful)
+  const kickGroupSuccessfulState = useSelector((state: RootState) => state.kickGroup.successful)
 
   useEffect(() => {
     dispatch(fetchDetailGroupRequest(groupDetailRequestState, id))
   }, [groupDetailRequestState.id])
 
   useEffect(() => {
-    if (editGroupSuccessfulState) {
+    if (editGroupSuccessfulState || kickGroupSuccessfulState) {
       dispatch(fetchDetailGroupRequest(groupDetailRequestState, id))
     }
-  }, [editGroupSuccessfulState])
+  }, [editGroupSuccessfulState, kickGroupSuccessfulState])
 
   return (
     <Stack margin={5}>
@@ -103,10 +106,14 @@ export default function DetailGroup() {
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            <Tasklist />
+            <Tasklist groupId={+groupId} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <Member member={groupMemberState} isOwner={groupDetailState.isOwner} />
+            <Member
+              requesting={groupMemberRequestingState}
+              member={groupMemberState}
+              isOwner={groupDetailState.isOwner}
+            />
           </TabPanel>
         </Grid>
       </Grid>

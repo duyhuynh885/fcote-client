@@ -151,7 +151,7 @@ const validation = {
     return pattern.test(data)
   },
   isArrayFloat(data: string) {
-    const pattern =  /\[[0-9,]+[0-9]*\]/
+    const pattern = /\[[0-9,]+[0-9]*\]/
     return pattern.test(data)
   },
 }
