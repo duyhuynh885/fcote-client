@@ -59,15 +59,15 @@ const Profile: React.FC<ProfileProps> = (props) => {
     return event === null ? '' : event
   }
   const rows = [
-    createData('Organization', `${props.user.organizationTitle}`),
+    createData('Organization', handleShowNull(props.user.organizationTitle)),
     createData(
       'City',
       `${props.user.city}` === 'null' || `${props.user.country}` === 'null'
         ? ''
         : `${props.user.city}` + ',' + `${props.user.country}`,
     ),
-    createData('Email', handleShowNull(`${props.user.email}`)),
-    createData('Phone', handleShowNull(`${props.user.phone}`)),
+    createData('Email', handleShowNull(props.user.email)),
+    createData('Phone', handleShowNull(props.user.phone)),
     createData('Gender', handleGender()),
     createData('Joined on', handleShowNull(formatDate(`${props.user.createdAt}`))),
   ]

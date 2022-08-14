@@ -43,6 +43,8 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
 
   const customChallengeRequest: ViewListChallengeRequestPayload = {
     typeData: typeData,
+    pageSize: 4,
+    pageNumber: 1,
   }
 
   useEffect(() => {
