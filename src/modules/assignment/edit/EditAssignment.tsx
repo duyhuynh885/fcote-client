@@ -63,13 +63,13 @@ export default function EditAssignment() {
   /**
    * fetch data for edit
    */
-  // useEffect(() => {
-  //   dispatch(
-  //     previewEditAssignmentRequest({
-  //       assignmentId,
-  //     }),
-  //   )
-  // }, [])
+  useEffect(() => {
+    dispatch(
+      previewEditAssignmentRequest({
+        assignmentId,
+      }),
+    )
+  }, [])
 
   /**
    * fetch data for edit

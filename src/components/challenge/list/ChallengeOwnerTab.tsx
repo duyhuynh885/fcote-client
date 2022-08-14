@@ -10,6 +10,7 @@ import {
   updateFilterListChallengesRequest,
 } from '../../../modules/challenge/list/action'
 import { ViewListChallengeRequestPayload } from '../../../modules/challenge/list/type'
+import NoResult from '../../common/icon/NoResult'
 import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
 
 /**
@@ -80,6 +81,7 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
           </Stack>
         ) : (
           <Stack marginBottom={2} spacing={2}>
+            <NoResult currentSize={challenges.length} />
             {challenges.map((challenge) => (
               <ChallengeCard
                 key={challenge.challengeId}

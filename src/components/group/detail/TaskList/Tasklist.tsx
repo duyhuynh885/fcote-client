@@ -11,6 +11,7 @@ import {
 } from '../../../../modules/challenge/list/action'
 import { ViewListChallengeRequestPayload } from '../../../../modules/challenge/list/type'
 import ChallengeCard from '../../../challenge/general/ChallengeCard/ChallengeCard'
+import NoResult from '../../../common/icon/NoResult'
 
 interface TasklistProps {
   groupId: number
@@ -63,13 +64,16 @@ export default function Tasklist(props: TasklistProps) {
             <CircularProgress color='success' />
           </Stack>
         ) : (
-          challenges.map((challenge) => (
-            <ChallengeCard
-              key={challenge.challengeId}
-              url={`/challenge/${challenge.challengeId}`}
-              challenge={challenge}
-            />
-          ))
+          <React.Fragment>
+            <NoResult currentSize={challenges.length} />
+            {challenges.map((challenge) => (
+              <ChallengeCard
+                key={challenge.challengeId}
+                url={`/challenge/${challenge.challengeId}`}
+                challenge={challenge}
+              />
+            ))}
+          </React.Fragment>
         )}
       </Stack>
       <Stack alignItems='center'>

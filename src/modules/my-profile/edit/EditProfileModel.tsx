@@ -130,8 +130,8 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
             </div>
             <Stack className={classes.scrollBar}>
               <TextField
+                color='success'
                 {...register('firstName')}
-                color='info'
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-firstname-input'
@@ -141,6 +141,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 helperText={errors['firstName'] ? errors['firstName'].message : ''}
               />
               <TextField
+                color='success'
                 {...register('lastName')}
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -151,6 +152,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 helperText={errors['lastName'] ? errors['lastName'].message : ''}
               />
               <TextField
+                color='success'
                 {...register('organization')}
                 id='outlined-organization-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -160,6 +162,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 helperText={errors['organization'] ? errors['organization'].message : ''}
               />
               <TextField
+                color='success'
                 {...register('city')}
                 id='outlined-city-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -169,6 +172,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 helperText={errors['city'] ? errors['city'].message : ''}
               />
               <TextField
+                color='success'
                 {...register('country')}
                 id='outlined-country-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -178,6 +182,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 helperText={errors['country'] ? errors['country'].message : ''}
               />
               <TextField
+                color='success'
                 {...register('phone')}
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-phone-input'
@@ -187,11 +192,12 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 helperText={errors['phone'] ? errors['phone'].message : ''}
               />
               <Select
+                color='success'
+                label='Gender'
                 {...register('gender')}
                 labelId='demo-simple-select-label'
                 id='demo-simple-select'
                 defaultValue={profile.user.gender}
-                label='Gender'
               >
                 <MenuItem value={'1'}>Female</MenuItem>
                 <MenuItem value={'2'}>Male</MenuItem>
