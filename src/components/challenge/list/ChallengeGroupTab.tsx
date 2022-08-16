@@ -177,6 +177,10 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
             <Stack marginTop={5} alignItems='center'>
               <CircularProgress color='success' />
             </Stack>
+          ) : challenges === [] ? (
+            <Stack>
+              <Typography>NO CHALLENGE YET</Typography>
+            </Stack>
           ) : (
             <React.Fragment>
               <NoResult currentSize={challenges.length} />
