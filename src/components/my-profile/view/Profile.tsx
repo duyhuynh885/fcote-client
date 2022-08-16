@@ -64,7 +64,7 @@ const Profile: React.FC<ProfileProps> = (props) => {
       'City',
       `${props.user.city}` === 'null' || `${props.user.country}` === 'null'
         ? ''
-        : `${props.user.city}` + ',' + `${props.user.country}`,
+        : `${props.user.city}` + ' - ' + `${props.user.country}`,
     ),
     createData('Email', handleShowNull(props.user.email)),
     createData('Phone', handleShowNull(props.user.phone)),
