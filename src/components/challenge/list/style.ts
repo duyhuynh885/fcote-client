@@ -16,22 +16,6 @@ import { makeStyles } from '@mui/styles'
  * 22-06-2022         DuyHV           Create
  */
 const useStyles = makeStyles((theme: Theme) => ({
-  scrollBar: {
-    height: '70vh',
-    paddingRight: '20px',
-    overflowX: 'hidden',
-    overflowY: 'scroll',
-    '&::-webkit-scrollbar': {
-      width: '0.3em',
-    },
-    '&::-webkit-scrollbar-track': {
-      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)',
-    },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: theme.color.green,
-      borderRadius: '10px',
-    },
-  },
   green: {
     color: theme.color.green,
   },

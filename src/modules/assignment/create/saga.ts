@@ -9,6 +9,8 @@ import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
 import assignmentApi from '../../../services/assignmentApi'
 import history from '../../../configs/routing/history'
+import { showToastAction } from '../../layout/toast/toastAction'
+import { swapMessage } from '../../../utils/helper'
 
 /**
  * Saga for fetch create assignment
@@ -49,6 +51,7 @@ function* createAssignmentFlow({
     })
     history.push('/assignment')
     yield put(hideLoaderAction())
+    yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))
   } catch (error) {
     yield call(
       requestFailure,

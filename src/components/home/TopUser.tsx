@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  CircularProgress,
   Paper,
   Stack,
   Table,
@@ -15,7 +16,7 @@ import * as React from 'react'
 import { ReactComponent as Bronze } from '../../assets/Bronze.svg'
 import { ReactComponent as Gold } from '../../assets/Gold.svg'
 import { ReactComponent as Platinum } from '../../assets/Platinum.svg'
-import { UserInfo } from '../../modules/ranking/type'
+import { RankingState, UserInfo } from '../../modules/ranking/type'
 import useStyles from './style'
 
 /**
@@ -33,14 +34,14 @@ import useStyles from './style'
  * 30-07-2022         HuyNT2711           Create
  */
 interface TopUserProps {
-  rankingList: UserInfo[]
+  ranking: RankingState
 }
 const TopUser: React.FC<TopUserProps> = (props) => {
   const classes = useStyles()
-  const { rankingList } = props
+  const { ranking } = props
   const page = 0
   const rowsPerPage = 10
-  const rows = rankingList
+  const rows = ranking.rankingList
 
   function renderRanking(ranking: number) {
     {
@@ -71,55 +72,61 @@ const TopUser: React.FC<TopUserProps> = (props) => {
         <Box>
           <Typography className={classes.title}>Leader board</Typography>
         </Box>
-        <TableContainer className={classes.tableContainer}>
-          <Table stickyHeader aria-label='sticky table'>
-            <TableHead>
-              <TableRow>
-                <TableCell className={classes.tableHeaderCellRanking}>
-                  <Typography className={classes.textHeaderCell}>No</Typography>
-                </TableCell>
-                <TableCell className={classes.tableHeaderCellUsername}>
-                  <Typography textAlign='start' className={classes.textHeaderCellUsername}>
-                    User name
-                  </Typography>
-                </TableCell>
-                <TableCell className={classes.tableHeaderCell}>
-                  <Typography className={classes.textHeaderCell}>Point</Typography>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  return (
-                    <TableRow
-                      hover
-                      role='checkbox'
-                      tabIndex={-1}
-                      key={row.id}
-                      className={classes.tableRowBody2}
-                    >
-                      <TableCell className={classes.tableRankingCell}>
-                        {renderRanking(index + 1)}
-                      </TableCell>
-                      <TableCell className={classes.tableItemCell}>
-                        <Stack direction='row' alignItems='center' spacing={1}>
-                          <Avatar className={classes.avatar} alt={row.avatar} src={row.avatar} />
-                          <Typography className={classes.textUsername}>{row.username}</Typography>
-                        </Stack>
-                      </TableCell>
-                      <TableCell className={classes.tableItemCellOfTotal}>
-                        <Typography className={classes.textPointOfTotal}>
-                          {row.total_score}
-                        </Typography>
-                      </TableCell>
-                    </TableRow>
-                  )
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        {ranking.requesting ? (
+          <Stack alignItems='center'>
+            <CircularProgress color='success' />
+          </Stack>
+        ) : (
+          <TableContainer className={classes.tableContainer}>
+            <Table stickyHeader aria-label='sticky table'>
+              <TableHead>
+                <TableRow>
+                  <TableCell className={classes.tableHeaderCellRanking}>
+                    <Typography className={classes.textHeaderCell}>No</Typography>
+                  </TableCell>
+                  <TableCell className={classes.tableHeaderCellUsername}>
+                    <Typography textAlign='start' className={classes.textHeaderCellUsername}>
+                      User name
+                    </Typography>
+                  </TableCell>
+                  <TableCell className={classes.tableHeaderCell}>
+                    <Typography className={classes.textHeaderCell}>Point</Typography>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => {
+                    return (
+                      <TableRow
+                        hover
+                        role='checkbox'
+                        tabIndex={-1}
+                        key={row.id}
+                        className={classes.tableRowBody2}
+                      >
+                        <TableCell className={classes.tableRankingCell}>
+                          {renderRanking(index + 1)}
+                        </TableCell>
+                        <TableCell className={classes.tableItemCell}>
+                          <Stack direction='row' alignItems='center' spacing={1}>
+                            <Avatar className={classes.avatar} alt={row.avatar} src={row.avatar} />
+                            <Typography className={classes.textUsername}>{row.username}</Typography>
+                          </Stack>
+                        </TableCell>
+                        <TableCell className={classes.tableItemCellOfTotal}>
+                          <Typography className={classes.textPointOfTotal}>
+                            {row.total_score}
+                          </Typography>
+                        </TableCell>
+                      </TableRow>
+                    )
+                  })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
       </Stack>
     </Paper>
   )

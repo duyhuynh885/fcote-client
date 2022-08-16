@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Checkbox,
   FormControlLabel,
@@ -8,19 +7,23 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import useStyles from './style'
+import _ from 'lodash'
+import React from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import RegularButton from '../../../components/common/button/RegularButton'
 import {
   InputCreateAssignment,
   OutputCreateAssignment,
   TestCaseCreateAssignment,
   TestCaseInputCreateAssignment,
+  TestCaseOutputCreateAssignment,
 } from '../../../modules/assignment/create/type'
+import { showToastAction } from '../../../modules/layout/toast/toastAction'
+import { validationInputOutputTestCase } from '../../../utils/helper'
 import { mapNameDataTypeByValue } from '../../../utils/mapper'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../apps/ReduxContainer'
-import { Controller, useForm } from 'react-hook-form'
-import _ from 'lodash'
+import useStyles from './style'
 
 /**
  * Create test case model component
@@ -64,12 +67,27 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
   const rest = {
     type: 'submit',
   }
+  const dispatch = useDispatch<AppDispatch>()
+
+  const validationInput = (
+    inputTestCase: TestCaseInputCreateAssignment[],
+    outputTestCase: TestCaseOutputCreateAssignment,
+  ) => {
+    const { result } = validationInputOutputTestCase(inputTestCase, outputTestCase)
+    if (result.isValid) {
+      return true
+    } else {
+      dispatch(showToastAction('error', result.message))
+      return false
+    }
+  }
 
   /**
    * Handle create new a test case
    */
   const onSubmit = handleSubmit((values) => {
     const { inputTestCaseValue, outputTestCaseValue, isHide } = values
+
     const inputTestCase: TestCaseInputCreateAssignment[] = inputTestCaseValue.map(
       (data: string, index: number) => {
         const inputData = _.find(inputList, { order: index })
@@ -83,19 +101,25 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
         else return null
       },
     )
-    onSave({
-      isPrivate: isHide,
-      order: currentSize + 1,
-      input: inputTestCase,
-      output: {
-        order: 1,
-        name: 'OUTPUT',
-        type: output.type,
-        value: outputTestCaseValue,
-      },
-    })
-    onClose()
-    reset()
+
+    const outputTestCase: TestCaseOutputCreateAssignment = {
+      order: 1,
+      name: 'OUTPUT',
+      type: output.type,
+      value: outputTestCaseValue,
+    }
+
+    if (validationInput(inputTestCase, outputTestCase)) {
+      onSave({
+        isPrivate: isHide,
+        order: currentSize + 1,
+        input: inputTestCase,
+        output: outputTestCase,
+      })
+
+      onClose()
+      reset()
+    }
   })
 
   return (
@@ -183,7 +207,7 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
                 justIcon={false}
                 className={''}
               >
-                Save
+                Done
               </RegularButton>
             </Stack>
           </form>

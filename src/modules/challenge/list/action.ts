@@ -4,7 +4,6 @@ import {
   ViewListChallengeActionType,
   ViewListChallengeClearStateAction,
   UpdateFilterListChallengeAction,
-  StatusChallengeEnum,
 } from './type'
 
 /**
@@ -22,21 +21,24 @@ import {
  * 10-07-2022      HuyNT2711           Create
  */
 
-export const fetchListChallengeRequest = (
-  { typeData, searchBy, pageSize, pageNumber }: ViewListChallengeRequestPayload,
-  username: string | undefined,
-  status: StatusChallengeEnum | undefined,
-  groupID: number | undefined,
-): ViewListChallengeRequestAction => {
+export const fetchListChallengeRequest = ({
+  typeData,
+  searchBy,
+  pageSize,
+  pageNumber,
+  username,
+  status,
+  groupID,
+}: ViewListChallengeRequestPayload): ViewListChallengeRequestAction => {
   return {
     type: ViewListChallengeActionType.VIEW_LIST_CHALLENGE_REQUESTING,
     typeData,
     searchBy,
-    groupID: groupID,
+    groupID,
     pageSize,
     pageNumber,
-    username: username,
-    status: status,
+    username,
+    status,
   }
 }
 

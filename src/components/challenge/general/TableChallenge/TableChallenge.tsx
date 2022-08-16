@@ -71,7 +71,7 @@ export default function TableChallenge(props: TableChallengeProps) {
     return { ranking, userInfo, result, total }
   }
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage)
   }
 

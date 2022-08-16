@@ -5,6 +5,8 @@ import authApi from '../../../services/authApi'
 import { handleError } from '../../../utils/handleError'
 import requestFailure from '../../../utils/requestFailure'
 import history from '../../../configs/routing/history'
+import { swapMessage } from '../../../utils/helper'
+import { showToastAction } from '../../layout/toast/toastAction'
 
 /**
  * Saga for register
@@ -39,6 +41,7 @@ function* registerFlow({ firstName, lastName, username, email, password }: Regis
     yield put({ type: RegisterActionType.REGISTER_SUCCESS, ...data })
     history.push('/login')
     yield put(hideLoaderAction())
+    yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))
   } catch (error) {
     yield call(requestFailure, RegisterActionType.REGISTER_ERROR, handleError(error))
   }

@@ -5,8 +5,7 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import AssignmentCompleted from '../../../components/my-profile/view/AssignmentCompleted'
 import ChallengeCompleted from '../../../components/my-profile/view/ChallengeCompleted'
 import Profile from '../../../components/my-profile/view/Profile'
-import { clearStateViewListChallenge, fetchListChallengeRequest } from '../../challenge/list/action'
-import { ViewListChallengeRequestPayload } from '../../challenge/list/type'
+import { clearStateViewListChallenge } from '../../challenge/list/action'
 import { viewDetailProfileRequest, viewDetailProfileClearStateRequest } from './action'
 
 /**

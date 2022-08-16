@@ -41,6 +41,7 @@ import {
  * 28-06-2022         DuyHV           Create
  */
 interface InputOutputTabProps {
+  type: 'CREATE' | 'EDIT'
   inputList: InputCreateAssignment[]
   output: OutputCreateAssignment
   handleInputList: (inputList: InputCreateAssignment[]) => void
@@ -48,7 +49,7 @@ interface InputOutputTabProps {
 }
 
 export default function InputOutputTab(props: InputOutputTabProps) {
-  const { inputList, output, handleInputList, handleOutput } = props
+  const { inputList, output, handleInputList, handleOutput, type } = props
   const classes = useStyles()
   const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
 
@@ -98,6 +99,7 @@ export default function InputOutputTab(props: InputOutputTabProps) {
       {inputList.map((input, index) => {
         return (
           <FormInput
+            typeForm={type}
             handleChange={handleInputChange}
             handleRemove={handleInputRemove}
             index={index}
@@ -108,21 +110,23 @@ export default function InputOutputTab(props: InputOutputTabProps) {
           />
         )
       })}
-      <RegularButton
-        onClick={handleInputAdd}
-        color={'transparent'}
-        size={'sm'}
-        round={false}
-        fullWidth={true}
-        disabled={false}
-        simple={false}
-        block={false}
-        link={false}
-        justIcon={false}
-        className={''}
-      >
-        + ADD INPUT
-      </RegularButton>
+      {type === 'CREATE' ? (
+        <RegularButton
+          onClick={handleInputAdd}
+          color={'transparent'}
+          size={'sm'}
+          round={false}
+          fullWidth={true}
+          disabled={false}
+          simple={false}
+          block={false}
+          link={false}
+          justIcon={false}
+          className={''}
+        >
+          + ADD INPUT
+        </RegularButton>
+      ) : null}
       <Divider />
       <FormOutput listDataType={dataTypeState} output={output} handleChange={handleOutputChange} />
     </Box>
@@ -130,6 +134,7 @@ export default function InputOutputTab(props: InputOutputTabProps) {
 }
 
 interface FormInputProps {
+  typeForm: string
   listDataType: DataType[]
   index: number
   listSize: number
@@ -140,13 +145,13 @@ interface FormInputProps {
 
 const inputSchema = object({
   name: string(),
-  type: number(),
+  typeForm: number(),
   description: string(),
 })
 
 // Form InputCreateAssignment Create Assignment
 function FormInput(props: FormInputProps) {
-  const { listSize, input, index, handleRemove, handleChange, listDataType } = props
+  const { listSize, input, index, handleRemove, handleChange, listDataType, typeForm } = props
   const [type, setType] = React.useState('' + input.type)
   const classes = useStyles()
   const {
@@ -175,7 +180,7 @@ function FormInput(props: FormInputProps) {
       {listSize !== 1 && index !== 0 && <Divider sx={{ margin: '10px 0px' }} />}
       <Stack direction='row' justifyContent='space-between' alignItems='center'>
         <Typography className={classes.titleNameInput}>Input {index + 1}</Typography>
-        {listSize !== 1 && index !== 0 && (
+        {listSize !== 1 && index !== 0 && typeForm === 'CREATE' && (
           <IconButton
             onClick={() => {
               handleRemove(index)

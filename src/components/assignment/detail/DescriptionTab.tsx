@@ -1,4 +1,4 @@
-import { Typography, Stack } from '@mui/material'
+import { Typography, Stack, Box } from '@mui/material'
 import parse from 'html-react-parser'
 import _ from 'lodash'
 import React from 'react'
@@ -33,7 +33,7 @@ export default function DescriptionTab(props: DescriptionTabProps) {
   const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
 
   return (
-    <React.Fragment>
+    <Box className={classes.scrollBar}>
       {detail.description && parameters.input.length > 0 && parameters.output && (
         <React.Fragment>
           <Typography className={classes.titleNameInput}>Code Topic</Typography>
@@ -60,6 +60,6 @@ export default function DescriptionTab(props: DescriptionTabProps) {
           </Stack>
         </React.Fragment>
       )}
-    </React.Fragment>
+    </Box>
   )
 }

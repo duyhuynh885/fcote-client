@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, Stack } from '@mui/material'
+import { Grid, Stack } from '@mui/material'
 import TopAssignment from '../../components/assignment/general/TopAssignment'
 
 import { useEffect } from 'react'
@@ -6,11 +6,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../apps/ReduxContainer'
 import TopUser from '../../components/home/TopUser'
 import ChallengeCompleted from '../../components/my-profile/view/ChallengeCompleted'
-import { fetchListAssignmentRequest } from '../assignment/list/action'
+import {
+  fetchListAssignmentRequest,
+  viewListAssignmentClearStateRequest,
+} from '../assignment/list/action'
 import { ViewListAssignmentRequestPayload } from '../assignment/list/type'
-import { fetchListChallengeRequest } from '../challenge/list/action'
+import { clearStateViewListChallenge, fetchListChallengeRequest } from '../challenge/list/action'
 import { ViewListChallengeRequestPayload } from '../challenge/list/type'
-import { fetchRankingRequest } from '../ranking/action'
+import { fetchRankingRequest, rankingClearState } from '../ranking/action'
 
 /**
  * Home Pages
@@ -50,9 +53,20 @@ const Home = () => {
   }
 
   useEffect(() => {
-    dispatch(fetchListChallengeRequest(customTopChallengeRequest, undefined, undefined, undefined))
+    dispatch(fetchListChallengeRequest(customTopChallengeRequest))
     dispatch(fetchListAssignmentRequest(customTopAssignmentRequest))
     dispatch(fetchRankingRequest(rankingState.rankingTypeRequest))
+  }, [])
+
+  /**
+   * clear state
+   */
+  useEffect(() => {
+    return () => {
+      dispatch(rankingClearState())
+      dispatch(clearStateViewListChallenge())
+      dispatch(viewListAssignmentClearStateRequest())
+    }
   }, [])
 
   return (
@@ -68,13 +82,7 @@ const Home = () => {
           </Stack>
         </Grid>
         <Grid item xs={4}>
-          {rankingState.requesting ? (
-            <Stack alignItems='center'>
-              <CircularProgress color='success' />
-            </Stack>
-          ) : (
-            <TopUser rankingList={rankingState.rankingList} />
-          )}
+          <TopUser ranking={rankingState} />
         </Grid>
       </Grid>
     </Stack>

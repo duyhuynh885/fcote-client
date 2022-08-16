@@ -1,4 +1,5 @@
 import {
+  Box,
   FormControl,
   FormControlLabel,
   Radio,
@@ -87,7 +88,7 @@ export default function SettingTab(props: SettingTabProps) {
   }
 
   return (
-    <Stack sx={{ height: '100%' }}>
+    <Box className={classes.scrollBar}>
       <FormControl fullWidth variant='filled'>
         <Typography className={classes.titleTextField}>Name</Typography>
         <TextField
@@ -133,6 +134,6 @@ export default function SettingTab(props: SettingTabProps) {
           onBlur={handleOnChangeEditor}
         ></CKEditor>
       </FormControl>
-    </Stack>
+    </Box>
   )
 }

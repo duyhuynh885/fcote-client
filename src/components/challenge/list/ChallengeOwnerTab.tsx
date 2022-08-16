@@ -1,6 +1,6 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { CircularProgress, Pagination, PaginationItem, Stack } from '@mui/material'
+import { CircularProgress, Container, Pagination, PaginationItem, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
@@ -10,8 +10,9 @@ import {
   updateFilterListChallengesRequest,
 } from '../../../modules/challenge/list/action'
 import { ViewListChallengeRequestPayload } from '../../../modules/challenge/list/type'
+import NoResult from '../../common/icon/NoResult'
 import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
-import useStyles from './style'
+
 /**
  * ChallengePublicOwner
  *
@@ -31,7 +32,6 @@ interface ChallengePublicOwnerProps {
   handleGetPageNumber: (valuePageNumber: number | undefined) => void
 }
 const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
-  const classes = useStyles()
   const { typeData, handleGetPageNumber } = props
   const dispatch = useDispatch()
   const listChallengeState = useSelector((state: RootState) => state.listChallenges)
@@ -39,14 +39,15 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
   const [page, setPage] = useState(1)
   const PER_PAGE = 4
   const count = Math.ceil(totalChallenge / PER_PAGE)
-  // const [newPage,setNewPage] = useState()
 
   const customChallengeRequest: ViewListChallengeRequestPayload = {
     typeData: typeData,
+    pageNumber: 1,
+    pageSize: 4,
   }
 
   useEffect(() => {
-    dispatch(fetchListChallengeRequest(customChallengeRequest, undefined, undefined, undefined))
+    dispatch(fetchListChallengeRequest(customChallengeRequest))
   }, [typeData])
 
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
@@ -73,21 +74,24 @@ const ChallengePublicOwner: React.FC<ChallengePublicOwnerProps> = (props) => {
 
   return (
     <Stack>
-      <Stack className={classes.scrollBar} spacing={2} marginBottom={5}>
+      <Container fixed sx={{ minHeight: '70vh' }}>
         {requesting ? (
           <Stack marginTop={5} alignItems='center'>
             <CircularProgress color='success' />
           </Stack>
         ) : (
-          challenges.map((challenge) => (
-            <ChallengeCard
-              key={challenge.challengeId}
-              challenge={challenge}
-              url={`/challenge/${challenge.challengeId}`}
-            />
-          ))
+          <Stack marginBottom={2} spacing={2}>
+            <NoResult currentSize={challenges.length} />
+            {challenges.map((challenge) => (
+              <ChallengeCard
+                key={challenge.challengeId}
+                challenge={challenge}
+                url={`/challenge/${challenge.challengeId}`}
+              />
+            ))}
+          </Stack>
         )}
-      </Stack>
+      </Container>
       <Stack alignItems='center'>
         <Pagination
           page={page}

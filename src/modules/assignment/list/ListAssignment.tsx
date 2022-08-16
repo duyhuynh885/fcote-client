@@ -13,6 +13,7 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import AssignmentItem from '../../../components/assignment/list/AssignmentItem'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import NoResult from '../../../components/common/icon/NoResult'
 
 /**
  * List Assignment
@@ -76,6 +77,7 @@ export default function ListAssignment() {
           </Stack>
         ) : (
           <Grid container rowSpacing={2} columnSpacing={3} direction='row'>
+            <NoResult currentSize={assignments.length} />
             {assignments.map((assignment) => (
               <Grid key={assignment.id} item sm={2.4}>
                 <AssignmentItem assignment={assignment} />

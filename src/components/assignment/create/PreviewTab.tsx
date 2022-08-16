@@ -1,6 +1,6 @@
 import React from 'react'
 import parse from 'html-react-parser'
-import { Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
 import {
@@ -37,7 +37,7 @@ export default function PreviewTab(props: PreviewTabProps) {
   const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
 
   return (
-    <React.Fragment>
+    <Box className={classes.scrollBar}>
       {setting.description && (
         <React.Fragment>
           <Typography className={classes.titleNameInput}>Code Topic</Typography>
@@ -51,20 +51,17 @@ export default function PreviewTab(props: PreviewTabProps) {
         {inputList.map((input) => (
           <React.Fragment key={input.order}>
             <Typography className={classes.titleTextField}>
-              [input{input.order + 1}] {mapNameDataTypeByValue(dataTypeState, input.type)}
+              [input{input.order + 1}] {mapNameDataTypeByValue(dataTypeState, input.type)}{' '}
               {input.name}
-              <br />
-              {input.description}
             </Typography>
             <Typography fontSize='14px'>{input.description}</Typography>
           </React.Fragment>
         ))}
         <Typography className={classes.titleTextField}>
-          [output] {mapNameDataTypeByValue(dataTypeState, output.type)} <br />
-          {output.description}
+          [output] {mapNameDataTypeByValue(dataTypeState, output.type)}
         </Typography>
         <Typography fontSize='14px'>{output.description}</Typography>
       </Stack>
-    </React.Fragment>
+    </Box>
   )
 }

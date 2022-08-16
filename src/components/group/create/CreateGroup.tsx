@@ -106,8 +106,8 @@ export default function CreateGroup({ open, onClose, urlNamePopup }: ButtonProps
               <TextField
                 size='small'
                 required
+                color='success'
                 id='outlined-groupName-input'
-                sx={{ width: '100%', marginBottom: '1.5rem' }}
                 type='groupName'
                 autoComplete='current-code'
                 error={!!errors['groupName']}
@@ -121,10 +121,12 @@ export default function CreateGroup({ open, onClose, urlNamePopup }: ButtonProps
                 id='outlined-groupDescription-input'
                 fullWidth
                 multiline
+                color='success'
                 rows={3}
                 type='groupDescription'
                 autoComplete='current-code'
                 error={!!errors['groupDescription']}
+                sx={{ width: '100%', marginBottom: '1rem' }}
                 helperText={errors['groupDescription'] ? errors['groupDescription'].message : ''}
                 {...register('groupDescription')}
               />

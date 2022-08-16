@@ -18,7 +18,7 @@ export enum RankingActionType {
   RANKING_REQUESTING = 'RANKING_REQUESTING',
   RANKING_SUCCESS = 'RANKING_SUCCESS',
   RANKING_ERROR = 'RANKING_ERROR',
-  CLEAR_STATE = 'CLEAR_STATE',
+  RANKING_CLEAR_STATE = 'RANKING_CLEAR_STATE',
   UPDATE_FILTER_RANKING = 'UPDATE_FILTER_RANKING',
 }
 
@@ -65,7 +65,7 @@ export type RankingErrorAction = ActionWithPayload<
   RankingActionType.RANKING_ERROR,
   RankingErrorResponse
 >
-export type RankingClearStateAction = Action<RankingActionType.CLEAR_STATE>
+export type RankingClearStateAction = Action<RankingActionType.RANKING_CLEAR_STATE>
 export type UpdateFilterRankingAction = ActionWithPayload<
   RankingActionType.UPDATE_FILTER_RANKING,
   RankingRequestPayload
@@ -75,6 +75,7 @@ export type RankingAction =
   | RankingRequestAction
   | RankingSuccessAction
   | RankingErrorAction
+  | RankingClearStateAction
   | UpdateFilterRankingAction
 
 export interface RankingState {

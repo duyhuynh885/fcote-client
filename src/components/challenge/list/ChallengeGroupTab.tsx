@@ -24,6 +24,7 @@ import {
 } from '../../../modules/challenge/list/action'
 import { ViewListChallengeRequestPayload } from '../../../modules/challenge/list/type'
 import { fetchListGroupRequest } from '../../../modules/group/list/action'
+import NoResult from '../../common/icon/NoResult'
 import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
 import useStyles from './style'
 
@@ -75,7 +76,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   // After getting the group, call api challenge
   useEffect(() => {
     if (groups.length > 0) {
-      dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groups[0].id))
+      dispatch(fetchListChallengeRequest({ ...groupChallengeRequest, groupID: groups[0].id }))
       handleGetGroupID(groups[0].id)
       setGroupId(groups[0].id)
     }
@@ -87,7 +88,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
     index: number,
   ) => {
     handleGetGroupID(groupID)
-    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
+    dispatch(fetchListChallengeRequest({ ...groupChallengeRequest, groupID }))
     setGroupId(groupID)
     setSelectedIndex(index)
     setPage(1)
@@ -166,12 +167,12 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
                   </React.Fragment>
                 ))
               )}
-            </List>{' '}
+            </List>
           </Stack>
         </Paper>
       </Grid>
       <Grid item xs={8}>
-        <Stack className={classes.scrollBar} spacing={2} marginBottom={5}>
+        <Stack sx={{ minHeight: '70vh' }} spacing={2} marginBottom={5}>
           {requesting ? (
             <Stack marginTop={5} alignItems='center'>
               <CircularProgress color='success' />
@@ -181,13 +182,16 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
               <Typography>NO CHALLENGE YET</Typography>
             </Stack>
           ) : (
-            challenges.map((challenge) => (
-              <ChallengeCard
-                key={challenge.challengeId}
-                url={`/challenge/${challenge.challengeId}`}
-                challenge={challenge}
-              />
-            ))
+            <React.Fragment>
+              <NoResult currentSize={challenges.length} />
+              {challenges.map((challenge) => (
+                <ChallengeCard
+                  key={challenge.challengeId}
+                  url={`/challenge/${challenge.challengeId}`}
+                  challenge={challenge}
+                />
+              ))}
+            </React.Fragment>
           )}
         </Stack>
         <Stack alignItems='center'>
