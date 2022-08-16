@@ -52,8 +52,8 @@ export const updateFilterRankingRequest = ({
   }
 }
 
-export const clearState = (): RankingClearStateAction => {
+export const rankingClearState = (): RankingClearStateAction => {
   return {
-    type: RankingActionType.CLEAR_STATE,
+    type: RankingActionType.RANKING_CLEAR_STATE,
   }
 }

@@ -1,4 +1,9 @@
 import {
+  EditAssignmentErrorResponse,
+  EditAssignmentRequestPayload,
+  EditAssignmentResponse,
+} from './../modules/assignment/edit/type'
+import {
   SubmitAssignmentDetailErrorResponse,
   SubmitAssignmentDetailRequestPayload,
   SubmitAssignmentDetailResponse,
@@ -32,6 +37,11 @@ import {
   ViewListAssignmentResponse,
 } from '../modules/assignment/list/type'
 import { axiosClient } from './clientApi'
+import {
+  PreviewEditAssignmentRequestPayload,
+  PreviewEditAssignmentResponse,
+  PreviewEditAssignmentErrorResponse,
+} from '../modules/assignment/preview-edit/type'
 
 /**
  * Assignment Service Api
@@ -128,6 +138,31 @@ const assignmentApi = {
   submitAssignmentDetail(payload: SubmitAssignmentDetailRequestPayload) {
     const url = '/assignment/submit'
     return axiosClient.post<SubmitAssignmentDetailResponse, SubmitAssignmentDetailErrorResponse>(
+      url,
+      payload,
+    )
+  },
+
+  /**
+   * Api for edit a assignment
+   * @param payload
+   * @returns CreateAssignmentResponse
+   * @returns CreateAssignmentErrorResponse
+   */
+  editAssignment(payload: EditAssignmentRequestPayload) {
+    const url = '/assignment/edit-assignment'
+    return axiosClient.post<EditAssignmentResponse, EditAssignmentErrorResponse>(url, payload)
+  },
+
+  /**
+   * Api for data a preview edit
+   * @param payload
+   * @returns CreateAssignmentResponse
+   * @returns CreateAssignmentErrorResponse
+   */
+  previewEditAssignment(payload: PreviewEditAssignmentRequestPayload) {
+    const url = '/assignment/preview-edit-assignment'
+    return axiosClient.post<PreviewEditAssignmentResponse, PreviewEditAssignmentErrorResponse>(
       url,
       payload,
     )

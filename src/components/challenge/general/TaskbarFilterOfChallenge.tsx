@@ -1,14 +1,14 @@
-import { IconButton, Paper, Stack, Tab, Tabs, TextField } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import Divider from '@mui/material/Divider'
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
 import SearchIcon from '@mui/icons-material/Search'
+import { IconButton, Paper, Stack, Tab, Tabs, TextField } from '@mui/material'
+import Divider from '@mui/material/Divider'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
-import { useDispatch, useSelector } from 'react-redux'
-import useStyle from './style'
-import RegularButton from '../../common/button/RegularButton'
 import { updateFilterListChallengesRequest } from '../../../modules/challenge/list/action'
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
+import RegularButton from '../../common/button/RegularButton'
+import useStyle from './style'
 
 /**
  * TaskbarFilter
@@ -47,42 +47,46 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
   const filterChallengeState = useSelector((state: RootState) => state.listChallenges.filterRequest)
   const [search, setSearch] = useState('')
   const { url, groupID, pageNumber, typeData, handleChangeTab, tabValue } = props
-
   const handleSearch = () => {
+    if (search === '') {
+      dispatch(
+        updateFilterListChallengesRequest({
+          ...filterChallengeState,
+          typeData: typeData,
+          searchBy: search,
+          groupID: groupID,
+          pageSize: 4,
+          pageNumber: pageNumber === 1 ? 1 : pageNumber,
+        }),
+      )
+    } else {
+      dispatch(
+        updateFilterListChallengesRequest({
+          ...filterChallengeState,
+          typeData: typeData,
+          searchBy: search,
+          groupID: groupID,
+          pageSize: 100,
+          pageNumber: 1,
+        }),
+      )
+    }
+  }
+
+  const handleClearSearch = () => {
+    setSearch('')
     dispatch(
       updateFilterListChallengesRequest({
         ...filterChallengeState,
         typeData: typeData,
-        searchBy: search,
+        searchBy: '',
         groupID: groupID,
-        pageSize: 100,
-        pageNumber: 0,
+        pageSize: 4,
+        pageNumber: pageNumber === 1 ? 1 : pageNumber,
       }),
     )
   }
-  useEffect(() => {
-    search === '' || search === undefined
-      ? dispatch(
-          updateFilterListChallengesRequest({
-            ...filterChallengeState,
-            typeData: typeData,
-            searchBy: search,
-            groupID: groupID,
-            pageSize: 4,
-            pageNumber: pageNumber === undefined ? undefined : pageNumber,
-          }),
-        )
-      : dispatch(
-          updateFilterListChallengesRequest({
-            ...filterChallengeState,
-            typeData: typeData,
-            searchBy: search,
-            groupID: groupID,
-            pageSize: 100,
-            pageNumber: pageNumber === undefined ? undefined : pageNumber,
-          }),
-        )
-  }, [search])
+
   return (
     <Paper
       square
@@ -123,7 +127,7 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
               </IconButton>
             ),
             endAdornment: search && (
-              <IconButton aria-label='toggle password visibility' onClick={() => setSearch('')}>
+              <IconButton aria-label='toggle password visibility' onClick={handleClearSearch}>
                 <ClearOutlinedIcon />
               </IconButton>
             ),

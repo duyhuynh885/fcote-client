@@ -1,14 +1,12 @@
-import { call, put, fork, takeEvery, all } from 'redux-saga/effects'
+import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
+import groupApi from '../../../services/groupApi'
+import { handleError } from '../../../utils/handleError'
+import requestFailure from '../../../utils/requestFailure'
 import {
   ViewDetailGroupActionType,
   ViewDetailGroupRequestAction,
   ViewDetailGroupResponse,
 } from './type'
-import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
-
-import requestFailure from '../../../utils/requestFailure'
-import { handleError } from '../../../utils/handleError'
-import groupApi from '../../../services/groupApi'
 
 /**
  * Saga for fetch detail of Groups
@@ -27,14 +25,12 @@ import groupApi from '../../../services/groupApi'
 
 function* viewDetailGroupFlow({ id, pageSize, pageNumber }: ViewDetailGroupRequestAction) {
   try {
-    yield put(showLoaderAction())
     const data: ViewDetailGroupResponse = yield call(groupApi.fetchDetailGroup, {
       id,
       pageSize,
       pageNumber,
     })
     yield put({ type: ViewDetailGroupActionType.VIEW_DETAIL_GROUP_SUCCESS, ...data })
-    yield put(hideLoaderAction())
   } catch (error) {
     yield call(
       requestFailure,
@@ -44,10 +40,10 @@ function* viewDetailGroupFlow({ id, pageSize, pageNumber }: ViewDetailGroupReque
   }
 }
 
-function* viewDetailGroupWather() {
+function* viewDetailGroupWatcher() {
   yield takeEvery(ViewDetailGroupActionType.VIEW_DETAIL_GROUP_REQUESTING, viewDetailGroupFlow)
 }
 
 export default function* viewDetailGroupSaga() {
-  yield all([fork(viewDetailGroupWather)])
+  yield all([fork(viewDetailGroupWatcher)])
 }

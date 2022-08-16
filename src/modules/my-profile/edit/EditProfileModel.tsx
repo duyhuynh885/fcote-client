@@ -7,6 +7,7 @@ import { object, string, TypeOf } from 'zod'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyles from '../../../components/my-profile/style'
+import { viewDetailProfileRequest } from '../view/action'
 import { clearStateMyProfile, editMyProfileRequest } from './action'
 
 /**
@@ -40,8 +41,8 @@ const style = {
   borderRadius: 3,
   p: 4,
 }
-const regexPhoneNumber = '^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$'
 
+const regexPhoneNumber = '^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$'
 const editProfileSchema = object({
   firstName: string().max(50, 'First name must be less than 50 characters'),
   lastName: string().max(50, 'Last name must be less than 50 characters'),
@@ -59,6 +60,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
   const dispatch = useDispatch<AppDispatch>()
   const profile = useSelector((state: RootState) => state.myProfile)
   const editMyProfileState = useSelector((state: RootState) => state.editMyProfile)
+  const userInfo = useSelector((state: RootState) => state.login.userInfo)
 
   const {
     reset,
@@ -78,6 +80,12 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
       reset()
     }
     if (editMyProfileState.successful) {
+      dispatch(
+        viewDetailProfileRequest({
+          typeData: 4,
+          username: userInfo.userName,
+        }),
+      )
       dispatch(clearStateMyProfile())
       reset()
     }
@@ -122,8 +130,8 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
             </div>
             <Stack className={classes.scrollBar}>
               <TextField
+                color='success'
                 {...register('firstName')}
-                color='info'
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-firstname-input'
@@ -133,6 +141,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 helperText={errors['firstName'] ? errors['firstName'].message : ''}
               />
               <TextField
+                color='success'
                 {...register('lastName')}
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -143,6 +152,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 helperText={errors['lastName'] ? errors['lastName'].message : ''}
               />
               <TextField
+                color='success'
                 {...register('organization')}
                 id='outlined-organization-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -152,6 +162,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 helperText={errors['organization'] ? errors['organization'].message : ''}
               />
               <TextField
+                color='success'
                 {...register('city')}
                 id='outlined-city-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -161,6 +172,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 helperText={errors['city'] ? errors['city'].message : ''}
               />
               <TextField
+                color='success'
                 {...register('country')}
                 id='outlined-country-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
@@ -170,6 +182,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 helperText={errors['country'] ? errors['country'].message : ''}
               />
               <TextField
+                color='success'
                 {...register('phone')}
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-phone-input'
@@ -178,13 +191,13 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 error={!!errors['phone']}
                 helperText={errors['phone'] ? errors['phone'].message : ''}
               />
-
               <Select
+                color='success'
+                label='Gender'
                 {...register('gender')}
                 labelId='demo-simple-select-label'
                 id='demo-simple-select'
                 defaultValue={profile.user.gender}
-                label='Gender'
               >
                 <MenuItem value={'1'}>Female</MenuItem>
                 <MenuItem value={'2'}>Male</MenuItem>

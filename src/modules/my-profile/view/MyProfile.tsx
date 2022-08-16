@@ -29,6 +29,7 @@ export default function MyProfile() {
   const myProfileState = useSelector((state: RootState) => state.myProfile)
   const userInfo = useSelector((state: RootState) => state.login.userInfo)
   const challengeState = useSelector((state: RootState) => state.listChallenges)
+  const { challenges } = challengeState
 
   useEffect(() => {
     dispatch(
@@ -57,7 +58,7 @@ export default function MyProfile() {
         </Grid>
         <Grid item xs={8}>
           <Stack spacing={2}>
-            <ChallengeCompleted listChallengeCompleted={challengeState.challenges} />
+            <ChallengeCompleted listChallengeCompleted={challenges} />
             <AssignmentCompleted assCompleted={myProfileState.assignmentCompleted} />
           </Stack>
         </Grid>

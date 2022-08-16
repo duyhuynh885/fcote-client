@@ -21,6 +21,7 @@ import {
 import { DifficultEnum } from '../list/type'
 import { createAssignmentRequest } from './action'
 import SaveAltOutlinedIcon from '@mui/icons-material/SaveAltOutlined'
+import ConfirmModal from '../../../components/assignment/create/ConfirmModal'
 
 /**
  * Create Assignment Pages
@@ -69,6 +70,7 @@ export default function CreateAssignment() {
       timeLimit: 10,
     },
   ])
+  const [openConfirmModal, setOpenConfirmModal] = React.useState(false)
 
   /**
    * Handle change tab in create assignment page
@@ -93,9 +95,23 @@ export default function CreateAssignment() {
     )
   }
 
+  const handleClickOpenConfirmModal = () => {
+    setOpenConfirmModal(true)
+  }
+
+  const handleCloseConfirmModal = () => {
+    setOpenConfirmModal(false)
+  }
+
   return (
     <Stack className={classes.container}>
       <InsideNavBar namePage='New Assignment' />
+      <ConfirmModal
+        openConfirmModal={openConfirmModal}
+        handleClose={handleCloseConfirmModal}
+        handleAgree={handleSubmit}
+        description='Are you sure to create an assignment?'
+      />
       <Grid container sx={{ height: '100% !important' }}>
         <Grid className={classes.tabLeft} item xs={6} sx={{ height: '100% !important' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -119,6 +135,7 @@ export default function CreateAssignment() {
           </TabPanel>
           <TabPanel value={value} index={2}>
             <InputOutputTab
+              type={'CREATE'}
               inputList={inputList}
               output={output}
               handleInputList={setInputList}
@@ -135,6 +152,7 @@ export default function CreateAssignment() {
           </Grid>
           <Grid item xs={12} sx={{ height: '50%' }}>
             <TestCaseTab
+              type={'CREATE'}
               inputList={inputList}
               output={output}
               testCaseList={testCaseList}
@@ -155,7 +173,7 @@ export default function CreateAssignment() {
           link={false}
           justIcon={false}
           className={''}
-          onClick={handleSubmit}
+          onClick={handleClickOpenConfirmModal}
         >
           <SaveAltOutlinedIcon fontSize='small' /> Save
         </RegularButton>

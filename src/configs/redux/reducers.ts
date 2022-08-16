@@ -27,6 +27,8 @@ import leaveGroupReducer from '../../modules/group/setting/leave/reducer'
 import kickGroupReducer from '../../modules/group/setting/kick/reducer'
 import logoutReducer from '../../modules/authentication/logout/reducer'
 import resetPasswordReducer from '../../modules/authentication/reset-password/reducer'
+import editAssignmentReducer from '../../modules/assignment/edit/reducer'
+import previewEditAssignmentReducer from '../../modules/assignment/preview-edit/reducer'
 
 /**
  * Root Reducer
@@ -64,6 +66,8 @@ const rootReducer = (history: any) =>
     kickGroup: kickGroupReducer,
     logout: logoutReducer,
     resetPassword: resetPasswordReducer,
+    previewEditAssignment: previewEditAssignmentReducer,
+    editAssignment: editAssignmentReducer,
   })
 
 export default rootReducer

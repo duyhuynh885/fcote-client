@@ -24,6 +24,7 @@ import {
 } from '../../../modules/challenge/list/action'
 import { ViewListChallengeRequestPayload } from '../../../modules/challenge/list/type'
 import { fetchListGroupRequest } from '../../../modules/group/list/action'
+import NoResult from '../../common/icon/NoResult'
 import ChallengeCard from '../general/ChallengeCard/ChallengeCard'
 import useStyles from './style'
 
@@ -67,18 +68,6 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
     pageNumber: 1,
   }
 
-  const handleClickGroup = (
-    groupID: number | undefined,
-    _event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: number,
-  ) => {
-    handleGetGroupID(groupID)
-    dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groupID))
-    setGroupId(groupID)
-    setSelectedIndex(index)
-    setPage(1)
-  }
-
   // get all Groups current user joined
   useEffect(() => {
     dispatch(fetchListGroupRequest({}))
@@ -87,20 +76,23 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   // After getting the group, call api challenge
   useEffect(() => {
     if (groups.length > 0) {
-      dispatch(fetchListChallengeRequest(groupChallengeRequest, undefined, undefined, groups[0].id))
+      dispatch(fetchListChallengeRequest({ ...groupChallengeRequest, groupID: groups[0].id }))
       handleGetGroupID(groups[0].id)
       setGroupId(groups[0].id)
     }
   }, [groups])
 
-  /**
-   * clear state
-   */
-  useEffect(() => {
-    return () => {
-      dispatch(clearStateViewListChallenge())
-    }
-  }, [])
+  const handleClickGroup = (
+    groupID: number | undefined,
+    _event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    index: number,
+  ) => {
+    handleGetGroupID(groupID)
+    dispatch(fetchListChallengeRequest({ ...groupChallengeRequest, groupID }))
+    setGroupId(groupID)
+    setSelectedIndex(index)
+    setPage(1)
+  }
 
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
@@ -114,6 +106,16 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
       }),
     )
   }
+
+  /**
+   * clear state
+   */
+  useEffect(() => {
+    return () => {
+      dispatch(clearStateViewListChallenge())
+    }
+  }, [])
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={4}>
@@ -165,24 +167,31 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
                   </React.Fragment>
                 ))
               )}
-            </List>{' '}
+            </List>
           </Stack>
         </Paper>
       </Grid>
       <Grid item xs={8}>
-        <Stack className={classes.scrollBar} spacing={2} marginBottom={5}>
+        <Stack sx={{ minHeight: '70vh' }} spacing={2} marginBottom={5}>
           {requesting ? (
             <Stack marginTop={5} alignItems='center'>
               <CircularProgress color='success' />
             </Stack>
+          ) : challenges === [] ? (
+            <Stack>
+              <Typography>NO CHALLENGE YET</Typography>
+            </Stack>
           ) : (
-            challenges.map((challenge) => (
-              <ChallengeCard
-                key={challenge.challengeId}
-                url={`/challenge/${challenge.challengeId}`}
-                challenge={challenge}
-              />
-            ))
+            <React.Fragment>
+              <NoResult currentSize={challenges.length} />
+              {challenges.map((challenge) => (
+                <ChallengeCard
+                  key={challenge.challengeId}
+                  url={`/challenge/${challenge.challengeId}`}
+                  challenge={challenge}
+                />
+              ))}
+            </React.Fragment>
           )}
         </Stack>
         <Stack alignItems='center'>

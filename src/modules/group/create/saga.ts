@@ -1,10 +1,10 @@
-import { call, put, fork, takeEvery, all, delay } from 'redux-saga/effects'
+import { call, put, fork, takeEvery, all } from 'redux-saga/effects'
 import { CreateGroupActionType, CreateGroupRequestAction, CreateGroupResponse } from './type'
 import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
 import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
 import groupApi from '../../../services/groupApi'
-import { hideToastAction, showToastAction } from '../../layout/toast/toastAction'
+import { showToastAction } from '../../layout/toast/toastAction'
 import { swapMessage } from '../../../utils/helper'
 
 /**
@@ -35,8 +35,6 @@ function* createGroupFlow({ title, description, image }: CreateGroupRequestActio
     yield put(hideLoaderAction())
 
     yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))
-    yield delay(5000)
-    yield put(hideToastAction())
   } catch (error) {
     yield call(requestFailure, CreateGroupActionType.CREATE_GROUP_ERROR, handleError(error))
   }

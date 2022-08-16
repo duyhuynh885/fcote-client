@@ -8,6 +8,8 @@ import authApi from '../../../services/authApi'
 import history from '../../../configs/routing/history'
 import requestFailure from '../../../utils/requestFailure'
 import { handleError } from '../../../utils/handleError'
+import { swapMessage } from '../../../utils/helper'
+import { showToastAction } from '../../layout/toast/toastAction'
 
 /**
  * Saga for login
@@ -38,6 +40,7 @@ function* loginFlow({ email, password }: LoginRequestAction) {
     yield put({ type: ViewListLanguageActionType.VIEW_LIST_LANGUAGE_REQUESTING })
     history.push('/')
     yield put(hideLoaderAction())
+    yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))
   } catch (error) {
     yield call(requestFailure, LoginActionType.LOGIN_ERROR, handleError(error))
   }

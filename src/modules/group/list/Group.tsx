@@ -8,6 +8,7 @@ import { clearStateViewListGroup, fetchListGroupRequest } from './action'
 import { clearStateViewDetail } from '../detail/action'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import NoResult from '../../../components/common/icon/NoResult'
 
 /**
  *  Group page
@@ -86,6 +87,7 @@ export default function Group() {
           </Stack>
         ) : (
           <Grid container rowSpacing={2} columnSpacing={2} direction='row'>
+            <NoResult currentSize={groupsState.length} />
             {groupsState.map((group) => {
               if (query == '' || group.title.toLowerCase().includes(query.toLowerCase())) {
                 return (

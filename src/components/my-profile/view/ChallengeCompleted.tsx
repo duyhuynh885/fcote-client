@@ -53,7 +53,11 @@ const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
             <>
               {listChallengeCompleted &&
                 listChallengeCompleted.map((challenge, index) => (
-                  <ChallengeCard key={index} url='/challenge/detail' challenge={challenge} />
+                  <ChallengeCard
+                    key={index}
+                    url={`/challenge/${challenge.challengeId}`}
+                    challenge={challenge}
+                  />
                 ))}
             </>
           )}

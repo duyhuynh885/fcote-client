@@ -35,6 +35,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
  * 28-06-2022         DuyHV           Create
  */
 interface TestCaseTabProps {
+  type: 'CREATE' | 'EDIT'
   inputList: InputCreateAssignment[]
   output: OutputCreateAssignment
   testCaseList: TestCaseCreateAssignment[]
@@ -42,7 +43,7 @@ interface TestCaseTabProps {
 }
 
 export default function TestCaseTab(props: TestCaseTabProps) {
-  const { inputList, output, testCaseList, handleTestCaseList } = props
+  const { inputList, output, testCaseList, handleTestCaseList, type } = props
   const classes = useStyles()
   const [openCreateModal, setOpenCreateModal] = useState(false)
   const [testCaseEdit, setTestCaseEdit] = useState<TestCaseCreateAssignment>()
@@ -123,26 +124,29 @@ export default function TestCaseTab(props: TestCaseTabProps) {
       >
         <Typography className={classes.testCaseTabsTitle}>TESTS</Typography>
       </Stack>
-      <Stack direction='row' padding={2}>
-        <RegularButton
-          color={'dotted'}
-          size={'sm'}
-          round={false}
-          fullWidth={true}
-          disabled={false}
-          simple={false}
-          block={false}
-          link={false}
-          justIcon={false}
-          className={''}
-          onClick={handleOpenCreateTestCaseModal}
-        >
-          + ADD TEST
-        </RegularButton>
-      </Stack>
+      {type === 'CREATE' ? (
+        <Stack direction='row' padding={2}>
+          <RegularButton
+            color={'dotted'}
+            size={'sm'}
+            round={false}
+            fullWidth={true}
+            disabled={false}
+            simple={false}
+            block={false}
+            link={false}
+            justIcon={false}
+            className={''}
+            onClick={handleOpenCreateTestCaseModal}
+          >
+            + ADD TEST
+          </RegularButton>
+        </Stack>
+      ) : null}
       <Stack direction='column' padding={2} className={classes.scrollBarTestCase}>
         {testCaseList.map((testCase) => (
           <GenerateTestCase
+            typeForm={type}
             key={testCase.order}
             testCase={testCase}
             handleRemove={handleTestCaseFormRemove}
@@ -171,6 +175,7 @@ export default function TestCaseTab(props: TestCaseTabProps) {
   )
 }
 interface GenerateTestCaseProps {
+  typeForm: string
   testCase: TestCaseCreateAssignment
   handleRemove: (index: number) => void
   handleEdit: (testCase: TestCaseCreateAssignment) => void
@@ -178,7 +183,7 @@ interface GenerateTestCaseProps {
 
 // Form Input Create Assignment
 function GenerateTestCase(props: GenerateTestCaseProps) {
-  const { testCase, handleRemove, handleEdit } = props
+  const { testCase, handleRemove, handleEdit, typeForm } = props
   const classes = useStyles()
   return (
     <React.Fragment>
@@ -210,14 +215,16 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
               >
                 <EditOutlinedIcon fontSize='small' color='primary' />
               </IconButton>
-              <IconButton
-                onClick={() => {
-                  handleRemove(testCase.order)
-                }}
-                aria-label='delete'
-              >
-                <DeleteIcon fontSize='small' color='error' />
-              </IconButton>
+              {typeForm === 'CREATE' ? (
+                <IconButton
+                  onClick={() => {
+                    handleRemove(testCase.order)
+                  }}
+                  aria-label='delete'
+                >
+                  <DeleteIcon fontSize='small' color='error' />
+                </IconButton>
+              ) : null}
             </Box>
           </Stack>
         </AccordionSummary>

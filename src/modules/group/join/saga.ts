@@ -1,11 +1,11 @@
-import { call, put, fork, takeEvery, all, delay } from 'redux-saga/effects'
-import { JoinGroupActionType, JoinGroupRequestAction, JoinGroupResponse } from './type'
-import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
-import requestFailure from '../../../utils/requestFailure'
-import { handleError } from '../../../utils/handleError'
+import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import groupApi from '../../../services/groupApi'
-import { hideToastAction, showToastAction } from '../../layout/toast/toastAction'
+import { handleError } from '../../../utils/handleError'
 import { swapMessage } from '../../../utils/helper'
+import requestFailure from '../../../utils/requestFailure'
+import { hideLoaderAction, showLoaderAction } from '../../layout/loader/action'
+import { showToastAction } from '../../layout/toast/toastAction'
+import { JoinGroupActionType, JoinGroupRequestAction, JoinGroupResponse } from './type'
 
 /**
  * Saga for fetch list of Groups
@@ -31,8 +31,6 @@ function* JoinGroupFlow({ joinCode }: JoinGroupRequestAction) {
     yield put({ type: JoinGroupActionType.JOIN_GROUP_SUCCESS, ...data })
     yield put(hideLoaderAction())
     yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))
-    yield delay(5000)
-    yield put(hideToastAction())
     yield put({ type: JoinGroupActionType.JOIN_GROUP_CLEAR_STATE })
   } catch (error) {
     yield call(requestFailure, JoinGroupActionType.JOIN_GROUP_ERROR, handleError(error))

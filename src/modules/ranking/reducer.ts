@@ -76,6 +76,11 @@ const reducer = (state = initialState, action: RankingAction) => {
         },
       }
 
+    case RankingActionType.RANKING_CLEAR_STATE:
+      return {
+        ...initialState,
+      }
+
     default:
       return state
   }

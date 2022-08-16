@@ -47,7 +47,7 @@ export default function Challenge() {
   const [tabValue, setTabValue] = React.useState(0)
   const [typeData, setTypeData] = useState(1)
   const [groupID, setGroupId] = useState<number | undefined>()
-  const [pageNumber, setPageNumber] = useState<number | undefined>()
+  const [pageNumber, setPageNumber] = useState<number | undefined>(1)
   const handleChangeTabValue = (_event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue)
     switch (newValue) {
@@ -84,10 +84,10 @@ export default function Challenge() {
         </Grid>
         <Grid className={classes.tabLeft} item xs={12} sx={{ height: '100%' }}>
           <TabPanel value={tabValue} index={0}>
-            <ChallengePublicOwner typeData={typeData} />
+            <ChallengePublicOwner handleGetPageNumber={callbackSetPageNumber} typeData={typeData} />
           </TabPanel>
           <TabPanel value={tabValue} index={1}>
-            <ChallengePublicOwner typeData={typeData} />
+            <ChallengePublicOwner handleGetPageNumber={callbackSetPageNumber} typeData={typeData} />
           </TabPanel>
           <TabPanel value={tabValue} index={2}>
             <ChallengeGroup

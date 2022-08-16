@@ -37,6 +37,7 @@ export interface Detail {
   characterLimit: number
   totalParticipant: number
   createdBy: string
+  isUpdate: boolean
 }
 
 export interface Language {
