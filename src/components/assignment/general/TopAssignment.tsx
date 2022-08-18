@@ -8,6 +8,7 @@ import AssignmentItemRectangle, {
 } from './AssignmentItemRectangle'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
+import { Link } from 'react-router-dom'
 
 /**
  * Top Assignment component
@@ -78,11 +79,13 @@ const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
           ) : (
             <>
               {listAssignment.map((assignment) => (
-                <AssignmentItemRectangle
+                <Link
+                  style={{ color: 'inherit', textDecoration: 'inherit', cursor: 'pointer' }}
                   key={assignment.id}
-                  assignment={assignment}
-                  custom={custom}
-                />
+                  to={`assignment/${assignment.id}`}
+                >
+                  <AssignmentItemRectangle assignment={assignment} custom={custom} />
+                </Link>
               ))}
             </>
           )}

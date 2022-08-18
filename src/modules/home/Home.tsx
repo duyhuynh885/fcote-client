@@ -76,7 +76,7 @@ const Home = () => {
           <Stack spacing={3}>
             <TopAssignment listAssignment={topAssignmentsState.assignments} />
             <ChallengeCompleted
-              title='Top 5 Challenge'
+              title='Top Challenge Last Week'
               listChallengeCompleted={topChallengeState.challenges}
             />
           </Stack>
