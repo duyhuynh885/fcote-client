@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: '5px',
     color: theme.color.darkGray,
   },
+  selected: {
+    backgroundColor: `${theme.color.green}30  !important`,
+  },
 }))
 
 export default useStyles

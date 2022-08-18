@@ -1,29 +1,29 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import SaveAltOutlinedIcon from '@mui/icons-material/SaveAltOutlined'
 import { Grid, Stack } from '@mui/material'
-import React, { useState } from 'react'
+import moment from 'moment'
+import { useState } from 'react'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import { array, object, string, TypeOf } from 'zod'
+import { AppDispatch } from '../../../apps/ReduxContainer'
 import ChooseAssignmentForm from '../../../components/challenge/create/ChooseAssignmentForm'
 import SettingForm from '../../../components/challenge/create/SettingForm'
 import RegularButton from '../../../components/common/button/RegularButton'
 import InsideNavBar from '../../../components/common/navigation/InsideNavBar'
-import useStyles from './style'
-import SaveAltOutlinedIcon from '@mui/icons-material/SaveAltOutlined'
-import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
-import { object, string, TypeOf } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../../apps/ReduxContainer'
 import { showToastAction } from '../../layout/toast/toastAction'
 import { createChallengeRequest } from './action'
+import useStyles from './style'
 import { Element } from './type'
-import moment from 'moment'
 
 export default function CreateChallenge() {
   const registerSchema = object({
     title: string().min(1, { message: 'Must be 1 or more characters long' }).trim(),
     description: string().min(1, { message: 'Must be 1 or more characters long' }).trim(),
-    startAt: string(),
-    endAt: string().trim(),
+    durationDate: array(string()),
     secret: string(),
     group: string(),
+    limitSubmissions: string().trim(),
   })
   type CreateChallengeInput = TypeOf<typeof registerSchema>
   const dispatch = useDispatch<AppDispatch>()
@@ -35,22 +35,45 @@ export default function CreateChallenge() {
   const [assignmentIdSelected, setAssignmentIdSelected] = useState<number[]>([])
 
   const onSubmit: SubmitHandler<CreateChallengeInput> = (data) => {
-    const { title, description, startAt, endAt, secret, group } = data
+    const { title, description, durationDate, secret, group, limitSubmissions } = data
+    let startAt = ''
+    let endAt = ''
+    if (durationDate.length > 0) {
+      startAt = durationDate[0] ?? moment(durationDate[0], 'YYYY-MM-DD HH:mm:ss')
+      endAt = durationDate[1] ?? moment(durationDate[0], 'YYYY-MM-DD HH:mm:ss')
+      const msCurrentDay = moment(startAt, 'YYYY-MM-DD HH:mm:ss').diff(
+        moment(new Date(), 'YYYY-MM-DD HH:mm:ss'),
+      )
+      const dCurrentDay = moment.duration(msCurrentDay)
+      const daysCurrentDay = dCurrentDay.asDays()
+
+      const msEndDate = moment(endAt, 'YYYY-MM-DD HH:mm:ss').diff(
+        moment(startAt, 'YYYY-MM-DD HH:mm:ss'),
+      )
+      const dEndDate = moment.duration(msEndDate)
+      const daysEndDate = dEndDate.asDays()
+      if (daysCurrentDay < 0) {
+        dispatch(
+          showToastAction(
+            'error',
+            'Please select start date must be greater than the current date',
+          ),
+        )
+        return
+      }
+      if (daysEndDate > 14) {
+        dispatch(showToastAction('error', 'The challenge is only valid for a period of 14 days'))
+        return
+      }
+      if (moment(startAt).isAfter(endAt)) {
+        dispatch(showToastAction('error', 'Please select end date larger start date'))
+        return
+      }
+    }
     let groupId = 1
     const image = ''
     let element: Element[]
-    const ms = moment(startAt, 'YYYY-MM-DD HH:mm:ss').diff(moment(endAt, 'YYYY-MM-DD HH:mm:ss'))
-    const d = moment.duration(ms)
-    const days = d.asDays()
-
-    if (days === 0) {
-      dispatch(showToastAction('error', 'Challenge duration least 1 day'))
-      return
-    }
-    if (moment(startAt).isAfter(endAt)) {
-      dispatch(showToastAction('error', 'Please select end date larger start date'))
-      return
-    }
+    console.log('startAt: ', startAt, 'endAt: ', endAt)
     if (assignmentIdSelected.length >= 3) {
       element = assignmentIdSelected.map((assignmentId) => {
         return {
@@ -60,16 +83,16 @@ export default function CreateChallenge() {
       if (group !== '1' && secret === 'Private') {
         groupId = +group
       }
-
       dispatch(
         createChallengeRequest({
           title,
           description,
           image,
           groupId,
-          startAt: moment(startAt).format('YYYY-MM-DD HH:mm:ss'),
-          endAt: moment(endAt).format('YYYY-MM-DD HH:mm:ss'),
+          startAt: startAt,
+          endAt: endAt,
           element,
+          limitSubmissions: +limitSubmissions,
         }),
       )
     } else {

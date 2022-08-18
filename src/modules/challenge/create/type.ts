@@ -28,6 +28,7 @@ export interface CreateChallengeRequestPayload {
   startAt: string
   endAt: string
   element: Element[]
+  limitSubmissions: number
 }
 
 export interface Element {

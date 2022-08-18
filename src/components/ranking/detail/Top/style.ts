@@ -18,6 +18,7 @@ import { makeStyles } from '@mui/styles'
 const useStyles = makeStyles((theme: Theme) => ({
   cardRoot: {
     color: `${theme.color.white}`,
+    borderRadius: '0',
   },
   cardHeader: {
     fontSize: '2.5rem',
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '5rem',
     border: `2px solid ${theme.color.white}`,
   },
-  rankProfileCotent: {
+  rankProfileContent: {
     paddingLeft: '1em',
     paddingTop: '.5em',
   },
@@ -38,6 +39,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   rankMedal: {
     display: 'flex',
     alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: theme.textFont.extraLarge,
+    fontWeight: '700',
   },
 }))
 export default useStyles

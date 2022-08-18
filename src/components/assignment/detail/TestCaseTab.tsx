@@ -44,7 +44,10 @@ export default function TestCaseTab(props: TestCaseTabProps) {
   const runAssignmentState = useSelector((state: RootState) => state.runAssignment)
   const submitAssignmentState = useSelector((state: RootState) => state.submitAssignment)
   const { requesting } = runAssignmentState
-
+  const sortedByPrivate = [
+    ...testCases.filter((c) => c.isPrivate === false),
+    ...testCases.filter((c) => c.isPrivate === true),
+  ]
   /**
    * Handle show result description of run and submit testcase
    * @returns testResult description
@@ -115,8 +118,8 @@ export default function TestCaseTab(props: TestCaseTabProps) {
         <React.Fragment>
           <Stack direction='column' padding={2} className={classes.scrollBarTestCase}>
             {handleShowResultRunTestCase()}
-            {testCases.map((testCase, index) => (
-              <GenerateTestCase key={index} testCase={testCase} />
+            {sortedByPrivate.map((testCase, index) => (
+              <GenerateTestCase key={index} index={index} testCase={testCase} />
             ))}
           </Stack>
         </React.Fragment>
@@ -127,11 +130,12 @@ export default function TestCaseTab(props: TestCaseTabProps) {
 
 interface GenerateTestCaseProps {
   testCase: TestCaseResult
+  index: number
 }
 
 // Form Input Create Assignment
 function GenerateTestCase(props: GenerateTestCaseProps) {
-  const { testCase } = props
+  const { testCase, index } = props
   const classes = useStyles()
 
   const handleShowPassedTestCase = (isPassed: boolean | undefined) => {
@@ -181,7 +185,7 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
             alignItems='center'
             spacing={2}
           >
-            <Typography className={classes.titleTextField}>Test {testCase.order}</Typography>
+            <Typography className={classes.titleTextField}>Test {index + 1}</Typography>
             <Stack direction='row' alignItems='center' spacing={2}>
               {testCase.isPrivate && <LockOutlinedIcon fontSize='small' />}
               {handleShowPassedTestCase(testCase.isPassed)}

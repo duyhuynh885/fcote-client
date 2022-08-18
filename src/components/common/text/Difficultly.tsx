@@ -30,9 +30,5 @@ export default function Difficultly(props: DifficultlyProps) {
     [classes[difficult]]: difficult,
   })
 
-  return (
-    <Typography sx={{ textAlign: 'end' }} className={difficultyClasses}>
-      {displayText}
-    </Typography>
-  )
+  return <Typography className={difficultyClasses}>{displayText}</Typography>
 }

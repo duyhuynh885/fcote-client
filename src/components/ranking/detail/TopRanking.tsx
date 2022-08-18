@@ -55,7 +55,7 @@ const TopRanking: React.FC<UserInfoProps> = (props) => {
             rank={top.order}
             avatar={top.avatar}
             username={top.username}
-            fullname={top.fullname}
+            fullName={top.fullname}
             score={top.total_score}
             organization={top.organization}
           />

@@ -39,6 +39,7 @@ function* CreateChallengeFlow({
   startAt,
   endAt,
   element,
+  limitSubmissions,
 }: CreateChallengeRequestAction) {
   try {
     yield put(showLoaderAction())
@@ -50,6 +51,7 @@ function* CreateChallengeFlow({
       startAt,
       endAt,
       element,
+      limitSubmissions,
     })
     yield put({
       type: CreateChallengeActionType.CREATE_CHALLENGE_SUCCESS,

@@ -17,7 +17,7 @@ export interface DataTopRank {
   rank: number
   order: number
   username: string
-  fullname: string
+  fullName: string
   avatar: string
   organization: string
   score: number

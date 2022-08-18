@@ -1,4 +1,4 @@
-import { Box, Button, Modal, Paper, Stack, Typography } from '@mui/material'
+import { Button, Modal, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'

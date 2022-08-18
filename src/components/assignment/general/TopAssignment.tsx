@@ -3,9 +3,7 @@ import { Box } from '@mui/system'
 import React from 'react'
 import { Assignment } from '../../../modules/assignment/list/type'
 import { makeStyles } from '@mui/styles'
-import AssignmentItemRectangle, {
-  CustomAssignmentItemRectangleEnum,
-} from './AssignmentItemRectangle'
+import AssignmentItemRectangle, { TypeAssignmentItemRectangleEnum } from './AssignmentItemRectangle'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
 import { Link } from 'react-router-dom'
@@ -56,7 +54,6 @@ const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
   const topAssignmentsState = useSelector((state: RootState) => state.listAssignment)
   const classes = useStyles()
   const { listAssignment } = props
-  const custom = CustomAssignmentItemRectangleEnum.CUSTOM_FOR_HOME
   return (
     <Paper
       elevation={4}
@@ -84,7 +81,10 @@ const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
                   key={assignment.id}
                   to={`assignment/${assignment.id}`}
                 >
-                  <AssignmentItemRectangle assignment={assignment} custom={custom} />
+                  <AssignmentItemRectangle
+                    assignment={assignment}
+                    type={TypeAssignmentItemRectangleEnum.HOME_ASSIGNMENT}
+                  />
                 </Link>
               ))}
             </>

@@ -6,6 +6,7 @@ import LeaderBoardsTable from './LeaderBoardsTable/LeaderBoardsTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { updateFilterRankingRequest } from '../../../modules/ranking/action'
+import useStyles from './style'
 
 /**
  * LeaderBoard component
@@ -63,6 +64,8 @@ export default function LeaderBoard(props: any) {
     setValue(newValue)
     dispatch(updateFilterRankingRequest({ ...filterRankingState, typeRanking: newValue + 1 }))
   }
+  const classes = useStyles()
+
   return (
     <Paper
       elevation={2}
@@ -75,9 +78,14 @@ export default function LeaderBoard(props: any) {
     >
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChange} aria-label='LeaderBoard'>
-            <Tab label='Universities' {...ChangeValueProps(0)} />
-            <Tab label='Organization' {...ChangeValueProps(1)} />
+          <Tabs
+            className={classes.tabStyle}
+            value={value}
+            onChange={handleChange}
+            aria-label='LeaderBoard'
+          >
+            <Tab className={classes.tabTitle} label='individual' {...ChangeValueProps(0)} />
+            <Tab className={classes.tabTitle} label='Organization' {...ChangeValueProps(1)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>

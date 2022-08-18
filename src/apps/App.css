@@ -1,0 +1,55 @@
+.react-minimal-datetime-range__range-input-wrapper {
+  padding: 8px 14px !important;
+  height: auto !important;
+  line-height: 23px !important;
+  font-size: 16px !important;
+}
+
+.react-minimal-datetime-range-calendar__table-cel.active {
+  background-color: #23c686 !important;
+}
+
+.react-minimal-datetime-range-calendar__table-cel.highlight {
+  background-color: #23c68630 !important;
+}
+
+.react-minimal-datetime-range-calendar__table-cel.react-minimal-datetime-range-calendar__date-item:not(.disabled):hover {
+  background-color: #23c686 !important;
+  color: #fff;
+}
+
+.react-minimal-datetime-range__button--confirm {
+  background-color: #23c686 !important;
+  border: 1px solid #23c68630 !important;
+  padding: 10px;
+  color: #fff;
+}
+
+.react-minimal-datetime-range__button {
+  border-radius: 0 !important;
+}
+
+.react-minimal-datetime-range__button--type {
+  color: #23c686 !important;
+}
+
+.react-minimal-datetime-range__time-select-option.active {
+  background-color: #23c686 !important;
+  color: #fff;
+}
+
+.react-minimal-datetime-range__button--confirm.disabled {
+  background-color: #f1f3f5 !important;
+  border: 1px solid #ced4da !important;
+  color: #adb5bd !important;
+  cursor: not-allowed !important;
+}
+
+.react-minimal-datetime-range__range-input-wrapper input.react-minimal-datetime-range__range-input {
+  font-size: 16px !important;
+}
+
+.react-minimal-datetime-range__range-input-wrapper input.react-minimal-datetime-range__range-input {
+  text-align: start !important;
+  width: 36% !important;
+}

@@ -64,24 +64,19 @@ export default function TopMember(props: DataTopRank) {
       switch (props.rank) {
         case 1:
           return {
-            minWidth: 500,
-            minHeight: 275,
+            minWidth: 450,
+            minHeight: 265,
           }
         case 2:
           return {
-            minWidth: 400,
-            mt: '1.5em',
+            minWidth: 350,
           }
         case 3:
           return {
-            minWidth: 400,
-            mt: '1.5em',
+            minWidth: 350,
           }
         default:
-          return {
-            minWidth: 400,
-            mt: '1.5em',
-          }
+          return {}
       }
     }
   }
@@ -92,7 +87,7 @@ export default function TopMember(props: DataTopRank) {
         case 1:
           return {
             display: 'flex',
-            padding: '25px',
+            padding: '20px',
             backgroundColor: returnColorByRank()[1],
           }
         case 2:
@@ -153,7 +148,13 @@ export default function TopMember(props: DataTopRank) {
 
   return (
     <Card sx={sxCard} className={classes.cardRoot}>
-      <CardHeader title={returnRankStr()} sx={{ backgroundColor: returnColorByRank()[0] }} />
+      <CardHeader
+        title={returnRankStr()}
+        classes={{
+          title: classes.headerTitle,
+        }}
+        sx={{ backgroundColor: returnColorByRank()[0] }}
+      />
       <CardContent sx={sxCardContent}>
         <Box>
           <Avatar
@@ -162,7 +163,7 @@ export default function TopMember(props: DataTopRank) {
             className={classes.rankSecondProfileAvatar}
           />
         </Box>
-        <Box className={classes.rankProfileCotent} sx={{ flexGrow: 1 }}>
+        <Box className={classes.rankProfileContent} sx={{ flexGrow: 1 }}>
           <Typography variant='h5' component='span'>
             {props.username}
           </Typography>
@@ -171,7 +172,7 @@ export default function TopMember(props: DataTopRank) {
         <Box className={classes.rankMedal}>{renderRanking()}</Box>
       </CardContent>
       <CardActions className={classes.rankProfileScore} sx={sxCardAction}>
-        <Typography variant='h5' component='span' sx={{ fontWeight: 1000 }}>
+        <Typography variant='h6' component='span' sx={{ fontWeight: '700' }}>
           Score: {props.score}
         </Typography>
       </CardActions>

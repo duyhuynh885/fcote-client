@@ -152,7 +152,11 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
         <TableHead>
           <TableRow>
             {columns.map((column) => (
-              <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }}>
+              <TableCell
+                key={column.id}
+                align={column.align}
+                style={{ minWidth: column.minWidth, fontWeight: '800', color: '#726767' }}
+              >
                 {column.label}
               </TableCell>
             ))}
@@ -161,7 +165,7 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
         <TableBody>
           {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
             <TableRow key={row.id}>
-              <TableCell component='th' scope='row' style={{ width: 10 }}>
+              <TableCell component='th' scope='row' style={{ width: 10, fontWeight: '700' }}>
                 {row.order}
               </TableCell>
               <TableCell style={{ width: 160 }} align='left'>

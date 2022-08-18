@@ -33,6 +33,7 @@ export const createChallengeRequest = ({
   startAt,
   endAt,
   element,
+  limitSubmissions,
 }: CreateChallengeRequestPayload): CreateChallengeRequestAction => {
   return {
     type: CreateChallengeActionType.CREATE_CHALLENGE_REQUESTING,
@@ -43,6 +44,7 @@ export const createChallengeRequest = ({
     startAt,
     endAt,
     element,
+    limitSubmissions,
   }
 }
 

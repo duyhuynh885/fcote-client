@@ -127,7 +127,14 @@ export default function TableChallenge(props: TableChallengeProps) {
   }
 
   const handleShowTitleTable = () => {
-    const nameAssignment = ['A', 'B', 'C', 'D', 'E', 'F']
+    const nameAssignment = [
+      'ASSIGNMENT A',
+      'ASSIGNMENT B',
+      'ASSIGNMENT C',
+      'ASSIGNMENT D',
+      'ASSIGNMENT E',
+      'ASSIGNMENT F',
+    ]
     return assignmentList.map((assignment, index) => (
       <TableCell key={index} className={classes.tableHeaderCell}>
         <Typography className={classes.textHeaderCell}>

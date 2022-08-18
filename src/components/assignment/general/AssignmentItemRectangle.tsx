@@ -1,4 +1,4 @@
-import { Avatar, Paper, Stack, Typography } from '@mui/material'
+import { Avatar, Grid, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 
 import { Assignment, DifficultEnum } from '../../../modules/assignment/list/type'
@@ -26,67 +26,61 @@ import useStyles from './style'
 export enum TypeAssignmentItemRectangleEnum {
   LIST_ASSIGNMENT,
   SELECTED_ASSIGNMENT,
-}
-export enum CustomAssignmentItemRectangleEnum {
-  CUSTOM_FOR_HOME,
+  HOME_ASSIGNMENT,
 }
 
 interface AssignmentItemRectangleProps {
   assignment: Assignment
   type?: TypeAssignmentItemRectangleEnum
-  custom?: CustomAssignmentItemRectangleEnum
 }
 
 export default function AssignmentItemRectangle(props: AssignmentItemRectangleProps) {
-  const { assignment, type, custom } = props
+  const { assignment, type } = props
   const classes = useStyles()
   return (
     <div>
       <Paper square className={classes.paperWrap} elevation={0}>
-        <Stack
-          direction='row'
-          justifyContent={
-            custom === CustomAssignmentItemRectangleEnum.CUSTOM_FOR_HOME ? 'start' : 'space-between'
-          }
-          alignItems='center'
-        >
-          <Typography
-            className={
-              custom === CustomAssignmentItemRectangleEnum.CUSTOM_FOR_HOME
-                ? classes.nameCustom
-                : classes.name
-            }
-          >
-            {assignment.title}
-          </Typography>
-          {type === TypeAssignmentItemRectangleEnum.LIST_ASSIGNMENT ? (
+        <Grid container alignItems='center'>
+          <Grid item xs={5}>
+            <Typography className={classes.name}>{assignment.title}</Typography>
+          </Grid>
+          {type === TypeAssignmentItemRectangleEnum.LIST_ASSIGNMENT ||
+          type === TypeAssignmentItemRectangleEnum.HOME_ASSIGNMENT ? (
             <React.Fragment>
-              <Avatar alt='Avatar' src={'https://picsum.photos/200'} className={classes.avatar} />
-              <Typography className={classes.userName}>{assignment.createdBy}</Typography>
-              <Typography className={classes.score}>{assignment.score}</Typography>
-              <Difficultly
-                difficult={mapDifficultyAssignment(assignment.difficulty)}
-                displayText={DifficultEnum[assignment.difficulty]}
-              />
+              <Grid item xs={3}>
+                <Stack direction='row' alignItems='center' spacing={1}>
+                  <Avatar
+                    alt='Avatar'
+                    src={'https://picsum.photos/200'}
+                    className={classes.avatar}
+                  />
+                  <Typography className={classes.userName}>{assignment.createdBy}</Typography>
+                </Stack>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography className={classes.score}>{assignment.score}</Typography>
+              </Grid>
+              <Grid item xs={1}>
+                <Difficultly
+                  difficult={mapDifficultyAssignment(assignment.difficulty)}
+                  displayText={DifficultEnum[assignment.difficulty]}
+                />
+              </Grid>
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <Typography
-                className={
-                  custom === CustomAssignmentItemRectangleEnum.CUSTOM_FOR_HOME
-                    ? classes.scoreCustom
-                    : classes.score
-                }
-              >
-                {assignment.score}
-              </Typography>
-              <Difficultly
-                difficult={mapDifficultyAssignment(assignment.difficulty)}
-                displayText={DifficultEnum[assignment.difficulty]}
-              />
+              <Grid item xs={5}>
+                <Typography className={classes.score}>{assignment.score}</Typography>
+              </Grid>
+              <Grid item xs={2}>
+                <Difficultly
+                  difficult={mapDifficultyAssignment(assignment.difficulty)}
+                  displayText={DifficultEnum[assignment.difficulty]}
+                />
+              </Grid>
             </React.Fragment>
           )}
-        </Stack>
+        </Grid>
       </Paper>
     </div>
   )

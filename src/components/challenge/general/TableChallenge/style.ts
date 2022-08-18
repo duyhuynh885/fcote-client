@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     fontWeight: '700 !important',
     color: `${theme.color.white} !important`,
-    fontSize: `${theme.textFont.medium} !important`,
+    fontSize: `${theme.textFont.small} !important`,
     textDecoration: 'none',
   },
   tableItemCell: {

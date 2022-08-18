@@ -8,14 +8,15 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
+import moment from 'moment'
 import React, { useEffect } from 'react'
+import { Controller, useFormContext } from 'react-hook-form'
+import { RangePicker } from 'react-minimal-datetime-range'
+import 'react-minimal-datetime-range/lib/react-minimal-datetime-range.min.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { fetchListGroupRequest } from '../../../modules/group/list/action'
-import { Controller, useFormContext } from 'react-hook-form'
 import useStyles from './style'
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import moment from 'moment'
 
 export default function SettingForm() {
   const classes = useStyles()
@@ -43,6 +44,40 @@ export default function SettingForm() {
 
   const handleGroupChange = (event: SelectChangeEvent) => {
     setGroup(+event.target.value)
+  }
+
+  const handleDateChange = (value: any) => {
+    let startDate = null
+    let endDate = null
+    if (value) {
+      startDate = moment(value[0], 'YYYY-MM-DD HH:mm:ss').toDate()
+      endDate = moment(value[1], 'YYYY-MM-DD HH:mm:ss').toDate()
+      const startMonth = String(startDate.getMonth() + 1).padStart(2, '0')
+      const endMonth = String(endDate.getMonth() + 1).padStart(2, '0')
+      const startDay = String(startDate.getDate()).padStart(2, '0')
+      const endDay = String(endDate.getDate()).padStart(2, '0')
+      return [
+        startDay + '-' + startMonth + '-' + startDate.getFullYear(),
+        endDay + '-' + endMonth + '-' + endDate.getFullYear(),
+      ]
+    }
+    return ['', '']
+  }
+
+  const handleTimeChange = (value: any) => {
+    console.log('handleTimeChange value: ', value)
+    let startDate = null
+    let endDate = null
+
+    if (value) {
+      startDate = moment(value[0], 'YYYY-MM-DD HH:mm:ss').toDate()
+      endDate = moment(value[1], 'YYYY-MM-DD HH:mm:ss').toDate()
+      return [
+        startDate.getHours() + ':' + startDate.getMinutes(),
+        endDate.getHours() + ':' + endDate.getMinutes(),
+      ]
+    }
+    return ['', '']
   }
 
   return (
@@ -84,35 +119,35 @@ export default function SettingForm() {
             value={secret}
             onChange={handleSecretChange}
           >
-            <MenuItem value='Public'>Public</MenuItem>
-            <MenuItem value='Private'>Private</MenuItem>
+            <MenuItem classes={{ selected: classes.selected }} value='Public'>
+              Public
+            </MenuItem>
+            <MenuItem classes={{ selected: classes.selected }} value='Private'>
+              Private
+            </MenuItem>
           </Select>
         </FormControl>
         <Stack>
-          <Typography className={classes.titleTextField}>Start date</Typography>
+          <Typography className={classes.titleTextField}>Duration</Typography>
           <Controller
             control={control}
-            name='startAt'
+            name='durationDate'
             render={({ field: { onChange, value } }) => (
-              <DatePicker
-                inputFormat='DD/MM/yyyy'
-                disablePast
-                onChange={(startDate) => onChange(moment(startDate).format('YYYY-MM-DD HH:mm:ss'))}
-                value={value ? value : null}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    inputProps={{
-                      ...params.inputProps,
-                      placeholder: 'Please select start date',
-                    }}
-                    fullWidth
-                    error={!!errors['startAt']}
-                    helperText={errors['startAt'] ? errors['startAt'].message : ''}
-                    size='small'
-                    color='success'
-                  />
-                )}
+              <RangePicker
+                locale='en-us'
+                show={false}
+                disabled={false}
+                allowPageClickToClose={true}
+                onConfirm={(res) => onChange(res)}
+                onClose={() => console.log('onClose')}
+                onClear={() => console.log('onClear')}
+                placeholder={['Start Time', 'End Time']}
+                showOnlyTime={false}
+                style={{
+                  width: '100%',
+                }}
+                defaultDates={handleDateChange(value)}
+                defaultTimes={handleTimeChange(value)}
               />
             )}
           />
@@ -132,10 +167,12 @@ export default function SettingForm() {
             onChange={handleGroupChange}
           >
             {secret === 'Public' ? (
-              <MenuItem value={1}>None Group</MenuItem>
+              <MenuItem classes={{ selected: classes.selected }} value={1}>
+                None Group
+              </MenuItem>
             ) : (
               groupState.map((_group, index) => (
-                <MenuItem key={index} value={_group.id}>
+                <MenuItem classes={{ selected: classes.selected }} key={index} value={_group.id}>
                   {_group.title}
                 </MenuItem>
               ))
@@ -143,35 +180,25 @@ export default function SettingForm() {
           </Select>
         </FormControl>
         <Stack>
-          <Typography className={classes.titleTextField}>End date</Typography>
-          <Controller
-            control={control}
-            name='endAt'
-            render={({ field: { onChange, value } }) => (
-              <DatePicker
-                inputFormat='DD/MM/yyyy'
-                disablePast
-                onChange={(endDate) => onChange(moment(endDate).format('YYYY-MM-DD HH:mm:ss'))}
-                value={value ? value : null}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    inputProps={{
-                      ...params.inputProps,
-                      placeholder: 'Please select end date',
-                    }}
-                    fullWidth
-                    error={!!errors['endAt']}
-                    helperText={errors['endAt'] ? errors['endAt'].message : ''}
-                    size='small'
-                    color='success'
-                  />
-                )}
-              />
-            )}
+          <Typography className={classes.titleTextField}>Limit Submissions</Typography>
+          <TextField
+            type='number'
+            InputProps={{
+              inputProps: {
+                max: 10,
+                min: 1,
+              },
+            }}
+            {...register('limitSubmissions')}
+            error={!!errors['limitSubmissions']}
+            helperText={errors['limitSubmissions'] ? errors['limitSubmissions'].message : ''}
+            size='small'
+            color='success'
+            fullWidth
           />
         </Stack>
       </Grid>
+      <Stack></Stack>
     </Grid>
   )
 }

@@ -49,7 +49,7 @@ export default function Ranking() {
             <TopRanking data={topThreeState} />
           </Container>
         </Grid>
-        <Grid item xs={12} sx={{ margin: '2rem 5rem' }}>
+        <Grid item xs={12}>
           <Container fixed>
             <LeaderBoard data={rankingListState} />
           </Container>

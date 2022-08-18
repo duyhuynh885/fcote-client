@@ -3,7 +3,7 @@ import '../configs/i18n/index'
 import Loader from '../components/common/loader/Loader'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { LocalizationProvider } from '@mui/x-date-pickers'
-
+import './App.css'
 /**
  * App Component
  *

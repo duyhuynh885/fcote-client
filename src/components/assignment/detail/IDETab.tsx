@@ -41,7 +41,9 @@ export default function IDETab(props: IDETabProps) {
           borderBottom: 'solid 1px black',
         }}
       >
-        <Typography className={classes.tabFileName}>solution.py</Typography>
+        <Typography className={classes.tabFileName}>
+          solution.{language === 1 ? 'py' : 'java'}
+        </Typography>
         <SwapLanguageCode language={language} onChange={handleChangeLanguage} />
       </Stack>
       <Stack sx={{ height: '100% !important' }}>
