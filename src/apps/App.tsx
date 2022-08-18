@@ -1,8 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import '../configs/i18n/index'
 import Loader from '../components/common/loader/Loader'
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
-import { LocalizationProvider } from '@mui/x-date-pickers'
 import './App.css'
 /**
  * App Component
@@ -24,9 +22,7 @@ const ReduxContainer = lazy(() => import('./ReduxContainer'))
 function App() {
   return (
     <Suspense fallback={<Loader loading={false} />}>
-      <LocalizationProvider dateAdapter={AdapterMoment}>
-        <ReduxContainer />
-      </LocalizationProvider>
+      <ReduxContainer />
     </Suspense>
   )
 }

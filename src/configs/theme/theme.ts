@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material/styles'
 import { ThemeOptions as ThemeOptionsOld } from '@mui/material/styles/createTheme'
-import type {} from '@mui/x-date-pickers/themeAugmentation'
 
 /**
  * Override the default theme of material ui
