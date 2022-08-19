@@ -65,7 +65,6 @@ export default function SettingForm() {
   }
 
   const handleTimeChange = (value: any) => {
-    console.log('handleTimeChange value: ', value)
     let startDate = null
     let endDate = null
 

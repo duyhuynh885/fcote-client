@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: 'uppercase',
     textDecoration: 'none',
     position: 'relative',
-    padding: '12px 30px',
+    padding: '12px 20px',
     margin: '.3125rem 1px',
     fontSize: theme.textFont.small,
     fontWeight: 'bold !important',
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: 'pointer',
   },
   loginBtn: {
-    backgroundColor: `${theme.color.green} !important`,
+    backgroundColor: `${theme.color.white} !important`,
     color: `${theme.color.black} !important`,
   },
   registerBtn: {
@@ -76,6 +76,10 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontWeight: '800',
     },
     textDecoration: 'none',
+  },
+  isActiveAuthenticationButton: {
+    backgroundColor: `${theme.color.green} !important`,
+    color: `${theme.color.black} !important`,
   },
 }))
 

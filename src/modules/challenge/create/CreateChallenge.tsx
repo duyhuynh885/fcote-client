@@ -73,7 +73,6 @@ export default function CreateChallenge() {
     let groupId = 1
     const image = ''
     let element: Element[]
-    console.log('startAt: ', startAt, 'endAt: ', endAt)
     if (assignmentIdSelected.length >= 3) {
       element = assignmentIdSelected.map((assignmentId) => {
         return {

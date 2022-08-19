@@ -66,6 +66,7 @@ const TopUser: React.FC<TopUserProps> = (props) => {
         display: 'flex',
         flexDirection: 'column',
         padding: 2,
+        minHeight: '840px',
       }}
     >
       <Stack direction='column' spacing={2}>

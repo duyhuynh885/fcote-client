@@ -115,10 +115,18 @@ function Navbar() {
             </Box>
             <ChangLanguage />
             <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-              <NavLink className={`${classes.button} ${classes.registerBtn}`} to='/register'>
+              <NavLink
+                activeClassName={classes.isActiveAuthenticationButton}
+                className={`${classes.button} ${classes.registerBtn}`}
+                to='/register'
+              >
                 {t('Register')}
               </NavLink>
-              <NavLink className={`${classes.button} ${classes.loginBtn}`} to='/login'>
+              <NavLink
+                activeClassName={classes.isActiveAuthenticationButton}
+                className={`${classes.button} ${classes.loginBtn}`}
+                to='/login'
+              >
                 {t('Login')}
               </NavLink>
             </Box>

@@ -8,7 +8,7 @@ import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyles from '../../../components/my-profile/style'
 import { viewDetailProfileRequest } from '../view/action'
-import { clearStateMyProfile, editMyProfileRequest } from './action'
+import { myProfileClearState, editMyProfileRequest } from './action'
 
 /**
  * Edit profile model component
@@ -42,7 +42,7 @@ const style = {
   p: 4,
 }
 
-const regexPhoneNumber = '^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$'
+const regexPhoneNumber = '(84|0[3|5|7|8|9])+([0-9]{8})\b'
 const editProfileSchema = object({
   firstName: string().max(50, 'First name must be less than 50 characters'),
   lastName: string().max(50, 'Last name must be less than 50 characters'),
@@ -86,10 +86,10 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
           username: userInfo.userName,
         }),
       )
-      dispatch(clearStateMyProfile())
+      dispatch(myProfileClearState())
       reset()
     }
-  }, [editMyProfileState.successful, editMyProfileState.errors])
+  }, [editMyProfileState])
 
   const onSubmit: SubmitHandler<EditProfileInput> = (data) => {
     const { firstName, lastName, organization, city, country, phone, gender } = data

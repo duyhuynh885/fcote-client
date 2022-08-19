@@ -8,7 +8,6 @@ interface NoResultProps {
 export default function NoResult(props: NoResultProps) {
   const { currentSize } = props
   const handleShowNoResult = () => {
-    console.log(currentSize)
     if (currentSize === 0) {
       return (
         <Stack

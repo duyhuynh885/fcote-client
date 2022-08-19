@@ -48,7 +48,7 @@ export default function Register() {
       .min(8, 'Password must be more than 8 characters')
       .max(32, 'Password must be less than 32 characters'),
     confirmPassword: string(),
-    terms: literal(true),
+    // terms: literal(true),
   }).refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
     message: 'Passwords do not match',
@@ -194,7 +194,7 @@ export default function Register() {
                 helperText={errors['confirmPassword'] ? errors['confirmPassword'].message : ''}
               />
 
-              <FormGroup>
+              {/* <FormGroup>
                 <FormControlLabel
                   control={<Checkbox required />}
                   {...register('terms')}
@@ -207,7 +207,7 @@ export default function Register() {
                 <FormHelperText error={!!errors['terms']}>
                   {errors['terms'] ? errors['terms'].message : ''}
                 </FormHelperText>
-              </FormGroup>
+              </FormGroup> */}
 
               <RegularButton
                 {...rest}

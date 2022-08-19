@@ -26,7 +26,7 @@ export const editMyProfileRequest = ({
   }
 }
 
-export const clearStateMyProfile = (): EditMyProfileClearStateAction => {
+export const myProfileClearState = (): EditMyProfileClearStateAction => {
   return {
     type: EditMyProfileActionType.EDIT_MY_PROFILE_CLEAR_STATE,
   }

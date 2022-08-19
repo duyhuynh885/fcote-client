@@ -71,8 +71,8 @@ const Home = () => {
 
   return (
     <Stack sx={{ margin: 5 }}>
-      <Grid container>
-        <Grid item xs={8} sx={{ padding: '0px 40px 10px 0px' }}>
+      <Grid container spacing={3}>
+        <Grid item xs={8}>
           <Stack spacing={3}>
             <TopAssignment listAssignment={topAssignmentsState.assignments} />
             <ChallengeCompleted
