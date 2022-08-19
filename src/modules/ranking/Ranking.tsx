@@ -1,4 +1,4 @@
-import { Grid, Stack } from '@mui/material'
+import { Divider, Grid, Stack } from '@mui/material'
 import React, { useEffect } from 'react'
 import TopRanking from '../../components/ranking/detail/TopRanking'
 import { useDispatch, useSelector } from 'react-redux'
@@ -49,7 +49,7 @@ export default function Ranking() {
             <TopRanking data={topThreeState} />
           </Container>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} sx={{ marginBottom: '15px' }}>
           <Container fixed>
             <LeaderBoard data={rankingListState} />
           </Container>

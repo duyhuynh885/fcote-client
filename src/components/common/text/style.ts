@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: `${theme.textFont.superSmall} `,
     padding: '2px 7px',
     borderRadius: '5px',
+    textAlign: 'center',
   },
   easy: { color: '#1a9991', backgroundColor: '#7cdf9150' },
   medium: { color: '#e38d34', backgroundColor: '#f5b84950' },
