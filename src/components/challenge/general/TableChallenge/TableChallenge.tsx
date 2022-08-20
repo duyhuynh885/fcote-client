@@ -83,8 +83,8 @@ export default function TableChallenge(props: TableChallengeProps) {
   const handleShowResultSubmit = () => {
     return submits.map((submit) => {
       const total: TotalResult = {
-        totalPoint: 0,
-        totalProgressTime: '-',
+        totalPoint: submit.totalResult.score,
+        totalProgressTime: submit.totalResult.time,
         totalNumberSubmit: 0,
       }
       const result: AssignmentResult[] = _.orderBy(
@@ -220,12 +220,14 @@ export default function TableChallenge(props: TableChallengeProps) {
                       </TableCell>
                     ))}
                     <TableCell className={classes.tableItemCellOfTotal}>
-                      <Typography className={classes.textPointOfTotal}>
-                        {row.total.totalPoint}
-                      </Typography>
-                      <Typography className={classes.textItemCell}>
-                        {row.total.totalProgressTime}
-                      </Typography>
+                      <Stack direction='column' justifyContent='flex-start' alignItems='center'>
+                        <Typography className={classes.textPointOfTotal}>
+                          {row.total.totalPoint}
+                        </Typography>
+                        <Typography className={classes.textItemCell}>
+                          {row.total.totalProgressTime}
+                        </Typography>
+                      </Stack>
                     </TableCell>
                   </TableRow>
                 )
