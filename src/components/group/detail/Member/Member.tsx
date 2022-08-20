@@ -66,8 +66,11 @@ export default function Member(props: DetailGroupProps) {
     }
   }
 
-  function renderKickMemberButton(_isOwner: boolean, idMember: number) {
-    if (!_isOwner) {
+  function renderKickMemberButton(_isOwnerMember: boolean, idMember: number) {
+    if (!isOwner) {
+      return null
+    }
+    if (!_isOwnerMember) {
       return (
         <IconButton
           color='error'
