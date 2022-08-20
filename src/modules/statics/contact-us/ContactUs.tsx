@@ -120,7 +120,7 @@ export default function ContactUs() {
                   color={'primary'}
                   size={'lg'}
                   round={false}
-                  fullWidth={false}
+                  fullWidth={true}
                   disabled={false}
                   simple={false}
                   block={false}

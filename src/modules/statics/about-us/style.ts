@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '5em',
     marginTop: '5vh',
   },
-  contenTitle: {
+  contentTitle: {
     marginTop: '3vh',
     fontSize: '1.5em',
   },

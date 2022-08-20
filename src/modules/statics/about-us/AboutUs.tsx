@@ -1,50 +1,76 @@
-import { Box, Container, Grid, TextField, Typography } from '@mui/material'
+import { Box, Grid, Container, Stack, Typography } from '@mui/material'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { object, string, TypeOf } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
 import useStyles from './style'
-import RegularButton from '../../../components/common/button/RegularButton'
+import CardItem from '../../../components/about-us/CardItem'
 /**
- * Contact Us Pages
+/**
+ * AboutUs Pages
  *
  * Version 1.0
  *
- * Date: 07-07-2022
+ * Date: 22-06-2022
  *
  * Copyright
  *
  * Modification Logs:
  * DATE               AUTHOR          DESCRIPTION
  * -----------------------------------------------------------------------
- * 07-07-2022         TuanLA           Create
+ * 06-07-2022         TuanLA           Create
  */
 
-const contactUsFormSchema = object({
-  email: string().email('Email is invalid'),
-  description: string().min(8, 'Content is not enough!'),
-})
+const itemData = [
+  {
+    id: 1,
+    name: 'Le Anh Tuan',
+    position: 'Software Developer',
+    birthday: '07/09/2000',
+    avatar: 'https://www.linkpicture.com/q/TuanLA.jpg',
+    university: 'FPT University',
+    social: {
+      facebook: 'https://www.facebook.com/letuan7920/',
+      github: 'https://gitlab.com/m4gi',
+    },
+  },
+  {
+    id: 2,
+    name: 'Nguyen Van Thuan',
+    position: 'Software Developer',
+    birthday: '00/00/2000',
+    avatar: 'https://www.linkpicture.com/q/182980298_103647368574554_8255196538262780374_n.jpg',
+    university: 'FPT University',
+    social: {
+      facebook: 'https://www.facebook.com/thuan895',
+      github: 'https://gitlab.com/thuan895',
+    },
+  },
+  {
+    id: 3,
+    name: 'Nguyen Tan Huy',
+    position: 'Software Developer',
+    birthday: '27/11/2000',
+    avatar: 'https://www.linkpicture.com/q/76931544_789032974891261_8407569228344852480_n.jpg',
+    university: 'FPT University',
+    social: {
+      facebook: 'https://www.facebook.com/tanhuy2711',
+      github: 'https://gitlab.com/HuyNT2711',
+    },
+  },
+  {
+    id: 4,
+    name: 'Huynh Van Duy',
+    position: 'Software Developer',
+    birthday: '00/00/2000',
+    avatar: '#',
+    university: 'FPT University',
+    social: {
+      facebook: 'https://www.facebook.com/duyhuynh885',
+      github: 'https://gitlab.com/duyhuynh885',
+    },
+  },
+]
 
-export default function ContactUs() {
+export default function AboutUs() {
   const classes = useStyles()
-  const { t } = useTranslation()
-  type ContactsUs = TypeOf<typeof contactUsFormSchema>
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<ContactsUs>({
-    resolver: zodResolver(contactUsFormSchema),
-  })
-  const rest = {
-    type: 'submit',
-  }
-  const onSubmit: SubmitHandler<ContactsUs> = (data) => {
-    const { email, description } = data
-    // TODO
-  }
-
   return (
     <React.Fragment>
       <Grid
@@ -53,7 +79,7 @@ export default function ContactUs() {
         direction='column'
         alignItems='center'
         justifyContent='center'
-        style={{ minHeight: '50vh' }}
+        style={{ minHeight: '20vh' }}
       >
         <Box>
           <Typography
@@ -63,7 +89,7 @@ export default function ContactUs() {
             align='center'
             className={classes.title}
           >
-            Contacts Us
+            WHO WE ARE?
           </Typography>
           <Typography
             variant='subtitle1'
@@ -86,53 +112,24 @@ export default function ContactUs() {
             component='div'
             gutterBottom
             align='center'
-            className={classes.contenTitle}
+            className={classes.contentTitle}
           >
-            Write Message
+            OUR TEAM
           </Typography>
           <Container fixed disableGutters>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <TextField
-                required
-                sx={{ width: '100%', marginBottom: '1.5rem' }}
-                id='outlined-email-input'
-                autoComplete='email'
-                label='Email'
-                error={!!errors['email']}
-                helperText={errors['email'] ? errors['email'].message : ''}
-                {...register('email')}
-              />
-              <TextField
-                required
-                multiline
-                rows={4}
-                id='outlined-description-input'
-                sx={{ width: '100%', marginBottom: '1.5rem' }}
-                label='Description'
-                type='description'
-                autoComplete='current-description'
-                error={!!errors['description']}
-                helperText={errors['description'] ? errors['description'].message : ''}
-                {...register('description')}
-              />
-              <Grid container justifyContent='flex-end'>
-                <RegularButton
-                  color={'primary'}
-                  size={'lg'}
-                  round={false}
-                  fullWidth={false}
-                  disabled={false}
-                  simple={false}
-                  block={false}
-                  link={false}
-                  justIcon={false}
-                  className={''}
-                  {...rest}
-                >
-                  {t('Send')}
-                </RegularButton>
-              </Grid>
-            </form>
+            <Stack direction='row' spacing={2}>
+              {itemData.map((item) => (
+                <CardItem
+                  key={item.id}
+                  name={item.name}
+                  position={item.position}
+                  birthday={item.birthday}
+                  avatar={item.avatar}
+                  university={item.university}
+                  social={item.social}
+                />
+              ))}
+            </Stack>
           </Container>
         </Box>
       </Grid>

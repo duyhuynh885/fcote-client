@@ -1,4 +1,3 @@
-import AboutUs from '../../modules/statics/about-us/AboutUs'
 import ForgetPassword from '../../modules/authentication/reset-password/ResetPassword'
 import Login from '../../modules/authentication/login/Login'
 import Register from '../../modules/authentication/register/Register'
@@ -18,6 +17,7 @@ import Ranking from '../../modules/ranking/Ranking'
 import DetailGroup from '../../modules/group/detail/DetailGroup'
 import Group from '../../modules/group/list/Group'
 import EditAssignment from '../../modules/assignment/edit/EditAssignment'
+import AboutUs from '../../modules/statics/about-us/AboutUs'
 
 /**
  * Setup routing for project

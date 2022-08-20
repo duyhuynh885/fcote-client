@@ -165,7 +165,7 @@ function FormInput(props: FormInputProps) {
   const descriptionFiled = register('description')
 
   const handleOnChange = (event: any) => {
-    const updates = { [event.target.name]: event.target.value.trim() }
+    const updates = { [event.target.name]: event.target.value }
     handleChange(_.merge(input, updates), index)
   }
 
