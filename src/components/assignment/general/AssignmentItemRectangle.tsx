@@ -4,7 +4,7 @@ import React from 'react'
 import { Assignment, DifficultEnum } from '../../../modules/assignment/list/type'
 import { mapDifficultyAssignment } from '../../../utils/mapper'
 import Difficultly from '../../common/text/Difficultly'
-
+import DefaultAvatar from '../../../assets/DefaultAvatar.png'
 import useStyles from './style'
 
 /**
@@ -51,7 +51,7 @@ export default function AssignmentItemRectangle(props: AssignmentItemRectanglePr
                 <Stack direction='row' alignItems='center' spacing={1}>
                   <Avatar
                     alt='Avatar'
-                    src={'https://picsum.photos/200'}
+                    src={assignment.image ?? DefaultAvatar}
                     className={classes.avatar}
                   />
                   <Typography className={classes.userName}>{assignment.createdBy}</Typography>

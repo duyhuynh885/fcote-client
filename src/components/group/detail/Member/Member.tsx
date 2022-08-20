@@ -67,7 +67,7 @@ export default function Member(props: DetailGroupProps) {
   }
 
   function renderKickMemberButton(_isOwner: boolean, idMember: number) {
-    if (_isOwner) {
+    if (!_isOwner) {
       return (
         <IconButton
           color='error'
@@ -162,7 +162,7 @@ export default function Member(props: DetailGroupProps) {
                     </TableCell>
                     <TableCell className={classes.tableItemCell}>
                       <Box display={'flex'} sx={{ flexDirection: 'column' }}>
-                        {renderKickMemberButton(isOwner, row.id)}
+                        {renderKickMemberButton(row.isOwner, row.id)}
                       </Box>
                     </TableCell>
                   </TableRow>

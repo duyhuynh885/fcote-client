@@ -46,6 +46,7 @@ export interface MemberInGroup {
   totalCompleted: number
   totalMissing: number
   totalScore: number
+  isOwner: boolean
 }
 
 export interface ViewDetailGroupResponse {

@@ -8,6 +8,7 @@ import { formatDate } from '../../../utils/dateUtil'
 import Difficultly from '../../common/text/Difficultly'
 import Status from '../../common/text/Status'
 import { mapStatusAssignment, mapDifficultyAssignment } from '../../../utils/mapper'
+import DefaultAvatar from '../../../assets/DefaultAvatar.png'
 
 /**
  * Assignment Item
@@ -41,7 +42,7 @@ const AssignmentItem = (props: AssignmentItemProps) => {
       <Stack direction='column' spacing={0.5}>
         <Typography className={classes.name}>{assignment.title}</Typography>
         <Stack direction='row' alignItems='center' spacing={1} className={classes.wrapAvatarName}>
-          <Avatar alt='Avatar' src={'https://picsum.photos/200'} className={classes.avatar} />
+          <Avatar alt='Avatar' src={assignment.image ?? DefaultAvatar} className={classes.avatar} />
           <Typography className={classes.userName}>{assignment.createdBy}</Typography>
         </Stack>
         <Stack direction='row' justifyContent='center' alignItems='center'>

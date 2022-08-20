@@ -9,6 +9,9 @@ import {
   TableHead,
   TableRow,
   IconButton,
+  Stack,
+  Avatar,
+  Typography,
 } from '@mui/material'
 import React from 'react'
 import FirstPageIcon from '@mui/icons-material/FirstPage'
@@ -17,6 +20,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import { useTheme } from '@mui/material/styles'
 import { UserInfo } from '../../../../modules/ranking/type'
+import DefaultAvatar from '../../../../assets/DefaultAvatar.png'
 
 /**
  * LeaderBoard component
@@ -169,7 +173,10 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
                 {row.order}
               </TableCell>
               <TableCell style={{ width: 160 }} align='left'>
-                {row.username}
+                <Stack direction='row' alignItems='center' spacing={1}>
+                  <Avatar alt='Avatar' src={row.avatar ?? DefaultAvatar} />
+                  <Typography>{row.username}</Typography>
+                </Stack>
               </TableCell>
               <TableCell style={{ width: 160 }} align='center'>
                 {row.organization}
