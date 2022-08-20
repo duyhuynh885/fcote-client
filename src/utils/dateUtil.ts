@@ -1,7 +1,7 @@
 import moment from 'moment'
 
 export const DD_MM_YYYY_FORMAT = 'DD-MM-YYYY'
-export const DD_MM_YYYY_FORMAT_TYPE2 = 'DD/MM/YYYY'
+export const DD_MM_YYYY_FORMAT_TYPE2 = 'DD/MM/YYYY HH:mm'
 
 export const DD_MM_YYYY_HH_MM_SS_FORMAT = 'DD-MM-YYYY HH:mm:ss'
 

@@ -96,7 +96,7 @@ export default function TableChallenge(props: TableChallengeProps) {
           typeof _assignmentResult.counter === 'string' ? 0 : _assignmentResult.counter
         return {
           point: _assignmentResult.highestScore,
-          progressTime: _assignmentResult.shortestRuntime,
+          progressTime: _assignmentResult.time,
           compileTime: _assignmentResult.time,
           numberTry: _assignmentResult.counter,
           numberSubmit: _assignmentResult.counter,

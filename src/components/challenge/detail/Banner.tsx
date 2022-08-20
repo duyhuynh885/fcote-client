@@ -46,11 +46,11 @@ export default function Banner(props: BannerProps) {
               </Stack>
               <Grid container sx={{ height: '40%', width: '100%' }}>
                 <Grid item xs={6}>
-                  <Stack direction='row'>
+                  <Stack direction='row' alignItems='center'>
                     <Typography className={classes.bannerTextTitle}>Duration:</Typography>
                     <DateChallenge startDate={detail.startAt} endDate={detail.endAt} />
                   </Stack>
-                  <Stack direction='row'>
+                  <Stack direction='row' alignItems='center'>
                     <Typography className={classes.bannerTextTitle}>Total Assignment:</Typography>
                     <Typography className={classes.bannerTextDescription}>
                       {detail.totalAssignment}
@@ -58,13 +58,13 @@ export default function Banner(props: BannerProps) {
                   </Stack>
                 </Grid>
                 <Grid item xs={6} justifyContent='flex-start'>
-                  <Stack direction='row'>
+                  <Stack direction='row' alignItems='center'>
                     <Typography className={classes.bannerTextTitle}>Group:</Typography>
                     <Typography className={classes.bannerTextDescription}>
                       {detail.group}
                     </Typography>
                   </Stack>
-                  <Stack direction='row'>
+                  <Stack direction='row' alignItems='center'>
                     <Typography className={classes.bannerTextTitle}>Author:</Typography>
                     <Typography className={classes.bannerTextDescription}>
                       {detail.createdBy}

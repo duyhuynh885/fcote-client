@@ -53,14 +53,13 @@ const style = {
   p: 4,
 }
 
-const regexPhoneNumber = '(84|0[3|5|7|8|9])+([0-9]{8})\b'
 const editProfileSchema = object({
   firstName: string().max(50, 'First name must be less than 50 characters'),
   lastName: string().max(50, 'Last name must be less than 50 characters'),
   organization: string().max(100, 'Organization must be less than 100 characters'),
   city: string().max(100, 'City must be less than 100 characters'),
   country: string().max(100, 'Country must be less than 100 characters'),
-  phone: string(),
+  phone: string().regex(new RegExp('(84|0[3|5|7|8|9])+([0-9]{8})'), 'Phone number is invalid'),
   gender: string(),
 })
 
