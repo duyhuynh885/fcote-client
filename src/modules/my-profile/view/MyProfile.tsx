@@ -8,7 +8,6 @@ import Profile from '../../../components/my-profile/view/Profile'
 import { clearStateViewListChallenge } from '../../challenge/list/action'
 import { myProfileClearState } from '../edit/action'
 import { viewDetailProfileRequest, viewDetailProfileClearStateRequest } from './action'
-
 /**
  * My Profile Pages
  *
@@ -31,7 +30,6 @@ export default function MyProfile() {
   const userInfo = useSelector((state: RootState) => state.login.userInfo)
   const challengeState = useSelector((state: RootState) => state.listChallenges)
   const { challenges } = challengeState
-  const editMyProfileState = useSelector((state: RootState) => state.editMyProfile)
 
   useEffect(() => {
     dispatch(
@@ -41,17 +39,6 @@ export default function MyProfile() {
       }),
     )
   }, [])
-
-  // useEffect(() => {
-  //   if (editMyProfileState.successful) {
-  //     dispatch(
-  //       viewDetailProfileRequest({
-  //         typeData: 4,
-  //         username: userInfo.userName,
-  //       }),
-  //     )
-  //   }
-  // }, [editMyProfileState])
 
   /**
    * clear state

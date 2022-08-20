@@ -32,6 +32,7 @@ import {
  * @param payload EditAssignmentRequestPayload
  */
 function* editAssignmentFlow({
+  id,
   setting,
   language,
   inputOutput,
@@ -40,6 +41,7 @@ function* editAssignmentFlow({
   try {
     yield put(showLoaderAction())
     const data: EditAssignmentResponse = yield call(assignmentApi.editAssignment, {
+      id,
       setting,
       language,
       inputOutput,

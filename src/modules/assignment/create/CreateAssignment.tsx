@@ -85,6 +85,7 @@ export default function CreateAssignment() {
    * Handle submit to create assignment
    */
   const handleSubmit = () => {
+    handleCloseConfirmModal()
     dispatch(
       createAssignmentRequest({
         setting,

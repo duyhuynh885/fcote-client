@@ -53,3 +53,7 @@
   text-align: start !important;
   width: 36% !important;
 }
+
+.react-minimal-datetime-range__time-select-option:hover {
+  background-color: #23c68650 !important;
+}

@@ -25,14 +25,49 @@ const m = {
   // AUTHENTICATE
   Login: 'Login',
   Register: 'Register',
+  ResetPassword: 'Reset Password',
   ForgetPassword: 'Forget Password',
   ChangeNewPassword: 'Change New Password',
   WelcomeBack: 'Welcome Back',
   RememberMe: 'Remember Me',
-  CreateAccount: 'CreateAccount',
+  CreateAccount: 'Create Account',
   ErrorUnAuthorized: 'We’re working on it!',
   GoHome: 'Go Home',
   Group: 'Group',
+  Send: 'Send to email',
+  // FIELD
+  Email: 'Email',
+  Password: 'Password',
+  FirstName: 'First Name',
+  LastName: 'Last Name',
+  Username: 'User Name',
+  ConfirmPassword: 'Confirm Password',
+
+  // HOME PAGE
+  TopAssignmentLastWeek: 'Top Assignment Last Week',
+  TopChallengeLastWeek: 'Top Challenge Last Week',
+  LeaderBoard: 'Leaderboard',
+  No: 'No',
+  Point: 'Point',
+
+  // PROFILE PAGE
+  ChallengeCompleted: 'Challenge Completed',
+  AssignmentComplete: 'Assignment Complete',
+  HARD: 'Hard',
+  MEDIUM: 'Medium',
+  EASY: 'Easy',
+
+  // ASSIGNMENT PAGE
+
+  // CHALLENGE PAGE
+
+  // GROUP PAGE
+
+  // RANKING PAGE
+
+  // MESSAGE
+
+  // BUTTON
 }
 
 export default m

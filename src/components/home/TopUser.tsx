@@ -13,10 +13,11 @@ import {
   Typography,
 } from '@mui/material'
 import * as React from 'react'
+import { useTranslation } from 'react-i18next'
 import { ReactComponent as Bronze } from '../../assets/Bronze.svg'
 import { ReactComponent as Gold } from '../../assets/Gold.svg'
 import { ReactComponent as Platinum } from '../../assets/Platinum.svg'
-import { RankingState, UserInfo } from '../../modules/ranking/type'
+import { RankingState } from '../../modules/ranking/type'
 import useStyles from './style'
 
 /**
@@ -42,6 +43,7 @@ const TopUser: React.FC<TopUserProps> = (props) => {
   const page = 0
   const rowsPerPage = 10
   const rows = ranking.rankingList
+  const { t } = useTranslation()
 
   function renderRanking(ranking: number) {
     {
@@ -71,7 +73,7 @@ const TopUser: React.FC<TopUserProps> = (props) => {
     >
       <Stack direction='column' spacing={2}>
         <Box>
-          <Typography className={classes.title}>Leader board</Typography>
+          <Typography className={classes.title}>{t('LeaderBoard')}</Typography>
         </Box>
         {ranking.requesting ? (
           <Stack alignItems='center'>
@@ -83,15 +85,15 @@ const TopUser: React.FC<TopUserProps> = (props) => {
               <TableHead>
                 <TableRow>
                   <TableCell className={classes.tableHeaderCellRanking}>
-                    <Typography className={classes.textHeaderCell}>No</Typography>
+                    <Typography className={classes.textHeaderCell}>{t('No')}</Typography>
                   </TableCell>
                   <TableCell className={classes.tableHeaderCellUsername}>
                     <Typography textAlign='start' className={classes.textHeaderCellUsername}>
-                      User name
+                      {t('Username')}
                     </Typography>
                   </TableCell>
                   <TableCell className={classes.tableHeaderCell}>
-                    <Typography className={classes.textHeaderCell}>Point</Typography>
+                    <Typography className={classes.textHeaderCell}>{t('Point')}</Typography>
                   </TableCell>
                 </TableRow>
               </TableHead>

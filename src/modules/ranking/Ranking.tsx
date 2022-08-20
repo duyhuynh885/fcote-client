@@ -1,4 +1,4 @@
-import { Divider, Grid, Stack } from '@mui/material'
+import { Grid, Stack } from '@mui/material'
 import React, { useEffect } from 'react'
 import TopRanking from '../../components/ranking/detail/TopRanking'
 import { useDispatch, useSelector } from 'react-redux'

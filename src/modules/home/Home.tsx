@@ -14,6 +14,7 @@ import { ViewListAssignmentRequestPayload } from '../assignment/list/type'
 import { clearStateViewListChallenge, fetchListChallengeRequest } from '../challenge/list/action'
 import { ViewListChallengeRequestPayload } from '../challenge/list/type'
 import { fetchRankingRequest, rankingClearState } from '../ranking/action'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Home Pages
@@ -35,6 +36,7 @@ const Home = () => {
   const topChallengeState = useSelector((state: RootState) => state.listChallenges)
   const topAssignmentsState = useSelector((state: RootState) => state.listAssignment)
   const rankingState = useSelector((state: RootState) => state.ranking)
+  const { t } = useTranslation()
 
   const customTopChallengeRequest: ViewListChallengeRequestPayload = {
     typeData: 5,
@@ -76,7 +78,7 @@ const Home = () => {
           <Stack spacing={3}>
             <TopAssignment listAssignment={topAssignmentsState.assignments} />
             <ChallengeCompleted
-              title='Top Challenge Last Week'
+              title={t('TopChallengeLastWeek')}
               listChallengeCompleted={topChallengeState.challenges}
             />
           </Stack>

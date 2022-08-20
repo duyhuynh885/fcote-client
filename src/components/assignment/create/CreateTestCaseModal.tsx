@@ -87,7 +87,6 @@ export default function CreateTestCaseModal(props: CreateTestCaseModalProps) {
    */
   const onSubmit = handleSubmit((values) => {
     const { inputTestCaseValue, outputTestCaseValue, isHide } = values
-
     const inputTestCase: TestCaseInputCreateAssignment[] = inputTestCaseValue.map(
       (data: string, index: number) => {
         const inputData = _.find(inputList, { order: index })

@@ -13,6 +13,7 @@ export interface EditMyProfileRequestPayload {
   country: string
   phone: string
   gender: string
+  avatar?: any
 }
 
 export interface EditMyProfileSuccessResponse {

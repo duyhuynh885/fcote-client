@@ -7,9 +7,11 @@ import { useTranslation } from 'react-i18next'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import { styled } from '@mui/material/styles'
 import { theme } from '../../../configs/theme/theme'
+import { signOut } from '../../../utils/auth'
+import history from '../../../configs/routing/history'
 
 /**
- * UnAuthorized 403 Pages
+ * UnAuthorized 401 Pages
  *
  * Version 1.0
  *
@@ -50,6 +52,12 @@ const ButtonBack = styled(Button)({
 export default function Forbidden() {
   const classes = useStyles()
   const { t } = useTranslation()
+
+  const handleOnClick = () => {
+    signOut()
+    history.push('/login')
+  }
+
   return (
     <React.Fragment>
       <Grid
@@ -87,14 +95,14 @@ export default function Forbidden() {
           />
         </Grid>
         <Link
-          href='/'
           underline='none'
           color='inherit'
+          onClick={handleOnClick}
           component={ButtonBack}
           startIcon={<KeyboardReturnIcon />}
           className={classes.buttonBack}
         >
-          {t('GoHome')}
+          {t('Login')}
         </Link>
       </Grid>
     </React.Fragment>

@@ -21,7 +21,7 @@ export enum UploadImageActionType {
 }
 
 export interface UploadImageRequestPayload {
-  file: string
+  file: any
 }
 
 export interface UploadImageErrorResponse {

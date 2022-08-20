@@ -66,7 +66,7 @@ export default function EditAssignment() {
   useEffect(() => {
     dispatch(
       previewEditAssignmentRequest({
-        assignmentId,
+        id: assignmentId,
       }),
     )
   }, [])
@@ -106,6 +106,7 @@ export default function EditAssignment() {
     handleCloseConfirmModal()
     dispatch(
       editAssignmentRequest({
+        id: assignmentId,
         setting,
         language,
         inputOutput: { input: inputList, output: output },

@@ -1,13 +1,13 @@
 import {
-  CreateChallengeErrorResponse,
-  CreateChallengeResponse,
-} from './../modules/challenge/create/type'
+  GetImageErrorResponse,
+  GetImageRequestPayload,
+  GetImageResponse,
+} from './../modules/image/get/type'
 import {
-  ViewListChallengeErrorResponse,
-  ViewListChallengeSuccessResponse,
-} from './../modules/challenge/list/type'
-import { GetImageRequestPayload } from './../modules/image/get/type'
-import { UploadImageRequestPayload } from './../modules/image/upload/type'
+  UploadImageErrorResponse,
+  UploadImageRequestPayload,
+  UploadImageResponse,
+} from './../modules/image/upload/type'
 import { axiosClient } from './clientApi'
 
 /**
@@ -32,11 +32,8 @@ const imageApi = {
    * @returns
    */
   getImage(payload: GetImageRequestPayload) {
-    const url = '/account/put-avatar'
-    return axiosClient.post<ViewListChallengeSuccessResponse, ViewListChallengeErrorResponse>(
-      url,
-      payload,
-    )
+    const url = '/account/get-image'
+    return axiosClient.post<GetImageResponse, GetImageErrorResponse>(url, payload)
   },
 
   /**
@@ -47,7 +44,7 @@ const imageApi = {
     const formData = new FormData()
     formData.append('file', payload.file)
     const url = '/account/put-avatar'
-    return axiosClient.post<CreateChallengeResponse, CreateChallengeErrorResponse>(url, formData, {
+    return axiosClient.put<UploadImageResponse, UploadImageErrorResponse>(url, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

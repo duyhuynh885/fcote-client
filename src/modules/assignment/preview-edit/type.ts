@@ -74,7 +74,7 @@ export interface TestCasePreviewEditAssignment {
 }
 
 export interface PreviewEditAssignmentRequestPayload {
-  assignmentId: number
+  id: number
 }
 
 export interface PreviewEditAssignmentErrorResponse {

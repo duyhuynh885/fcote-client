@@ -26,6 +26,7 @@ import {
  * @returns EditAssignmentRequestAction
  */
 export const editAssignmentRequest = ({
+  id,
   setting,
   language,
   inputOutput,
@@ -33,6 +34,7 @@ export const editAssignmentRequest = ({
 }: EditAssignmentRequestPayload): EditAssignmentRequestAction => {
   return {
     type: EditAssignmentActionType.EDIT_ASSIGNMENT_REQUESTING,
+    id,
     setting,
     language,
     inputOutput,

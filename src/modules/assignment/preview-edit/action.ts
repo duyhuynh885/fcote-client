@@ -26,11 +26,11 @@ import {
  * @returns PreviewEditAssignmentRequestAction
  */
 export const previewEditAssignmentRequest = ({
-  assignmentId,
+  id,
 }: PreviewEditAssignmentRequestPayload): PreviewEditAssignmentRequestAction => {
   return {
     type: PreviewEditAssignmentActionType.PREVIEW_EDIT_ASSIGNMENT_REQUESTING,
-    assignmentId,
+    id,
   }
 }
 

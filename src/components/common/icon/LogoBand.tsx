@@ -23,7 +23,7 @@ export default function LogoBand() {
         <Star />
       </Box>
       <Typography variant='h1' noWrap>
-        CoteEdu
+        FCoteEdu
       </Typography>
     </Box>
   )

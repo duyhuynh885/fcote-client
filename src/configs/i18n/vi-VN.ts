@@ -19,13 +19,14 @@ export const m = {
   AboutUs: 'Vê Chúng Tôi ',
   ContactUs: 'Liên Hệ Chúng Tôi',
   MyProfile: 'Thông Tin Cá Nhân',
-  Assignment: 'Luyện Tập',
+  Assignment: 'Bài Tập',
   Challenge: 'Thử Thách',
   Ranking: 'Bảng Xếp Hạng',
   // AUTHENTICATE
   Login: 'Đăng Nhập',
   Register: 'Đăng Kí',
-  ForgetPassword: 'Quên Mật Khẩu',
+  ResetPassword: 'Đặt lại mật khẩu',
+  ForgetPassword: 'Quên mật khẩu',
   ChangeNewPassword: 'Thay Đổi Mật Khẩu',
   WelcomeBack: 'Chào mừng trở lại',
   RememberMe: 'Lưu Tài Khoản',
@@ -33,6 +34,21 @@ export const m = {
   ErrorUnAuthorized: 'Chúng tôi đang xử lý sự cố!',
   GoHome: 'Trở về',
   Group: 'Nhóm',
+  Send: 'Gửi tới email',
+  // FIELD
+  Email: 'Email',
+  Password: 'Mật khẩu',
+  FirstName: 'Tên',
+  LastName: 'Họ',
+  Username: 'Tên tài khoản',
+  ConfirmPassword: 'Xác nhận mật khẩu',
+
+  // HOME PAGE
+  TopAssignmentLastWeek: 'Bài Tập Hàng Đầu Tuần Trước',
+  TopChallengeLastWeek: 'Thử Thách Hàng Đầu Tuần Trước',
+  LeaderBoard: 'Bảng xếp hạng',
+  No: 'STT',
+  Point: 'Điểm',
 }
 
 export default m

@@ -204,6 +204,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: theme.textFont.superSmall,
     color: theme.color.darkGray,
   },
+  selected: {
+    backgroundColor: `${theme.color.green}30  !important`,
+  },
 }))
 
 export default useStyles

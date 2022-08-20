@@ -7,6 +7,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 'bold',
     margin: '5px 0px',
   },
+  titleHeader: {
+    fontSize: theme.textFont.small,
+    color: theme.color.darkGray,
+    fontWeight: 'bold',
+  },
   tabFileName: {
     fontSize: theme.textFont.extraSmall,
     fontWeight: '800',

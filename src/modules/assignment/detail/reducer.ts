@@ -39,7 +39,7 @@ const initialState: ViewAssignmentDetailState = {
     characterLimit: 0,
     totalParticipant: 0,
     createdBy: '',
-    isUpdate: true,
+    isOwner: false,
   },
   languages: [],
   parameters: {

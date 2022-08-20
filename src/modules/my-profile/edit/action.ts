@@ -6,6 +6,7 @@ import {
 } from './type'
 
 export const editMyProfileRequest = ({
+  avatar,
   firstName,
   lastName,
   organization,
@@ -16,6 +17,7 @@ export const editMyProfileRequest = ({
 }: EditMyProfileRequestPayload): EditMyProfileRequestAction => {
   return {
     type: EditMyProfileActionType.EDIT_MY_PROFILE_REQUESTING,
+    avatar,
     firstName,
     lastName,
     organization,

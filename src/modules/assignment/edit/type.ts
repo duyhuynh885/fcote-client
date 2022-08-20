@@ -74,6 +74,7 @@ export interface TestCaseEditAssignment {
 }
 
 export interface EditAssignmentRequestPayload {
+  id: number
   setting: SettingEditAssignment
   language: LanguageEditAssignment[]
   inputOutput: InputOutputEditAssignment

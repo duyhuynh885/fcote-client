@@ -71,7 +71,7 @@ export default function ResetPassword() {
             }}
           >
             <Typography variant='h1' marginBottom='1.5rem'>
-              Reset Password
+              {t('ResetPassword')}
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
               <TextField

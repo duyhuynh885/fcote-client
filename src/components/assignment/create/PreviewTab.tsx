@@ -42,6 +42,9 @@ export default function PreviewTab(props: PreviewTabProps) {
         <React.Fragment>
           <Typography className={classes.titleNameInput}>Code Topic</Typography>
           <Stack marginLeft={2}>{parse(setting.description)}</Stack>
+          <div style={{ wordWrap: 'break-word', display: 'inline-block' }}>
+            <div className='editor' dangerouslySetInnerHTML={{ __html: setting.description }} />
+          </div>
         </React.Fragment>
       )}
       {inputList && output && (

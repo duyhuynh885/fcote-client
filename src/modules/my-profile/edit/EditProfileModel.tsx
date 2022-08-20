@@ -1,6 +1,17 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Avatar, IconButton, MenuItem, Modal, Paper, Select, Stack, TextField } from '@mui/material'
-import React, { useEffect } from 'react'
+import {
+  Avatar,
+  FormControl,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Modal,
+  Paper,
+  Select,
+  Stack,
+  TextField,
+} from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { object, string, TypeOf } from 'zod'
@@ -61,6 +72,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
   const profile = useSelector((state: RootState) => state.myProfile)
   const editMyProfileState = useSelector((state: RootState) => state.editMyProfile)
   const userInfo = useSelector((state: RootState) => state.login.userInfo)
+  const [selectedImage, setSelectedImage] = useState<File | null>()
 
   const {
     reset,
@@ -95,6 +107,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
     const { firstName, lastName, organization, city, country, phone, gender } = data
     dispatch(
       editMyProfileRequest({
+        avatar: selectedImage,
         firstName,
         lastName,
         organization,
@@ -107,24 +120,47 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
     onClose()
   }
 
+  const handleShowImage = () => {
+    if (selectedImage) {
+      return URL.createObjectURL(selectedImage)
+    } else {
+      return profile.user.avatar
+    }
+  }
+
+  const handleOnclose = () => {
+    setSelectedImage(null)
+    dispatch(myProfileClearState())
+    onClose()
+  }
+
   return (
     <React.Fragment>
       <Modal
         open={open}
-        onClose={onClose}
+        onClose={handleOnclose}
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
         <form className='form' onSubmit={handleSubmit(onSubmit)}>
           <Paper sx={style}>
             <div className={classes.root}>
-              <input accept='image/*' className={classes.input} id='icon-button-file' type='file' />
+              <input
+                accept='image/*'
+                id='icon-button-file'
+                type='file'
+                name='myImage'
+                className={classes.input}
+                onChange={(event) => {
+                  if (event.target.files && event.target.files[0]) {
+                    const img = event.target.files[0]
+                    setSelectedImage(img)
+                  }
+                }}
+              />
               <label htmlFor='icon-button-file'>
                 <IconButton color='primary' aria-label='upload picture' component='span'>
-                  <Avatar
-                    src='https://hanoimoi.com.vn/Uploads/images/tuandiep/2022/02/12/ro.jpg'
-                    className={classes.large}
-                  />
+                  <Avatar src={handleShowImage()} className={classes.large} />
                 </IconButton>
               </label>
             </div>
@@ -191,18 +227,23 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 error={!!errors['phone']}
                 helperText={errors['phone'] ? errors['phone'].message : ''}
               />
-              <Select
-                color='success'
-                label='Gender'
-                {...register('gender')}
-                labelId='demo-simple-select-label'
-                id='demo-simple-select'
-                defaultValue={profile.user.gender}
-              >
-                <MenuItem value={'1'}>Female</MenuItem>
-                <MenuItem value={'2'}>Male</MenuItem>
-                <MenuItem value={'3'}>Other Gender</MenuItem>
-              </Select>
+              <FormControl fullWidth>
+                <InputLabel color='success' id='demo-simple-select-label'>
+                  Gender
+                </InputLabel>
+                <Select
+                  color='success'
+                  label='Gender'
+                  {...register('gender')}
+                  labelId='demo-simple-select-label'
+                  id='demo-simple-select'
+                  defaultValue={profile.user.gender}
+                >
+                  <MenuItem value={'1'}>Female</MenuItem>
+                  <MenuItem value={'2'}>Male</MenuItem>
+                  <MenuItem value={'3'}>Other Gender</MenuItem>
+                </Select>
+              </FormControl>
             </Stack>
             <Stack
               direction='row'

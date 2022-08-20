@@ -165,7 +165,7 @@ function FormInput(props: FormInputProps) {
   const descriptionFiled = register('description')
 
   const handleOnChange = (event: any) => {
-    const updates = { [event.target.name]: event.target.value }
+    const updates = { [event.target.name]: event.target.value.trim() }
     handleChange(_.merge(input, updates), index)
   }
 
@@ -226,7 +226,11 @@ function FormInput(props: FormInputProps) {
             >
               {listDataType.map((dataType) => {
                 return (
-                  <MenuItem key={dataType.value} value={dataType.value}>
+                  <MenuItem
+                    classes={{ selected: classes.selected }}
+                    key={dataType.value}
+                    value={dataType.value}
+                  >
                     {dataType.name}
                   </MenuItem>
                 )
@@ -306,7 +310,11 @@ function FormOutput(props: FormOutputProps) {
         >
           {listDataType.map((dataType) => {
             return (
-              <MenuItem key={dataType.value} value={dataType.value}>
+              <MenuItem
+                classes={{ selected: classes.selected }}
+                key={dataType.value}
+                value={dataType.value}
+              >
                 {dataType.name}
               </MenuItem>
             )

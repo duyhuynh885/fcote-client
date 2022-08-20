@@ -21,6 +21,7 @@ export default function SwapLanguageCode(props: SwapLanguageCodeProps) {
   return (
     <FormControl sx={{ m: 0.5, minWidth: 80 }} size='small'>
       <Select
+        color='success'
         labelId='select-language-code'
         id='select-language-code'
         className={classes.textLanguageCode}
@@ -28,7 +29,12 @@ export default function SwapLanguageCode(props: SwapLanguageCodeProps) {
         onChange={handleChange}
       >
         {languagesState.map((_language) => (
-          <MenuItem key={_language.id} className={classes.textLanguageCode} value={_language.id}>
+          <MenuItem
+            classes={{ selected: classes.selected }}
+            key={_language.id}
+            className={classes.textLanguageCode}
+            value={_language.id}
+          >
             {_language.title}
           </MenuItem>
         ))}

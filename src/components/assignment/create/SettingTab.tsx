@@ -1,19 +1,18 @@
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
 import {
   Box,
   FormControl,
   FormControlLabel,
   Radio,
   RadioGroup,
-  Stack,
   TextField,
   Typography,
 } from '@mui/material'
 import React from 'react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-import useStyles from './style'
 import { SettingCreateAssignment } from '../../../modules/assignment/create/type'
 import { DifficultEnum } from '../../../modules/assignment/list/type'
+import useStyles from './style'
 
 /**
  * SettingTab component
@@ -31,17 +30,29 @@ import { DifficultEnum } from '../../../modules/assignment/list/type'
  */
 
 const config = {
-  toolbar: [
-    'heading',
-    '|',
-    'bold',
-    'italic',
-    'link',
-    '|',
-    'bulletedList',
-    'numberedList',
-    'blockQuote',
-  ],
+  toolbar: {
+    items: [
+      'heading',
+      '|',
+      'bold',
+      'italic',
+      '|',
+      'link',
+      '|',
+      'outdent',
+      'indent',
+      '|',
+      'bulletedList',
+      'numberedList',
+      '|',
+      'insertTable',
+      'blockQuote',
+      '|',
+      'undo',
+      'redo',
+    ],
+    shouldNotGroupWhenFull: true,
+  },
 }
 
 interface SettingTabProps {
@@ -72,7 +83,7 @@ export default function SettingTab(props: SettingTabProps) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleSetting({
       ...setting,
-      name: event.target.value,
+      name: event.target.value.trim(),
     })
   }
 

@@ -91,6 +91,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       borderRadius: '10px',
     },
   },
+  selected: {
+    backgroundColor: `${theme.color.green}30  !important`,
+  },
 }))
 
 export default useStyles

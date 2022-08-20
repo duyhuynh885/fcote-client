@@ -141,7 +141,7 @@ export default function DetailAssignment() {
         justifyContent='space-between'
       >
         <Stack direction='row' alignItems='center'>
-          {detail.isUpdate && challengeId === 1 ? (
+          {detail.isOwner && challengeId === 1 ? (
             <Box marginRight={2}>
               <Link
                 style={{ color: 'inherit', textDecoration: 'inherit' }}

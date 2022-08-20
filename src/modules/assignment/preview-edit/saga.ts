@@ -29,11 +29,11 @@ import {
  * PreviewEditAssignment flow generator function
  * @param payload PreviewEditAssignmentRequestPayload
  */
-function* previewEditAssignmentFlow({ assignmentId }: PreviewEditAssignmentRequestAction) {
+function* previewEditAssignmentFlow({ id }: PreviewEditAssignmentRequestAction) {
   try {
     showLoaderAction()
     const data: PreviewEditAssignmentResponse = yield call(assignmentApi.previewEditAssignment, {
-      assignmentId,
+      id,
     })
     yield put({
       type: PreviewEditAssignmentActionType.PREVIEW_EDIT_ASSIGNMENT_SUCCESS,

@@ -7,6 +7,7 @@ import AssignmentItemRectangle, { TypeAssignmentItemRectangleEnum } from './Assi
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Top Assignment component
@@ -54,6 +55,8 @@ const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
   const topAssignmentsState = useSelector((state: RootState) => state.listAssignment)
   const classes = useStyles()
   const { listAssignment } = props
+  const { t } = useTranslation()
+
   return (
     <Paper
       elevation={4}
@@ -66,7 +69,7 @@ const TopAssignment: React.FC<TopAssignmentProps> = (props) => {
     >
       <Stack direction='column' spacing={2}>
         <Box>
-          <Typography className={classes.title}>Top Assignment Last Week</Typography>
+          <Typography className={classes.title}>{t('TopAssignmentLastWeek')}</Typography>
         </Box>
         <Stack spacing={2} className={classes.scrollBar}>
           {topAssignmentsState.requesting ? (

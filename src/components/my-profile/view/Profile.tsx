@@ -19,6 +19,7 @@ import EditProfileModel from '../../../modules/my-profile/edit/EditProfileModel'
 import { formatDate } from '../../../utils/dateUtil'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
+import DefaultAvatar from '../../../assets/DefaultAvatar.png'
 
 /**
  * Profile component
@@ -121,7 +122,7 @@ const Profile: React.FC<ProfileProps> = (props) => {
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Avatar
               alt='Profile Image'
-              src={props.user.avatar}
+              src={props.user.avatar ?? DefaultAvatar}
               className={classes.myProfileAvatar}
             />
           </Box>
@@ -152,7 +153,7 @@ const Profile: React.FC<ProfileProps> = (props) => {
             </TableContainer>
           </Box>
           <Box className={classes.myProfileContainerDescription}>
-            <Typography className={classes.description}>Description</Typography>
+            <Typography className={classes.description}></Typography>
           </Box>
         </>
       )}

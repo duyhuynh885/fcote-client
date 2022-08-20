@@ -1,27 +1,17 @@
-import {
-  Box,
-  Checkbox,
-  Container,
-  FormControlLabel,
-  FormGroup,
-  FormHelperText,
-  Grid,
-  TextField,
-  Typography,
-} from '@mui/material'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Box, Container, Grid, TextField, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { literal, object, string, TypeOf } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
-import RegularButton from '../../../components/common/button/RegularButton'
-import useStyles from '../style'
-import { isAuth } from '../../../utils/auth'
-import history from '../../../configs/routing/history'
-import { registerRequest, registerClearStateRequest } from './action'
 import { useDispatch, useSelector } from 'react-redux'
+import { object, string, TypeOf } from 'zod'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
+import RegularButton from '../../../components/common/button/RegularButton'
 import ErrorMessage from '../../../components/common/text/ErrorMessage'
+import history from '../../../configs/routing/history'
+import { isAuth } from '../../../utils/auth'
+import useStyles from '../style'
+import { registerClearStateRequest, registerRequest } from './action'
 
 /**
  * Register Pages
@@ -119,7 +109,7 @@ export default function Register() {
             }}
           >
             <Typography variant='h1' marginBottom='1.5rem'>
-              Create Account{' '}
+              {t('CreateAccount')}
             </Typography>
             {registerState.errors ? <ErrorMessage error={registerState.errors} /> : null}
             <form className='form' onSubmit={handleSubmit(onSubmit)}>
@@ -131,7 +121,7 @@ export default function Register() {
                     required
                     sx={{ width: '100%', marginBottom: '1.5rem' }}
                     id='outlined-firstName-input'
-                    label='Fist Name'
+                    label={t('FirstName')}
                     error={!!errors['firstName']}
                     helperText={errors['firstName'] ? errors['firstName'].message : ''}
                   />
@@ -143,7 +133,7 @@ export default function Register() {
                     required
                     sx={{ width: '100%', marginBottom: '1.5rem' }}
                     id='outlined-lastName-input'
-                    label='Last Name'
+                    label={t('LastName')}
                     error={!!errors['lastName']}
                     helperText={errors['lastName'] ? errors['lastName'].message : ''}
                   />
@@ -155,7 +145,7 @@ export default function Register() {
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-userName-input'
-                label='User Name'
+                label={t('Username')}
                 error={!!errors['username']}
                 helperText={errors['username'] ? errors['username'].message : ''}
               />
@@ -176,7 +166,7 @@ export default function Register() {
                 required
                 id='outlined-password-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
-                label='Password'
+                label={t('Password')}
                 type='password'
                 error={!!errors['password']}
                 helperText={errors['password'] ? errors['password'].message : ''}
@@ -188,7 +178,7 @@ export default function Register() {
                 required
                 id='outlined-confirm-password-input'
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
-                label='Confirm password'
+                label={t('ConfirmPassword')}
                 type='password'
                 error={!!errors['confirmPassword']}
                 helperText={errors['confirmPassword'] ? errors['confirmPassword'].message : ''}
