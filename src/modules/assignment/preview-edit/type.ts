@@ -116,5 +116,8 @@ export interface PreviewEditAssignmentState {
   successful: boolean
   messages: Message
   errors: ErrorMessage
-  data: PreviewEditAssignmentResponse
+  setting: SettingPreviewEditAssignment
+  language: LanguagePreviewEditAssignment[]
+  inputOutput: InputOutputPreviewEditAssignment
+  testCase: TestCasePreviewEditAssignment[]
 }

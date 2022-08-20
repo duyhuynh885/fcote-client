@@ -20,12 +20,15 @@ import {
  * 22-06-2022         DuyHV           PreviewEdit
  */
 
-const initialState: PreviewEditAssignmentState = {
+const initialState: any = {
   requesting: false,
   successful: false,
   messages: {} as Message,
   errors: {} as ErrorMessage,
-  data: {} as PreviewEditAssignmentResponse,
+  setting: {},
+  language: [],
+  inputOutput: {},
+  testCase: [],
 }
 
 /**
@@ -50,14 +53,12 @@ const reducer = (state = initialState, action: PreviewEditAssignmentAction) => {
           messageEn: action.messageEn,
           messageVi: action.messageVi,
         },
-        data: {
-          setting: action.setting,
-          language: action.language,
-          inputOutput: action.inputOutput,
-          testCase: action.testCase,
-        },
         requesting: false,
         successful: true,
+        setting: action.setting,
+        language: action.language,
+        inputOutput: action.inputOutput,
+        testCase: action.testCase,
       }
 
     case PreviewEditAssignmentActionType.PREVIEW_EDIT_ASSIGNMENT_ERROR:

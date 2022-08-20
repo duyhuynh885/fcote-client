@@ -48,7 +48,7 @@ interface RouteParams {
 
 export default function EditAssignment() {
   const dispatch = useDispatch<AppDispatch>()
-  const previewEditAssignmentState = useSelector((state: RootState) => state.previewEditAssignment)
+  const previewEditAssignment = useSelector((state: RootState) => state.previewEditAssignment)
   const [value, setValue] = React.useState(0)
   const classes = useStyles()
   const params = useParams<RouteParams>()
@@ -75,10 +75,13 @@ export default function EditAssignment() {
    * fetch data for edit
    */
   useEffect(() => {
-    if (previewEditAssignmentState) {
-      setLanguage([])
+    if (previewEditAssignment.successful) {
+      setSetting(previewEditAssignment.setting)
+      setInputList(previewEditAssignment.inputOutput.input)
+      setTestCaseList(previewEditAssignment.testCase)
+      setOutput(previewEditAssignment.inputOutput.output)
     }
-  }, [previewEditAssignmentState])
+  }, [previewEditAssignment])
 
   /**
    * Clear state

@@ -161,7 +161,7 @@ const assignmentApi = {
    * @returns CreateAssignmentErrorResponse
    */
   previewEditAssignment(payload: PreviewEditAssignmentRequestPayload) {
-    const url = '/assignment/preview-edit-assignment'
+    const url = '/assignment/get-assignment-edit'
     return axiosClient.post<PreviewEditAssignmentResponse, PreviewEditAssignmentErrorResponse>(
       url,
       payload,

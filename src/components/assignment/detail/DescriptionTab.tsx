@@ -83,7 +83,11 @@ export default function DescriptionTab(props: DescriptionTabProps) {
             </Stack>
           </Box>
           <Typography className={classes.titleNameInput}>The Description</Typography>
-          <Stack marginLeft={2}>{parse(detail.description)}</Stack>
+          <Stack marginLeft={2}>
+            <div style={{ wordWrap: 'break-word', display: 'inline-block' }}>
+              <div className='editor' dangerouslySetInnerHTML={{ __html: detail.description }} />
+            </div>
+          </Stack>
           <Typography className={classes.titleNameInput}>Input / Output</Typography>
           <Stack marginLeft={2} direction='column'>
             {_.sortBy(parameters.input, ['order']).map((_input) => (

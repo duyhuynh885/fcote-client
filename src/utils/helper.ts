@@ -135,7 +135,7 @@ const validation = {
     return pattern.test(data)
   },
   isString(data: string) {
-    const pattern = /^[a-z\s]{0,255}$/
+    const pattern = /[A-Za-z]{3}([0-9]{1,4})?|[A-Za-z]{1,3}/
     return pattern.test(data)
   },
   isBoolean(data: string) {
