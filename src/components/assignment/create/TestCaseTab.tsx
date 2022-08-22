@@ -143,7 +143,13 @@ export default function TestCaseTab(props: TestCaseTabProps) {
           </RegularButton>
         </Stack>
       ) : null}
-      <Stack direction='column' padding={2} className={classes.scrollBarTestCase}>
+      <Stack
+        direction='column'
+        padding={2}
+        className={`${classes.scrollBarTestCase} ${
+          type === 'EDIT' ? classes.scrollBarTestCaseEdit : null
+        }`}
+      >
         {testCaseList.map((testCase) => (
           <GenerateTestCase
             typeForm={type}
