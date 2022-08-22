@@ -25,7 +25,7 @@ export default function LanguageTab() {
   return (
     <Box className={classes.scrollBar}>
       <Typography textAlign='center' className={classes.tabTitle}>
-        Set timeout for languages (default 10second)
+        Timeout for languages (default 10second)
       </Typography>
       <Table aria-label='caption table'>
         <TableHead>

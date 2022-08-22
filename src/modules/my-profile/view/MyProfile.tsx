@@ -35,7 +35,7 @@ export default function MyProfile() {
     dispatch(
       viewDetailProfileRequest({
         typeData: 4,
-        username: userInfo.userName,
+        username: userInfo.username,
       }),
     )
   }, [])

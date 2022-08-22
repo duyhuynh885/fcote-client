@@ -94,7 +94,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
       dispatch(
         viewDetailProfileRequest({
           typeData: 4,
-          username: userInfo.userName,
+          username: userInfo.username,
         }),
       )
       dispatch(myProfileClearState())

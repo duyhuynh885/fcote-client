@@ -44,7 +44,7 @@ export default function Congratulation(props: CongratulationProps) {
           </Stack>
           <Stack direction='row' alignItems='center' spacing={1}>
             <Typography sx={{ fontSize: '30px' }}>Congratulation </Typography>{' '}
-            <Typography sx={{ fontSize: '28px', fontWeight: '700' }}>duyhuynh885</Typography>
+            <Typography sx={{ fontSize: '28px', fontWeight: '700' }}>{userState.username}</Typography>
           </Stack>
           <Typography className={classes.createTestCaseModelTitle}>
             You have just finished this task.

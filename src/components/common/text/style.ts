@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   hard: { color: '#b51b43', backgroundColor: '#e3513e50' },
   notSolved: { color: '#605e5e', backgroundColor: '#C8C3C250' },
   inProgress: { color: '#3366FF', backgroundColor: '#ADC8FF50' },
-  solved: { color: '#605e5e', backgroundColor: '#C8C3C250' },
+  solved: { color: '#9733FF', backgroundColor: '#F2D6FF50' },
   notOpenYet: {
     color: '#605e5e',
   },

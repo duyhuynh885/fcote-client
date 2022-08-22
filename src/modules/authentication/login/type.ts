@@ -33,7 +33,7 @@ export interface User {
   userId: number
   fullName: string
   avatar: string
-  userName: string
+  username: string
 }
 export interface LoginResponse {
   accessToken: string
