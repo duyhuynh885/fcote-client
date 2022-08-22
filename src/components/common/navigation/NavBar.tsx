@@ -77,15 +77,6 @@ function Navbar() {
   const loginIsSuccess = useSelector((state: RootState) => state.login.successful)
   const userInfo = useSelector((state: RootState) => state.login.userInfo)
   const myProfileState = useSelector((state: RootState) => state.myProfile)
-
-  useEffect(() => {
-    dispatch(
-      viewDetailProfileRequest({
-        typeData: 4,
-        username: userInfo.username,
-      }),
-    )
-  }, [myProfileState])
   
   /**
    * Handle open user menu
