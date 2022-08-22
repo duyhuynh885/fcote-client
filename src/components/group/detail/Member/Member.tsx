@@ -26,6 +26,7 @@ import { MemberInGroup } from '../../../../modules/group/detail/type'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../../apps/ReduxContainer'
 import { kickGroupRequest } from '../../../../modules/group/setting/kick/action'
+import _ from 'lodash'
 
 interface DetailGroupProps {
   member: MemberInGroup[]
@@ -38,7 +39,7 @@ export default function Member(props: DetailGroupProps) {
   const { member, isOwner, requesting } = props
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
-  const rows = member
+  const rows = _.orderBy(member, ['totalScore'],['desc'])
 
   const dispatch = useDispatch<AppDispatch>()
   const groupIdState = useSelector((state: RootState) => state.detailGroup.groupDetail.id)

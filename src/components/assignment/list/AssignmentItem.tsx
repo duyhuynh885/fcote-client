@@ -50,8 +50,8 @@ const AssignmentItem = (props: AssignmentItemProps) => {
         </Stack>
         <Stack direction='row' justifyContent='space-between' alignItems='center'>
           <Status
-            status={mapStatusAssignment(StatusEnum.IN_PROGRESS)}
-            displayText={'IN PROGRESS'}
+            status={mapStatusAssignment(assignment.status)}
+            displayText={StatusEnum[assignment.status]}
           ></Status>
           <Difficultly
             difficult={mapDifficultyAssignment(assignment.difficulty)}
