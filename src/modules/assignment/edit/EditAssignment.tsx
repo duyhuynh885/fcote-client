@@ -151,7 +151,7 @@ export default function EditAssignment() {
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            <SettingTab setting={setting} handleSetting={setSetting} />
+            <SettingTab setting={setting} type={'EDIT'} handleSetting={setSetting} />
           </TabPanel>
           <TabPanel value={value} index={1}>
             <LanguageTab />

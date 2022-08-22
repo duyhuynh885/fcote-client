@@ -56,12 +56,13 @@ const config = {
 }
 
 interface SettingTabProps {
+  type: 'CREATE' | 'EDIT'
   setting: SettingCreateAssignment
   handleSetting: (setting: SettingCreateAssignment) => void
 }
 
 export default function SettingTab(props: SettingTabProps) {
-  const { setting, handleSetting } = props
+  const { setting, handleSetting, type } = props
   const classes = useStyles()
 
   /**
@@ -122,16 +123,19 @@ export default function SettingTab(props: SettingTabProps) {
           name='row-radio-buttons-group'
         >
           <FormControlLabel
+            disabled={type === 'EDIT' ? true : false}
             value={DifficultEnum.EASY}
             control={<Radio size='small' color='success' />}
             label='Easy'
           />
           <FormControlLabel
+            disabled={type === 'EDIT' ? true : false}
             value={DifficultEnum.MEDIUM}
             control={<Radio size='small' color='success' />}
             label='Medium'
           />
           <FormControlLabel
+            disabled={type === 'EDIT' ? true : false}
             value={DifficultEnum.HARD}
             control={<Radio size='small' color='success' />}
             label='Hard'

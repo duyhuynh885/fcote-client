@@ -129,7 +129,7 @@ export default function CreateAssignment() {
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            <SettingTab setting={setting} handleSetting={setSetting} />
+            <SettingTab type='CREATE' setting={setting} handleSetting={setSetting} />
           </TabPanel>
           <TabPanel value={value} index={1}>
             <LanguageTab />
