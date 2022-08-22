@@ -126,8 +126,12 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
   const columns: readonly Column[] = [
     { id: 'rank', label: '#', minWidth: 10 },
-    { id: 'username', label: 'Username', minWidth: 100, align: 'left' },
-    createType(props.type, capitalizeFirstLetter(props.type), 170, 'center'),
+    {
+      id: 'username',
+      label: `${props.type === 'organization' ? 'Organization' : 'Username'}`,
+      minWidth: 100,
+      align: 'left',
+    },
     {
       id: 'score',
       label: 'Total Score',
@@ -172,15 +176,18 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
               <TableCell component='th' scope='row' style={{ width: 10, fontWeight: '700' }}>
                 {row.order}
               </TableCell>
-              <TableCell style={{ width: 160 }} align='left'>
-                <Stack direction='row' alignItems='center' spacing={1}>
-                  <Avatar alt='Avatar' src={row.avatar ?? DefaultAvatar} />
-                  <Typography>{row.username}</Typography>
-                </Stack>
-              </TableCell>
-              <TableCell style={{ width: 160 }} align='center'>
-                {row.organization}
-              </TableCell>
+              {props.type === 'organization' ? (
+                <TableCell style={{ width: 160 }} align='left'>
+                  {row.organization}
+                </TableCell>
+              ) : (
+                <TableCell style={{ width: 160 }} align='left'>
+                  <Stack direction='row' alignItems='center' spacing={1}>
+                    <Avatar alt='Avatar' src={row.avatar ?? DefaultAvatar} />
+                    <Typography>{row.username}</Typography>
+                  </Stack>
+                </TableCell>
+              )}
               <TableCell style={{ width: 160 }} align='right'>
                 {row.total_score}
               </TableCell>

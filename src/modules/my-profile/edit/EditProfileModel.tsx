@@ -67,8 +67,6 @@ const editProfileSchema = object({
 })
 
 type EditProfileInput = TypeOf<typeof editProfileSchema>
-const containsText = (text: string, searchText: string) =>
-  text.toLowerCase().indexOf(searchText.toLowerCase()) > -1
 
 export default function EditProfileModel({ open, onClose }: ButtonProps) {
   const classes = useStyles()
@@ -201,73 +199,83 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 error={!!errors['lastName']}
                 helperText={errors['lastName'] ? errors['lastName'].message : ''}
               />
+              <FormControl fullWidth>
+                <Autocomplete
+                  freeSolo
+                  id='id'
+                  disableClearable
+                  defaultValue={profile.user.organizationTitle}
+                  options={organizationsState.data.map((option) => option.title)}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      sx={{ width: '100%', marginBottom: '1.5rem' }}
+                      color='success'
+                      label='Organization'
+                      {...register('organization')}
+                      error={!!errors['organization']}
+                      defaultValue={profile.user.organizationTitle}
+                      helperText={errors['organization'] ? errors['organization'].message : ''}
+                      InputProps={{
+                        ...params.InputProps,
+                        type: 'search',
+                      }}
+                    />
+                  )}
+                />
+              </FormControl>
 
-              <Autocomplete
-                freeSolo
-                id='id'
-                disableClearable
-                defaultValue={profile.user.organizationTitle}
-                options={organizationsState.data.map((option) => option.title)}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    sx={{ width: '100%', marginBottom: '1.5rem' }}
-                    color='success'
-                    label='Organization'
-                    {...register('organization')}
-                    error={!!errors['organization']}
-                    helperText={errors['organization'] ? errors['organization'].message : ''}
-                    InputProps={{
-                      ...params.InputProps,
-                      type: 'search',
-                    }}
-                  />
-                )}
-              />
-              <Autocomplete
-                freeSolo
-                id='id-country'
-                disableClearable
-                defaultValue={profile.user.country}
-                options={countryData.map((option) => option.label)}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    sx={{ width: '100%', marginBottom: '1.5rem' }}
-                    color='success'
-                    label='Country'
-                    {...register('country')}
-                    error={!!errors['country']}
-                    helperText={errors['country'] ? errors['country'].message : ''}
-                    InputProps={{
-                      ...params.InputProps,
-                      type: 'search',
-                    }}
-                  />
-                )}
-              />
-              <Autocomplete
-                freeSolo
-                id='id-city'
-                disableClearable
-                defaultValue={profile.user.city}
-                options={cityVN.map((option) => option.city)}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    sx={{ width: '100%', marginBottom: '1.5rem' }}
-                    color='success'
-                    label='City'
-                    {...register('city')}
-                    error={!!errors['city']}
-                    helperText={errors['city'] ? errors['city'].message : ''}
-                    InputProps={{
-                      ...params.InputProps,
-                      type: 'search',
-                    }}
-                  />
-                )}
-              />
+              <FormControl fullWidth>
+                <Autocomplete
+                  freeSolo
+                  id='id-country'
+                  disableClearable
+                  defaultValue={profile.user.country}
+                  options={countryData.map((option) => option.label)}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      sx={{ width: '100%', marginBottom: '1.5rem' }}
+                      color='success'
+                      label='Country'
+                      {...register('country')}
+                      error={!!errors['country']}
+                      defaultValue={profile.user.country}
+                      helperText={errors['country'] ? errors['country'].message : ''}
+                      InputProps={{
+                        ...params.InputProps,
+                        type: 'search',
+                      }}
+                    />
+                  )}
+                />
+              </FormControl>
+
+              <FormControl fullWidth>
+                <Autocomplete
+                  freeSolo
+                  id='id-city'
+                  disableClearable
+                  defaultValue={profile.user.city}
+                  options={cityVN.map((option) => option.city)}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      sx={{ width: '100%', marginBottom: '1.5rem' }}
+                      color='success'
+                      label='City'
+                      {...register('city')}
+                      error={!!errors['city']}
+                      helperText={errors['city'] ? errors['city'].message : ''}
+                      InputProps={{
+                        ...params.InputProps,
+                        type: 'search',
+                      }}
+                    />
+                  )}
+                />
+              </FormControl>
+
               <TextField
                 color='success'
                 {...register('phone')}

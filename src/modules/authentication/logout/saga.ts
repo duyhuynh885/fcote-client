@@ -1,3 +1,6 @@
+import { ViewListDataTypeActionType } from './../../assignment/data-type/type'
+import { ViewListLanguageActionType } from './../../assignment/language/type'
+import { ViewMyProfileActionType } from './../../my-profile/view/type'
 import { LoginActionType } from './../login/type'
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import history from '../../../configs/routing/history'
@@ -35,6 +38,10 @@ function* logoutFlow() {
     yield call(signOut)
     yield put({ type: LogoutActionType.LOGOUT_SUCCESS, ...data })
     yield put({ type: LoginActionType.LOGIN_CLEAR_STATE })
+    yield put({ type: ViewMyProfileActionType.VIEW_MY_PROFILE_CLEAR_STATE })
+    yield put({ type: ViewListLanguageActionType.VIEW_LIST_LANGUAGE_CLEAR_STATE })
+    yield put({ type: ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_CLEAR_STATE })
+
     history.push('/login')
     yield put(hideLoaderAction())
     yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))

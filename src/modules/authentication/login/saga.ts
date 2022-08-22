@@ -1,3 +1,4 @@
+import { ViewMyProfileActionType } from './../../my-profile/view/type'
 import { ViewListLanguageActionType } from './../../assignment/language/type'
 import { ViewListDataTypeActionType } from './../../assignment/data-type/type'
 import { call, put, takeEvery, fork, all } from 'redux-saga/effects'
@@ -38,6 +39,8 @@ function* loginFlow({ email, password }: LoginRequestAction) {
     yield put({ type: LoginActionType.LOGIN_SUCCESS, ...data })
     yield put({ type: ViewListDataTypeActionType.VIEW_LIST_DATA_TYPE_REQUESTING })
     yield put({ type: ViewListLanguageActionType.VIEW_LIST_LANGUAGE_REQUESTING })
+    yield put({ type: ViewMyProfileActionType.VIEW_MY_PROFILE_REQUESTING, typeData: 4 })
+
     history.push('/')
     yield put(hideLoaderAction())
     yield put(showToastAction('success', swapMessage(data.messageEn, data.messageVi)))

@@ -7,7 +7,7 @@ import ChallengeCompleted from '../../../components/my-profile/view/ChallengeCom
 import Profile from '../../../components/my-profile/view/Profile'
 import { clearStateViewListChallenge } from '../../challenge/list/action'
 import { myProfileClearState } from '../edit/action'
-import { viewDetailProfileRequest, viewDetailProfileClearStateRequest } from './action'
+import { viewDetailProfileRequest } from './action'
 /**
  * My Profile Pages
  *
@@ -45,7 +45,7 @@ export default function MyProfile() {
    */
   useEffect(() => {
     return () => {
-      dispatch(viewDetailProfileClearStateRequest())
+      // dispatch(viewDetailProfileClearStateRequest())
       dispatch(clearStateViewListChallenge())
       dispatch(myProfileClearState())
     }
