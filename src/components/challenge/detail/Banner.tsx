@@ -87,7 +87,7 @@ export default function Banner(props: BannerProps) {
                     Total participants:
                   </Typography>
                   <Typography className={classes.bannerFooterTotalParticipial}>
-                    {detail.totalParticipial}
+                    {detail.totalMember}
                   </Typography>
                   <Typography className={classes.bannerFooterTextTitle}>members</Typography>
                 </Stack>
