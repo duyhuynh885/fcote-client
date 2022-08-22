@@ -22,7 +22,7 @@ function* editMyProfileFlow({
 }: EditMyProfileRequestAction) {
   try {
     yield put(showLoaderAction())
-    if (typeof avatar !== 'undefined') {
+    if (typeof avatar !== 'undefined' || avatar) {
       yield call(imageApi.uploadImage, {
         file: avatar,
       })

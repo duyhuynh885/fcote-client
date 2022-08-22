@@ -27,6 +27,7 @@ import logoutSaga from '../../modules/authentication/logout/saga'
 import resetPasswordSaga from '../../modules/authentication/reset-password/saga'
 import editAssignmentSaga from '../../modules/assignment/edit/saga'
 import previewEditAssignmentSaga from '../../modules/assignment/preview-edit/saga'
+import getOrganizationSaga from '../../modules/my-profile/organization/saga'
 
 /**
  * Root Saga
@@ -61,5 +62,6 @@ export default function* rootSaga() {
     fork(resetPasswordSaga),
     fork(editAssignmentSaga),
     fork(previewEditAssignmentSaga),
+    fork(getOrganizationSaga),
   ])
 }

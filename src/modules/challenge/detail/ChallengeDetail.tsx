@@ -47,7 +47,11 @@ export default function ChallengeDetail() {
             <CircularProgress color='success' />
           </Stack>
         ) : (
-          <TableChallenge assignmentList={assignmentList} submits={submits} />
+          <TableChallenge
+            limitSubmission={detail.limitSubmission}
+            assignmentList={assignmentList}
+            submits={submits}
+          />
         )}
       </Stack>
     </Stack>

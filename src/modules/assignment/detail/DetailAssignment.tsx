@@ -62,7 +62,7 @@ export default function DetailAssignment() {
    * Fetch assignment detail for preview data
    */
   useEffect(() => {
-    dispatch(fetchDataAssignmentDetailRequest({ id: assignmentId }))
+    dispatch(fetchDataAssignmentDetailRequest({ id: assignmentId, challengeId }))
   }, [])
 
   /**

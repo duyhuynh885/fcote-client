@@ -28,11 +28,12 @@ import assignmentApi from '../../../services/assignmentApi'
  * ViewAssignmentDetail flow generator function
  * @param payload ViewAssignmentDetailRequestPayload
  */
-function* viewAssignmentDetailFlow({ id }: ViewAssignmentDetailRequestAction) {
+function* viewAssignmentDetailFlow({ id, challengeId }: ViewAssignmentDetailRequestAction) {
   try {
     yield put(showLoaderAction())
     const data: ViewAssignmentDetailResponse = yield call(assignmentApi.fetchAssignmentDetail, {
       id,
+      challengeId,
     })
     yield put({
       type: ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_SUCCESS,

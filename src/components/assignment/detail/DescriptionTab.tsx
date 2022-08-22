@@ -61,16 +61,6 @@ export default function DescriptionTab(props: DescriptionTabProps) {
               </Stack>
               <Divider orientation='vertical' flexItem />
               <Stack spacing={1} alignItems='center' direction='row'>
-                <Typography className={classes.titleHeader} alignItems='center'>
-                  Difficult
-                </Typography>
-                <Difficultly
-                  difficult={mapDifficultyAssignment(detail.difficulty)}
-                  displayText={DifficultEnum[detail.difficulty]}
-                />
-              </Stack>
-              <Divider orientation='vertical' flexItem />
-              <Stack spacing={1} alignItems='center' direction='row'>
                 <Typography className={classes.titleHeader}>Point</Typography>
                 <Chip
                   label={detail.score}
@@ -79,6 +69,27 @@ export default function DescriptionTab(props: DescriptionTabProps) {
                   size='small'
                   variant='outlined'
                 ></Chip>
+              </Stack>
+              <Divider orientation='vertical' flexItem />
+              <Stack spacing={1} alignItems='center' direction='row'>
+                <Typography className={classes.titleHeader}>Submissions</Typography>
+                <Chip
+                  label={`${detail?.availableSubmission}/${detail?.limitSubmission}`}
+                  sx={{ fontWeight: '700', borderRadius: '5px' }}
+                  color='secondary'
+                  size='small'
+                  variant='outlined'
+                ></Chip>
+              </Stack>
+              <Divider orientation='vertical' flexItem />
+              <Stack spacing={1} alignItems='center' direction='row'>
+                <Typography className={classes.titleHeader} alignItems='center'>
+                  Difficult
+                </Typography>
+                <Difficultly
+                  difficult={mapDifficultyAssignment(detail.difficulty)}
+                  displayText={DifficultEnum[detail.difficulty]}
+                />
               </Stack>
             </Stack>
           </Box>

@@ -27,38 +27,12 @@ import {
  */
 export const fetchDataAssignmentDetailRequest = ({
   id,
+  challengeId,
 }: ViewAssignmentDetailRequestPayload): ViewAssignmentDetailRequestAction => {
   return {
     type: ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_REQUESTING,
     id,
-  }
-}
-
-/**
- * RunAssignmentSuccess request action
- * @param param ViewAssignmentDetailRequestPayload
- * @returns ViewAssignmentDetailRequestAction
- */
-export const runAssignmentSuccess = ({
-  id,
-}: ViewAssignmentDetailRequestPayload): ViewAssignmentDetailRequestAction => {
-  return {
-    type: ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_REQUESTING,
-    id,
-  }
-}
-
-/**
- * SubmitAssignmentSuccess request action
- * @param param ViewAssignmentDetailRequestPayload
- * @returns ViewAssignmentDetailRequestAction
- */
-export const submitAssignmentSuccess = ({
-  id,
-}: ViewAssignmentDetailRequestPayload): ViewAssignmentDetailRequestAction => {
-  return {
-    type: ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_REQUESTING,
-    id,
+    challengeId,
   }
 }
 

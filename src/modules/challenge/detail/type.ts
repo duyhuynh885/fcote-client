@@ -41,6 +41,7 @@ export interface Detail {
   endAt: string
   status: StatusChallengeEnum
   totalMember: number
+  limitSubmission: number
 }
 
 export interface AssignmentList {

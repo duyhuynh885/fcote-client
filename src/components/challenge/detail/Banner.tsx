@@ -41,7 +41,9 @@ export default function Banner(props: BannerProps) {
           <Stack direction='column' sx={{ height: '100%', width: '100%', padding: '0 50px' }}>
             <Stack direction='column' sx={{ height: '75%', width: '100%' }}>
               <Stack direction='column' alignItems='center' sx={{ height: '60%', width: '100%' }}>
-                <Typography className={classes.bannerTitle}>{detail.title.toUpperCase()}</Typography>
+                <Typography className={classes.bannerTitle}>
+                  {detail.title.toUpperCase()}
+                </Typography>
                 <Typography className={classes.bannerDescription}>{detail.description}</Typography>
               </Stack>
               <Grid container sx={{ height: '40%', width: '100%' }}>

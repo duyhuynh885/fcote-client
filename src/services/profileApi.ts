@@ -1,12 +1,16 @@
 import {
+  EditMyProfileErrorResponse,
   EditMyProfileRequestPayload,
   EditMyProfileSuccessResponse,
-  EditMyProfileErrorResponse,
 } from '../modules/my-profile/edit/type'
 import {
+  GetOrganizationErrorResponse,
+  GetOrganizationSuccessResponse,
+} from './../modules/my-profile/organization/type'
+import {
+  ViewMyProfileErrorResponse,
   ViewMyProfileRequestingPayload,
   ViewMyProfileSuccessResponse,
-  ViewMyProfileErrorResponse,
 } from './../modules/my-profile/view/type'
 
 import { axiosClient } from './clientApi'
@@ -32,6 +36,15 @@ const profileApi = {
     return axiosClient.put<EditMyProfileSuccessResponse, EditMyProfileErrorResponse>(url, {
       user: payload,
     })
+  },
+
+  /**
+   * get organization
+   * @returns GetOrganizationSuccessResponse
+   */
+  getOrganization() {
+    const url = '/account/get-organization'
+    return axiosClient.get<GetOrganizationSuccessResponse, GetOrganizationErrorResponse>(url)
   },
 }
 export default profileApi

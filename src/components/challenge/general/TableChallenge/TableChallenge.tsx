@@ -37,6 +37,7 @@ import _ from 'lodash'
  */
 
 interface TableChallengeProps {
+  limitSubmission: number
   assignmentList: AssignmentList[]
   submits: Submit[]
 }
@@ -62,7 +63,7 @@ interface IDataRow {
 
 export default function TableChallenge(props: TableChallengeProps) {
   const classes = useStyles()
-  const { assignmentList, submits } = props
+  const { assignmentList, submits, limitSubmission } = props
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
   const match = useRouteMatch()
@@ -214,7 +215,7 @@ export default function TableChallenge(props: TableChallengeProps) {
                           <Typography className={classes.textItemCell}>
                             {_result.numberSubmit === '-'
                               ? _result.numberSubmit
-                              : `${_result.numberSubmit}/10 submission`}
+                              : `${_result.numberSubmit}/${limitSubmission} submission`}
                           </Typography>
                         </Stack>
                       </TableCell>

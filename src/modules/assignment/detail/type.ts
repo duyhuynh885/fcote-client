@@ -38,6 +38,8 @@ export interface Detail {
   totalParticipant: number
   createdBy: string
   isOwner: boolean
+  limitSubmission: number
+  availableSubmission: number
 }
 
 export interface Language {
@@ -104,6 +106,7 @@ export interface Result {
 
 export interface ViewAssignmentDetailRequestPayload {
   id: number
+  challengeId: number
 }
 
 export interface ViewAssignmentDetailErrorResponse {

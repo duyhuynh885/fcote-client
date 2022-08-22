@@ -40,6 +40,8 @@ const initialState: ViewAssignmentDetailState = {
     totalParticipant: 0,
     createdBy: '',
     isOwner: false,
+    limitSubmission: 0,
+    availableSubmission: 0,
   },
   languages: [],
   parameters: {

@@ -29,6 +29,7 @@ import logoutReducer from '../../modules/authentication/logout/reducer'
 import resetPasswordReducer from '../../modules/authentication/reset-password/reducer'
 import editAssignmentReducer from '../../modules/assignment/edit/reducer'
 import previewEditAssignmentReducer from '../../modules/assignment/preview-edit/reducer'
+import getOrganizationReducer from '../../modules/my-profile/organization/reducer'
 
 /**
  * Root Reducer
@@ -68,6 +69,7 @@ const rootReducer = (history: any) =>
     resetPassword: resetPasswordReducer,
     previewEditAssignment: previewEditAssignmentReducer,
     editAssignment: editAssignmentReducer,
+    getOrganization: getOrganizationReducer,
   })
 
 export default rootReducer

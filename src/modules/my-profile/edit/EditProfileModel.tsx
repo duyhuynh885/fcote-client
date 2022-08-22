@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
+  Autocomplete,
   Avatar,
   FormControl,
   IconButton,
@@ -11,15 +12,17 @@ import {
   Stack,
   TextField,
 } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { object, string, TypeOf } from 'zod'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import RegularButton from '../../../components/common/button/RegularButton'
 import useStyles from '../../../components/my-profile/style'
+import { getOrganizationRequest } from '../organization/action'
 import { viewDetailProfileRequest } from '../view/action'
-import { myProfileClearState, editMyProfileRequest } from './action'
+import { editMyProfileRequest, myProfileClearState } from './action'
+import cityVN from './cityVN.json'
 
 /**
  * Edit profile model component
@@ -64,6 +67,8 @@ const editProfileSchema = object({
 })
 
 type EditProfileInput = TypeOf<typeof editProfileSchema>
+const containsText = (text: string, searchText: string) =>
+  text.toLowerCase().indexOf(searchText.toLowerCase()) > -1
 
 export default function EditProfileModel({ open, onClose }: ButtonProps) {
   const classes = useStyles()
@@ -72,7 +77,13 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
   const editMyProfileState = useSelector((state: RootState) => state.editMyProfile)
   const userInfo = useSelector((state: RootState) => state.login.userInfo)
   const [selectedImage, setSelectedImage] = useState<File | null>()
-
+  const organizationsState = useSelector((state: RootState) => state.getOrganization)
+  const countryData = [
+    {
+      id: 1,
+      label: 'Việt Nam',
+    },
+  ]
   const {
     reset,
     register,
@@ -126,6 +137,10 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
       return profile.user.avatar
     }
   }
+
+  useEffect(() => {
+    dispatch(getOrganizationRequest())
+  }, [])
 
   const handleOnclose = () => {
     setSelectedImage(null)
@@ -186,35 +201,72 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 error={!!errors['lastName']}
                 helperText={errors['lastName'] ? errors['lastName'].message : ''}
               />
-              <TextField
-                color='success'
-                {...register('organization')}
-                id='outlined-organization-input'
-                sx={{ width: '100%', marginBottom: '1.5rem' }}
-                label='Organization'
+
+              <Autocomplete
+                freeSolo
+                id='id'
+                disableClearable
                 defaultValue={profile.user.organizationTitle}
-                error={!!errors['organization']}
-                helperText={errors['organization'] ? errors['organization'].message : ''}
+                options={organizationsState.data.map((option) => option.title)}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    sx={{ width: '100%', marginBottom: '1.5rem' }}
+                    color='success'
+                    label='Organization'
+                    {...register('organization')}
+                    error={!!errors['organization']}
+                    helperText={errors['organization'] ? errors['organization'].message : ''}
+                    InputProps={{
+                      ...params.InputProps,
+                      type: 'search',
+                    }}
+                  />
+                )}
               />
-              <TextField
-                color='success'
-                {...register('city')}
-                id='outlined-city-input'
-                sx={{ width: '100%', marginBottom: '1.5rem' }}
-                label='City'
-                defaultValue={profile.user.city}
-                error={!!errors['city']}
-                helperText={errors['city'] ? errors['city'].message : ''}
-              />
-              <TextField
-                color='success'
-                {...register('country')}
-                id='outlined-country-input'
-                sx={{ width: '100%', marginBottom: '1.5rem' }}
-                label='Country'
+              <Autocomplete
+                freeSolo
+                id='id-country'
+                disableClearable
                 defaultValue={profile.user.country}
-                error={!!errors['country']}
-                helperText={errors['country'] ? errors['country'].message : ''}
+                options={countryData.map((option) => option.label)}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    sx={{ width: '100%', marginBottom: '1.5rem' }}
+                    color='success'
+                    label='Country'
+                    {...register('country')}
+                    error={!!errors['country']}
+                    helperText={errors['country'] ? errors['country'].message : ''}
+                    InputProps={{
+                      ...params.InputProps,
+                      type: 'search',
+                    }}
+                  />
+                )}
+              />
+              <Autocomplete
+                freeSolo
+                id='id-city'
+                disableClearable
+                defaultValue={profile.user.city}
+                options={cityVN.map((option) => option.city)}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    sx={{ width: '100%', marginBottom: '1.5rem' }}
+                    color='success'
+                    label='City'
+                    {...register('city')}
+                    error={!!errors['city']}
+                    helperText={errors['city'] ? errors['city'].message : ''}
+                    InputProps={{
+                      ...params.InputProps,
+                      type: 'search',
+                    }}
+                  />
+                )}
               />
               <TextField
                 color='success'
