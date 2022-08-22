@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   challengeCardTittle: {
     fontSize: theme.textFont.medium,
-    fontWeight: '600',
+    fontWeight: '700',
     color: theme.color.black,
     textDecoration: 'none',
     overflow: 'hidden',

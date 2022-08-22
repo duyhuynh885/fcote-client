@@ -91,7 +91,6 @@ export default function TaskbarGroup({ queryParamValue, onQueryParamChange }: Pr
           Join
         </RegularButton>
         <Divider orientation='vertical' flexItem />
-
         <RegularButton
           color={'primary'}
           size={'sm'}

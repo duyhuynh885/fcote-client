@@ -46,7 +46,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = (props) => {
             className={classes.challengeCardContainer}
             spacing={1}
           >
-            <Typography className={classes.challengeCardTittle}>{challenge.title}</Typography>
+            <Typography className={classes.challengeCardTittle}>{challenge.title.toUpperCase()}</Typography>
             <Typography className={classes.challengeCardDescription}>
               {challenge.description}
             </Typography>

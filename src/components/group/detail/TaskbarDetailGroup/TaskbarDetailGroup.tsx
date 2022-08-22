@@ -30,6 +30,7 @@ import LeaveGroup from '../../setting/LeaveGroup'
 interface TaskbarDetailGroupProps {
   code: string
   isOwner: boolean
+  name: string
 }
 
 enum optionsEnum {
@@ -101,6 +102,14 @@ export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
         <ButtonBack />
       </Stack>
       <Stack direction='row' spacing={2}>
+        <Box sx={{ padding: '10px' }}>
+          <Typography className={classes.code}>NAME: {props.name}</Typography>
+        </Box>
+        <Divider orientation='vertical' flexItem />
+        <Box sx={{ padding: '10px' }}>
+          <Typography className={classes.code}>CODE: {props.code}</Typography>
+        </Box>
+        <Divider orientation='vertical' flexItem />
         <TextField
           size='small'
           color='success'
@@ -115,10 +124,6 @@ export default function TaskbarDetailGroup(props: TaskbarDetailGroupProps) {
             ),
           }}
         />
-        <Divider orientation='vertical' flexItem />
-        <Box sx={{ padding: '10px' }}>
-          <Typography className={classes.code}>CODE: {props.code}</Typography>
-        </Box>
         <Divider orientation='vertical' flexItem />
         <Box>
           <IconButton

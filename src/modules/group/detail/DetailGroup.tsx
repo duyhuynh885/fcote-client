@@ -91,7 +91,11 @@ export default function DetailGroup() {
     <Stack margin={5}>
       <Grid container>
         <Grid item xs={12} marginBottom={2}>
-          <TaskbarDetailGroup code={groupDetailState.joinCode} isOwner={groupDetailState.isOwner} />
+          <TaskbarDetailGroup
+            name={groupDetailState.title}
+            code={groupDetailState.joinCode}
+            isOwner={groupDetailState.isOwner}
+          />
         </Grid>
         <Grid className={classes.tabLeft} item xs={12} sx={{ height: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

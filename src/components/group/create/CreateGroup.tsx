@@ -42,7 +42,7 @@ const style = {
 const createGroupObject = object({
   groupName: string()
     .min(1, 'Group Name must be more than 1 characters')
-    .max(100, 'Group Name must be less than 100 characters'),
+    .max(20, 'Group Name must be less than 20 characters'),
   groupDescription: string()
     .min(1, 'Description must be more than 1 characters')
     .max(255, 'Description must be less than 255 characters'),

@@ -43,7 +43,7 @@ const style = {
 const editGroupObject = object({
   groupName: string()
     .min(1, 'Group Name must be more than 1 characters')
-    .max(100, 'Group Name must be less than 100 characters'),
+    .max(20, 'Group Name must be less than 20 characters'),
   groupDescription: string()
     .min(1, 'Description must be more than 1 characters')
     .max(255, 'Description must be less than 255 characters'),
@@ -102,12 +102,13 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
             <div className={classes.root}>
               <Typography className={classes.newGroup}>{urlNamePopup}</Typography>
             </div>
-            <Stack className={classes.scrollBar}>
+            <Stack sx={{ width: '100%', marginBottom: '1rem' }}>
               <Typography className={classes.titleTextField}>Group Name</Typography>
               <TextField
                 required
+                size='small'
+                color='success'
                 id='outlined-groupName-input'
-                sx={{ width: '100%', marginBottom: '1.5rem' }}
                 type='groupName'
                 defaultValue={detailGroupState.groupDetail.title}
                 autoComplete='current-code'
@@ -121,6 +122,8 @@ export default function EditGroup({ open, onClose, urlNamePopup }: ButtonProps) 
                 id='outlined-groupDescription-input'
                 fullWidth
                 multiline
+                size='small'
+                color='success'
                 rows={3}
                 type='groupDescription'
                 defaultValue={detailGroupState.groupDetail.joinCode}

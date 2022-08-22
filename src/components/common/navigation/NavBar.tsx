@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useStyles from './style'
 import {
   AppBar,
@@ -24,6 +24,7 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined'
 import { logoutRequest } from '../../../modules/authentication/logout/action'
+import { viewDetailProfileRequest } from '../../../modules/my-profile/view/action'
 
 /**
  * Navbar components
@@ -75,7 +76,17 @@ function Navbar() {
   const dispatch = useDispatch<AppDispatch>()
   const loginIsSuccess = useSelector((state: RootState) => state.login.successful)
   const userInfo = useSelector((state: RootState) => state.login.userInfo)
+  const myProfileState = useSelector((state: RootState) => state.myProfile)
 
+  useEffect(() => {
+    dispatch(
+      viewDetailProfileRequest({
+        typeData: 4,
+        username: userInfo.username,
+      }),
+    )
+  }, [myProfileState])
+  
   /**
    * Handle open user menu
    * @param event React.MouseEvent<HTMLElement>
@@ -150,7 +161,7 @@ function Navbar() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title='Open settings'>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt='Remy Sharp' src={userInfo.avatar} />
+                  <Avatar alt='Remy Sharp' src={myProfileState.user.avatar} />
                 </IconButton>
               </Tooltip>
               <Menu
