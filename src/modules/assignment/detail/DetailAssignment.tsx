@@ -81,7 +81,8 @@ export default function DetailAssignment() {
 
   useEffect(() => {
     setSourceCode(detail?.sourceCode)
-  }, [detail])
+  }, [assignmentDetailState])
+
   /**
    * Clear state
    */

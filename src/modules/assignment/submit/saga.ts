@@ -45,6 +45,7 @@ function* submitAssignmentDetailFlow({
     yield put({
       type: SubmitAssignmentDetailActionType.SUBMIT_ASSIGNMENT_DETAIL_SUCCESS,
       ...data,
+      sourceCode: sourceCode,
     })
     yield put(hideLoaderAction())
   } catch (error) {

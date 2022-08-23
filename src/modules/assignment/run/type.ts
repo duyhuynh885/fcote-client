@@ -35,6 +35,7 @@ export interface RunAssignmentDetailErrorResponse {
 
 export interface RunAssignmentDetailResponse {
   result: Result[]
+  sourceCode: string
 }
 
 export type ViewListAssignmentRequestAction = ActionWithPayload<

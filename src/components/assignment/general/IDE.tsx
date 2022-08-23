@@ -55,7 +55,7 @@ function IDE(props: IDEProps) {
       width='100%'
       theme='vs-light'
       language={mapLanguageById(language)}
-      defaultValue={sourceCode}
+      value={sourceCode}
       onChange={handleSetUser}
     />
   )

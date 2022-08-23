@@ -42,6 +42,7 @@ export interface SubmitAssignmentDetailResponse {
   summarize: Summarize
   result: Result[]
   availableSubmission: number
+  sourceCode: string
 }
 
 export type ViewListAssignmentRequestAction = ActionWithPayload<

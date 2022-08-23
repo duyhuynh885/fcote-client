@@ -29,7 +29,7 @@ interface IDETabProps {
 export default function IDETab(props: IDETabProps) {
   const classes = useStyles()
   const { sourceCode, onChangeSourceCode, language, handleChangeLanguage } = props
-
+  console.log(sourceCode)
   return (
     <Stack sx={{ height: '100%' }}>
       <Stack

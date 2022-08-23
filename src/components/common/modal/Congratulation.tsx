@@ -43,19 +43,27 @@ export default function Congratulation(props: CongratulationProps) {
             <img style={{ width: '100px', height: '100px' }} src={Reward} alt='Reward' />
           </Stack>
           <Stack direction='row' alignItems='center' spacing={1}>
-            <Typography sx={{ fontSize: '30px' }}>Congratulation </Typography>{' '}
-            <Typography sx={{ fontSize: '28px', fontWeight: '700' }}>{userState.username}</Typography>
+            <Typography sx={{ fontSize: '30px' }}>Congratulation </Typography>
+            <Typography sx={{ fontSize: '28px', fontWeight: '700' }}>
+              {userState.username}
+            </Typography>
           </Stack>
           <Typography className={classes.createTestCaseModelTitle}>
             You have just finished this task.
           </Typography>
-          <Stack direction='row' justifyContent='space-between' marginTop={3}>
-            <Button sx={{ fontWeight: '700' }} variant='outlined' color='success' onClick={onClose}>
+          <Stack direction='row' justifyContent='between' marginTop={3}>
+            <Button
+              fullWidth
+              sx={{ fontWeight: '700' }}
+              variant='outlined'
+              color='success'
+              onClick={onClose}
+            >
               Stay On This Page
             </Button>
-            <Button sx={{ fontWeight: '700' }} variant='contained' color='success'>
+            {/* <Button sx={{ fontWeight: '700' }} variant='contained' color='success'>
               Next To Assignment
-            </Button>
+            </Button> */}
           </Stack>
         </Paper>
       </Modal>

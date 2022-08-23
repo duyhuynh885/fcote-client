@@ -43,6 +43,7 @@ function* runAssignmentDetailFlow({
     yield put({
       type: RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_SUCCESS,
       ...data,
+      sourceCode: sourceCode,
     })
   } catch (error) {
     yield call(

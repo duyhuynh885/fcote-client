@@ -123,7 +123,14 @@ const reducer = (state = initialState, action: ViewAssignmentDetailAction) => {
     case RunAssignmentDetailActionType.RUN_ASSIGNMENT_DETAIL_SUCCESS: {
       const testCasesClone: TestCaseResult[] = state.testCases.slice()
       const testCasesUpdated = updateTestCaseRunAndSubmitSuccessful(testCasesClone, action.result)
-      return { ...state, testCases: testCasesUpdated }
+      return {
+        ...state,
+        testCases: testCasesUpdated,
+        detail: {
+          ...state.detail,
+          sourceCode: action.sourceCode,
+        },
+      }
     }
 
     case SubmitAssignmentDetailActionType.SUBMIT_ASSIGNMENT_DETAIL_SUCCESS: {
@@ -135,6 +142,7 @@ const reducer = (state = initialState, action: ViewAssignmentDetailAction) => {
         testCases: testCasesUpdated,
         detail: {
           ...state.detail,
+          sourceCode: action.sourceCode,
           availableSubmission: action.availableSubmission,
         },
       }
