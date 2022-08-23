@@ -20,6 +20,7 @@ import { formatDate } from '../../../utils/dateUtil'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
 import DefaultAvatar from '../../../assets/DefaultAvatar.png'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Profile component
@@ -42,15 +43,16 @@ interface ProfileProps {
 const Profile: React.FC<ProfileProps> = (props) => {
   const classes = useStyles()
   const myProfileState = useSelector((state: RootState) => state.myProfile)
+  const { t } = useTranslation()
 
   const handleGender = (): string => {
     switch (`${props.user.gender}`) {
       case '1':
-        return 'Female'
+        return t('Female')
       case '2':
-        return 'Male'
+        return t('Male')
       case '3':
-        return 'Other Gender'
+        return t('OtherGender')
       default:
         return ''
     }
@@ -60,17 +62,17 @@ const Profile: React.FC<ProfileProps> = (props) => {
     return event === null ? '' : event
   }
   const rows = [
-    createData('Organization', handleShowNull(props.user.organizationTitle)),
+    createData(t('Organization'), handleShowNull(props.user.organizationTitle)),
     createData(
-      'City',
+      t('Address'),
       `${props.user.city}` === 'null' || `${props.user.country}` === 'null'
         ? ''
         : `${props.user.city}` + ' - ' + `${props.user.country}`,
     ),
-    createData('Email', handleShowNull(props.user.email)),
-    createData('Phone', handleShowNull(props.user.phone)),
-    createData('Gender', handleGender()),
-    createData('Joined on', handleShowNull(formatDate(`${props.user.createdAt}`))),
+    createData(t('Email'), handleShowNull(props.user.email)),
+    createData(t('Phone'), handleShowNull(props.user.phone)),
+    createData(t('Gender'), handleGender()),
+    createData(t('JoinedOn'), handleShowNull(formatDate(`${props.user.createdAt}`))),
   ]
 
   /**

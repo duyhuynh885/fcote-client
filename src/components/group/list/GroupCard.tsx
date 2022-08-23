@@ -6,6 +6,7 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
 import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined'
 import LocalActivityOutlinedIcon from '@mui/icons-material/LocalActivityOutlined'
 import { Group } from '../../../modules/group/list/type'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Group Card
@@ -29,6 +30,7 @@ interface IProps {
 
 export default function GroupCard(props: IProps) {
   const classes = useStyles()
+  const { t } = useTranslation()
   const { group } = props
   return (
     <Paper elevation={2} square className={classes.wrapper}>
@@ -46,7 +48,7 @@ export default function GroupCard(props: IProps) {
             </Stack>
             <Stack direction='row' alignItems='center'>
               <SecurityOutlinedIcon fontSize='small' />
-              <Typography className={classes.text}>Private</Typography>
+              <Typography className={classes.text}>{t('Private')}</Typography>
             </Stack>
             <Stack direction='row' alignItems='center'>
               <LocalActivityOutlinedIcon fontSize='small' />

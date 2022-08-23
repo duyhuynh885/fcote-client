@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import { updateFilterRankingRequest } from '../../../modules/ranking/action'
 import useStyles from './style'
+import { useTranslation } from 'react-i18next'
 
 /**
  * LeaderBoard component
@@ -65,7 +66,7 @@ export default function LeaderBoard(props: any) {
     dispatch(updateFilterRankingRequest({ ...filterRankingState, typeRanking: newValue + 1 }))
   }
   const classes = useStyles()
-
+  const { t } = useTranslation()
   return (
     <Paper
       elevation={2}
@@ -84,8 +85,8 @@ export default function LeaderBoard(props: any) {
             onChange={handleChange}
             aria-label='LeaderBoard'
           >
-            <Tab className={classes.tabTitle} label='individual' {...ChangeValueProps(0)} />
-            <Tab className={classes.tabTitle} label='Organization' {...ChangeValueProps(1)} />
+            <Tab className={classes.tabTitle} label={t('Individual')} {...ChangeValueProps(0)} />
+            <Tab className={classes.tabTitle} label={t('Organization')} {...ChangeValueProps(1)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>

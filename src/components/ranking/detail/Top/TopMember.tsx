@@ -12,6 +12,7 @@ import { ReactComponent as SecondRank } from '../../../../assets/SecondRank.svg'
 import { ReactComponent as ThirdRank } from '../../../../assets/ThirdRank.svg'
 import './RankCard.css'
 import { DataTopRank } from './type'
+import { useTranslation } from 'react-i18next'
 /**
  * First Rank Card component
  *
@@ -29,6 +30,7 @@ import { DataTopRank } from './type'
 
 export default function TopMember(props: DataTopRank) {
   const classes = useStyles()
+  const { t } = useTranslation()
 
   function renderRanking() {
     {
@@ -136,11 +138,11 @@ export default function TopMember(props: DataTopRank) {
   function returnRankStr() {
     switch (props.rank) {
       case 1:
-        return '1st PLACE'
+        return '1st ' + t('PLACE')
       case 2:
-        return '2nd PLACE'
+        return '2nd ' + t('PLACE')
       case 3:
-        return '3rd PLACE'
+        return '3rd ' + t('PLACE')
       default:
         return 'Unrank'
     }
@@ -173,7 +175,7 @@ export default function TopMember(props: DataTopRank) {
       </CardContent>
       <CardActions className={classes.rankProfileScore} sx={sxCardAction}>
         <Typography variant='h6' component='span' sx={{ fontWeight: '700' }}>
-          Score: {props.score}
+          {t('Score')}: {props.score}
         </Typography>
       </CardActions>
     </Card>

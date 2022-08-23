@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DifficultEnum, StatusEnum } from '../../../modules/assignment/list/type'
 import { updateFilterListAssignmentRequest } from '../../../modules/assignment/list/action'
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
+import { useTranslation } from 'react-i18next'
 
 /**
  * TaskbarFilter
@@ -55,6 +56,7 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
   const [difficult, setDifficult] = useState('0')
   const [filterByCurrentAccount, setFilterByCurrentAccount] = useState('Public')
   const [search, setSearch] = useState('')
+  const { t } = useTranslation()
 
   const handleSearch = () => {
     dispatch(
@@ -133,14 +135,14 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
               className={classes.taskFilterOptions}
               value='Public'
             >
-              Public
+              {t('Public')}
             </MenuItem>
             <MenuItem
               classes={{ selected: classes.selected }}
               className={classes.taskFilterOptions}
               value='CreatedByMe'
             >
-              Created by me
+              {t('CreatedByMe')}
             </MenuItem>
           </Select>
         </FormControl>
@@ -156,28 +158,28 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
               className={classes.taskFilterOptions}
               value={StatusEnum.ALL}
             >
-              All statuses
+              {t('AllStatuses')}
             </MenuItem>
             <MenuItem
               classes={{ selected: classes.selected }}
               className={classes.taskFilterOptions}
               value={StatusEnum.SOLVED}
             >
-              Solved
+              {t('Solved')}
             </MenuItem>
             <MenuItem
               classes={{ selected: classes.selected }}
               className={classes.taskFilterOptions}
               value={StatusEnum.NOT_SOLVED}
             >
-              Not solved
+              {t('NotSolved')}
             </MenuItem>
             <MenuItem
               classes={{ selected: classes.selected }}
               className={classes.taskFilterOptions}
               value={StatusEnum.IN_PROGRESS}
             >
-              In progress
+              {t('InProgress')}
             </MenuItem>
           </Select>
         </FormControl>
@@ -193,28 +195,28 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
               className={classes.taskFilterOptions}
               value={DifficultEnum.ALL}
             >
-              All difficulties
+              {t('AllDifficulties')}
             </MenuItem>
             <MenuItem
               classes={{ selected: classes.selected }}
               className={classes.taskFilterOptions}
               value={DifficultEnum.EASY}
             >
-              Easy
+              {t('Easy')}
             </MenuItem>
             <MenuItem
               classes={{ selected: classes.selected }}
               className={classes.taskFilterOptions}
               value={DifficultEnum.MEDIUM}
             >
-              Medium
+              {t('Medium')}
             </MenuItem>
             <MenuItem
               classes={{ selected: classes.selected }}
               className={classes.taskFilterOptions}
               value={DifficultEnum.HARD}
             >
-              Hard
+              {t('Hard')}
             </MenuItem>
           </Select>
         </FormControl>
@@ -227,7 +229,7 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
           color='success'
           onChange={(e) => setSearch(e.target.value)}
           value={search}
-          placeholder='Search'
+          placeholder={t('Search')}
           InputProps={{
             startAdornment: (
               <IconButton onClick={handleSearch}>
@@ -257,7 +259,7 @@ export default function TaskbarFilter(props: TaskbarFilterProps) {
                 justIcon={false}
                 className=''
               >
-                + Create
+                + {t('Create')}
               </RegularButton>
             </Link>
           </React.Fragment>

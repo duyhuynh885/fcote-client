@@ -71,6 +71,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   assignmentWardTitle: {
     fontSize: theme.textFont.medium,
     fontWeight: 'bold',
+    textTransform: 'uppercase',
   },
   // Style for challenge completed
   scrollBar: {

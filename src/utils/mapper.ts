@@ -56,7 +56,7 @@ export const mapStatusChallenge = (statusChallengeEnum: StatusChallengeEnum) => 
   switch (statusChallengeEnum) {
     case StatusChallengeEnum.NOT_OPEN_YET:
       status = 'notOpenYet'
-      displayText = 'NOT OPEN YET'
+      displayText = 'NOT_OPEN_YET'
       break
     case StatusChallengeEnum.OPEN:
       status = 'open'

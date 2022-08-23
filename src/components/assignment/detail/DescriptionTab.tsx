@@ -10,6 +10,7 @@ import { mapDifficultyAssignment, mapNameDataTypeByValue } from '../../../utils/
 import Difficultly from '../../common/text/Difficultly'
 import useStyles from './style'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
+import { useTranslation } from 'react-i18next'
 /**
  * DescriptionTab component
  *
@@ -33,6 +34,7 @@ export default function DescriptionTab(props: DescriptionTabProps) {
   const { detail, parameters } = props
   const classes = useStyles()
   const dataTypeState = useSelector((state: RootState) => state.dataType.dataType)
+  const { t } = useTranslation()
 
   return (
     <Box className={classes.scrollBar}>
@@ -49,7 +51,7 @@ export default function DescriptionTab(props: DescriptionTabProps) {
             <Stack alignItems='center' justifyContent='space-between' spacing={3} direction='row'>
               <Stack spacing={1} alignItems='center' direction='row'>
                 <Typography className={classes.titleHeader} alignItems='center'>
-                  Author
+                  {t('Author')}
                 </Typography>
                 <Chip
                   label={detail.createdBy}
@@ -61,7 +63,7 @@ export default function DescriptionTab(props: DescriptionTabProps) {
               </Stack>
               <Divider orientation='vertical' flexItem />
               <Stack spacing={1} alignItems='center' direction='row'>
-                <Typography className={classes.titleHeader}>Point</Typography>
+                <Typography className={classes.titleHeader}> {t('Point')}</Typography>
                 <Chip
                   label={detail.score}
                   sx={{ fontWeight: '700', borderRadius: '5px' }}
@@ -72,7 +74,7 @@ export default function DescriptionTab(props: DescriptionTabProps) {
               </Stack>
               <Divider orientation='vertical' flexItem />
               <Stack spacing={1} alignItems='center' direction='row'>
-                <Typography className={classes.titleHeader}>Submissions</Typography>
+                <Typography className={classes.titleHeader}>{t('Submissions')}</Typography>
                 <Chip
                   label={`${detail?.limitSubmission - detail?.availableSubmission}/${
                     detail?.limitSubmission
@@ -86,7 +88,7 @@ export default function DescriptionTab(props: DescriptionTabProps) {
               <Divider orientation='vertical' flexItem />
               <Stack spacing={1} alignItems='center' direction='row'>
                 <Typography className={classes.titleHeader} alignItems='center'>
-                  Difficult
+                  {t('Difficult')}
                 </Typography>
                 <Difficultly
                   difficult={mapDifficultyAssignment(detail.difficulty)}
@@ -95,19 +97,22 @@ export default function DescriptionTab(props: DescriptionTabProps) {
               </Stack>
             </Stack>
           </Box>
-          <Typography className={classes.titleNameInput}>The Description</Typography>
+          <Typography className={classes.titleNameInput}> {t('TheDescription')}</Typography>
           <Stack marginLeft={2}>
             <div style={{ wordWrap: 'break-word', display: 'inline-block' }}>
               <div className='editor' dangerouslySetInnerHTML={{ __html: detail.description }} />
             </div>
           </Stack>
-          <Typography className={classes.titleNameInput}>Input / Output</Typography>
+          <Typography className={classes.titleNameInput}>
+            {' '}
+            {t('Input')} / {t('Output')}
+          </Typography>
           <Stack marginLeft={2} direction='column'>
             {_.sortBy(parameters.input, ['order']).map((_input) => (
               <React.Fragment key={_input.order}>
                 <Typography className={classes.titleTextField}>
-                  [input{_input.order + 1}] {mapNameDataTypeByValue(dataTypeState, _input.dataType)}{' '}
-                  {_input.name}
+                  [{t('Input').toLowerCase()} {_input.order + 1}]{' '}
+                  {mapNameDataTypeByValue(dataTypeState, _input.dataType)} {_input.name}
                 </Typography>
                 <Typography fontSize='14px' fontWeight='500'>
                   {_input.description}
@@ -115,7 +120,8 @@ export default function DescriptionTab(props: DescriptionTabProps) {
               </React.Fragment>
             ))}
             <Typography key={parameters.output.order} margin='0' className={classes.titleTextField}>
-              [output] {mapNameDataTypeByValue(dataTypeState, parameters.output.dataType)}
+              [{t('Output').toLowerCase()}]{' '}
+              {mapNameDataTypeByValue(dataTypeState, parameters.output.dataType)}
             </Typography>
             <Typography fontSize='14px' fontWeight='500'>
               {parameters.output.description}

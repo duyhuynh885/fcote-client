@@ -2,6 +2,8 @@ import React from 'react'
 import classNames from 'classnames'
 import useStyles from './style'
 import { Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import _ from 'lodash'
 
 /**
  * Difficultly components
@@ -29,6 +31,9 @@ export default function Difficultly(props: DifficultlyProps) {
     [classes.difficultStyle]: true,
     [classes[difficult]]: difficult,
   })
+  const { t } = useTranslation()
 
-  return <Typography className={difficultyClasses}>{displayText}</Typography>
+  return (
+    <Typography className={difficultyClasses}>{_.toUpper(t(_.capitalize(displayText)))}</Typography>
+  )
 }

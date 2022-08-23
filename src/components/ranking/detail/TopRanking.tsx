@@ -4,6 +4,7 @@ import { UserInfo } from '../../../modules/ranking/type'
 import TopMember from './Top/TopMember'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
+import { useTranslation } from 'react-i18next'
 /**
  * First Rank Card component
  *
@@ -34,7 +35,6 @@ function immutablySwapItems(items: UserInfo[], firstIndex: number, secondIndex: 
 const TopRanking: React.FC<UserInfoProps> = (props) => {
   const rankingRequestingState = useSelector((state: RootState) => state.ranking.requesting)
   const topRanking = immutablySwapItems(props.data, 0, 1)
-
   return (
     <Stack
       direction='row'

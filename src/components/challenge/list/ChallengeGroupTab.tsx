@@ -15,6 +15,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import { Box } from '@mui/system'
 import * as React from 'react'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import {
@@ -61,6 +62,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
   const [page, setPage] = React.useState(1)
   const PER_PAGE = 4
   const count = Math.ceil(totalChallenge / PER_PAGE)
+  const { t } = useTranslation()
 
   const groupChallengeRequest: ViewListChallengeRequestPayload = {
     typeData: 2,
@@ -130,7 +132,7 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
         >
           <Stack direction='column' spacing={2}>
             <Box>
-              <Typography className={classes.myGroup}>My Group</Typography>
+              <Typography className={classes.myGroup}>{t('MyGroup')}</Typography>
             </Box>
             <List className={classes.listGroupScroll}>
               {listGroupRequesting ? (
@@ -176,10 +178,6 @@ const ChallengeGroup: React.FC<ChallengeGroupProps> = (props) => {
           {requesting ? (
             <Stack marginTop={5} alignItems='center'>
               <CircularProgress color='success' />
-            </Stack>
-          ) : challenges === [] ? (
-            <Stack>
-              <Typography>NO CHALLENGE YET</Typography>
             </Stack>
           ) : (
             <React.Fragment>

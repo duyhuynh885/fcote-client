@@ -9,6 +9,7 @@ import Difficultly from '../../common/text/Difficultly'
 import Status from '../../common/text/Status'
 import { mapStatusAssignment, mapDifficultyAssignment } from '../../../utils/mapper'
 import DefaultAvatar from '../../../assets/DefaultAvatar.png'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Assignment Item
@@ -36,6 +37,7 @@ const AssignmentItem = (props: AssignmentItemProps) => {
   const handleViewDetailAssignment = () => {
     history.push('/assignment/' + assignment.id)
   }
+  const { t } = useTranslation()
 
   return (
     <Paper elevation={2} square className={classes.container}>
@@ -72,7 +74,7 @@ const AssignmentItem = (props: AssignmentItemProps) => {
             className={''}
             onClick={handleViewDetailAssignment}
           >
-            View Assignment
+            {t('ViewAssignment')}
           </RegularButton>
         </Stack>
       </Stack>

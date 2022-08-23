@@ -14,6 +14,7 @@ import {
 } from '@mui/material'
 import React, { useEffect, useMemo, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { object, string, TypeOf } from 'zod'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
@@ -56,18 +57,6 @@ const style = {
   p: 4,
 }
 
-const editProfileSchema = object({
-  firstName: string().max(50, 'First name must be less than 50 characters'),
-  lastName: string().max(50, 'Last name must be less than 50 characters'),
-  organization: string().max(100, 'Organization must be less than 100 characters'),
-  city: string().max(100, 'City must be less than 100 characters'),
-  country: string().max(100, 'Country must be less than 100 characters'),
-  phone: string().regex(new RegExp('(84|0[3|5|7|8|9])+([0-9]{8})'), 'Phone number is invalid'),
-  gender: string(),
-})
-
-type EditProfileInput = TypeOf<typeof editProfileSchema>
-
 export default function EditProfileModel({ open, onClose }: ButtonProps) {
   const classes = useStyles()
   const dispatch = useDispatch<AppDispatch>()
@@ -76,6 +65,18 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
   const userInfo = useSelector((state: RootState) => state.login.userInfo)
   const [selectedImage, setSelectedImage] = useState<File | null>()
   const organizationsState = useSelector((state: RootState) => state.getOrganization)
+  const { t } = useTranslation()
+  const editProfileSchema = object({
+    firstName: string().max(50, 'First name must be less than 50 characters'),
+    lastName: string().max(50, 'Last name must be less than 50 characters'),
+    organization: string().max(100, 'Organization must be less than 100 characters'),
+    city: string().max(100, 'City must be less than 100 characters'),
+    country: string().max(100, 'Country must be less than 100 characters'),
+    phone: string().regex(new RegExp('(84|0[3|5|7|8|9])+([0-9]{8})'), 'Phone number is invalid'),
+    gender: string(),
+  })
+  type EditProfileInput = TypeOf<typeof editProfileSchema>
+
   const countryData = [
     {
       id: 1,
@@ -183,7 +184,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-firstname-input'
-                label='First Name'
+                label={t('FirstName')}
                 defaultValue={profile.user.firstName}
                 error={!!errors['firstName']}
                 helperText={errors['firstName'] ? errors['firstName'].message : ''}
@@ -194,7 +195,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 required
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-lastname-input'
-                label='Last Name'
+                label={t('LastName')}
                 defaultValue={profile.user.lastName}
                 error={!!errors['lastName']}
                 helperText={errors['lastName'] ? errors['lastName'].message : ''}
@@ -211,7 +212,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                       {...params}
                       sx={{ width: '100%', marginBottom: '1.5rem' }}
                       color='success'
-                      label='Organization'
+                      label={t('Organization')}
                       {...register('organization')}
                       // error={!!errors['organization']}
                       // defaultValue={profile.user.organizationTitle}
@@ -237,7 +238,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                       {...params}
                       sx={{ width: '100%', marginBottom: '1.5rem' }}
                       color='success'
-                      label='Country'
+                      label={t('Country')}
                       {...register('country')}
                       // error={!!errors['country']}
                       // defaultValue={profile.user.country}
@@ -263,7 +264,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                       {...params}
                       sx={{ width: '100%', marginBottom: '1.5rem' }}
                       color='success'
-                      label='City'
+                      label={t('City')}
                       {...register('city')}
                       // error={!!errors['city']}
                       // helperText={errors['city'] ? errors['city'].message : ''}
@@ -281,7 +282,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 {...register('phone')}
                 sx={{ width: '100%', marginBottom: '1.5rem' }}
                 id='outlined-phone-input'
-                label='Phone'
+                label={t('Phone')}
                 defaultValue={profile.user.phone}
                 error={!!errors['phone']}
                 helperText={errors['phone'] ? errors['phone'].message : ''}
@@ -292,15 +293,15 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 </InputLabel>
                 <Select
                   color='success'
-                  label='Gender'
+                  label={t('Gender')}
                   {...register('gender')}
                   labelId='demo-simple-select-label'
                   id='demo-simple-select'
                   defaultValue={profile.user.gender}
                 >
-                  <MenuItem value={'1'}>Female</MenuItem>
-                  <MenuItem value={'2'}>Male</MenuItem>
-                  <MenuItem value={'3'}>Other Gender</MenuItem>
+                  <MenuItem value={'1'}>{t('Female')}</MenuItem>
+                  <MenuItem value={'2'}>{t('Male')}</MenuItem>
+                  <MenuItem value={'3'}>{t('OtherGender')}</MenuItem>
                 </Select>
               </FormControl>
             </Stack>
@@ -328,7 +329,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 className={''}
                 onClick={onClose}
               >
-                Cancel
+                {t('Cancel')}
               </RegularButton>
 
               <RegularButton
@@ -344,7 +345,7 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                 justIcon={false}
                 className={''}
               >
-                Save
+                {t('Save')}
               </RegularButton>
             </Stack>
           </Paper>

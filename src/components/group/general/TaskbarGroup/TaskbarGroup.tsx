@@ -6,6 +6,7 @@ import RegularButton from '../../../common/button/RegularButton'
 import GroupAddIcon from '@mui/icons-material/GroupAdd'
 import CreateGroup from '../../create/CreateGroup'
 import JoinGroup from '../../join/JoinGroup'
+import { useTranslation } from 'react-i18next'
 /**
  * Taskbar Group
  * <p>
@@ -29,6 +30,7 @@ type Props = {
 export default function TaskbarGroup({ queryParamValue, onQueryParamChange }: Props) {
   const [openJoin, setOpenJoin] = useState(false)
   const [openCreate, setOpenCreate] = useState(false)
+  const { t } = useTranslation()
   const handleOpenCreateGroup = () => {
     setOpenCreate(true)
   }
@@ -59,7 +61,7 @@ export default function TaskbarGroup({ queryParamValue, onQueryParamChange }: Pr
           sx={{ marginLeft: '20px' }}
           size='small'
           color='success'
-          placeholder='Search here'
+          placeholder={t('Search')}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
@@ -88,7 +90,7 @@ export default function TaskbarGroup({ queryParamValue, onQueryParamChange }: Pr
           onClick={handleOpenJoinGroup}
         >
           <GroupAddIcon sx={{ marginRight: '5px' }} fontSize='small' />
-          Join
+          {t('Join')}
         </RegularButton>
         <Divider orientation='vertical' flexItem />
         <RegularButton
@@ -104,7 +106,7 @@ export default function TaskbarGroup({ queryParamValue, onQueryParamChange }: Pr
           onClick={handleOpenCreateGroup}
           className={''}
         >
-          + Create
+          + {t('Create')}
         </RegularButton>
       </Stack>
       <CreateGroup urlNamePopup='New Group' open={openCreate} onClose={handleCloseCreateGroup} />

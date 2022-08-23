@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material'
 import classNames from 'classnames'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import useStyles from './style'
 
 /**
@@ -32,6 +33,7 @@ export default function StatusChallengeChallenge(props: StatusChallengeProps) {
     [classes[status]]: status,
     [classes[size]]: size,
   })
+  const { t } = useTranslation()
 
-  return <Typography className={statusClasses}>{displayText}</Typography>
+  return <Typography className={statusClasses}>{t(displayText)}</Typography>
 }

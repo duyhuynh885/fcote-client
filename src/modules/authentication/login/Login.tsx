@@ -120,13 +120,11 @@ export default function Login() {
                 helperText={errors['password'] ? errors['password'].message : ''}
                 {...register('password')}
               />
-              <Stack direction='row' justifyContent='space-between' alignItems='center'>
-                <FormControlLabel
-                  control={<Checkbox color='success' defaultChecked />}
-                  label={t('RememberMe')}
-                />
+              <Stack direction='row' justifyContent='flex-end' alignItems='center'>
                 <Link to='/forget-password' className={classes.link}>
-                  <Typography noWrap> {t('ForgetPassword')}</Typography>
+                  <Typography sx={{ fontWeight: 'bold', marginBottom: '15px' }} noWrap>
+                    {t('ForgetPassword')}
+                  </Typography>
                 </Link>
               </Stack>
               <RegularButton

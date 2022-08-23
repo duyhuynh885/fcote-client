@@ -1,5 +1,6 @@
 import { Grid, Stack } from '@mui/material'
 import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
 import AssignmentCompleted from '../../../components/my-profile/view/AssignmentCompleted'

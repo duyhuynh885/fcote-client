@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux'
 import CircularProgress from '@mui/material/CircularProgress'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import _ from 'lodash'
+import { useTranslation } from 'react-i18next'
 
 /**
  * IDETabProps component
@@ -48,6 +49,8 @@ export default function TestCaseTab(props: TestCaseTabProps) {
     ...testCases.filter((c) => c.isPrivate === false),
     ...testCases.filter((c) => c.isPrivate === true),
   ]
+  const { t } = useTranslation()
+
   /**
    * Handle show result description of run and submit testcase
    * @returns testResult description
@@ -61,7 +64,7 @@ export default function TestCaseTab(props: TestCaseTabProps) {
         return (
           <Stack marginBottom='10px' direction='row' alignItems='center'>
             <Typography className={`${classes.testResultDescription} ${classes.successText}`}>
-              All tests passed.
+              {t('AllTestsPassed')}
             </Typography>
           </Stack>
         )
@@ -74,7 +77,7 @@ export default function TestCaseTab(props: TestCaseTabProps) {
               sx={{ marginRight: 1 }}
             />
             <Typography className={`${classes.testResultDescription} ${classes.failedText}`}>
-              Tests passed: {countPassedTestCase}/{detail.totalTestCase}.
+              {t('TestsPassed')}: {countPassedTestCase}/{detail.totalTestCase}.
             </Typography>
           </Stack>
         )
@@ -93,7 +96,7 @@ export default function TestCaseTab(props: TestCaseTabProps) {
           borderBottom: '1px solid black',
         }}
       >
-        <Typography className={classes.testCaseTabsTitle}>TESTS</Typography>
+        <Typography className={classes.testCaseTabsTitle}>{t('Tests').toUpperCase()}</Typography>
         <RegularButton
           color={'primary'}
           size={'sm'}
@@ -107,7 +110,7 @@ export default function TestCaseTab(props: TestCaseTabProps) {
           className={''}
           onClick={onRunTestCase}
         >
-          <PlayArrowOutlinedIcon fontSize='small' /> Run Tests
+          <PlayArrowOutlinedIcon fontSize='small' /> {t('RunTests')}
         </RegularButton>
       </Stack>
       {requesting ? (
@@ -137,6 +140,7 @@ interface GenerateTestCaseProps {
 function GenerateTestCase(props: GenerateTestCaseProps) {
   const { testCase, index } = props
   const classes = useStyles()
+  const { t } = useTranslation()
 
   const handleShowPassedTestCase = (isPassed: boolean | undefined) => {
     if (typeof isPassed !== 'undefined') {
@@ -159,7 +163,7 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
             }}
             className={classes.tabTitle}
           >
-            Output:
+            {t('Output')}:
           </Typography>
           <Typography className={classes.inputTestCaseDescription}>
             {testCase.actualOutput}
@@ -194,7 +198,7 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
         </AccordionSummary>
         {testCase.isPrivate ? (
           <AccordionDetails>
-            <Typography className={classes.tabTitle}>Hidden</Typography>
+            <Typography className={classes.tabTitle}>{t('Hidden')}</Typography>
           </AccordionDetails>
         ) : (
           <AccordionDetails>
@@ -205,7 +209,7 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
                 }}
                 className={classes.tabTitle}
               >
-                Input:
+                {t('Input')}:
               </Typography>
               <Stack direction='column'>
                 {testCase.input.map((_input) => (
@@ -224,7 +228,7 @@ function GenerateTestCase(props: GenerateTestCaseProps) {
                 }}
                 className={classes.tabTitle}
               >
-                Expected Output:
+                {t('ExceptedOutput')}:
               </Typography>
               <Typography className={classes.inputTestCaseDescription}>
                 {testCase.output.value}

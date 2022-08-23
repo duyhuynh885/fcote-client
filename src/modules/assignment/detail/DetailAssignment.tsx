@@ -21,6 +21,7 @@ import {
 } from '../submit/action'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import Congratulation from '../../../components/common/modal/Congratulation'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Detail Assignment
@@ -57,6 +58,7 @@ export default function DetailAssignment() {
   const match = useRouteMatch()
   const [openCongratulationModal, setOpenCongratulationModal] = React.useState(false)
   const submitAssignmentState = useSelector((state: RootState) => state.submitAssignment)
+  const { t } = useTranslation()
 
   /**
    * Fetch assignment detail for preview data
@@ -163,7 +165,7 @@ export default function DetailAssignment() {
                   justIcon={false}
                   className={''}
                 >
-                  <EditOutlinedIcon fontSize='small' /> Edit
+                  <EditOutlinedIcon fontSize='small' /> {t('Edit')}
                 </RegularButton>
               </Link>
             </Box>
@@ -188,7 +190,7 @@ export default function DetailAssignment() {
             className={''}
             onClick={handleSubmitAssignment}
           >
-            <KeyboardArrowUpIcon fontSize='small' /> Submit
+            <KeyboardArrowUpIcon fontSize='small' /> {t('Submit')}
           </RegularButton>
         </Stack>
       </Stack>

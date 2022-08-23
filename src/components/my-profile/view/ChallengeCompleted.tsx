@@ -1,5 +1,6 @@
 import { Box, CircularProgress, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../apps/ReduxContainer'
 import { IChallenge } from '../../../modules/challenge/list/type'
@@ -30,6 +31,8 @@ const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
   const { listChallengeCompleted, title } = props
   const listChallengesState = useSelector((state: RootState) => state.listChallenges)
   const { requesting: challengesRequesting } = listChallengesState
+  const { t } = useTranslation()
+
   return (
     <Paper
       elevation={4}
@@ -42,7 +45,9 @@ const ChallengeCompleted: React.FC<ChallengeCompletedProps> = (props) => {
     >
       <Stack direction='column' spacing={2}>
         <Box>
-          <Typography className={classes.title}>{title ? title : 'Challenge Completed'}</Typography>
+          <Typography className={classes.title}>
+            {title ? title : t('ChallengeCompleted')}
+          </Typography>
         </Box>
         <Stack spacing={2} className={classes.scrollBar}>
           {challengesRequesting ? (

@@ -5,6 +5,7 @@ import { RootState } from '../../../apps/ReduxContainer'
 import useStyles from './style'
 import BackgroundCongratulation from '../../../assets/BackgroundCongratulation.png'
 import Reward from '../../../assets/Reward.png'
+import { useTranslation } from 'react-i18next'
 
 interface CongratulationProps {
   open: boolean
@@ -29,6 +30,7 @@ export default function Congratulation(props: CongratulationProps) {
   const classes = useStyles()
   const { open, onClose } = props
   const userState = useSelector((state: RootState) => state.login.userInfo)
+  const { t } = useTranslation()
 
   return (
     <React.Fragment>
@@ -43,13 +45,13 @@ export default function Congratulation(props: CongratulationProps) {
             <img style={{ width: '100px', height: '100px' }} src={Reward} alt='Reward' />
           </Stack>
           <Stack direction='row' alignItems='center' spacing={1}>
-            <Typography sx={{ fontSize: '30px' }}>Congratulation </Typography>
+            <Typography sx={{ fontSize: '30px' }}>{t('Congratulation')} </Typography>
             <Typography sx={{ fontSize: '28px', fontWeight: '700' }}>
               {userState.username}
             </Typography>
           </Stack>
           <Typography className={classes.createTestCaseModelTitle}>
-            You have just finished this task.
+            {t('YouHaveJustFinishedThisTask')}
           </Typography>
           <Stack direction='row' justifyContent='between' marginTop={3}>
             <Button
@@ -59,7 +61,7 @@ export default function Congratulation(props: CongratulationProps) {
               color='success'
               onClick={onClose}
             >
-              Stay On This Page
+              {t('StayOnThisPage')}
             </Button>
             {/* <Button sx={{ fontWeight: '700' }} variant='contained' color='success'>
               Next To Assignment

@@ -21,6 +21,7 @@ import LastPageIcon from '@mui/icons-material/LastPage'
 import { useTheme } from '@mui/material/styles'
 import { UserInfo } from '../../../../modules/ranking/type'
 import DefaultAvatar from '../../../../assets/DefaultAvatar.png'
+import { useTranslation } from 'react-i18next'
 
 /**
  * LeaderBoard component
@@ -103,19 +104,6 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   )
 }
 
-function createType(
-  id: 'rank' | 'fullname' | 'university' | 'group' | 'organization' | 'score',
-  label: string,
-  minWidth: number,
-  align: 'right' | 'center' | 'left',
-) {
-  return { id, label, minWidth, align }
-}
-
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
 interface TypeLeaderBoard {
   type: 'rank' | 'fullname' | 'university' | 'group' | 'organization' | 'score'
   rankingList: UserInfo[]
@@ -124,16 +112,18 @@ interface TypeLeaderBoard {
 export default function LeaderBoardsTable(props: TypeLeaderBoard) {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
+  const { t } = useTranslation()
+
   const columns: readonly Column[] = [
     { id: 'rank', label: '#', align: 'left' },
     {
       id: 'username',
-      label: `${props.type === 'organization' ? 'Organization' : 'Username'}`,
+      label: `${props.type === 'organization' ? t('Organization') : t('Username')}`,
       align: 'left',
     },
     {
       id: 'score',
-      label: 'Total Score',
+      label: t('TotalScore'),
       align: 'right',
     },
   ]

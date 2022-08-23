@@ -3,6 +3,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import { IconButton, Paper, Stack, Tab, Tabs, TextField } from '@mui/material'
 import Divider from '@mui/material/Divider'
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../../apps/ReduxContainer'
@@ -47,6 +48,7 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
   const filterChallengeState = useSelector((state: RootState) => state.listChallenges.filterRequest)
   const [search, setSearch] = useState('')
   const { url, groupID, pageNumber, typeData, handleChangeTab, tabValue } = props
+  const { t } = useTranslation()
   const handleSearch = () => {
     if (search === '') {
       dispatch(
@@ -106,9 +108,9 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
           onChange={handleChangeTab}
           aria-label='basic tabs example'
         >
-          <Tab className={classes.tabTitle} label='Public' {...a11yProps(0)} />
-          <Tab className={classes.tabTitle} label='Owner' {...a11yProps(1)} />
-          <Tab className={classes.tabTitle} label='Group' {...a11yProps(2)} />
+          <Tab className={classes.tabTitle} label={t('Public')} {...a11yProps(0)} />
+          <Tab className={classes.tabTitle} label={t('Owner')} {...a11yProps(1)} />
+          <Tab className={classes.tabTitle} label={t('Group')} {...a11yProps(2)} />
         </Tabs>
       </Stack>
       <Stack direction='row' alignItems='center' spacing={2}>
@@ -119,7 +121,7 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
           color='success'
           onChange={(e) => setSearch(e.target.value)}
           value={search}
-          placeholder='Search'
+          placeholder={t('Search')}
           InputProps={{
             startAdornment: (
               <IconButton onClick={handleSearch}>
@@ -147,7 +149,7 @@ export default function TaskbarFilterOfChallenge(props: IProps) {
             justIcon={false}
             className=''
           >
-            + Create
+            + {t('Create')}
           </RegularButton>
         </Link>
       </Stack>
