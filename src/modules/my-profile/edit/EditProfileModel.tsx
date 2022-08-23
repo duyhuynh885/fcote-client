@@ -213,9 +213,9 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                       color='success'
                       label='Organization'
                       {...register('organization')}
-                      error={!!errors['organization']}
-                      defaultValue={profile.user.organizationTitle}
-                      helperText={errors['organization'] ? errors['organization'].message : ''}
+                      // error={!!errors['organization']}
+                      // defaultValue={profile.user.organizationTitle}
+                      // helperText={errors['organization'] ? errors['organization'].message : ''}
                       InputProps={{
                         ...params.InputProps,
                         type: 'search',
@@ -239,9 +239,9 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                       color='success'
                       label='Country'
                       {...register('country')}
-                      error={!!errors['country']}
-                      defaultValue={profile.user.country}
-                      helperText={errors['country'] ? errors['country'].message : ''}
+                      // error={!!errors['country']}
+                      // defaultValue={profile.user.country}
+                      // helperText={errors['country'] ? errors['country'].message : ''}
                       InputProps={{
                         ...params.InputProps,
                         type: 'search',
@@ -265,8 +265,8 @@ export default function EditProfileModel({ open, onClose }: ButtonProps) {
                       color='success'
                       label='City'
                       {...register('city')}
-                      error={!!errors['city']}
-                      helperText={errors['city'] ? errors['city'].message : ''}
+                      // error={!!errors['city']}
+                      // helperText={errors['city'] ? errors['city'].message : ''}
                       InputProps={{
                         ...params.InputProps,
                         type: 'search',

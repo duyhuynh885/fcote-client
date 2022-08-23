@@ -74,7 +74,9 @@ export default function DescriptionTab(props: DescriptionTabProps) {
               <Stack spacing={1} alignItems='center' direction='row'>
                 <Typography className={classes.titleHeader}>Submissions</Typography>
                 <Chip
-                  label={`${detail?.availableSubmission}/${detail?.limitSubmission}`}
+                  label={`${detail?.limitSubmission - detail?.availableSubmission}/${
+                    detail?.limitSubmission
+                  }`}
                   sx={{ fontWeight: '700', borderRadius: '5px' }}
                   color='secondary'
                   size='small'

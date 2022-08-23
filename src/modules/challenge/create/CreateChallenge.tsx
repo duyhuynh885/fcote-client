@@ -91,7 +91,7 @@ export default function CreateChallenge() {
           startAt: startAt,
           endAt: endAt,
           element,
-          limitSubmissions: +limitSubmissions,
+          limitSubmission: +limitSubmissions,
         }),
       )
     } else {
