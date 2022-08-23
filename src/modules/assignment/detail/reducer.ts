@@ -42,6 +42,7 @@ const initialState: ViewAssignmentDetailState = {
     isOwner: false,
     limitSubmission: 0,
     availableSubmission: 0,
+    sourceCode: '',
   },
   languages: [],
   parameters: {
@@ -128,7 +129,15 @@ const reducer = (state = initialState, action: ViewAssignmentDetailAction) => {
     case SubmitAssignmentDetailActionType.SUBMIT_ASSIGNMENT_DETAIL_SUCCESS: {
       const testCasesClone: TestCaseResult[] = state.testCases.slice()
       const testCasesUpdated = updateTestCaseRunAndSubmitSuccessful(testCasesClone, action.result)
-      return { ...state, summarize: action.summarize, testCases: testCasesUpdated }
+      return {
+        ...state,
+        summarize: action.summarize,
+        testCases: testCasesUpdated,
+        detail: {
+          ...state.detail,
+          availableSubmission: action.availableSubmission,
+        },
+      }
     }
 
     case ViewAssignmentDetailActionType.VIEW_ASSIGNMENT_DETAIL_CLEAR_STATE:

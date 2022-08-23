@@ -41,6 +41,7 @@ export interface SubmitAssignmentDetailErrorResponse {
 export interface SubmitAssignmentDetailResponse {
   summarize: Summarize
   result: Result[]
+  availableSubmission: number
 }
 
 export type ViewListAssignmentRequestAction = ActionWithPayload<

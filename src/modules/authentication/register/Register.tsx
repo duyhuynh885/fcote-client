@@ -30,14 +30,27 @@ import { registerClearStateRequest, registerRequest } from './action'
 
 export default function Register() {
   const registerSchema = object({
-    firstName: string().max(32, 'First name must be less than 100 characters'),
-    lastName: string().max(32, 'Last name must be less than 100 characters'),
-    username: string().max(32, 'User name must be less than 100 characters'),
-    email: string().email('Email is invalid'),
+    firstName: string().max(32, 'First name must be less than 100 characters').trim(),
+    lastName: string().max(32, 'Last name must be less than 100 characters').trim(),
+    username: string()
+      .max(32, 'User name must be less than 100 characters')
+      .regex(
+        new RegExp('^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$'),
+        'Username is invalid format',
+      )
+      .trim(),
+    email: string()
+      .email('Email is invalid')
+      .regex(
+        new RegExp('^[a-z0-9](\\.?[a-z0-9]){5,}@g(oogle)?mail\\.com$'),
+        'Email is format abc@gmail.com',
+      )
+      .trim(),
     password: string()
       .min(8, 'Password must be more than 8 characters')
-      .max(32, 'Password must be less than 32 characters'),
-    confirmPassword: string(),
+      .max(32, 'Password must be less than 32 characters')
+      .trim(),
+    confirmPassword: string().trim(),
     // terms: literal(true),
   }).refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],

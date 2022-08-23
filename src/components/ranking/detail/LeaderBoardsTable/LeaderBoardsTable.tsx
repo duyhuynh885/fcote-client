@@ -125,17 +125,15 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
   const columns: readonly Column[] = [
-    { id: 'rank', label: '#', minWidth: 10 },
+    { id: 'rank', label: '#', align: 'left' },
     {
       id: 'username',
       label: `${props.type === 'organization' ? 'Organization' : 'Username'}`,
-      minWidth: 100,
       align: 'left',
     },
     {
       id: 'score',
       label: 'Total Score',
-      minWidth: 170,
       align: 'right',
     },
   ]
@@ -163,7 +161,7 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
               <TableCell
                 key={column.id}
                 align={column.align}
-                style={{ minWidth: column.minWidth, fontWeight: '800', color: '#726767' }}
+                style={{ fontWeight: '800', color: '#726767' }}
               >
                 {column.label}
               </TableCell>
@@ -173,24 +171,20 @@ export default function LeaderBoardsTable(props: TypeLeaderBoard) {
         <TableBody>
           {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
             <TableRow key={row.id}>
-              <TableCell component='th' scope='row' style={{ width: 10, fontWeight: '700' }}>
+              <TableCell component='th' scope='row' align='left'>
                 {row.order}
               </TableCell>
               {props.type === 'organization' ? (
-                <TableCell style={{ width: 160 }} align='left'>
-                  {row.organization}
-                </TableCell>
+                <TableCell align='left'>{row.organization}</TableCell>
               ) : (
-                <TableCell style={{ width: 160 }} align='left'>
+                <TableCell align='left'>
                   <Stack direction='row' alignItems='center' spacing={1}>
                     <Avatar alt='Avatar' src={row.avatar ?? DefaultAvatar} />
                     <Typography>{row.username}</Typography>
                   </Stack>
                 </TableCell>
               )}
-              <TableCell style={{ width: 160 }} align='right'>
-                {row.total_score}
-              </TableCell>
+              <TableCell align='right'>{row.total_score}</TableCell>
             </TableRow>
           ))}
         </TableBody>

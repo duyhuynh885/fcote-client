@@ -40,6 +40,7 @@ export interface Detail {
   isOwner: boolean
   limitSubmission: number
   availableSubmission: number
+  sourceCode: string
 }
 
 export interface Language {

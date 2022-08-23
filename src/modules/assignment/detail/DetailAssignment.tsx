@@ -52,7 +52,7 @@ export default function DetailAssignment() {
   const { detail, languages, parameters, testCases, summarize } = assignmentDetailState
   const assignmentId: number = +params.assignmentId
   const challengeId: number = params.challengeId ? +params.challengeId : 1
-  const [sourceCode, setSourceCode] = useState<string>('def compare(a,b):')
+  const [sourceCode, setSourceCode] = useState<string>(detail?.sourceCode)
   const [language, setLanguage] = useState<number>(1)
   const match = useRouteMatch()
   const [openCongratulationModal, setOpenCongratulationModal] = React.useState(false)
@@ -79,6 +79,9 @@ export default function DetailAssignment() {
     }
   }, [submitAssignmentState])
 
+  useEffect(() => {
+    setSourceCode(detail?.sourceCode)
+  }, [detail])
   /**
    * Clear state
    */
