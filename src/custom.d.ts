@@ -9,6 +9,11 @@ declare module '*.png' {
   export default value
 }
 
+declare module '*.jpg' {
+  const value: string
+  export default value
+}
+
 declare module '@ckeditor/ckeditor5-react' {
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
   import Event from '@ckeditor/ckeditor5-utils/src/eventinfo'

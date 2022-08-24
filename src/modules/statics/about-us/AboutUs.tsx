@@ -2,6 +2,8 @@ import { Box, Grid, Container, Stack, Typography } from '@mui/material'
 import React from 'react'
 import useStyles from './style'
 import CardItem from '../../../components/about-us/CardItem'
+import duyAva from '../../../assets/duy.jpg'
+
 /**
 /**
  * AboutUs Pages
@@ -35,7 +37,7 @@ const itemData = [
     id: 2,
     name: 'Nguyen Van Thuan',
     position: 'Software Developer',
-    birthday: '00/00/2000',
+    birthday: '12/03/2000',
     avatar: 'https://www.linkpicture.com/q/182980298_103647368574554_8255196538262780374_n.jpg',
     university: 'FPT University',
     social: {
@@ -59,8 +61,8 @@ const itemData = [
     id: 4,
     name: 'Huynh Van Duy',
     position: 'Software Developer',
-    birthday: '00/00/2000',
-    avatar: '#',
+    birthday: '08/05/2000',
+    avatar: duyAva,
     university: 'FPT University',
     social: {
       facebook: 'https://www.facebook.com/duyhuynh885',
@@ -91,20 +93,7 @@ export default function AboutUs() {
           >
             WHO WE ARE?
           </Typography>
-          <Typography
-            variant='subtitle1'
-            component='div'
-            gutterBottom
-            align='center'
-            mt={2}
-            className={classes.subContent}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non fringilla diam. In
-            suscipit libero posuere aliquet iaculis. Donec hendrerit accumsan gravida. Pellentesque
-            neque elit, lacinia et ullamcorper vitae, tempor fermentum metus. In hac habitasse
-            platea dictumst. Aliquam id dictum lorem, vel auctor nisl. Aliquam mattis odio sem, at
-            volutpat enim fermentum eu.
-          </Typography>
+          
         </Box>
         <Box>
           <Typography

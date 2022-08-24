@@ -65,20 +65,6 @@ export default function ContactUs() {
           >
             Contacts Us
           </Typography>
-          <Typography
-            variant='subtitle1'
-            component='div'
-            gutterBottom
-            align='center'
-            mt={2}
-            className={classes.subContent}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non fringilla diam. In
-            suscipit libero posuere aliquet iaculis. Donec hendrerit accumsan gravida. Pellentesque
-            neque elit, lacinia et ullamcorper vitae, tempor fermentum metus. In hac habitasse
-            platea dictumst. Aliquam id dictum lorem, vel auctor nisl. Aliquam mattis odio sem, at
-            volutpat enim fermentum eu.
-          </Typography>
         </Box>
         <Box>
           <Typography
